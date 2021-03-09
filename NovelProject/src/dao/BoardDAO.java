@@ -68,7 +68,7 @@ public class BoardDAO {
 			pstmt.setInt(7, num);
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("boardInsert 에러 : " + e);
+			System.out.println("boardInsert : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -89,7 +89,7 @@ public class BoardDAO {
 				listCount = rs.getInt(1);
 			}
 		}catch(Exception e) {
-			System.out.println("getListCount 에러 : " + e);
+			System.out.println("getListCount : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -97,7 +97,7 @@ public class BoardDAO {
 		
 		return listCount;
 	}
-	//글 목록 보기
+	//湲� 紐⑸줉 蹂닿린
 	
 	public int deleteArticle(int board_num) {
 		int deleteCount = 0;
@@ -144,14 +144,14 @@ public class BoardDAO {
 				articleList.add(board);
 			}
 		}catch(Exception e){
-			System.out.println("getBoardList 에러 : " + e);
+			System.out.println("getBoardList 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
 		return articleList;
 	}
-	//글내용보기
+	//湲��궡�슜蹂닿린
 	public BoardBean selectArticle(int board_num) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -176,14 +176,14 @@ public class BoardDAO {
 				boardBean.setBoard_date(rs.getDate("board_date"));
 			}
 		}catch(Exception e) {
-			System.out.println("getDetail 에러 : "  + e);
+			System.out.println("getDetail 오류 : "  + e);
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
 		return boardBean;
 	}
-	//글답변
+	//湲��떟蹂�
 	public int insertReplyArticle(BoardBean article) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -223,13 +223,13 @@ public class BoardDAO {
 			pstmt.setString(3, article.getBoard_pass());
 			pstmt.setString(4, article.getBoard_subject());
 			pstmt.setString(5, article.getBoard_content());
-			pstmt.setString(6, ""); // 답장 파일 업로드 x
+			pstmt.setString(6, ""); // �떟�옣 �뙆�씪 �뾽濡쒕뱶 x
 			pstmt.setInt(7, re_ref);
 			pstmt.setInt(8, re_lev);
 			pstmt.setInt(9, re_seq);
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("boardReply 에러 : " + e);
+			System.out.println("boardReply 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -237,7 +237,7 @@ public class BoardDAO {
 		return insertCount;
 	}
 	
-	//조회수 업데이트
+	//議고쉶�닔 �뾽�뜲�씠�듃
 	public int updateReadCount(int board_num) {
 		PreparedStatement pstmt = null;
 		int updateCount = 0;
@@ -247,14 +247,14 @@ public class BoardDAO {
 			pstmt = con.prepareStatement(sql);
 			updateCount = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("setReadCountUpdate 에러 : " + e);
+			System.out.println("setReadCountUpdate 오류 : " + e);
 		}finally {
 			close(pstmt);
 		}
 		return updateCount;
 	}
 	
-	//글쓴이인지 확인
+	//湲��벖�씠�씤吏� �솗�씤
 	public boolean isArticleBoardWriter(int board_num, String pass) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -271,7 +271,7 @@ public class BoardDAO {
 				isWriter = true;
 			}
 		}catch(SQLException e) {
-			System.out.println("isBoardWriter 에러 : " + e);
+			System.out.println("isBoardWriter 오류 : " + e);
 		}finally {
 			close(pstmt);
 		}
