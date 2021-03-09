@@ -1,6 +1,14 @@
 package vo;
 import java.sql.Date;
 public class BoardBean {
+	
+	private int id;
+	private int boardID;
+	private String title;
+	private String content;
+	private Date date;
+	
+	
 	private int board_num;
 	private String board_name;
 	private String board_pass;
