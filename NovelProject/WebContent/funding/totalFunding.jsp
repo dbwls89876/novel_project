@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,7 @@
 		<td>
 			<a href="fundingContent.fun?id=${funding.id }">
 				<img src="images/${funding.image }" id="novelImage"/>
+			</a>
 		</td>
 		</c:forEach>
 	</tr>

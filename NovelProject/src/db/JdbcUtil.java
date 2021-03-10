@@ -12,7 +12,7 @@ public class JdbcUtil {
 		try {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context)initCtx.lookup("java:comp/env");
-			DataSource ds = (DataSource)envCtx.lookup("jdbc/OracleDB");
+			DataSource ds = (DataSource)envCtx.lookup("jdbc/mySQLDB");
 			con = ds.getConnection();
 			con.setAutoCommit(false);
 		}catch(Exception e){
@@ -23,7 +23,8 @@ public class JdbcUtil {
 	
 	public static void close(Connection con) {
 		try {
-			con.close();
+			if(con != null)
+				con.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -31,7 +32,8 @@ public class JdbcUtil {
 	
 	public static void close(Statement stmt) {
 		try {
-			stmt.close();
+			if(stmt != null)
+				stmt.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +41,8 @@ public class JdbcUtil {
 	
 	public static void close(ResultSet rs) {
 		try {
-			rs.close();
+			if(rs != null)
+				rs.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

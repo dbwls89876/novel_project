@@ -17,7 +17,7 @@ public class TotalFundingAction implements Action{
 		TotalFundingService totalFundingService = new TotalFundingService();
 		ArrayList<Funding> fundingList = totalFundingService.getFundingList();
 		request.setAttribute("fundingList", fundingList);
-		ActionForward forward = new ActionForward("funding/totalFunding.jsp", true);
+		ActionForward forward = new ActionForward("/funding/totalFunding.jsp", true);
 		return forward;
 	}
 
