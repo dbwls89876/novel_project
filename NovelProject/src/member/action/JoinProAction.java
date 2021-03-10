@@ -16,13 +16,13 @@ public class JoinProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		Member member = new Member();
-		member.setId(request.getParameter("id"));
-		member.setPassword(request.getParameter("pass"));
-		member.setName("name");
-		member.setAge(Integer.parseInt(!(request.getParameter("age")==null
-				||request.getParameter("age").equals(""))?request.getParameter("age"):"0"));
-		member.setGender(request.getParameter("gender"));
-		member.setEmail(request.getParameter("email"));
+		member.setId(Integer.parseInt(request.getParameter("id")));
+		member.setPassword(request.getParameter("password"));
+		member.setName(request.getParameter("name"));
+		member.setNickname(request.getParameter("nickname"));
+		member.setAddress(request.getParameter("address"));
+		
+		
 		JoinProSvc joinProSvc = new JoinProSvc();
 		boolean isJoinSuccess = joinProSvc.joinMember(member);
 		if(isJoinSuccess) {
