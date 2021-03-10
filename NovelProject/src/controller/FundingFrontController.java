@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
+import vo.ActionForward;
+
 /**
  * Servlet implementation class FundingFrontController
  */
@@ -39,7 +42,18 @@ public class FundingFrontController extends HttpServlet {
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String RequestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = RequestURI.substring(contextPath.length());
+		System.out.println(command);
+		ActionForward forward=null;
+		Action action=null;
+		System.out.println(command);
 		
+		if(command.equals("monthFunding.fun")) {
+			
+		}
 	}
 
 }
