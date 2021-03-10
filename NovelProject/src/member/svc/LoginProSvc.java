@@ -10,7 +10,7 @@ import vo.Member;
 
 public class LoginProSvc {
 
-	public Member getMember(String id) {
+	public Member getMember(int id) {
 		Member member = null;
 		Connection con = null;
 		try {
