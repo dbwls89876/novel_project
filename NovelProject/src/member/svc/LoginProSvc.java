@@ -10,7 +10,7 @@ import vo.Member;
 
 public class LoginProSvc {
 
-	public Member getMember(int id) {
+	public Member getMember(String memberID) {
 		Member member = null;
 		Connection con = null;
 		try {
@@ -18,7 +18,7 @@ public class LoginProSvc {
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			memberDAO.setConnection(con);
 			
-			member = memberDAO.selectMember(id);
+			member = memberDAO.selectMember(memberID);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}finally {

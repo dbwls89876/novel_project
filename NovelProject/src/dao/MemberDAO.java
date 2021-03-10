@@ -35,7 +35,7 @@ public class MemberDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into member value(?,?,?,?,?,?,?)";
+			sql="insert into member value(?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);			
 			pstmt.setString(1, member.getMemberID());
@@ -57,18 +57,18 @@ public class MemberDAO {
 		return insertCount;
 	}
 
-	public Member selectMember(int id) {
+	public Member selectMember(String memberID) {
 		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from member where id = ?";
+		String sql = "select * from member where memberID=?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id);
+			pstmt.setString(1, memberID);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				member = new Member();
-				member.setId(id);
+				member.setId(rs.getInt("id"));
 				member.setMemberID(rs.getString("memberID"));
 				member.setPassword(rs.getString("password"));
 				member.setName(rs.getString("name"));
@@ -77,8 +77,7 @@ public class MemberDAO {
 				member.setAddress(rs.getString("address"));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			System.out.println("memberSelect 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -138,7 +137,7 @@ public class MemberDAO {
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			System.out.println("memberList 에러 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
