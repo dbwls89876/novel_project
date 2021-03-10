@@ -63,18 +63,27 @@ public class FundingDAO {
 		return insertCount;
 	}
 	
-	public Funding selectArticle(int board_num) {
+	public Funding selectArticle(int num) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Funding funding = null;
 		
 		try {
-			pstmt = con.prepareStatement("select * from board where board_num = ?");
-			pstmt.setInt(1,  board_num);
+			pstmt = con.prepareStatement("select * from funding where id = ?");
+			pstmt.setInt(1,  num);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				
+				funding = new Funding();
+				funding.setLiteraryID(rs.getInt("literaryID"));
+				funding.setFundingID(rs.getInt("fundingID"));
+				funding.setTitle(rs.getString("title"));
+				funding.setContent(rs.getString("content"));
+				funding.setImage(rs.getString("image"));
+				funding.setTargetCost(rs.getInt("targetCost"));
+				funding.setNowCost(rs.getInt("nowCost"));
+				funding.setStartDate(rs.getDate("startDate"));
+				funding.setEndDate(rs.getDate("endDate"));
 			}
 		}catch(Exception e) {
 			System.out.println("fundingSelect ¿À·ù : "  + e);
