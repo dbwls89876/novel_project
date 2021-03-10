@@ -74,37 +74,30 @@ function formCheck(f){
 		</td>
 	</tr>
 	<tr>
-		<td><label for="id">아이디 : </label></td>
-		<td align=left><input type="text" name="id" id="id" required/>
+		<td><label for="memberID">아이디 : </label></td>
+		<td align=left><input type="text" name="memberID" id="memberID" required/>
 			<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('idCheck.jsp?openInit=ture','','width=300,height=200')"/>
 		</td>
 	</tr>
 	<tr>
-		<td><label for="pass">비밀번호 : </label></td>
-		<td align=left><input type="password" name="pass" id="pass"/></td>
+		<td><label for="password">비밀번호 : </label></td>
+		<td align=left><input type="password" name="password" id="password"/></td>
 	</tr>
 	<tr>
 		<td><label for="passchk">비밀번호 확인 : </label></td>
-		<td align=left><input type="password" name="pass" id="pass"/></td>
+		<td align=left><input type="password" name="passchk" id="passchk"/></td>
 	</tr>
 	<tr>
 		<td><label for="name">이름 : </label></td>
 		<td align=left><input type="text" name="name" id="name"/></td>
 	</tr>
 	<tr>
-		<td><label for="age">나이 : </label></td>
-		<td align=left><input type="text" name="age" id="age"/></td>
+		<td><label for="nickname">닉네임 : </label></td>
+		<td align=left><input type="text" name="nickname" id="nickname"/></td>
 	</tr>
 	<tr>
-		<td><label for="gender1"></label>성별 : </td>
-		<td align=left>
-		<input type="radio" name="gender" value="여" checked id="gender1"/>여자
-		<input type="radio" name="gender" value="남" id="gender2"/>남자
-		</td>
-	</tr>
-	<tr>
-		<td><label for="email">이메일 주소 : </label></td>
-		<td align=left><input type="text" name="email" id="email"/></td>
+		<td><label for="mobile">휴대폰번호 : </label></td>
+		<td align=left><input type="text" name="mobile" id="mobile"/></td>
 	</tr>
 	<tr>
 		<td><label for="post">우편번호 : </label></td>
@@ -113,12 +106,12 @@ function formCheck(f){
 		</td>
 	</tr>
 	<tr>
-		<td><label for="addr">주소 : </label></td>
-		<td align=left><input type="text" name="addr" id="addr"/></td>
+		<td><label for="address">주소 : </label></td>
+		<td align=left><input type="text" name="address" id="address"/></td>
 	</tr>
 	<tr>
-		<td><label for="addr1">상세 주소 : </label></td>
-		<td align=left><input type="text" name="addr1" id="addr1"/></td>
+		<td><label for="address1">상세 주소 : </label></td>
+		<td align=left><input type="text" name="address1" id="address1"/></td>
 	</tr>
 	<tr>
 		<td colspan="2"><input type="submit" value="전송"/>
