@@ -237,7 +237,7 @@ public class BoardDAO {
 		return insertCount;
 	}
 	
-	//議고쉶�닔 �뾽�뜲�씠�듃
+	//조회수 기능
 	public int updateReadCount(int board_num) {
 		PreparedStatement pstmt = null;
 		int updateCount = 0;
@@ -254,7 +254,7 @@ public class BoardDAO {
 		return updateCount;
 	}
 	
-	//湲��벖�씠�씤吏� �솗�씤
+	//글쓰기 기능
 	public boolean isArticleBoardWriter(int board_num, String pass) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

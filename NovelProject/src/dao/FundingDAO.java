@@ -55,11 +55,33 @@ public class FundingDAO {
 			pstmt.setDate(8, article.getStartDate());
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("boardInsert : " + e);
+			System.out.println("fundingInsert 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
 		return insertCount;
+	}
+	
+	public Funding selectArticle(int board_num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Funding funding = null;
+		
+		try {
+			pstmt = con.prepareStatement("select * from board where board_num = ?");
+			pstmt.setInt(1,  board_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+			}
+		}catch(Exception e) {
+			System.out.println("fundingSelect 오류 : "  + e);
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return funding;
 	}
 }
