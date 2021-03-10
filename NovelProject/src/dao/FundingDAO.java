@@ -1,10 +1,11 @@
 package dao;
 
-import static db.JdbcUtil.close;
+import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -27,8 +28,12 @@ public class FundingDAO {
 		
 	}
 	
+	public void setConnection(Connection con) {
+		this.con = con;
+	}
+	
 	//funding 테이블 데이터 삽입
-	public int insertArticle(Funding article) {
+	public int insertFunding(Funding funding) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "";
@@ -45,14 +50,14 @@ public class FundingDAO {
 			sql += "targetCost, nowCost, startDate, endDate) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, article.getLiteraryID());
-			pstmt.setInt(2, article.getFundingID());
-			pstmt.setString(3, article.getTitle());
-			pstmt.setString(4, article.getContent());
-			pstmt.setString(5, article.getImage());
-			pstmt.setInt(6, article.getTargetCost());
-			pstmt.setInt(7, article.getNowCost());
-			pstmt.setDate(8, article.getStartDate());
+			pstmt.setInt(1, funding.getLiteraryID());
+			pstmt.setInt(2, funding.getFundingID());
+			pstmt.setString(3, funding.getTitle());
+			pstmt.setString(4, funding.getContent());
+			pstmt.setString(5, funding.getImage());
+			pstmt.setInt(6, funding.getTargetCost());
+			pstmt.setInt(7, funding.getNowCost());
+			pstmt.setDate(8, funding.getStartDate());
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("fundingInsert 오류 : " + e);
@@ -63,7 +68,8 @@ public class FundingDAO {
 		return insertCount;
 	}
 	
-	public Funding selectArticle(int num) {
+	//funding 테이블 한 줄의 정보 가져오기
+	public Funding selectFunding(int num) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Funding funding = null;
@@ -92,5 +98,42 @@ public class FundingDAO {
 			close(pstmt);
 		}
 		return funding;
+	}
+
+	//펀딩 테이블 리스트 가져오기
+	public ArrayList<Funding> selectFundingList() {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Funding> fundingList = null;
+		String sql = "select * from funding";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			fundingList = new ArrayList<Funding>();
+			if(rs.next()) {
+				do {
+					fundingList.add(new Funding(
+							rs.getInt("literaryID")
+							,rs.getInt("fundingID")
+							,rs.getString("title")
+							,rs.getString("content")
+							,rs.getString("image")
+							,rs.getInt("targetCost")
+							,rs.getInt("nowCost")
+							,rs.getDate("startDate")
+							,rs.getDate("endDate")
+							));
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return fundingList;
 	}
 }

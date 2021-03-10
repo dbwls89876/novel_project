@@ -100,7 +100,7 @@ a {
 					<li><a
 						href="${pageContext.request.contextPath }/memberJoin.mem">
 						이 달의 펀딩</a></li>
-					<li><a href="${pageContext.request.contextPath }/memberListAction.mem">
+					<li><a href="${pageContext.request.contextPath }/totalFunding.fun">
 						전체 펀딩</a>
 					</li>
 				</ul>

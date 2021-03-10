@@ -7,6 +7,22 @@ import java.sql.Date;
  * 
  */
 public class Funding {
+	
+	public Funding() {}
+	
+	public Funding(int literaryID, int fundingID, String title, String content, String image, int targetCost,
+			int nowCost, Date startDate, Date endDate) {
+		super();
+		this.literaryID = literaryID;
+		this.fundingID = fundingID;
+		this.title = title;
+		this.content = content;
+		this.image = image;
+		this.targetCost = targetCost;
+		this.nowCost = nowCost;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 	int literaryID;
 	int fundingID;
 	String title;
