@@ -23,7 +23,7 @@
 <table>
 	<tr>
 		<td colspan="2" class="td_title">
-		로그인 페이지
+		로그인
 		</td>
 	</tr>
 	<tr>
