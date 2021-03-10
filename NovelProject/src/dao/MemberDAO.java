@@ -3,6 +3,7 @@ package dao;
 import static db.JdbcUtil.close;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -34,15 +35,18 @@ public class MemberDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into member value(?,?,?,?,?,?)";
+			sql="insert into member value(?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);			
-			pstmt.setString(1, member.getId());
+			pstmt.setString(1, member.getMemberID());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getName());
-			pstmt.setInt(4, member.getAge());
-			pstmt.setString(5, member.getGender());
-			pstmt.setString(6, member.getEmail());
+			pstmt.setString(4, member.getNickname());
+			pstmt.setString(5, member.getMobile());
+			pstmt.setString(6, member.getAddress());
+			pstmt.setInt(7, member.getGrade());
+			pstmt.setInt(8, member.getLevel());
+			pstmt.setDate(9, (Date) member.getDate());
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("memberInsert 에러 : " + e);
@@ -53,23 +57,24 @@ public class MemberDAO {
 		return insertCount;
 	}
 
-	public Member selectMember(String id) {
+	public Member selectMember(int id) {
 		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from member where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				member = new Member();
 				member.setId(id);
+				member.setMemberID(rs.getString("memberID"));
 				member.setPassword(rs.getString("password"));
 				member.setName(rs.getString("name"));
-				member.setAge(rs.getInt("age"));
-				member.setGender(rs.getString("gender"));
-				member.setEmail(rs.getString("email"));
+				member.setNickname(rs.getString("nickname"));
+				member.setMobile(rs.getString("mobile"));
+				member.setAddress(rs.getString("address"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -122,13 +127,13 @@ public class MemberDAO {
 				memberList = new ArrayList<Member>();
 				do {
 					Member member = new Member();
-					member.setId(rs.getString("id"));
+					member.setId(rs.getInt("id"));
+					member.setMemberID(rs.getString("memberID"));
 					member.setPassword(rs.getString("password"));
 					member.setName(rs.getString("name"));
-					member.setAge(rs.getInt("age"));
-					member.setGender(rs.getString("gender"));
-					member.setEmail(rs.getString("email"));
-					memberList.add(member);
+					member.setNickname(rs.getString("nickname"));
+					member.setMobile(rs.getString("mobile"));
+					member.setAddress(rs.getString("address"));
 				}while(rs.next());
 			}
 		}catch (Exception e) {
@@ -145,16 +150,20 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update member set password = ?, name = ?, age = ?,"+
-		" gender = ?, email = ? where id = ?";
+		String sql = "update member set memberID=?, password = ?, name = ?, nickname = ?,"+
+		" mobile = ?, address = ? where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getName());
-			pstmt.setInt(3, member.getAge());
-			pstmt.setString(4, member.getGender());
-			pstmt.setString(5, member.getEmail());
-			pstmt.setString(6, member.getId());
+			pstmt.setString(1, member.getMemberID());
+			pstmt.setString(2, member.getPassword());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getNickname());
+			pstmt.setString(5, member.getMobile());
+			pstmt.setString(6, member.getAddress());
+			pstmt.setInt(7, member.getGrade());
+			pstmt.setInt(8, member.getLevel());
+			pstmt.setDate(9, (Date) member.getDate());
+			pstmt.setInt(10, member.getId());
 			updateCount = pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception

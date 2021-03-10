@@ -1,17 +1,30 @@
 package vo;
 
+import java.util.Date;
+
 public class Member {
-	String id;
+	int id;
+	String memberID;
 	String password;
 	String name;
-	int age;
-	String gender;
-	String email;
-	public String getId() {
+	String nickname;
+	String mobile;
+	String address;
+	int grade;
+	int level;
+	Date date;
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public String getMemberID() {
+		return memberID;
+	}
+	public void setMemberID(String memberID) {
+		this.memberID = memberID;
 	}
 	public String getPassword() {
 		return password;
@@ -25,22 +38,43 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
-		return age;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	public String getGender() {
-		return gender;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
-	public String getEmail() {
-		return email;
+	public String getAddress() {
+		return address;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAddress(String address) {
+		this.address = address;
 	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	
+	
 }
