@@ -28,13 +28,10 @@ public class MemberModProAction implements Action {
 			out.println("</script>");
 		}else {
 			Member member = new Member();
-			member.setId(request.getParameter("id"));
-			member.setPassword(request.getParameter("pass"));
+			member.setId(Integer.parseInt(request.getParameter("id")));
+			member.setPassword(request.getParameter("password"));
 			member.setName(request.getParameter("name"));
-			member.setAge(Integer.parseInt(!(request.getParameter("age") == null 
-					|| request.getParameter("age").equals(""))? request.getParameter("age"):"0"));
-			member.setGender(request.getParameter("gender"));
-			member.setEmail(request.getParameter("email"));
+			
 			
 			MemberModProSvc memberModProSvc = new MemberModProSvc();
 			boolean isModifySuccess = memberModProSvc.modifyMember(member);

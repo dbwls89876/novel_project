@@ -27,9 +27,9 @@ public class MemberInfoAction implements Action{
 			out.println("location.href='loginForm.log'");
 			out.println("</script>");
 		}else {
-			String id = request.getParameter("id");
+			String memberID = request.getParameter("memberID");
 			MemberInfoSvc memberInfoSvc = new MemberInfoSvc();
-			Member member = memberInfoSvc.getMember(id);
+			Member member = memberInfoSvc.getMember(memberID);
 			if(member != null) {
 				request.setAttribute("member", member);
 				forward = new ActionForward();
