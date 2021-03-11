@@ -7,8 +7,9 @@ public class Literary {
 	private String content;
 	private String genre;
 	private double score;
-	
-	public Literary(int id, int literaryID, String name, String content, String genre, double score) {
+	private String image;
+
+	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image) {
 		super();
 		this.id = id;
 		this.literaryID = literaryID;
@@ -16,8 +17,8 @@ public class Literary {
 		this.content = content;
 		this.genre = genre;
 		this.score = score;
+		this.image = image;
 	}
-	
 	public int getId() {
 		return id;
 	}
@@ -54,6 +55,14 @@ public class Literary {
 	public void setScore(double score) {
 		this.score = score;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 	
 	
 }
