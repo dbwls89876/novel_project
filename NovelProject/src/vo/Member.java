@@ -13,6 +13,7 @@ public class Member {
 	int grade;
 	int level;
 	Date date;
+	int money;
 	
 	public int getId() {
 		return id;
@@ -73,6 +74,12 @@ public class Member {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public int getMoney() {
+		return money;
+	}
+	public void setMoney(int money) {
+		this.money = money;
 	}
 	
 	

@@ -25,6 +25,7 @@ public class JoinProAction implements Action {
 		
 		
 		
+		
 		JoinProSvc joinProSvc = new JoinProSvc();
 		boolean isJoinSuccess = joinProSvc.joinMember(member);
 		if(isJoinSuccess) {
