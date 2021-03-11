@@ -27,8 +27,8 @@ public class BoardWriteProAction implements Action {
 		realFolder = context.getRealPath(saveFolder);
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		boardBean = new BoardBean();
-		boardBean.setBoardID(multi.getParameter("boardID"));
-		boardBean.setId(multi.getParameter("id"));
+		boardBean.setBoardID(Integer.parseInt(multi.getParameter("boardID")));
+		boardBean.setId(Integer.parseInt(multi.getParameter("id")));
 		boardBean.setTitle(multi.getParameter("title"));
 		boardBean.setContent(multi.getParameter("content"));
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
