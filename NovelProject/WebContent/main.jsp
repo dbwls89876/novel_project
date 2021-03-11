@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<table border="0">
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 </body>
 </html>
