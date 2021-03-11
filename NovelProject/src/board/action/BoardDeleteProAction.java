@@ -16,12 +16,12 @@ public class BoardDeleteProAction implements Action {
 		ActionForward forward = null;
 		
 		String page = request.getParameter("page");
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		String pass = request.getParameter("board_pass");
+		int board_num = Integer.parseInt(request.getParameter("boardID"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
 		
-		boolean isArticleWriter = boardDeleteProService.isArticleWriter();
+		boolean isArticleWriter = board*DeleteProService.isArticleWriter();
 		
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");

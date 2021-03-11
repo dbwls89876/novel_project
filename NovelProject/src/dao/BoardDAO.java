@@ -255,7 +255,7 @@ public class BoardDAO {
 	}
 	
 	//글쓰기 기능
-	public boolean isArticleBoardWriter(int board_num, String pass) {
+	public boolean isArticleBoardWriter(int boardID, int id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String board_sql = "select * from board where board_num=?";
@@ -263,11 +263,11 @@ public class BoardDAO {
 		
 		try {
 			pstmt = con.prepareStatement(board_sql);
-			pstmt.setInt(1, board_num);
+			pstmt.setInt(1, boardID);
 			rs = pstmt.executeQuery();
 			rs.next();
 			
-			if(pass.equals(rs.getString("board_pass"))) {
+			if(id.equals(rs.getString("id"))) {
 				isWriter = true;
 			}
 		}catch(SQLException e) {

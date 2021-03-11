@@ -17,11 +17,10 @@ public class BoardReplyProAction implements Action {
 		ActionForward forward = null;
 		String page = request.getParameter("page");
 		BoardBean article = new BoardBean();
-		article.setBoard_num(Integer.parseInt(request.getParameter("board_num")));
-		article.setBoard_name(request.getParameter("board_name"));
-		article.setBoard_pass(request.getParameter("board_pass"));
-		article.setBoard_subject(request.getParameter("board_subject"));
-		article.setBoard_content(request.getParameter("board_content"));
+		article.setBoardID(Integer.parseInt(request.getParameter("boardID")));
+		article.setId(Integer.parseInt(request.getParameter("id")));
+		article.setTitle(request.getParameter("title"));
+		article.setContent(request.getParameter("Content"));
 		article.setBoard_re_ref(Integer.parseInt(request.getParameter("board_re_ref")));
 		article.setBoard_re_lev(Integer.parseInt(request.getParameter("board_re_lev")));
 		article.setBoard_re_seq(Integer.parseInt(request.getParameter("board_re_seq")));

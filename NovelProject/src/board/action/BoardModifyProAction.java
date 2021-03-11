@@ -15,14 +15,14 @@ public class BoardModifyProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		String pass = request.getParameter("board_pass");
-		String subject = request.getParameter("board_subject");
-		String content = request.getParameter("board_content");
+		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		String page = request.getParameter("page");
 		
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
-		boolean isRightUser = boardModifyProService.isArticleWriter(board_num,pass);
+		boolean isRightUser = boardModifyProService.isArticleWriter(boardID,id);
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -32,9 +32,9 @@ public class BoardModifyProAction implements Action {
 			out.println("</script>");
 		}else {
 			BoardBean article = new BoardBean();
-			article.setBoard_num(board_num);
-			article.setBoard_subject(subject);
-			article.setBoard_content(content);
+			article.setBoardID(boardID);
+			article.setTitle(title);
+			article.setContent(content);
 			boolean isModifySuccess = boardModifyProService.modifyArticle(article);
 			
 			if(!isModifySuccess) {
@@ -47,7 +47,7 @@ public class BoardModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.bo?board_num="+board_num+"&page="+page);
+				forward.setPath("boardDetail.bo?board_num="+boardID+"&page="+page);
 			}
 		}
 		return forward;
