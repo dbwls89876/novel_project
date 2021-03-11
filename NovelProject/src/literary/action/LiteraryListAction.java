@@ -17,7 +17,7 @@ public class LiteraryListAction implements Action {
 		LiteraryListSvc literaryListSvc = new LiteraryListSvc();
 		ArrayList<Literary> literaryList = literaryListSvc.getLiteraryList();
 		request.setAttribute("literaryList", literaryList);
-		ActionForward forward = new ActionForward("literaryList.jsp", false);
+		ActionForward forward = new ActionForward("/literary/literaryList.jsp", true);
 		return forward;
 	}
 
