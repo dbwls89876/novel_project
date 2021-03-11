@@ -3,6 +3,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="vo.Literary"%>
 <%@page import="java.util.ArrayList"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,13 @@ table {
 </style>
 </head>
 <body>
-	<section id="listForm">
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+
 		<c:if test="${literaryList != null }">
 			<h2>
 				작품 <a href="literaryRegistForm.lit">작품 등록</a>
@@ -73,6 +80,7 @@ table {
 			<div class="div_empty">작품이 없습니다.</div>
 		</c:if>
 
-	</section>
+
+	</table>
 </body>
 </html>
