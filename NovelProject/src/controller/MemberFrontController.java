@@ -17,7 +17,7 @@ import member.action.*;
 /**
  * Servlet implementation class BoardFrontController
  */
-@WebServlet(urlPatterns = {"*.mem", "*.log"})
+@WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,10 +55,11 @@ public class MemberFrontController extends HttpServlet {
 		Action action=null;
 		System.out.println(command);
 		
-		if(command.equals("/loginForm.log")) {
+		if(command.equals("/memberLogin.me")) {
 			forward = new ActionForward();
+			forward.setRedirect(true);
 			forward.setPath("/member/loginForm.jsp");
-		}else if(command.equals("/loginProcess.log")) { 
+		}else if(command.equals("/memberJoin.me")) { 
 			action = new MemberLoginProAction(); 
 			try { 
 				forward = action.execute(request, response);
