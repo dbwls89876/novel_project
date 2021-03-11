@@ -13,11 +13,11 @@
 <Resource name="jdbc/mySQLDB"
 auth="Container"
 type="javax.sql.DataSource"
-username="java"
-password="java"
+username="ip20bkkj"
+password="ip20bkkj"
 driverClassName="com.mysql.cj.jdbc.Driver"
 factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-url="jdbc:mysql://localhost:3306/ip20b_kkj?serverTimezone=UTC"
+url="jdbc:mysql://118.131.179.138/ip20b_kkj?serverTimezone=UTC"
 maxActive="500"
 maxIdle="100"/>
 </Context>
