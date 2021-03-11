@@ -99,7 +99,7 @@ a {
 			<li><a href="#">펀딩 둘러보기</a>
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath }/memberJoin.mem">
+						href="${pageContext.request.contextPath }/weekFunding.fun">
 						이 주의 펀딩</a></li>
 					<li><a href="${pageContext.request.contextPath }/totalFunding.fun">
 						전체 펀딩</a>
