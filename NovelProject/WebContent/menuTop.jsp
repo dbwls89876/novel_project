@@ -92,7 +92,7 @@ a {
 		<ul>
 			<li><a href="#">작품</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath }/dogList.dog">신작</a></li>
+					<li><a href="${pageContext.request.contextPath }/literaryList.lit">신작</a></li>
 					<li><a href="${pageContext.request.contextPath }/dogCartList.dog">연재작</a></li>
 				</ul>
 			</li>
