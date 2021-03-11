@@ -16,12 +16,12 @@ public class BoardDeleteProAction implements Action {
 		ActionForward forward = null;
 		
 		String page = request.getParameter("page");
-		int board_num = Integer.parseInt(request.getParameter("boardID"));
+		int boardID = Integer.parseInt(request.getParameter("boardID"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
 		
-		boolean isArticleWriter = board*DeleteProService.isArticleWriter();
+		boolean isArticleWriter = boardDeleteProService.isArticleWriter();
 		
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");
@@ -31,7 +31,7 @@ public class BoardDeleteProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 		}else {
-			boolean isDeleteSuccess = boardDeleteProService.removeArticle(board_num);
+			boolean isDeleteSuccess = boardDeleteProService.removeArticle(boardID);
 			if(!isDeleteSuccess) {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();

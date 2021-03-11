@@ -21,9 +21,9 @@ public class BoardReplyProAction implements Action {
 		article.setId(Integer.parseInt(request.getParameter("id")));
 		article.setTitle(request.getParameter("title"));
 		article.setContent(request.getParameter("Content"));
-		article.setBoard_re_ref(Integer.parseInt(request.getParameter("board_re_ref")));
-		article.setBoard_re_lev(Integer.parseInt(request.getParameter("board_re_lev")));
-		article.setBoard_re_seq(Integer.parseInt(request.getParameter("board_re_seq")));
+		article.setRef(Integer.parseInt(request.getParameter("ref")));
+		article.setLev(Integer.parseInt(request.getParameter("lev")));
+		article.setSeq(Integer.parseInt(request.getParameter("seq")));
 		BoardReplyProService boardReplyProService = new BoardReplyProService();
 		boolean isReplySuccess = boardReplyProService.replyArticle(article);
 		

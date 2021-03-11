@@ -90,7 +90,7 @@ public class BoardFrontController extends HttpServlet {
 			}
 			
 		}else if(command.equals("/boardReplayForm.bo")){
-			action = new BoardReplayFormAction();
+			action = new BoardReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {

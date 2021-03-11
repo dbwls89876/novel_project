@@ -8,14 +8,14 @@ import vo.BoardBean;
 
 public class BoardModifyProService {
 
-	public boolean isArticleWriter(int board_num, String pass) {
+	public boolean isArticleWriter(int boardID, int id) {
 		boolean isArticleWriter = false;
 		Connection con = null;
 		try {
 			con = getConnection();
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.setConnection(con);
-			isArticleWriter = boardDAO.isArticleBoardWriter(board_num,pass);
+			isArticleWriter = boardDAO.isArticleBoardWriter(boardID,id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
