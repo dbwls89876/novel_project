@@ -272,7 +272,7 @@ public class BoardDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			
-			if(id.equals(rs.getInt("id"))) {
+			if(id==rs.getInt("id")) {
 				isWriter = true;
 			}
 		}catch(SQLException e) {
