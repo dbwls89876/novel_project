@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 <title>MVC게시판</title>
 <style type="text/css">
-#registForm {
-	width : 500px;
-	height : 610px;
-	border : 1px solid red;
-	margin : auto;
-}
 
 h2 {
 text-align : center;
@@ -19,7 +13,7 @@ text-align : center;
 
 table {
 	margin : auto;
-	width : 450px;
+	width : 100%;
 }
 
 .td_left {
@@ -39,6 +33,15 @@ table {
 </style>
 </head>
 <body>
+<div id="menuTop">
+<table border="0">
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
+</div>
 <section id = "writeForm">
 	<h2>게시판글등록</h2>
 	<form action = "boardWritePro.bo" method = "post"
