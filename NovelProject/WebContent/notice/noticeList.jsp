@@ -55,6 +55,13 @@ table {
 </style>
 </head>
 <body>
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <section id="listForm">
 	<h2>공지사항</h2>
 	<table>
@@ -96,7 +103,7 @@ table {
 	<%if(nowPage<=1){ %>
 		[이전]&nbsp;
 	<%} else{ %>
-		<a href="noticeList.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+		<a href="notice.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
 	<%} %>
 	
 	<%for(int a=startPage; a<=endPage; a++) {
@@ -104,14 +111,14 @@ table {
 			[<%=a %>]
 		<%} else{ %>
 		
-			<a href="noticeList.bo?page=<%=a %>">[<%=a %>]
+			<a href="notice.bo?page=<%=a %>">[<%=a %>]
 			</a>&nbsp;
 		<%} %>
 	<%} %>
 	<%if(nowPage>=maxPage) { %>
 		[다음]
 	<%}else { %>
-		<a href="noticeList.bo?page=<%=nowPage+1 %>">[다음]</a>
+		<a href="notice.bo?page=<%=nowPage+1 %>">[다음]</a>
 	<%} %>
 			
 

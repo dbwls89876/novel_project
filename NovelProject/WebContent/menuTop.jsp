@@ -106,7 +106,7 @@ a {
 					</li>
 				</ul>
 			</li>
-			<li><a href="${pageContext.request.contextPath }/noticeBoard.bo">공지게시판 </a></li>
+			<li><a href="${pageContext.request.contextPath }/notice.bo">공지게시판 </a></li>
 			<li><a href="${pageContext.request.contextPath }/board.bo">커뮤니티</a></li>
 			<li>
 				<c:choose>
