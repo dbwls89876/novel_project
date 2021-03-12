@@ -19,7 +19,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC게시판</title>
+<title>Notice Board</title>
 <style type="text/css">
 #registForm {
 	width : 500px;
@@ -38,7 +38,6 @@ table {
 }
 
 #tr_top {
-	background : orange;
 	text-align : center;
 }
 
@@ -57,9 +56,7 @@ table {
 </head>
 <body>
 <section id="listForm">
-	<h2>
-		글목록<a href="boardWriteForm.bo">게시판글쓰기</a>
-	</h2>
+	<h2>공지사항</h2>
 	<table>
 		<%if(articleList != null && listCount > 0) { %>
 			<tr id = "tr_top">
@@ -75,7 +72,7 @@ table {
 		
 		%>
 			<tr>
-				<td><%=articleList.get(i).getBoardID() %></td>
+				<td><%=articleList.get(i).getNoticeID() %></td>
 				<td>
 				<%if(articleList.get(i).getLev() != 0) { %>
 				<%for(int a=0; a<=articleList.get(i).getLev(
@@ -83,12 +80,12 @@ table {
 						&nbsp;
 				<%} %> ▶
 				<%}else { %> ▶ <%} %>
-					<a href = "boardDetail.bo?board_num=<%=articleList.
-					get(i).getBoardID() %>&page=<%=nowPage %>">
+					<a href = "noticeDetail.bo?NoticeID=<%=articleList.
+					get(i).getNoticeID() %>&page=<%=nowPage %>">
 					<%=articleList.get(i).getTitle() %>
 					</a>
 				</td>
-				<td><%=articleList.get(i).getBoardID() %></td>
+				<td><%=articleList.get(i).getNoticeID() %></td>
 				<td><%=articleList.get(i).getDate() %></td>
 				<td><%=articleList.get(i).getReadCount() %></td>
 			</tr>
@@ -99,7 +96,7 @@ table {
 	<%if(nowPage<=1){ %>
 		[이전]&nbsp;
 	<%} else{ %>
-		<a href="boardList.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+		<a href="noticeList.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
 	<%} %>
 	
 	<%for(int a=startPage; a<=endPage; a++) {
@@ -107,15 +104,16 @@ table {
 			[<%=a %>]
 		<%} else{ %>
 		
-			<a href="boardList.bo?page=<%=a %>">[<%=a %>]
+			<a href="noticeList.bo?page=<%=a %>">[<%=a %>]
 			</a>&nbsp;
 		<%} %>
 	<%} %>
 	<%if(nowPage>=maxPage) { %>
 		[다음]
 	<%}else { %>
-		<a href="boardList.bo?page=<%=nowPage+1 %>">[다음]</a>
-	<%} %>		
+		<a href="noticeList.bo?page=<%=nowPage+1 %>">[다음]</a>
+	<%} %>
+			
 
 </section>
 <%
@@ -124,8 +122,9 @@ table {
 	{
 		%>
 		<section id="emptyArea">등록된 글이 없습니다.</section>
-	<%
+		<%
 	}
 %>
+<a href="noticeWriteForm.bo">게시판글쓰기</a>
 </body>
 </html>

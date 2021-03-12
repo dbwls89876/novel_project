@@ -106,8 +106,8 @@ a {
 					</li>
 				</ul>
 			</li>
-			<li><a href="#">공지게시판 </a></li>
-			<li><a href="#">커뮤니티</a></li>
+			<li><a href="${pageContext.request.contextPath }/noticeBoard.bo">공지게시판 </a></li>
+			<li><a href="${pageContext.request.contextPath }/board.bo">커뮤니티</a></li>
 			<li>
 				<c:choose>
 					<c:when test="${id eq null }">

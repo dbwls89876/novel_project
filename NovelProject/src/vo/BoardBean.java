@@ -3,6 +3,7 @@ import java.sql.Date;
 public class BoardBean {
 	
 	private int boardID;
+	private int noticeID;
 	private int id;
 	private String title;
 	private String content;
@@ -17,6 +18,12 @@ public class BoardBean {
 	}
 	public void setBoardID(int boardID) {
 		this.boardID = boardID;
+	}
+	public int getNoticeID() {
+		return noticeID;
+	}
+	public void setNoticeID(int noticeID) {
+		this.noticeID = noticeID;
 	}
 	public int getId() {
 		return id;
