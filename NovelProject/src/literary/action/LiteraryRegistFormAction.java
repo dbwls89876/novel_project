@@ -6,12 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import vo.ActionForward;
 
-public class LiteraryRegisterAction implements Action {
+public class LiteraryRegistFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward forward = new ActionForward("literaryRegistForm.jsp",true);
+		return forward;
 	}
-
 }

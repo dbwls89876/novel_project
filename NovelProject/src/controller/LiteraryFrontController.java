@@ -13,7 +13,8 @@ import action.Action;
 import funding.action.FundingRegisterAction;
 import funding.action.TotalFundingAction;
 import literary.action.NewLiteraryListAction;
-import literary.action.LiteraryRegisterAction;
+import literary.action.LiteraryRegistAction;
+import literary.action.LiteraryRegistFormAction;
 import literary.action.TotalLiteraryListAction;
 import vo.ActionForward;
 
@@ -74,7 +75,7 @@ public class LiteraryFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/literaryRegister.lit")) {
-			action = new LiteraryRegisterAction();
+			action = new LiteraryRegistAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
