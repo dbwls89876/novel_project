@@ -27,12 +27,14 @@
 </style>
 </head>
 <body>
-
 <table>
 	<tr>
 		<td align="center"><br>
 			<jsp:include page="../menuTop.jsp"></jsp:include>
 		</td>
+	</tr>
+	<tr>
+		<td><a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a></td>
 	</tr>
 	<tr>
 		<td>

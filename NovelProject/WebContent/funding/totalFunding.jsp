@@ -35,6 +35,9 @@
 		</td>
 	</tr>
 	<tr>
+		<td><a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a></td>
+	</tr>
+	<tr>
 		<td>
 			<table>
 			<c:forEach var = "funding" items="${fundingList }" varStatus = "status">

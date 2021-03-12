@@ -33,11 +33,10 @@ public class FundingDAO {
 	}
 	
 	//funding 테이블 데이터 삽입
-	public int insertFunding(Funding funding) {
+	public boolean insertFunding(Funding funding) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String sql = "";
-		int insertCount=0;
+		boolean insertSucess = false;
 		
 		try {
 			/* auto
@@ -58,14 +57,15 @@ public class FundingDAO {
 			pstmt.setInt(6, funding.getTargetCost());
 			pstmt.setInt(7, funding.getNowCost());
 			pstmt.setDate(8, funding.getStartDate());
-			insertCount = pstmt.executeUpdate();
+			pstmt.setDate(9, funding.getEndDate());
+			pstmt.execute();
+			insertSucess = true;
 		}catch(Exception e) {
 			System.out.println("fundingInsert 오류 : " + e);
 		}finally {
-			close(rs);
 			close(pstmt);
 		}
-		return insertCount;
+		return insertSucess;
 	}
 	
 	//funding 테이블 한 줄의 정보 가져오기
