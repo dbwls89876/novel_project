@@ -26,7 +26,17 @@ public class Literary {
 		this.image = image;
 		this.date = date;
 	}
-	
+	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image) {
+		super();
+		this.id = id;
+		this.literaryID = literaryID;
+		this.title = name;
+		this.content = content;
+		this.genre = genre;
+		this.score = score;
+		this.image = image;
+
+	}	
 	public int getId() {
 		return id;
 	}

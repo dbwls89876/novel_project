@@ -37,8 +37,7 @@ public class LiteraryRegistAction implements Action {
 				multi.getParameter("content"),
 				multi.getParameter("genre"),
 				Double.parseDouble(multi.getParameter("score")),
-				multi.getParameter("image"),
-				Date date = new Date());
+				multi.getParameter("image"));
 		boolean isRegistSuccess = LiteraryRegistService.registLiterary(literary);
 		ActionForward forward = null;
 		
