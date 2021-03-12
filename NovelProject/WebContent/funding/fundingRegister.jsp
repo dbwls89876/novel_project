@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,20 +42,26 @@
 <form action="fundingRegister.fun" method="post" enctype="multipart/form-data" name="fundingForm">
 <table>
 	<tr>
-		<td class="td_left"><label for="">신청 작품</label></td>
-		<td><!-- 신청 작품 select --></td>
+		<td class="td_left"><label for="">작품 선택</label></td>
+		<td><!-- 신청 작품 select -->
+			<select name="selectLiterary">
+				<c:forEach var = "artistLiterary" items="${artistLiteraryList }" varStatus = "status">
+					<option value="${artistLiterary.title }">${artistLiterary.title }</option>
+				</c:forEach>
+			</select>
+		</td>
 	</tr>
 	<tr>
-		<td class="td_left"><label for="">제목</label></td>
-		<td class="td_right"><input type="text" name="" id="" required="required"/></td>
+		<td class="td_left"><label for="title">제목</label></td>
+		<td class="td_right"><input type="text" name="title" id="title" required="required"/></td>
 	</tr>
 	<tr>
 		<td class="td_left"><label for="">내용</label></td>
-		<td><textarea id="" name="" cols="40" rows="15" required="required"></textarea></td>
+		<td><textarea id="" name="content" cols="40" rows="15" required="required"></textarea></td>
 	</tr>
 	<tr>
-		<td class="td_left"><label for="">파일 첨부</label></td>
-		<td class="td_right"><input type="file" name="" id="" required="required"/></td>
+		<td class="td_left"><label for="">이미지 첨부</label></td>
+		<td class="td_right"><input type="file" name="image" id="image" required="required"/></td>
 	</tr>
 </table>
 <section id="commandCell">
