@@ -44,10 +44,9 @@ h2 {
 </head>
 <body>
 <section id = "articleForm">
-	<h2>글 내용 상세보기</h2>
 	<section id="basicInfoArea">
-		글 제목 :
-		<%=article.getTitle() %>	
+		<h2>글 제목 : 
+		<%=article.getTitle() %></h2>
 	</section>
 	<section id="articleContentArea">
 		내용 : 
