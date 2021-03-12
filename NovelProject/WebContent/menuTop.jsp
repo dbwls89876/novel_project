@@ -92,8 +92,8 @@ a {
 		<ul>
 			<li><a href="#">작품</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath }/literaryList.lit">신작</a></li>
-					<li><a href="${pageContext.request.contextPath }/lit">연재작</a></li>
+					<li><a href="${pageContext.request.contextPath }/newLiteraryList.lit">신작</a></li>
+					<li><a href="${pageContext.request.contextPath }/totalLiteraryList.lit">연재작</a></li>
 				</ul>
 			</li>
 			<li><a href="#">펀딩 둘러보기</a>

@@ -19,7 +19,7 @@
 	}
 	table{
 		margin: auto;
-		width: 1000px;
+		width: 1500px;
 		border:1px solid;
 	}
 
@@ -41,10 +41,10 @@
 	<tr>
 		<td>
 			<table>
-				<c:forEach var="literary" items="${literaryList }" varStatus="status">
+				<c:forEach var="literary" items="${newLiteraryList }" varStatus="status">
 					<td><a href="literaryView.lit?id=${literary.id}"> 
-					<img src="images/${literary.image}" id="literaryImage" />
-					</a> 작품명 : ${literary.name}<br> 장르 : ${literary.genre}<br></td>
+					<img src="images/${literary.image}" id="literaryImage" /><br>
+					</a> 작품명 : ${literary.name}<br> 장르 : ${literary.genre}<br> 평점 : ${literary.score}<br> 내용 : ${literary.content}<br></td>
 					<c:if test="${((status.index+1) mod 4) == 0 }">
 				</tr>
 				<tr>

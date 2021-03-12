@@ -1,5 +1,7 @@
 package vo;
 
+import java.util.Date;
+
 public class Literary {
 	private int id;
 	private int literaryID;
@@ -8,8 +10,10 @@ public class Literary {
 	private String genre;
 	private double score;
 	private String image;
-
-	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image) {
+	Date date;
+	
+	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image,
+			Date date) {
 		super();
 		this.id = id;
 		this.literaryID = literaryID;
@@ -18,7 +22,9 @@ public class Literary {
 		this.genre = genre;
 		this.score = score;
 		this.image = image;
+		this.date = date;
 	}
+	
 	public int getId() {
 		return id;
 	}
@@ -60,6 +66,14 @@ public class Literary {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

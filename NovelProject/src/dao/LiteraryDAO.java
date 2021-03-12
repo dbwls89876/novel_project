@@ -45,7 +45,8 @@ public class LiteraryDAO {
 							,rs.getString("content")
 							,rs.getString("genre")
 							,rs.getDouble("score")
-							,rs.getString("image")));
+							,rs.getString("image")
+							,rs.getDate("date")));
 				} while (rs.next());
 			}
 		}catch(Exception e) {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import dao.LiteraryDAO;
 import vo.Literary;
 
-public class LiteraryListSvc {
+public class LiteraryListService {
 
 	public ArrayList<Literary> getLiteraryList() {
 		ArrayList<Literary> literaryList = null;
