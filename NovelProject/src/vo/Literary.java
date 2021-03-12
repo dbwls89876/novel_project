@@ -87,8 +87,4 @@ public class Literary {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
-	
 }
