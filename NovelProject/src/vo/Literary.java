@@ -12,6 +12,8 @@ public class Literary {
 	private String image;
 	Date date;
 	
+	public Literary() {}
+	
 	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image,
 			Date date) {
 		super();
