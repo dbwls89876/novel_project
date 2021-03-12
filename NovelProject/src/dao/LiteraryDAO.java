@@ -41,7 +41,7 @@ public class LiteraryDAO {
 					literaryList.add(new Literary(
 							rs.getInt("id")
 							,rs.getInt("literaryID")
-							,rs.getString("name")
+							,rs.getString("title")
 							,rs.getString("content")
 							,rs.getString("genre")
 							,rs.getDouble("score")

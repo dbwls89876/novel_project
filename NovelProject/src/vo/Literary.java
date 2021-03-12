@@ -5,7 +5,7 @@ import java.util.Date;
 public class Literary {
 	private int id;
 	private int literaryID;
-	private String name;
+	private String title;
 	private String content;
 	private String genre;
 	private double score;
@@ -17,7 +17,7 @@ public class Literary {
 		super();
 		this.id = id;
 		this.literaryID = literaryID;
-		this.name = name;
+		this.title = name;
 		this.content = content;
 		this.genre = genre;
 		this.score = score;
@@ -37,11 +37,11 @@ public class Literary {
 	public void setLiteraryID(int literaryID) {
 		this.literaryID = literaryID;
 	}
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getContent() {
 		return content;
