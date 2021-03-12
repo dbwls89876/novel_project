@@ -72,7 +72,7 @@ public class FundingFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/moveRegister.fun")){
-			action = new moveRegisterAction();
+			action = new MoveRegisterAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

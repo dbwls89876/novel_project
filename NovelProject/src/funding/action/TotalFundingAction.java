@@ -14,10 +14,11 @@ public class TotalFundingAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward = null;
 		FundingService totalFundingService = new FundingService();
 		ArrayList<Funding> fundingList = totalFundingService.getFundingList();
 		request.setAttribute("fundingList", fundingList);
-		ActionForward forward = new ActionForward("/funding/totalFunding.jsp", true);
+		forward = new ActionForward("/funding/totalFunding.jsp", true);
 		return forward;
 	}
 
