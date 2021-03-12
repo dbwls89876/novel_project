@@ -4,42 +4,39 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.JoinProSvc;
+import member.svc.LoginProSvc;
 import vo.ActionForward;
 import vo.Member;
 
-public class JoinProAction implements Action {
+public class MemberLoginAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		Member member = new Member();
-		member.setMemberID(request.getParameter("memberID"));
-		member.setPassword(request.getParameter("password"));
-		member.setName(request.getParameter("name"));
-		member.setNickname(request.getParameter("nickname"));
-		member.setMobile(request.getParameter("mobile"));
-		member.setAddress(request.getParameter("address"));
+		Member member = new Member();		
+		String memberID = (request.getParameter("memberID"));
+		String password = (request.getParameter("password"));
+		LoginProSvc loginProSvc = new LoginProSvc();
 		
-		
-		
-		
-		JoinProSvc joinProSvc = new JoinProSvc();
-		boolean isJoinSuccess = joinProSvc.joinMember(member);
-		if(isJoinSuccess) {
+		member = loginProSvc.getMember(memberID);
+		if(member.getPassword().equals(password)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("memberID", memberID);
 			forward = new ActionForward();
-			forward.setPath("loginForm.log");
 			forward.setRedirect(true);
+			forward.setPath("main.jsp");
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('회원 등록 실패');");
+			out.println("alert('로그인 실패');");
 			out.println("history.back();");
 			out.println("</script>");
 		}
+		
 		return forward;
 	}
 
