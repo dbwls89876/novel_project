@@ -64,11 +64,11 @@ table {
 </table>
 <section id="listForm">
 	<h2>공지사항</h2>
-	<table>
+	<table border="0">
 		<%if(articleList != null && listCount > 0) { %>
 			<tr id = "tr_top">
 				<td>번호</td>
-				<td>날짜</td>
+				<td>작성일</td>
 				<td>제목</td>
 				<td>작성자</td>
 				<td>조회수</td>			
@@ -80,6 +80,7 @@ table {
 		%>
 			<tr>
 				<td><%=articleList.get(i).getNoticeID() %></td>
+				<td><%=articleList.get(i).getDate() %></td>
 				<td>
 				<%if(articleList.get(i).getLev() != 0) { %>
 				<%for(int a=0; a<=articleList.get(i).getLev(
@@ -92,8 +93,7 @@ table {
 					<%=articleList.get(i).getTitle() %>
 					</a>
 				</td>
-				<td><%=articleList.get(i).getNoticeID() %></td>
-				<td><%=articleList.get(i).getDate() %></td>
+				<td><%=articleList.get(i).getId() %></td>
 				<td><%=articleList.get(i).getReadCount() %></td>
 			</tr>
 		<%} %>

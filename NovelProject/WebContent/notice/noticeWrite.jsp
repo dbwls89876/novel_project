@@ -33,19 +33,17 @@ table {
 </style>
 </head>
 <body>
-<div id="menuTop">
-<table border="0">
+<table>
 	<tr>
 		<td align="center"><br>
 			<jsp:include page="../menuTop.jsp"></jsp:include>
 		</td>
 	</tr>
 </table>
-</div>
 <section id = "writeForm">
 	<h2>게시판글등록</h2>
-	<form action = "boardWritePro.bo" method = "post"
-	enctype = "multipart/form-data" name = "boardform">
+	<form action = "noticeWriteForm.bo" method = "post"
+	enctype = "multipart/form-data" name = "noticeform">
 		<table>
 			<tr>
 				<td class = "td_left"><label for = "title">제목</label></td>
