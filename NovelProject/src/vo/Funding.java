@@ -7,11 +7,20 @@ import java.sql.Date;
  * 
  */
 public class Funding {
-	
+	int literaryID;
+	int fundingID;
+	String title;
+	String content;
+	String image;
+	int targetCost;
+	int nowCost;
+	Date startDate;
+	Date endDate;
+	int permission;
 	public Funding() {}
 	
 	public Funding(int literaryID, int fundingID, String title, String content, String image, int targetCost,
-			int nowCost, Date startDate, Date endDate) {
+			int nowCost, Date startDate, Date endDate, int permission) {
 		super();
 		this.literaryID = literaryID;
 		this.fundingID = fundingID;
@@ -22,16 +31,9 @@ public class Funding {
 		this.nowCost = nowCost;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.permission = permission;
 	}
-	int literaryID;
-	int fundingID;
-	String title;
-	String content;
-	String image;
-	int targetCost;
-	int nowCost;
-	Date startDate;
-	Date endDate;
+	
 	
 	public int getLiteraryID() {
 		return literaryID;
@@ -86,5 +88,13 @@ public class Funding {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getPermission() {
+		return permission;
+	}
+
+	public void setPermission(int permission) {
+		this.permission = permission;
 	}
 }

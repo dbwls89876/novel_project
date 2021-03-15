@@ -123,6 +123,7 @@ public class FundingDAO {
 							,rs.getInt("nowCost")
 							,rs.getDate("startDate")
 							,rs.getDate("endDate")
+							,rs.getInt("permission")
 							));
 				} while (rs.next());
 			}
