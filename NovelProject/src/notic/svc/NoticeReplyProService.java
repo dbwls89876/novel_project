@@ -2,7 +2,7 @@ package notic.svc;
 
 import java.sql.Connection;
 
-import dao.BoardDAO;
+import dao.NoticeDAO;
 import vo.BoardBean;
 import static db.JdbcUtil.*;
 
@@ -13,9 +13,9 @@ public class NoticeReplyProService {
 		Connection con = null;
 		try {
 			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			int insertCount = boardDAO.insertReplyArticle(article);
+			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			noticeDAO.setConnection(con);
+			int insertCount = noticeDAO.insertReplyArticle(article);
 			
 			if(insertCount > 0) {
 				commit(con);

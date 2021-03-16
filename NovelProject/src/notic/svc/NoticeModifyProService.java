@@ -3,19 +3,19 @@ package notic.svc;
 import static db.JdbcUtil.*;
 import java.sql.Connection;
 
-import dao.BoardDAO;
+import dao.NoticeDAO;
 import vo.BoardBean;
 
 public class NoticeModifyProService {
 
-	public boolean isArticleWriter(int boardID, int id) {
+	public boolean isArticleWriter(int noticeID, int id) {
 		boolean isArticleWriter = false;
 		Connection con = null;
 		try {
 			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			isArticleWriter = boardDAO.isArticleBoardWriter(boardID,id);
+			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			noticeDAO.setConnection(con);
+			isArticleWriter = noticeDAO.isArticleBoardWriter(noticeID,id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -29,9 +29,9 @@ public class NoticeModifyProService {
 		Connection con = null;
 		try {
 			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			int updateCount = boardDAO.deleteArticle(article);
+			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			noticeDAO.setConnection(con);
+			int updateCount = noticeDAO.deleteArticle(article);
 			if(updateCount > 0) {
 				commit(con);
 				isModifySuccess = true;

@@ -10,7 +10,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
-import board.svc.BoardWriteProService;
+import notic.svc.NoticeWriteProService;
 import vo.ActionForward;
 import vo.BoardBean;
 
@@ -21,18 +21,18 @@ public class NoticeWriteProAction implements Action {
 		ActionForward forward=null;
 		BoardBean boardBean = null;
 		String realFolder="";
-		String saveFolder="/boardUpload";
+		String saveFolder="/noticeUpload";
 		int fileSize = 5*1024*1024;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		boardBean = new BoardBean();
-		boardBean.setBoardID(Integer.parseInt(multi.getParameter("boardID")));
+		boardBean.setNoticeID(Integer.parseInt(multi.getParameter("noticeID")));
 		boardBean.setId(Integer.parseInt(multi.getParameter("id")));
 		boardBean.setTitle(multi.getParameter("title"));
 		boardBean.setContent(multi.getParameter("content"));
-		BoardWriteProService boardWriteProService = new BoardWriteProService();
-		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);
+		NoticeWriteProService noticeWriteProService = new NoticeWriteProService();
+		boolean isWriteSuccess = noticeWriteProService.registArticle(boardBean);
 		
 		if(!isWriteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -44,7 +44,7 @@ public class NoticeWriteProAction implements Action {
 		}else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("boardList.bo");
+			forward.setPath("noticeList.bo");
 		}
 		
 		return forward;

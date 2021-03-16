@@ -7,19 +7,19 @@ import static db.JdbcUtil.rollback;
 
 import java.sql.Connection;
 
-import dao.BoardDAO;
+import dao.NoticeDAO;
 import vo.BoardBean;
 
 public class NoticeModifyFormSvc {
-	public BoardBean getArticle(int board_num) {
+	public BoardBean getArticle(int noticeID) {
 		BoardBean article = null;
 		Connection con = null;
 		try {
 			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
+			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			noticeDAO.setConnection(con);
 
-			article = boardDAO.selectArticle(board_num);
+			article = noticeDAO.selectArticle(noticeID);
 
 		}catch (Exception e) {
 			// TODO: handle exception

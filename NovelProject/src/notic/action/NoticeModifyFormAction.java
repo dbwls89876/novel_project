@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import board.svc.BoardModifyFormSvc;
+import notic.svc.NoticeModifyFormSvc;
 import vo.ActionForward;
 import vo.BoardBean;
 
@@ -13,14 +13,14 @@ public class NoticeModifyFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
 		String page = request.getParameter("page");
 		
-		BoardModifyFormSvc boardModifyFormSvc = new BoardModifyFormSvc();
-		BoardBean article = boardModifyFormSvc.getArticle(board_num);
+		NoticeModifyFormSvc noticeModifyFormSvc = new NoticeModifyFormSvc();
+		BoardBean article = noticeModifyFormSvc.getArticle(noticeID);
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
-		forward.setPath("/board/qna_board_modify.jsp");
+		forward.setPath("/notice/NoticeModify.jsp");
 		return forward;
 	}
 

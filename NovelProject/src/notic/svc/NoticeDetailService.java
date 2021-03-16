@@ -3,21 +3,21 @@ package notic.svc;
 import static db.JdbcUtil.*;
 import java.sql.Connection;
 
-import dao.BoardDAO;
+import dao.NoticeDAO;
 import vo.BoardBean;
 
 public class NoticeDetailService {
 
-	public BoardBean getArticle(int board_num) {
+	public BoardBean getArticle(int noticeID) {
 		BoardBean article = null;
 		Connection con = null;
 		
 		
 		try {
 			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			int updateCount = boardDAO.updateReadCount(board_num);
+			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			noticeDAO.setConnection(con);
+			int updateCount = noticeDAO.updateReadCount(noticeID);
 			
 			if(updateCount > 0) {
 				commit(con);
@@ -25,7 +25,7 @@ public class NoticeDetailService {
 				rollback(con);
 			}
 			
-			article = boardDAO.selectArticle(board_num);
+			article = noticeDAO.selectArticle(noticeID);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
