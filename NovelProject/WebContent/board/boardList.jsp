@@ -22,7 +22,7 @@
 <title>MVC게시판</title>
 <style type="text/css">
 #registForm {
-	width : 500px;
+	width : 1500px;
 	height : 600px;
 	border : 1px solid red;
 	margin : auto;
@@ -34,7 +34,7 @@ h2 {
 
 table {
 	margin : auto;
-	width : 450px;
+	width : 1000px;
 }
 
 #tr_top {
@@ -121,14 +121,16 @@ table {
 	<%}else { %>
 		<a href="boardList.bo?page=<%=nowPage+1 %>">[다음]</a>
 	<%} %>		
-
+	<a href="boardWriteForm.bo">글쓰기</a>
 </section>
 <%
 }
 	else
 	{
 		%>
-		<section id="emptyArea">등록된 글이 없습니다.</section>
+		<section id="emptyArea">등록된 글이 없습니다.
+		<a href="boardWriteForm.bo">글쓰기</a>
+		</section>
 	<%
 	}
 %>

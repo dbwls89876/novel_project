@@ -21,7 +21,7 @@ public class BoardReplyFormAction implements Action {
 		
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
-		forward.setPath("/board/qna_board_reply.jsp");
+		forward.setPath("/board/boardReply.jsp");
 		return forward;
 	}
 

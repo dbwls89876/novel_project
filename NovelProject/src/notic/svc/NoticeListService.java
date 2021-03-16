@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import dao.BoardDAO;
 import vo.BoardBean;
 
-public class BoardListService {
+public class NoticeListService {
 
 	public int getListCount() {
 		int listCount = 0;

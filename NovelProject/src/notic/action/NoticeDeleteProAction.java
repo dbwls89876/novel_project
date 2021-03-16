@@ -9,7 +9,7 @@ import action.Action;
 import board.svc.BoardDeleteProService;
 import vo.ActionForward;
 
-public class BoardDeleteProAction implements Action {
+public class NoticeDeleteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

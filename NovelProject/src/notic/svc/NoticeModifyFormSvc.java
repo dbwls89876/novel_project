@@ -1,31 +1,26 @@
 package notic.svc;
 
-import static db.JdbcUtil.*;
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.commit;
+import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.rollback;
+
 import java.sql.Connection;
 
 import dao.BoardDAO;
 import vo.BoardBean;
 
-public class BoardDetailService {
-
+public class NoticeModifyFormSvc {
 	public BoardBean getArticle(int board_num) {
 		BoardBean article = null;
 		Connection con = null;
-		
-		
 		try {
 			con = getConnection();
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.setConnection(con);
-			int updateCount = boardDAO.updateReadCount(board_num);
-			
-			if(updateCount > 0) {
-				commit(con);
-			}else {
-				rollback(con);
-			}
-			
+
 			article = boardDAO.selectArticle(board_num);
+
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -34,5 +29,4 @@ public class BoardDetailService {
 		}
 		return article;
 	}
-
 }

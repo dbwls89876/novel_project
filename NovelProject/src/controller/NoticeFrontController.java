@@ -17,13 +17,13 @@ import vo.ActionForward;
  * Servlet implementation class BoardFrontController
  */
 @WebServlet("*.bo")
-public class BoardFrontController extends HttpServlet {
+public class NoticeFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardFrontController() {
+    public NoticeFrontController() {
         super();
         // TODO Auto-generated constructor stub
     }

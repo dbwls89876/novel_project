@@ -6,7 +6,7 @@ import dao.BoardDAO;
 import vo.BoardBean;
 import static db.JdbcUtil.*;
 
-public class BoardWriteProService {
+public class NoticeWriteProService {
 	public boolean registArticle(BoardBean boardBean) {
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();

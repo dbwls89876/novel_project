@@ -8,20 +8,19 @@ import board.svc.BoardModifyFormSvc;
 import vo.ActionForward;
 import vo.BoardBean;
 
-public class BoardReplyFormAction implements Action {
+public class NoticeModifyFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = new ActionForward();
-		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		ActionForward forward = null;
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String page = request.getParameter("page");
 		
 		BoardModifyFormSvc boardModifyFormSvc = new BoardModifyFormSvc();
-		BoardBean article = boardModifyFormSvc.getArticle(boardID);
-		
+		BoardBean article = boardModifyFormSvc.getArticle(board_num);
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
-		forward.setPath("/board/qna_board_reply.jsp");
+		forward.setPath("/board/qna_board_modify.jsp");
 		return forward;
 	}
 

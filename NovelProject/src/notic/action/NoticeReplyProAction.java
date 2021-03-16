@@ -10,7 +10,7 @@ import board.svc.BoardReplyProService;
 import vo.ActionForward;
 import vo.BoardBean;
 
-public class BoardReplyProAction implements Action {
+public class NoticeReplyProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

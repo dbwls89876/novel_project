@@ -8,7 +8,7 @@ import board.svc.BoardDetailService;
 import vo.ActionForward;
 import vo.BoardBean;
 
-public class BoardDtailAction implements Action {
+public class BoardDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,7 +21,7 @@ public class BoardDtailAction implements Action {
 		ActionForward forward = new ActionForward();
 		request.setAttribute("page", page);
 		request.setAttribute("article", article);
-		forward.setPath("/board/qna_board_view.jsp");
+		forward.setPath("/board/boardView.jsp");
 			
 		return forward;
 	}

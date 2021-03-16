@@ -14,7 +14,7 @@ import board.svc.BoardWriteProService;
 import vo.ActionForward;
 import vo.BoardBean;
 
-public class BoardWriteProAction implements Action {
+public class NoticeWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

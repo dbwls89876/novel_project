@@ -11,7 +11,7 @@ import dao.BoardDAO;
 import vo.BoardBean;
 
 public class BoardModifyFormSvc {
-	public BoardBean getArticle(int board_num) {
+	public BoardBean getArticle(int boardID) {
 		BoardBean article = null;
 		Connection con = null;
 		try {
@@ -19,7 +19,7 @@ public class BoardModifyFormSvc {
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.setConnection(con);
 
-			article = boardDAO.selectArticle(board_num);
+			article = boardDAO.selectArticle(boardID);
 
 		}catch (Exception e) {
 			// TODO: handle exception

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import dao.BoardDAO;
 import vo.BoardBean;
 
-public class BoardModifyProService {
+public class NoticeModifyProService {
 
 	public boolean isArticleWriter(int boardID, int id) {
 		boolean isArticleWriter = false;

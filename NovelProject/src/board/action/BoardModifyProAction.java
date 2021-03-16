@@ -47,7 +47,7 @@ public class BoardModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.bo?board_num="+boardID+"&page="+page);
+				forward.setPath("boardDetail.bo?boardID="+boardID+"&page="+page);
 			}
 		}
 		return forward;

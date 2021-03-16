@@ -45,7 +45,7 @@ public class BoardListAction implements Action {
 		request.setAttribute("articleList", articleList);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/board/qna_board_list.jsp");
+		forward.setPath("/board/boardList.jsp");
 		return forward;
 	}
 

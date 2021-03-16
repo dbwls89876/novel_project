@@ -8,7 +8,7 @@ import vo.BoardBean;
 
 
 
-public class BoardDeleteProService {
+public class NoticeDeleteProService {
 	
 	
 	
