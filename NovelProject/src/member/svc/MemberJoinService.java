@@ -1,26 +1,34 @@
 package member.svc;
 
-import static db.JdbcUtil.close;
-import static db.JdbcUtil.getConnection;
-
 import java.sql.Connection;
-
+import static db.JdbcUtil.*;
 import dao.MemberDAO;
 import vo.Member;
 
 public class MemberJoinService {
 	public boolean joinMember(Member member) {
-		boolean isJoinSucess = false;
-		Connection con = null;
+		boolean isJoinSuccess = false;
+		Connection con =null;
 		try {
 			con = getConnection();
 			MemberDAO memberDAO = MemberDAO.getInstance();
-		} catch (Exception e) {
-			// TODO: handle exception
+			memberDAO.setConnection(con);
+			
+			int insertCount = memberDAO.insertMember(member);
+			
+			if(insertCount > 0) {
+				commit(con);
+				isJoinSuccess = true;
+			}else {
+				rollback(con);
+			}
+		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			close(con);
 		}
-		return isJoinSucess;
+		return isJoinSuccess;
 	}
+
+
 }

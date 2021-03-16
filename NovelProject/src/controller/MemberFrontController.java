@@ -63,7 +63,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/memberJoin.me")) {
+		else if(command.equals("/member/joinForm.me")) {
 			action = new MemberJoinAction();
 			try {
 				forward = action.execute(request, response);

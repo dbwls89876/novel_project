@@ -35,7 +35,7 @@ public class MemberDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into member value(?,?,?,?,?,?,?,?,?)";
+			sql="insert into member (memberID,password,name,nickname,mobile,address,date) value(?,?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);			
 			pstmt.setString(1, member.getMemberID());
@@ -44,9 +44,6 @@ public class MemberDAO {
 			pstmt.setString(4, member.getNickname());
 			pstmt.setString(5, member.getMobile());
 			pstmt.setString(6, member.getAddress());
-			pstmt.setInt(7, member.getGrade());
-			pstmt.setInt(8, member.getLevel());
-			pstmt.setDate(9, (Date) member.getDate());
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("memberInsert 에러 : " + e);

@@ -21,13 +21,13 @@ public class MemberJoinAction implements Action {
 		member.setNickname(request.getParameter("nickname"));
 		member.setMobile(request.getParameter("mobile"));
 		member.setAddress(request.getParameter("address"));
-		
+	
 		MemberJoinService memberJoinService = new MemberJoinService();
 		boolean isJoinSuccess = memberJoinService.joinMember(member);
 		if(isJoinSuccess) {
 			forward = new ActionForward();
-			forward.setPath("./loginForm.me");
 			forward.setRedirect(true);
+			forward.setPath("./loginForm.me");
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
