@@ -137,4 +137,22 @@ public class FundingDAO {
 		
 		return fundingList;
 	}
+
+	public void updateFunding(String fundingID) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		String sql = "update funding set permission = 1 where fundingID=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, fundingID);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+	}
 }
