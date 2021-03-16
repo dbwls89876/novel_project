@@ -55,7 +55,7 @@ public class MemberFrontController extends HttpServlet {
 		Action action=null;
 		System.out.println(command);
 		
-		if(command.equals("/loginForm.me")){
+		if(command.equals("/member/loginForm.me")){
 			action = new MemberLoginAction();
 			try {
 				forward = action.execute(request, response);

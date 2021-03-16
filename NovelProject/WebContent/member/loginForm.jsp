@@ -17,9 +17,10 @@
 	font-size:x-large;
 	}
 </style>
+
 </head>
 <body>
-<form name="loginform" action="./memberLoginAction.me" method="post">
+<form name="loginform" action="loginForm.me" method="post">
 <table>
 	<tr>
 		<td align="center"><br>
@@ -44,7 +45,7 @@
 	<tr>
 		<td colspan="2">
 			<a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;
-			<a href="/joinForm.me">회원가입</a>
+			<a href="joinForm.jsp">회원가입</a>
 </table>
 </form>
 </body>

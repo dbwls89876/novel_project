@@ -110,11 +110,11 @@ a {
 			<li><a href="${pageContext.request.contextPath }/board.bo">커뮤니티</a></li>
 			<li>
 				<c:choose>
-					<c:when test="${id eq null }">
-						<a href="${pageContext.request.contextPath }/loginForm.me">로그인</a>
+					<c:when test="${memberID eq null }">
+						<a href="member/loginForm.jsp">로그인</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath }/logoutForm.log">로그아웃</a>
+						<a href="member/logoutForm.jsp">로그아웃</a>
 					</c:otherwise>
 				</c:choose>
 			</li>

@@ -22,12 +22,13 @@ public class MemberLoginAction implements Action {
 		
 		MemberLoginService memberLoginService = new MemberLoginService();
 		member = memberLoginService.getMember(memberID);
+		
 		if(member.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberID", memberID);
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("menuTop.jsp");
+			forward.setPath("../menuTop.jsp");
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
