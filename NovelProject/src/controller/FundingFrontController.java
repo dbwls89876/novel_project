@@ -51,6 +51,7 @@ public class FundingFrontController extends HttpServlet {
 		String command = RequestURI.substring(contextPath.length());
 		
 		ActionForward forward=null;
+		ActionForward forward2 = null;
 		Action action=null;
 		System.out.println(command);
 		
@@ -103,9 +104,30 @@ public class FundingFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		}else if(command.equals("/fundingContent.fun")) {
+			
+			
+			try {
+				action = new FundingContentAction();
+				forward = action.execute(request, response);
+				//action = new FundingGoodsAction();
+				//forward2 = action.execute(request, response);
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward!=null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			}else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		}
+		
+		if(forward2!=null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else {
