@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import board.action.*;
+import notic.action.*;
 import vo.ActionForward;
 
 /**
@@ -52,55 +52,55 @@ public class NoticeFrontController extends HttpServlet {
 		ActionForward forward=null;
 		Action action=null;
 		System.out.println(command);
-		if(command.equals("/boardWriteForm.bo")) {
+		if(command.equals("/noticeWriteForm.bo")) {
 			try {
 				forward = new ActionForward();
-				forward.setPath("/board/boardWrite.jsp");
+				forward.setPath("/notice/noticeWrite.jsp");
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/boardWritePro.bo")) {
-			action = new BoardWriteProAction();
+		else if(command.equals("/noticeWritePro.bo")) {
+			action = new NoticeWriteProAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/boardList.bo")) {
-			action = new BoardListAction();
+		}else if(command.equals("/noticeList.bo")) {
+			action = new NoticeListAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/boardDetail.bo")) {
-			action = new BoardDetailAction();
+		}else if(command.equals("/noticeDetail.bo")) {
+			action = new NoticeDetailAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/boardModifyForm.bo")) {
-			action = new BoardModifyFormAction();
+		}else if(command.equals("/noticeModifyForm.bo")) {
+			action = new NoticeModifyFormAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/boardReplayForm.bo")){
-			action = new BoardReplyFormAction();
+		}else if(command.equals("/noticeReplayForm.bo")){
+			action = new NoticeReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/boardDeleteForm.bo")) {
+		}else if(command.equals("/noticeDeleteForm.bo")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
-			int boardID = Integer.parseInt(request.getParameter("boardID"));
-			request.setAttribute("boardID", boardID);
+			int noticeID = Integer.parseInt(request.getParameter("noticeID"));
+			request.setAttribute("noticeID", noticeID);
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {

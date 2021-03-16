@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import board.svc.BoardListService;
+import notic.svc.NoticeListService;
 import vo.ActionForward;
 import vo.BoardBean;
 import vo.PageInfo;
@@ -23,8 +23,8 @@ public class NoticeListAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		BoardListService boardListService = new BoardListService();
-		int listCount = boardListService.getListCount();
+		NoticeListService noticeListService = new NoticeListService();
+		int listCount = noticeListService.getListCount();
 		
 		int maxPage = (int)((double)listCount/limit+0.95);
 		//첫번째 페이지의 글 갯수를 10개로 제한
@@ -39,13 +39,13 @@ public class NoticeListAction implements Action {
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
 		
-		articleList = boardListService.getArticleList(page, limit);
+		articleList = noticeListService.getArticleList(page, limit);
 		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/board/qna_board_list.jsp");
+		forward.setPath("/notice/NoticeList.jsp");
 		return forward;
 	}
 

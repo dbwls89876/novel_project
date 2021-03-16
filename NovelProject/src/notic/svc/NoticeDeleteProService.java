@@ -3,8 +3,7 @@ package notic.svc;
 import static db.JdbcUtil.*;
 import java.sql.Connection;
 
-import dao.BoardDAO;
-import vo.BoardBean;
+import dao.NoticeDAO;
 
 
 
@@ -12,15 +11,15 @@ public class NoticeDeleteProService {
 	
 	
 	
-	public boolean removeArticle(int board_num) {
+	public boolean removeArticle(int noticeID) {
 		boolean isDeleteSuccess = false;
 		Connection con = null;
 		try {
 			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
+			NoticeDAO noticeDAO = NoticeDAO.getInstance();
+			noticeDAO.setConnection(con);
 			
-			int deleteCount = boardDAO.deleteArticle(board_num);
+			int deleteCount = noticeDAO.deleteArticle(noticeID);
 			if(deleteCount > 0) {
 				commit(con);
 				isDeleteSuccess = true;

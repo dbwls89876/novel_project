@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import board.svc.BoardDeleteProService;
+import notic.svc.NoticeDeleteProService;
 import vo.ActionForward;
 
 public class NoticeDeleteProAction implements Action {
@@ -16,12 +16,12 @@ public class NoticeDeleteProAction implements Action {
 		ActionForward forward = null;
 		
 		String page = request.getParameter("page");
-		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		int boardID = Integer.parseInt(request.getParameter("noticeID"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
+		NoticeDeleteProService noticeDeleteProService = new NoticeDeleteProService();
 		
-		boolean isArticleWriter = boardDeleteProService.isArticleWriter();
+		boolean isArticleWriter = noticeDeleteProService.isArticleWriter();
 		
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");
@@ -31,7 +31,7 @@ public class NoticeDeleteProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 		}else {
-			boolean isDeleteSuccess = boardDeleteProService.removeArticle(boardID);
+			boolean isDeleteSuccess = noticeDeleteProService.removeArticle(noticeID);
 			if(!isDeleteSuccess) {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -40,7 +40,7 @@ public class NoticeDeleteProAction implements Action {
 				out.println("history.back();");
 				out.println("</script>");
 			}else {
-				forward = new ActionForward("boardList.bo?page=" + page, true);
+				forward = new ActionForward("noticeList.bo?page=" + page, true);
 			}
 		}
 		return forward;
