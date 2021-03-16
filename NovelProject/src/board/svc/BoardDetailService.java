@@ -8,7 +8,7 @@ import vo.BoardBean;
 
 public class BoardDetailService {
 
-	public BoardBean getArticle(int board_num) {
+	public BoardBean getArticle(int boardID) {
 		BoardBean article = null;
 		Connection con = null;
 		
@@ -17,7 +17,7 @@ public class BoardDetailService {
 			con = getConnection();
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.setConnection(con);
-			int updateCount = boardDAO.updateReadCount(board_num);
+			int updateCount = boardDAO.updateReadCount(boardID);
 			
 			if(updateCount > 0) {
 				commit(con);
@@ -25,7 +25,7 @@ public class BoardDetailService {
 				rollback(con);
 			}
 			
-			article = boardDAO.selectArticle(board_num);
+			article = boardDAO.selectArticle(boardID);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -22,7 +22,7 @@
 <title>MVC게시판</title>
 <style type="text/css">
 #registForm {
-	width : 500px;
+	width : 1500px;
 	height : 600px;
 	border : 1px solid red;
 	margin : auto;
@@ -34,7 +34,7 @@ h2 {
 
 table {
 	margin : auto;
-	width : 450px;
+	width : 1000px;
 }
 
 #tr_top {
@@ -56,18 +56,23 @@ table {
 </style>
 </head>
 <body>
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <section id="listForm">
-	<h2>
-		글목록<a href="boardWriteForm.bo">게시판글쓰기</a>
-	</h2>
+	<h2>커뮤니티</h2>
 	<table>
 		<%if(articleList != null && listCount > 0) { %>
 			<tr id = "tr_top">
 				<td>번호</td>
-				<td>날짜</td>
 				<td>제목</td>
+				<td>작성일</td>
 				<td>작성자</td>
-				<td>조회수</td>			
+				<td>조회수</td>				
 			</tr>
 			
 		<%
@@ -83,13 +88,13 @@ table {
 						&nbsp;
 				<%} %> ▶
 				<%}else { %> ▶ <%} %>
-					<a href = "boardDetail.bo?board_num=<%=articleList.
+					<a href = "boardDetail.bo?boardID=<%=articleList.
 					get(i).getBoardID() %>&page=<%=nowPage %>">
 					<%=articleList.get(i).getTitle() %>
 					</a>
 				</td>
-				<td><%=articleList.get(i).getBoardID() %></td>
 				<td><%=articleList.get(i).getDate() %></td>
+				<td><%=articleList.get(i).getId() %></td>
 				<td><%=articleList.get(i).getReadCount() %></td>
 			</tr>
 		<%} %>
@@ -116,14 +121,16 @@ table {
 	<%}else { %>
 		<a href="boardList.bo?page=<%=nowPage+1 %>">[다음]</a>
 	<%} %>		
-
+	<a href="boardWriteForm.bo">글쓰기</a>
 </section>
 <%
 }
 	else
 	{
 		%>
-		<section id="emptyArea">등록된 글이 없습니다.</section>
+		<section id="emptyArea">등록된 글이 없습니다.
+		<a href="boardWriteForm.bo">글쓰기</a>
+		</section>
 	<%
 	}
 %>

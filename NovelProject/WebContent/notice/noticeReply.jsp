@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC게시판</title>
+<title>Notice Board Reply</title>
 <script language="javascript"></script>
 <style type="text/css">
 #registForm {
@@ -45,11 +45,18 @@ table {
 </style>
 </head>
 <body>
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <section id = "writeForm">
 <h2>게시판글등록</h2>
-	<form action = "boardReplyPro.bo" method = "post" name = "boardform">
+	<form action = "noticeReplyPro.bo" method = "post" name = "boardform">
 	<input type = "hidden" name = "page" value = "<%=nowPage%>"/>
-	<input type = "hidden" name = "boardId" value = "<%=article.getBoardID()%>">
+	<input type = "hidden" name = "noticeID" value = "<%=article.getNoticeID()%>">
 	<input type = "hidden" name = "ref" value = "<%=article.getRef()%>">
 	<input type = "hidden" name = "lev" value = "<%=article.getLev()%>">
 	<input type = "hidden" name = "seq" value = "<%=article.getSeq()%>">

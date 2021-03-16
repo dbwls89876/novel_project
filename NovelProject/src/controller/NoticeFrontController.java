@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import funding.action.*;
+import board.action.*;
 import vo.ActionForward;
 
 /**
- * Servlet implementation class FundingFrontController
+ * Servlet implementation class BoardFrontController
  */
-@WebServlet("*.fun")
-public class FundingFrontController extends HttpServlet {
+@WebServlet("*.bo")
+public class NoticeFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FundingFrontController() {
+    public NoticeFrontController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,85 +49,65 @@ public class FundingFrontController extends HttpServlet {
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
-		
 		ActionForward forward=null;
-		ActionForward forward2 = null;
 		Action action=null;
 		System.out.println(command);
-		
-		if(command.equals("/weekFunding.fun")) {
-			action = new WeekFundingAction();
+		if(command.equals("/boardWriteForm.bo")) {
 			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
+				forward = new ActionForward();
+				forward.setPath("/board/boardWrite.jsp");
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/totalFunding.fun")) {
-			action = new TotalFundingAction();
+		else if(command.equals("/boardWritePro.bo")) {
+			action = new BoardWriteProAction();
 			try {
 				forward = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/moveRegister.fun")){
-			action = new MoveRegisterAction();
+		}else if(command.equals("/boardList.bo")) {
+			action = new BoardListAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/fundingRegister.fun")) {
-			action = new FundingRegisterAction();
+		}else if(command.equals("/boardDetail.bo")) {
+			action = new BoardDetailAction();
 			try {
 				forward = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/fundingPermission.fun")) {
-			action = new FundingPermissionAction();
+		}else if(command.equals("/boardModifyForm.bo")) {
+			action = new BoardModifyFormAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/fundingPermissionUpdate.fun")) {
-			action = new FundingPermissionUpdateAction();
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}else if(command.equals("/fundingContent.fun")) {
 			
-			
+		}else if(command.equals("/boardReplayForm.bo")){
+			action = new BoardReplyFormAction();
 			try {
-				action = new FundingContentAction();
 				forward = action.execute(request, response);
-				//action = new FundingGoodsAction();
-				//forward2 = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/boardDeleteForm.bo")) {
+			String nowPage = request.getParameter("page");
+			request.setAttribute("page", nowPage);
+			int boardID = Integer.parseInt(request.getParameter("boardID"));
+			request.setAttribute("boardID", boardID);
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
 		if(forward!=null) {
-			if(forward.isRedirect()) {
-				response.sendRedirect(forward.getPath());
-			}else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response);
-			}
-		}
-		
-		if(forward2!=null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else {

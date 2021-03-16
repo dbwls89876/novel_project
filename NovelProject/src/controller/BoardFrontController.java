@@ -55,7 +55,7 @@ public class BoardFrontController extends HttpServlet {
 		if(command.equals("/boardWriteForm.bo")) {
 			try {
 				forward = new ActionForward();
-				forward.setPath("/board/qna_board_write.jsp");
+				forward.setPath("/board/boardWrite.jsp");
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -75,7 +75,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/boardDetail.bo")) {
-			action = new BoardDtailAction();
+			action = new BoardDetailAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
@@ -99,8 +99,8 @@ public class BoardFrontController extends HttpServlet {
 		}else if(command.equals("/boardDeleteForm.bo")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
-			int board_num = Integer.parseInt(request.getParameter("board_num"));
-			request.setAttribute("board_num", board_num);
+			int boardID = Integer.parseInt(request.getParameter("boardID"));
+			request.setAttribute("boardID", boardID);
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {

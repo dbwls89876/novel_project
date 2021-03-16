@@ -12,7 +12,7 @@ public class BoardDeleteProService {
 	
 	
 	
-	public boolean removeArticle(int board_num) {
+	public boolean removeArticle(int boardID) {
 		boolean isDeleteSuccess = false;
 		Connection con = null;
 		try {
@@ -20,7 +20,7 @@ public class BoardDeleteProService {
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.setConnection(con);
 			
-			int deleteCount = boardDAO.deleteArticle(board_num);
+			int deleteCount = boardDAO.deleteArticle(boardID);
 			if(deleteCount > 0) {
 				commit(con);
 				isDeleteSuccess = true;

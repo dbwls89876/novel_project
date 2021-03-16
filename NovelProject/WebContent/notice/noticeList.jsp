@@ -68,8 +68,8 @@ table {
 		<%if(articleList != null && listCount > 0) { %>
 			<tr id = "tr_top">
 				<td>번호</td>
-				<td>작성일</td>
 				<td>제목</td>
+				<td>작성일</td>
 				<td>작성자</td>
 				<td>조회수</td>			
 			</tr>
@@ -80,7 +80,6 @@ table {
 		%>
 			<tr>
 				<td><%=articleList.get(i).getNoticeID() %></td>
-				<td><%=articleList.get(i).getDate() %></td>
 				<td>
 				<%if(articleList.get(i).getLev() != 0) { %>
 				<%for(int a=0; a<=articleList.get(i).getLev(
@@ -93,6 +92,7 @@ table {
 					<%=articleList.get(i).getTitle() %>
 					</a>
 				</td>
+				<td><%=articleList.get(i).getDate() %></td>
 				<td><%=articleList.get(i).getId() %></td>
 				<td><%=articleList.get(i).getReadCount() %></td>
 			</tr>
@@ -103,7 +103,7 @@ table {
 	<%if(nowPage<=1){ %>
 		[이전]&nbsp;
 	<%} else{ %>
-		<a href="notice.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+		<a href="noticeList.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
 	<%} %>
 	
 	<%for(int a=startPage; a<=endPage; a++) {
@@ -111,14 +111,14 @@ table {
 			[<%=a %>]
 		<%} else{ %>
 		
-			<a href="notice.bo?page=<%=a %>">[<%=a %>]
+			<a href="noticeList.bo?page=<%=a %>">[<%=a %>]
 			</a>&nbsp;
 		<%} %>
 	<%} %>
 	<%if(nowPage>=maxPage) { %>
 		[다음]
 	<%}else { %>
-		<a href="notice.bo?page=<%=nowPage+1 %>">[다음]</a>
+		<a href="noticeList.bo?page=<%=nowPage+1 %>">[다음]</a>
 	<%} %>
 			
 

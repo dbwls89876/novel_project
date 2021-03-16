@@ -6,7 +6,7 @@ import dao.BoardDAO;
 import vo.BoardBean;
 import static db.JdbcUtil.*;
 
-public class BoardReplyProService {
+public class NoticeReplyProService {
 
 	public boolean replyArticle(BoardBean article) {
 		boolean isReplySuccess = false;

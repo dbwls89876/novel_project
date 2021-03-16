@@ -49,10 +49,17 @@
 	</style>
 </head>
 <body>
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <section id = "writeForm">
 <h2>게시판글수정</h2>
-	<form action = "boardModifyPro.bo" method = "post" name = "modifyform">
-	<input type = "hidden" name = "boardID" value = "<%=article.getBoardID()%>"/>
+	<form action = "noticeModifyPro.bo" method = "post" name = "modifyform">
+	<input type = "hidden" name = "noticeID" value = "<%=article.getNoticeID()%>"/>
 	<table>
 		<tr>
 			<td class = "td_left">

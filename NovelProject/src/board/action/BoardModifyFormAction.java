@@ -13,14 +13,14 @@ public class BoardModifyFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int boardID = Integer.parseInt(request.getParameter("boardID"));
 		String page = request.getParameter("page");
 		
 		BoardModifyFormSvc boardModifyFormSvc = new BoardModifyFormSvc();
-		BoardBean article = boardModifyFormSvc.getArticle(board_num);
+		BoardBean article = boardModifyFormSvc.getArticle(boardID);
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
-		forward.setPath("/board/qna_board_modify.jsp");
+		forward.setPath("/board/boardModify.jsp");
 		return forward;
 	}
 

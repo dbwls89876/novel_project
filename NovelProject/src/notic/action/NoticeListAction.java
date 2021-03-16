@@ -11,7 +11,7 @@ import vo.ActionForward;
 import vo.BoardBean;
 import vo.PageInfo;
 
-public class BoardListAction implements Action {
+public class NoticeListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

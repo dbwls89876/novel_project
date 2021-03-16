@@ -13,12 +13,13 @@ text-align : center;
 
 table {
 	margin : auto;
-	width : 100%;
+	width : 900px;
 }
 
 .td_left {
 	width : 150px;
 	background : orange;
+	text-align : center;
 }
 
 .td_right {
@@ -33,7 +34,6 @@ table {
 </style>
 </head>
 <body>
-<div id="menuTop">
 <table border="0">
 	<tr>
 		<td align="center"><br>
@@ -41,10 +41,9 @@ table {
 		</td>
 	</tr>
 </table>
-</div>
 <section id = "writeForm">
 	<h2>게시판글등록</h2>
-	<form action = "boardWritePro.bo" method = "post"
+	<form action = "boardWriteForm.bo" method = "post"
 	enctype = "multipart/form-data" name = "boardform">
 		<table>
 			<tr>

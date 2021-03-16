@@ -10,7 +10,7 @@ import board.svc.BoardModifyProService;
 import vo.ActionForward;
 import vo.BoardBean;
 
-public class BoardModifyProAction implements Action {
+public class NoticeModifyProAction implements Action {
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

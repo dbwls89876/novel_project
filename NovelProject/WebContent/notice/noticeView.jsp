@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC 게시판</title>
+<title>Notice Board View</title>
 <style type = "text/css">
 #articleForm {
 	width : 500px;
@@ -43,6 +43,13 @@ h2 {
 </style>
 </head>
 <body>
+<table border="0">
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <section id = "articleForm">
 	<section id="basicInfoArea">
 		<h2>글 제목 : 
@@ -54,10 +61,10 @@ h2 {
 	</section>
 </section>
 <section id = "commandList">
-	<a href="boardReplyForm.bo?board_num=<%=article.getBoardID() %>&page=<%=nowPage%>"> [답변] </a>
-	<a href="boardModifyForm.bo?board_num=<%=article.getBoardID() %>&page=<%=nowPage%>"> [수정] </a>
-	<a href="boardDeleteForm.bo?board_num=<%=article.getBoardID() %>&page=<%=nowPage%>"> [삭제] </a>
-	<a href="boardList.bo?page=<%=nowPage%>"> [목록] </a>
+	<a href="noticeReplyForm.bo?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [답변] </a>
+	<a href="noticeModifyForm.bo?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [수정] </a>
+	<a href="noticeDeleteForm.bo?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [삭제] </a>
+	<a href="noticeList.bo?page=<%=nowPage%>"> [목록] </a>
 	&nbsp;&nbsp;
 
 </section>
