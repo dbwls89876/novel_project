@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.LoginProSvc;
+import member.svc.MemberLoginService;
 import vo.ActionForward;
 import vo.Member;
 
@@ -19,15 +19,15 @@ public class MemberLoginAction implements Action {
 		Member member = new Member();		
 		String memberID = (request.getParameter("memberID"));
 		String password = (request.getParameter("password"));
-		LoginProSvc loginProSvc = new LoginProSvc();
 		
-		member = loginProSvc.getMember(memberID);
+		MemberLoginService memberLoginService = new MemberLoginService();
+		member = memberLoginService.getMember(memberID);
 		if(member.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberID", memberID);
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("main.jsp");
+			forward.setPath("menuTop.jsp");
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();

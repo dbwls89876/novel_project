@@ -4,9 +4,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import action.Action;
-import member.svc.JoinProSvc;
+import member.svc.MemberJoinService;
 import vo.ActionForward;
 import vo.Member;
 
@@ -23,14 +22,11 @@ public class MemberJoinAction implements Action {
 		member.setMobile(request.getParameter("mobile"));
 		member.setAddress(request.getParameter("address"));
 		
-		
-		
-		
-		JoinProSvc joinProSvc = new JoinProSvc();
-		boolean isJoinSuccess = joinProSvc.joinMember(member);
+		MemberJoinService memberJoinService = new MemberJoinService();
+		boolean isJoinSuccess = memberJoinService.joinMember(member);
 		if(isJoinSuccess) {
 			forward = new ActionForward();
-			forward.setPath("loginForm.log");
+			forward.setPath("./loginForm.me");
 			forward.setRedirect(true);
 		}else {
 			response.setContentType("text/html;charset=utf-8");

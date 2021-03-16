@@ -8,7 +8,7 @@ import java.sql.Connection;
 import dao.MemberDAO;
 import vo.Member;
 
-public class LoginProSvc {
+public class MemberLoginService {
 
 	public Member getMember(String memberID) {
 		Member member = null;
@@ -21,10 +21,13 @@ public class LoginProSvc {
 			member = memberDAO.selectMember(memberID);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}finally {
 			close(con);
 		}
 		return member;
 	}
+
+
 
 }

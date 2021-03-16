@@ -19,7 +19,14 @@
 </style>
 </head>
 <body>
-<form name="loginform" action="loginProcess.jsp" method="post">
+<form name="loginform" action="./memberLoginAction.me" method="post">
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <table>
 	<tr>
 		<td colspan="2" class="td_title">
@@ -37,7 +44,7 @@
 	<tr>
 		<td colspan="2">
 			<a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;
-			<a href="joinForm.mem">회원가입</a>
+			<a href="/joinForm.me">회원가입</a>
 </table>
 </form>
 </body>

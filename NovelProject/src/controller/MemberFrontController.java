@@ -1,23 +1,26 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
-import literary.action.NewLiteraryListAction;
-import literary.action.TotalLiteraryListAction;
+import member.action.MemberDeleteAction;
+import member.action.MemberJoinAction;
+import member.action.MemberListAction;
+import member.action.MemberLoginAction;
+import member.action.MemberViewAction;
 import vo.ActionForward;
-import member.action.*;
+
 /**
- * Servlet implementation class BoardFrontController
+ * Servlet implementation class MemberFrontController
  */
-@WebServlet("*.mem")
+@WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +36,6 @@ public class MemberFrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
 
@@ -41,21 +43,19 @@ public class MemberFrontController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
-
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
 		System.out.println(command);
-		ActionForward forward=null;
+		ActionForward forward = null;
 		Action action=null;
 		System.out.println(command);
 		
-		if(command.equals("/loginForm.mem")) {
+		if(command.equals("/loginForm.me")){
 			action = new MemberLoginAction();
 			try {
 				forward = action.execute(request, response);
@@ -63,7 +63,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/joinForm.mem")) {
+		else if(command.equals("/memberJoin.me")) {
 			action = new MemberJoinAction();
 			try {
 				forward = action.execute(request, response);
@@ -71,15 +71,46 @@ public class MemberFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		
+		}else if(command.equals("/memberJoinAction.me")){
+			action = new MemberJoinAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/memberListAction.me")){
+			action = new MemberListAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/memberViewAction.me")){
+			action = new MemberViewAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/memberDeleteAction.me")){
+			action = new MemberDeleteAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
 		}
-		if(forward!=null) {
-			if(forward.isRedirect()) {
+		
+		if(forward != null){
+			if(forward.isRedirect()){
 				response.sendRedirect(forward.getPath());
-			}else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+			}else{
+				RequestDispatcher dispatcher=
+						request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}
 		}
 	}
 }
-

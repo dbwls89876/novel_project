@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import dao.MemberDAO;
 import vo.Member;
 
-public class MemberListSvc {
+public class MemberListService {
 
 	public ArrayList<Member> getMemberList(int page, int limit) {
 		ArrayList<Member> memberList = null;

@@ -1,48 +1,52 @@
 package member.action;
 
 import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.MemberDelSvc;
+import member.svc.MemberDeleteService;
 import vo.ActionForward;
 
 public class MemberDeleteAction implements Action{
+	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) 
+			throws Exception{
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-HttpSession session = request.getSession();
-		
-		if(session.getAttribute("id")==null ||
-				!session.getAttribute("id").equals("admin")) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
+		if(id==null){
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("./memberLogin.me");
+		}else if(!id.equals("admin")){
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
 			out.println("<script>");
-			out.println("alert('관리자로 로그인하세요');");
-			out.println("location.href='loginForm.log'");
+			out.println("alert('관리자가 아닙니다.');");
+			out.println("location.href='./memberLogin.me';");
 			out.println("</script>");
-		}else {
-			String id = request.getParameter("id");
-			MemberDelSvc memberDelSvc = new MemberDelSvc();
-			boolean isDeleteSuccess = memberDelSvc.deleteMember(id);
-			if(isDeleteSuccess) {
+		}
+		else{
+			String deleteId=request.getParameter("id");
+			MemberDeleteService memberDeleteService = new MemberDeleteService();
+			boolean deleteResult=memberDeleteService.deleteMember(deleteId);
+
+			if(deleteResult){
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("memberList.mem");
-			}else {
-				response.setContentType("text/html;charset=utf-8");
-				PrintWriter out = response.getWriter();
+				forward.setPath("./memberListAction.me");
+			}
+			else{
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out=response.getWriter();
 				out.println("<script>");
-				out.println("alert('삭제 실패');");
-				out.println("history.back();");
+				out.println("alert('회원정보삭제실패');");
+				out.println("location.href='./memberLogin.me';");
 				out.println("</script>");
 			}
 		}
 		return forward;
 	}
-
 }

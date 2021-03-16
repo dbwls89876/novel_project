@@ -8,7 +8,7 @@ import java.sql.Connection;
 import dao.MemberDAO;
 import vo.Member;
 
-public class JoinProSvc {
+public class MemberJoinService {
 	public boolean joinMember(Member member) {
 		boolean isJoinSucess = false;
 		Connection con = null;

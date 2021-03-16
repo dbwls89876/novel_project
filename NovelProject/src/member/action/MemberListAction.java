@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.MemberListSvc;
+import member.svc.MemberListService;
 import vo.ActionForward;
 import vo.Member;
 import vo.PageInfo;
@@ -29,7 +29,7 @@ public class MemberListAction implements Action {
 			out.println("location.href='loginForm.log'");
 			out.println("</script>");
 		}else {
-			MemberListSvc memberListSvc = new MemberListSvc();
+			MemberListService memberListService = new MemberListService();
 			int page = 1;
 			int limit = 10;
 			int limitPage = 10;
@@ -37,7 +37,7 @@ public class MemberListAction implements Action {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
 			
-			int listCount = memberListSvc.getListCount();
+			int listCount = memberListService.getListCount();
 			int maxPage = (int)((double)listCount/limit+0.95);
 			//첫번째 페이지의 글 갯수를 10개로 제한
 			int startPage = (((int)((double)page/10+0.9)) - 1) * limitPage + 1;
@@ -51,7 +51,7 @@ public class MemberListAction implements Action {
 			pageInfo.setPage(page);
 			pageInfo.setStartPage(startPage);
 			
-			ArrayList<Member> memberList = memberListSvc.getMemberList(page, limit);
+			ArrayList<Member> memberList = memberListService.getMemberList(page, limit);
 			System.out.println(memberList);
 			request.setAttribute("pageInfo", pageInfo);
 			request.setAttribute("memberList", memberList);

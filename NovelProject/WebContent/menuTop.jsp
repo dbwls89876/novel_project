@@ -111,7 +111,7 @@ a {
 			<li>
 				<c:choose>
 					<c:when test="${id eq null }">
-						<a href="${pageContext.request.contextPath }/loginForm.log">로그인</a>
+						<a href="${pageContext.request.contextPath }/loginForm.me">로그인</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${pageContext.request.contextPath }/logoutForm.log">로그아웃</a>
