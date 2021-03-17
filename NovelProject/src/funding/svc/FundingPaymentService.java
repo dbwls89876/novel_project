@@ -36,6 +36,7 @@ public class FundingPaymentService {
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			con = getConnection();
 			memberDAO.setConnection(con);
+			member = memberDAO.selectMember(id);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

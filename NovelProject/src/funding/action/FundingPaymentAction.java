@@ -18,8 +18,9 @@ public class FundingPaymentAction implements Action {
 		HttpSession session = request.getSession();
 		FundingPaymentService fundingPaymentService = new FundingPaymentService();
 		Funding funding = fundingPaymentService.getFunding(Integer.parseInt(request.getParameter("literaryID")));
-		request.setAttribute("funding", funding);
 		Member member = fundingPaymentService.getMember(Integer.parseInt((String) session.getAttribute("id")));
+
+		request.setAttribute("funding", funding);
 		request.setAttribute("member", member);
 		forward = new ActionForward("/funding/fundingPayment.jsp", true);
 		return forward;
