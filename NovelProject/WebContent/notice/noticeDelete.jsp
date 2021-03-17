@@ -27,7 +27,7 @@
 	</tr>
 </table>
 	<section id = "passForm">
-		<form name="deleteForm" action = "noticeDeletePro.bo?noticeID=<%=noticeID %>" method="post">
+		<form name="deleteForm" action = "noticeDeletePro.no?noticeID=<%=noticeID %>" method="post">
 			<input type = "hidden" name = "page" value = "<%=nowPage %> %>"/>
 			<table>
 				<tr>

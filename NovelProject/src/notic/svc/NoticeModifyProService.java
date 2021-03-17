@@ -8,14 +8,14 @@ import vo.BoardBean;
 
 public class NoticeModifyProService {
 
-	public boolean isArticleWriter(int noticeID, int id) {
+	public boolean isArticleWriter(int noticeID, int id) throws Exception{
 		boolean isArticleWriter = false;
 		Connection con = null;
 		try {
 			con = getConnection();
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
 			noticeDAO.setConnection(con);
-			isArticleWriter = noticeDAO.isArticleBoardWriter(noticeID,id);
+			isArticleWriter = noticeDAO.isArticleNoticeWriter(noticeID,id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -24,14 +24,15 @@ public class NoticeModifyProService {
 		return isArticleWriter;
 	}
 
-	public boolean modifyArticle(BoardBean article) {
+	public boolean modifyArticle(BoardBean article) throws Exception{
 		boolean isModifySuccess = false;
 		Connection con = null;
 		try {
 			con = getConnection();
 			NoticeDAO noticeDAO = NoticeDAO.getInstance();
 			noticeDAO.setConnection(con);
-			int updateCount = noticeDAO.deleteArticle(article);
+			int updateCount = noticeDAO.updateArticle(article);
+			
 			if(updateCount > 0) {
 				commit(con);
 				isModifySuccess = true;

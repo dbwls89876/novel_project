@@ -16,12 +16,12 @@ public class NoticeDeleteProAction implements Action {
 		ActionForward forward = null;
 		
 		String page = request.getParameter("page");
-		int boardID = Integer.parseInt(request.getParameter("noticeID"));
+		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		NoticeDeleteProService noticeDeleteProService = new NoticeDeleteProService();
 		
-		boolean isArticleWriter = noticeDeleteProService.isArticleWriter();
+		boolean isArticleWriter = noticeDeleteProService.isArticleWriter(noticeID, id);
 		
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");
@@ -32,6 +32,7 @@ public class NoticeDeleteProAction implements Action {
 			out.println("</script>");
 		}else {
 			boolean isDeleteSuccess = noticeDeleteProService.removeArticle(noticeID);
+			
 			if(!isDeleteSuccess) {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -40,7 +41,7 @@ public class NoticeDeleteProAction implements Action {
 				out.println("history.back();");
 				out.println("</script>");
 			}else {
-				forward = new ActionForward("noticeList.bo?page=" + page, true);
+				forward = new ActionForward("noticeList.no?page=" + page, true);
 			}
 		}
 		return forward;

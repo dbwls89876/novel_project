@@ -14,7 +14,7 @@ import notic.action.*;
 import vo.ActionForward;
 
 /**
- * Servlet implementation class BoardFrontController
+ * Servlet implementation class NoticeFrontController
  */
 @WebServlet("*.no")
 public class NoticeFrontController extends HttpServlet {
@@ -89,13 +89,6 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/noticeReplayForm.no")){
-			action = new NoticeReplyFormAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
 		}else if(command.equals("/noticeDeleteForm.no")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);

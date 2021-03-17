@@ -87,7 +87,7 @@ table {
 						&nbsp;
 				<%} %> ▶
 				<%}else { %> ▶ <%} %>
-					<a href = "noticeDetail.bo?NoticeID=<%=articleList.
+					<a href = "noticeDetail.no?NoticeID=<%=articleList.
 					get(i).getNoticeID() %>&page=<%=nowPage %>">
 					<%=articleList.get(i).getTitle() %>
 					</a>
@@ -103,7 +103,7 @@ table {
 	<%if(nowPage<=1){ %>
 		[이전]&nbsp;
 	<%} else{ %>
-		<a href="noticeList.bo?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+		<a href="noticeList.no?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
 	<%} %>
 	
 	<%for(int a=startPage; a<=endPage; a++) {
@@ -111,14 +111,14 @@ table {
 			[<%=a %>]
 		<%} else{ %>
 		
-			<a href="noticeList.bo?page=<%=a %>">[<%=a %>]
+			<a href="noticeList.no?page=<%=a %>">[<%=a %>]
 			</a>&nbsp;
 		<%} %>
 	<%} %>
 	<%if(nowPage>=maxPage) { %>
 		[다음]
 	<%}else { %>
-		<a href="noticeList.bo?page=<%=nowPage+1 %>">[다음]</a>
+		<a href="noticeList.no?page=<%=nowPage+1 %>">[다음]</a>
 	<%} %>
 			
 
@@ -132,6 +132,6 @@ table {
 		<%
 	}
 %>
-<a href="noticeWriteForm.bo">게시판글쓰기</a>
+<a href="noticeWriteForm.no">글쓰기</a>
 </body>
 </html>

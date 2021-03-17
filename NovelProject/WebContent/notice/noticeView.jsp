@@ -61,10 +61,9 @@ h2 {
 	</section>
 </section>
 <section id = "commandList">
-	<a href="noticeReplyForm.bo?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [답변] </a>
-	<a href="noticeModifyForm.bo?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [수정] </a>
-	<a href="noticeDeleteForm.bo?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [삭제] </a>
-	<a href="noticeList.bo?page=<%=nowPage%>"> [목록] </a>
+	<a href="noticeModifyForm.no?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [수정] </a>
+	<a href="noticeDeleteForm.no?noticeID=<%=article.getNoticeID() %>&page=<%=nowPage%>"> [삭제] </a>
+	<a href="noticeList.no?page=<%=nowPage%>"> [목록] </a>
 	&nbsp;&nbsp;
 
 </section>

@@ -42,7 +42,7 @@ table {
 </table>
 <section id = "writeForm">
 	<h2>게시판글등록</h2>
-	<form action = "noticeWriteForm.bo" method = "post"
+	<form action = "noticeWriteForm.no" method = "post"
 	enctype = "multipart/form-data" name = "noticeform">
 		<table>
 			<tr>

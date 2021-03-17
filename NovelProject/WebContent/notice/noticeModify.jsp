@@ -58,7 +58,7 @@
 </table>
 <section id = "writeForm">
 <h2>게시판글수정</h2>
-	<form action = "noticeModifyPro.bo" method = "post" name = "modifyform">
+	<form action = "noticeModifyPro.no" method = "post" name = "modifyform">
 	<input type = "hidden" name = "noticeID" value = "<%=article.getNoticeID()%>"/>
 	<table>
 		<tr>
@@ -87,7 +87,7 @@
 		</tr>
 	</table>
 	<section id = "commandCell">
-		<a href = "javascript:modifyboard()">[수정]</a>&nbsp;&nbsp;
+		<a href = "javascript:modifynotice()">[수정]</a>&nbsp;&nbsp;
 		<a href = "javascript:history.go(-1)">[뒤로]</a>
 	</section>
 	<input type="hidden" name = "page" value = "<%=nowPage %>"/>
