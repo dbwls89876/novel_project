@@ -54,14 +54,14 @@ public class MemberDAO {
 		return insertCount;
 	}
 
-	public Member selectMember(String memberID) {
+	public Member selectMember(int id) {
 		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from member where memberID=?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberID);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				member = new Member();
@@ -170,13 +170,13 @@ public class MemberDAO {
 		return updateCount;
 	}
 	
-	public int deleteMember(String id) {
+	public int deleteMember(int id) {
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
 		String sql = "delete from member where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 			deleteCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -186,4 +186,26 @@ public class MemberDAO {
 		}
 		return deleteCount;
 	}
-}
+	
+	public int duplecateID(String id){ 
+		int cnt=0; 
+		try{ 
+			Connection con=DBOpen.getConection(); 
+			StringBuilder sql=new StringBuilder(); 
+			//아이디 중복 확인 
+			sql.append(" SELECT count(id) as cnt "); 
+			sql.append(" FROM member "); 
+			sql.append(" WHERE id = ? "); 
+			
+			PreparedStatement pstmt=con.prepareStatement(sql.toString()); 
+			pstmt.setString(1, id); 
+			
+			ResultSet rs=pstmt.executeQuery(); 
+			if(rs.next()){ cnt=rs.getInt("cnt"); 
+			} 
+			}catch(Exception e){ 
+				System.out.println("아이디 중복 확인 실패 : " + e); }
+		//try end }
+		//duplecateID end
+		}
+	}

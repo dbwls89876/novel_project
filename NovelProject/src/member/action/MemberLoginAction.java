@@ -26,6 +26,7 @@ public class MemberLoginAction implements Action {
 		if(member.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberID", memberID);
+			session.setAttribute("id", member.getId());
 			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("../menuTop.jsp");

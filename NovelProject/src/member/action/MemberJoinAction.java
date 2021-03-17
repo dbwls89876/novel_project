@@ -27,7 +27,7 @@ public class MemberJoinAction implements Action {
 		if(isJoinSuccess) {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("./loginForm.me");
+			forward.setPath("./loginForm.jsp");
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
