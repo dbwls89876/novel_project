@@ -1,8 +1,15 @@
 package dao;
 
+import static db.JdbcUtil.*;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
+
+import vo.FundingGoods;
 
 public class FundingGoodsDAO {
 	DataSource ds;
@@ -18,5 +25,43 @@ public class FundingGoodsDAO {
 		
 		return fundingGoodsDAO;
 		
+	}
+
+	public void setConnection(Connection con) {
+		this.con = con;
+		// TODO Auto-generated method stub
+	}
+
+	public ArrayList<FundingGoods> selectFundingGoodsList(int fundingID) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<FundingGoods> fundingGoodsList = null;
+		String sql = "select * from fundingGoods where fundingID = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, fundingID);
+			rs = pstmt.executeQuery();
+			fundingGoodsList = new ArrayList<FundingGoods>();
+			if(rs.next()) {
+				do {
+					fundingGoodsList.add(new FundingGoods(
+							rs.getInt("fundingID")
+							,rs.getInt("goodsID")
+							,rs.getString("name")
+							,rs.getInt("cost")
+							,rs.getInt("count")
+							,rs.getInt("maxNumber")
+							));
+				} while (rs.next());
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return null;
 	}
 }

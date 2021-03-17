@@ -69,14 +69,14 @@ public class FundingDAO {
 	}
 	
 	//funding 테이블 한 줄의 정보 가져오기
-	public Funding selectFunding(int num) {
+	public Funding selectFunding(int literaryID) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Funding funding = null;
 		
 		try {
 			pstmt = con.prepareStatement("select * from funding where id = ?");
-			pstmt.setInt(1,  num);
+			pstmt.setInt(1,  literaryID);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

@@ -1,16 +1,29 @@
 package vo;
 
 public class FundingGoods {
-	String fundingID;
+	
+	public FundingGoods(int fundingID, int goodsID, String name, int cost, int count, int maxNumber) {
+		super();
+		this.fundingID = fundingID;
+		this.goodsID = goodsID;
+		this.name = name;
+		this.cost = cost;
+		this.count = count;
+		this.maxNumber = maxNumber;
+	}
+	int fundingID;
 	int goodsID;
 	String name;
 	int cost;
 	int count;
 	int maxNumber;
-	public String getFundingID() {
+	
+	public FundingGoods() {}
+	
+	public int getFundingID() {
 		return fundingID;
 	}
-	public void setFundingID(String fundingID) {
+	public void setFundingID(int fundingID) {
 		this.fundingID = fundingID;
 	}
 	public int getGoodsID() {
