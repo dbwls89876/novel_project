@@ -42,7 +42,7 @@
 		<td>
 			<table>
 				<c:forEach var="literary" items="${literaryList }" varStatus="status">
-					<td><a href="literaryView.lit?id=${literary.id}"> 
+					<td><a href="sceneView.sc?id=${literary.id}"> 
 					<img src="images/${literary.image}" id="literaryImage" /><br>
 					</a> 작품명 : ${literary.title}<br> 장르 : ${literary.genre}<br> 평점 : ${literary.score}<br> 내용 : ${literary.content}<br></td>
 					<c:if test="${((status.index+1) mod 4) == 0 }">

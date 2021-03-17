@@ -8,7 +8,7 @@
 <style>
 	table{
 	margin:auto;
-	width:600px;
+	width:1000px;
 	border:1px solid gray;
 	text-align:center;
 	}
@@ -62,7 +62,6 @@ function idCheck(){
 	<tr>
 		<td><label for="mobile">휴대폰번호 : </label></td>
 		<td align=left><input type="text" name="mobile" id="mobile"/>
-		<input type="button" value="Email 중복확인" onclick="window.open('emailCheck.jsp?openInit=ture','','width=300,height=200')" /></td>
 	</tr>
 	<tr>
 		<td><label for="zipcode">우편번호 : </label></td>
