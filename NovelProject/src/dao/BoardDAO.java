@@ -220,7 +220,7 @@ public class BoardDAO {
 	}
 
 	// 글 수정
-	public int updateArticel(BoardBean article) {
+	public int updateArticle(BoardBean article) {
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		String sql = "update board set title = ?, content = ? where boardID = ?";

@@ -8,7 +8,7 @@ import vo.BoardBean;
 
 public class BoardModifyProService {
 
-	public boolean isArticleWriter(int boardID, int id) {
+	public boolean isArticleWriter(int boardID, int id) throws Exception{
 		boolean isArticleWriter = false;
 		Connection con = null;
 		try {
@@ -24,14 +24,14 @@ public class BoardModifyProService {
 		return isArticleWriter;
 	}
 
-	public boolean modifyArticle(BoardBean article) {
+	public boolean modifyArticle(BoardBean article) throws Exception{
 		boolean isModifySuccess = false;
 		Connection con = null;
 		try {
 			con = getConnection();
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.setConnection(con);
-			int updateCount = boardDAO.deleteArticle(article);
+			int updateCount = boardDAO.updateArticle(article);
 			if(updateCount > 0) {
 				commit(con);
 				isModifySuccess = true;
