@@ -9,8 +9,6 @@ import dao.NoticeDAO;
 
 public class NoticeDeleteProService {
 	
-	
-	
 	public boolean removeArticle(int noticeID) {
 		boolean isDeleteSuccess = false;
 		Connection con = null;

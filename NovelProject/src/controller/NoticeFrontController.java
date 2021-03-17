@@ -16,7 +16,7 @@ import vo.ActionForward;
 /**
  * Servlet implementation class BoardFrontController
  */
-@WebServlet("*.bo")
+@WebServlet("*.no")
 public class NoticeFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,7 +52,7 @@ public class NoticeFrontController extends HttpServlet {
 		ActionForward forward=null;
 		Action action=null;
 		System.out.println(command);
-		if(command.equals("/noticeWriteForm.bo")) {
+		if(command.equals("/noticeWriteForm.no")) {
 			try {
 				forward = new ActionForward();
 				forward.setPath("/notice/noticeWrite.jsp");
@@ -60,28 +60,28 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/noticeWritePro.bo")) {
+		else if(command.equals("/noticeWritePro.no")) {
 			action = new NoticeWriteProAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/noticeList.bo")) {
+		}else if(command.equals("/noticeList.no")) {
 			action = new NoticeListAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/noticeDetail.bo")) {
+		}else if(command.equals("/noticeDetail.no")) {
 			action = new NoticeDetailAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/noticeModifyForm.bo")) {
+		}else if(command.equals("/noticeModifyForm.no")) {
 			action = new NoticeModifyFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -89,14 +89,14 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/noticeReplayForm.bo")){
+		}else if(command.equals("/noticeReplayForm.no")){
 			action = new NoticeReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/noticeDeleteForm.bo")) {
+		}else if(command.equals("/noticeDeleteForm.no")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
 			int noticeID = Integer.parseInt(request.getParameter("noticeID"));
