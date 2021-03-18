@@ -3,8 +3,8 @@ package vo;
 import java.util.Date;
 
 public class Literary {
-	private int id;
-	private int literaryID;
+	private int id; //유저고유번호
+	private int literaryID; //작품고유번호
 	private String title;
 	private String content;
 	private String genre;
