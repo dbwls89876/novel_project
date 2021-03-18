@@ -24,9 +24,9 @@ public class WeekFundingAction implements Action{
 		ArrayList<Funding> weekFundingList = new ArrayList<Funding>();
 		
 		for(int i = 0; i<fundingList.size(); i++) {
-			//³¯ÀÚ °ª Â÷ÀÌ °è»ê
+			//í˜„ìž¬ë‚ ì§œ - ì‹œìž‘ë‚ ì§œ, ì–‘ìˆ˜
 			long dateDif = date.getTime()- fundingList.get(i).getStartDate().getTime();
-			//ÀÏ ¼ö ±¸ÇÏ±â
+			//24ì‹œê°„
 			dateDif /= (24*60*60*1000);
 			System.out.println(dateDif);
 			if(dateDif<8) {

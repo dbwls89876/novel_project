@@ -9,7 +9,7 @@ import vo.Literary;
 
 public class MoveRegisterService {
 	
-	//Æİµù µî·ÏÀ» À§ÇØ ÀÛ°¡ÀÇ ÀÛÇ° Á¤º¸ ºÒ·¯¿À±â
+	//ì‘í’ˆ ì œëª©ì„ ë“¤ê³ ì˜´
 	public ArrayList<Literary> findTitle(int id) {
 		Connection con = null;
 		ArrayList<Literary> artistLiteraryList = null;
