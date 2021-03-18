@@ -89,13 +89,6 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/boardReplayForm.bo")){
-			action = new BoardReplyFormAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
 		}else if(command.equals("/boardDeleteForm.bo")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);

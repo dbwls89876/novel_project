@@ -59,7 +59,9 @@ public class BoardDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String boardList_sql = "select * from board order by ref desc, seq asc limit ?, ?";
+		
+		String boardList_sql = "select boardID, title, id, date, readCount from board order by boardID asc limit ?, 10";
+		
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		BoardBean board = null;
 		int startrow = (page - 1) * limit;
@@ -73,14 +75,11 @@ public class BoardDAO {
 			while (rs.next()) {
 				board = new BoardBean();
 				board.setBoardID(rs.getInt("boardID"));
-				board.setId(rs.getInt("id"));
 				board.setTitle(rs.getString("title"));
+				board.setId(rs.getInt("id"));
 				board.setContent(rs.getString("content"));
-				board.setRef(rs.getInt("ref"));
-				board.setLev(rs.getInt("lev"));
-				board.setSeq(rs.getInt("seq"));
-				board.setReadCount(rs.getInt("readCount"));
 				board.setDate(rs.getDate("date"));
+				board.setReadCount(rs.getInt("readCount"));
 				articleList.add(board);
 			}
 			
@@ -113,9 +112,6 @@ public class BoardDAO {
 				boardBean.setId(rs.getInt("id"));
 				boardBean.setTitle(rs.getString("title"));
 				boardBean.setContent(rs.getString("content"));
-				boardBean.setRef(rs.getInt("ref"));
-				boardBean.setLev(rs.getInt("lev"));
-				boardBean.setSeq(rs.getInt("seq"));
 				boardBean.setReadCount(rs.getInt("readCount"));
 				boardBean.setDate(rs.getDate("date"));
 			}
@@ -148,18 +144,14 @@ public class BoardDAO {
 			else
 				num = 1;
 
-			sql = "insert into board (boardID, id, title,";
-			sql += "content, ref, " + "lev, seq, readCount," + "date) values(?,?,?,?,?,?,?,?,now())";
-
+			sql = "insert into board (boardID, title, id, content, readCount, date) values(?,?,?,?,?,now())";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, article.getId());
-			pstmt.setString(3, article.getTitle());
+			pstmt.setString(2, article.getTitle());
+			pstmt.setInt(3, article.getId());
 			pstmt.setString(4, article.getContent());
-			pstmt.setInt(5, num);
-			pstmt.setInt(6, 0);
-			pstmt.setInt(7, 0);
-			pstmt.setInt(8, 0);
+			pstmt.setInt(5, 0);
 
 			insertCount = pstmt.executeUpdate();
 
@@ -171,64 +163,6 @@ public class BoardDAO {
 		}
 		
 		return insertCount;
-	}
-
-	// 글 답변
-	public int insertReplyArticle(BoardBean article) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String boardMax_sql = "select max(boardID) from board";
-		String sql = "";
-		int num = 0;
-		int insertCount = 0;
-		int ref = article.getRef();
-		int lev = article.getLev();
-		int seq = article.getSeq();
-
-		try {
-			pstmt = con.prepareStatement(boardMax_sql);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				num = rs.getInt(1) + 1;
-			else
-				num = 1;
-
-			sql = "update board set seq = seq+1 where ref = ?";
-			sql += "and seq > ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ref);
-			pstmt.setInt(2, seq);
-			int updateCount = pstmt.executeUpdate();
-
-			if (updateCount > 0) {
-				commit(con);
-			}
-
-			seq = seq + 1;
-			lev = lev + 1;
-			sql = "insert into board (boardID, id, title,";
-			sql += "content, ref, lev, seq, ";
-			sql += "readCount, date) values(?,?,?,?,?,?,?,?,now())";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setInt(2, article.getId());
-			pstmt.setString(3, article.getTitle());
-			pstmt.setString(4, article.getContent());
-			pstmt.setInt(5, ref);
-			pstmt.setInt(6, lev);
-			pstmt.setInt(7, seq);
-			pstmt.setInt(8, 0);
-			insertCount = pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("boardReply 에러 : " + e);
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return insertCount;
-		
 	}
 
 	// 글 수정
@@ -254,9 +188,11 @@ public class BoardDAO {
 
 	// 글 삭제
 	public int deleteArticle(int boardID) {
+		
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
 		String boardDelete_sql = "delete from board where boardID = ?";
+		
 		try {
 			pstmt = con.prepareStatement(boardDelete_sql);
 			pstmt.setInt(1, boardID);
@@ -312,5 +248,63 @@ public class BoardDAO {
 
 		return isWriter;
 	}
+	
+//	// 글 답변
+//	public int insertReplyArticle(BoardBean article) {
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String boardMax_sql = "select max(boardID) from board";
+//		String sql = "";
+//		int num = 0;
+//		int insertCount = 0;
+//		int ref = article.getRef();
+//		int lev = article.getLev();
+//		int seq = article.getSeq();
+//
+//		try {
+//			pstmt = con.prepareStatement(boardMax_sql);
+//			rs = pstmt.executeQuery();
+//			if (rs.next())
+//				num = rs.getInt(1) + 1;
+//			else
+//				num = 1;
+//
+//			sql = "update board set seq = seq+1 where ref = ?";
+//			sql += "and seq > ?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, ref);
+//			pstmt.setInt(2, seq);
+//			int updateCount = pstmt.executeUpdate();
+//
+//			if (updateCount > 0) {
+//				commit(con);
+//			}
+//
+//			seq = seq + 1;
+//			lev = lev + 1;
+//			sql = "insert into board (boardID, id, title,";
+//			sql += "content, ref, lev, seq, ";
+//			sql += "readCount, date) values(?,?,?,?,?,?,?,?,now())";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, num);
+//			pstmt.setInt(2, article.getId());
+//			pstmt.setString(3, article.getTitle());
+//			pstmt.setString(4, article.getContent());
+//			pstmt.setInt(5, ref);
+//			pstmt.setInt(6, lev);
+//			pstmt.setInt(7, seq);
+//			pstmt.setInt(8, 0);
+//			insertCount = pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			System.out.println("boardReply 에러 : " + e);
+//		} finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		
+//		return insertCount;
+//		
+//	}
 
 }
