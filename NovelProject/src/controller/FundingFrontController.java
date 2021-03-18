@@ -119,6 +119,14 @@ public class FundingFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		}else if(command.equals("/fundingPaymentUpdate.fun")) {
+			action = new FundingPaymentUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
 		
 		
