@@ -25,7 +25,7 @@ public class FundingContentService {
 		}
 		return funding;
 	}
-
+	
 	public ArrayList<FundingGoods> getFundingGoods(int fundingID) {
 		// TODO Auto-generated method stub
 		Connection con = null;
