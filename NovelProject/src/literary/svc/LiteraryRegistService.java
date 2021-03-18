@@ -6,8 +6,7 @@ import dao.LiteraryDAO;
 import java.sql.Connection;
 
 public class LiteraryRegistService {
-
-	public boolean registArticle(Literary literary) {
+	public boolean registLiterary(Literary literary) {
 		boolean isWriteSuccess = false;
 		Connection con = null;
 		try{

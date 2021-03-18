@@ -15,7 +15,7 @@
 	</tr>
 </table>
 <h2>새 작품 등록</h2>
-<form action ="LiteraryRegistAction.lit" method="post" enctype="multipart/form-data" name="literaryform">
+<form action ="LiteraryRegist.lit" method="post" enctype="multipart/form-data" name="literaryform">
 	<table>
 		<tr>
 			<td class="td_left"><label for="nickname">글쓴이</label></td>
