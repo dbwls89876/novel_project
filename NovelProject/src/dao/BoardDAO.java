@@ -209,7 +209,7 @@ public class BoardDAO {
 	public int updateReadCount(int boardID) {
 		PreparedStatement pstmt = null;
 		int updateCount = 0;
-		String sql = "update board set readCount = " + "readCount+1 where boardID = " + boardID;
+		String sql = "update board set readCount = readCount+1 where boardID = " + boardID;
 
 		try {
 			pstmt = con.prepareStatement(sql);
