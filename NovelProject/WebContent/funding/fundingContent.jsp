@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-빠밤
+
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+	
+</table>
 </body>
 </html>
