@@ -38,6 +38,11 @@
 			<jsp:include page="../menuTop.jsp"></jsp:include>
 		</td>
 	</tr>
+	
+	<tr>
+		<td><a href="${pageContext.request.contextPath }/literaryRegister.lit">작품 등록하기</a></td>
+	</tr>
+	
 	<tr>
 		<td>
 			<table>

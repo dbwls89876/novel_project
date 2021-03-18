@@ -91,5 +91,30 @@ public class LiteraryDAO {
 		}
 		return artistLiteraryList;
 	}
-	
+
+
+	public int insertArticle(Literary literary) {
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		String sql="";
+		int insertCount=0;
+		
+		try {
+			sql="insert into board (title, content, genre, image, date) values (?,?,?,?,now())";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, literary.getTitle());
+			pstmt.setString(2, literary.getContent());
+			pstmt.setString(3, literary.getGenre());
+			pstmt.setString(4, literary.getImage());
+			insertCount=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("boardInsert 에러 : "+e);
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return insertCount;
+	}
 }

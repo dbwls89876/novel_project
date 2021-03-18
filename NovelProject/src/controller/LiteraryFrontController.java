@@ -71,7 +71,10 @@ public class LiteraryFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}else if(command.equals("/literaryRegister.lit")) {
+		}else if(command.equals("/literaryRegistForm.lit")) {
+			forward=new ActionForward();
+			forward.setPath("/literary/literaryRegistForm.jsp");
+		}else if(command.equals("/LiteraryRegist.lit")){
 			action = new LiteraryRegistAction();
 			try {
 				forward = action.execute(request, response);
