@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC게시판</title>
+<title>Community Board</title>
 	<script type="text/javascript">
 	function modifyboard() {
 			modifyform.submit();
@@ -64,7 +64,7 @@
 		</tr>
 		<tr>
 			<td class = "td_left">
-				<label for = "id">글쓴이</label>
+				<label for = "id">작성자</label>
 			</td>
 			<td class = "td_right">
 				<input type = "text" name = "id" id = "id" value = "<%=article.getId() %>"/>

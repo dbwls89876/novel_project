@@ -7,7 +7,8 @@ import vo.BoardBean;
 import static db.JdbcUtil.*;
 
 public class BoardWriteProService {
-	public boolean registArticle(BoardBean boardBean) {
+	public boolean registArticle(BoardBean boardBean) throws Exception{
+		
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();
 		try {

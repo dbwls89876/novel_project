@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC게시판</title>
+<title>Community Board</title>
 <style>
 	#passForm {
 		width : 400px;

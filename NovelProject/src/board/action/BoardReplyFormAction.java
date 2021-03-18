@@ -12,15 +12,16 @@ public class BoardReplyFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ActionForward forward = new ActionForward();
+		String nowPage = request.getParameter("page");
 		int boardID = Integer.parseInt(request.getParameter("boardID"));
-		String page = request.getParameter("page");
 		
 		BoardModifyFormSvc boardModifyFormSvc = new BoardModifyFormSvc();
 		BoardBean article = boardModifyFormSvc.getArticle(boardID);
 		
 		request.setAttribute("article", article);
-		request.setAttribute("page", page);
+		request.setAttribute("page", nowPage);
 		forward.setPath("/board/boardReply.jsp");
 		return forward;
 	}

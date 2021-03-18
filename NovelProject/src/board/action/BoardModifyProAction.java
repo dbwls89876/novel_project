@@ -14,15 +14,14 @@ public class BoardModifyProAction implements Action {
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = null;
-		int boardID = Integer.parseInt(request.getParameter("boardID"));
-		int id = Integer.parseInt(request.getParameter("id"));
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String page = request.getParameter("page");
 		
+		ActionForward forward = null;
+		boolean isModifySuccess = false;
+		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		BoardBean article = new BoardBean();
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
-		boolean isRightUser = boardModifyProService.isArticleWriter(boardID,id);
+		boolean isRightUser = boardModifyProService.isArticleWriter(boardID, Integer.parseInt(request.getParameter("id")));
+				
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -31,11 +30,10 @@ public class BoardModifyProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 		}else {
-			BoardBean article = new BoardBean();
 			article.setBoardID(boardID);
-			article.setTitle(title);
-			article.setContent(content);
-			boolean isModifySuccess = boardModifyProService.modifyArticle(article);
+			article.setTitle(request.getParameter("title"));
+			article.setContent(request.getParameter("content"));
+			isModifySuccess = boardModifyProService.modifyArticle(article);
 			
 			if(!isModifySuccess) {
 				response.setContentType("text/html;charset=utf-8");
@@ -47,7 +45,7 @@ public class BoardModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.bo?boardID="+boardID+"&page="+page);
+				forward.setPath("boardDetail.bo?boardID=" + article.getBoardID());
 			}
 		}
 		return forward;

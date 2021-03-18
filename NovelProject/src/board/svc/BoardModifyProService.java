@@ -9,6 +9,7 @@ import vo.BoardBean;
 public class BoardModifyProService {
 
 	public boolean isArticleWriter(int boardID, int id) throws Exception{
+		
 		boolean isArticleWriter = false;
 		Connection con = null;
 		try {

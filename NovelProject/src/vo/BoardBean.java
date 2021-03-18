@@ -7,12 +7,16 @@ public class BoardBean {
 	private int id;
 	private String title;
 	private String content;
-	private int ref;
-	private int lev;
-	private int seq;
 	private int readCount;
 	private Date date;
+	private String file;
 	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 	public int getBoardID() {
 		return boardID;
 	}
@@ -42,24 +46,6 @@ public class BoardBean {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public int getRef() {
-		return ref;
-	}
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
-	public int getLev() {
-		return lev;
-	}
-	public void setLev(int lev) {
-		this.lev = lev;
-	}
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
 	}
 	public int getReadCount() {
 		return readCount;

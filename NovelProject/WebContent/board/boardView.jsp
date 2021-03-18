@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC 게시판</title>
+<title>Community Board</title>
 <style type = "text/css">
 #articleForm {
 	width : 500px;
@@ -47,6 +47,8 @@ h2 {
 	<section id="basicInfoArea">
 		<h2>글 제목 : 
 		<%=article.getTitle() %></h2>
+		<p>작성자 : <%=article.getId() %></p>
+		<p>작성일 : <%=article.getDate() %> | 조회수 : <%=article.getReadCount() %></p>
 	</section>
 	<section id="articleContentArea">
 		내용 : 
@@ -59,7 +61,6 @@ h2 {
 	<a href="boardDeleteForm.bo?board_num=<%=article.getBoardID() %>&page=<%=nowPage%>"> [삭제] </a>
 	<a href="boardList.bo?page=<%=nowPage%>"> [목록] </a>
 	&nbsp;&nbsp;
-
 </section>
 </body>
 </html>
