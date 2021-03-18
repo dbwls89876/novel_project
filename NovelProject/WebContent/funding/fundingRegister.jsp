@@ -20,7 +20,6 @@
 	
 	table{
 		margin: auto;
-		width: 450px;
 	}
 	
 	.td_left{
@@ -39,35 +38,46 @@
 </style>
 </head>
 <body>
-<form action="fundingRegister.fun" method="post" enctype="multipart/form-data" name="fundingForm">
 <table>
 	<tr>
-		<td class="td_left"><label for="">작품 선택</label></td>
-		<td><!-- 신청 작품 select -->
-			<select name="selectLiterary">
-				<c:forEach var = "artistLiterary" items="${artistLiteraryList }" varStatus = "status">
-					<option value="${artistLiterary.title }">${artistLiterary.title }</option>
-				</c:forEach>
-			</select>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
 		</td>
 	</tr>
 	<tr>
-		<td class="td_left"><label for="title">제목</label></td>
-		<td class="td_right"><input type="text" name="title" id="title" required="required"/></td>
-	</tr>
-	<tr>
-		<td class="td_left"><label for="">내용</label></td>
-		<td><textarea id="" name="content" cols="40" rows="15" required="required"></textarea></td>
-	</tr>
-	<tr>
-		<td class="td_left"><label for="">이미지 첨부</label></td>
-		<td class="td_right"><input type="file" name="image" id="image" required="required"/></td>
+		<td>
+			<form action="fundingRegister.fun" method="post" enctype="multipart/form-data" name="fundingForm">
+			<table>
+				<tr>
+					<td class="td_left"><label for="">작품 선택</label></td>
+					<td><!-- 신청 작품 select -->
+						<select name="selectLiterary">
+							<c:forEach var = "artistLiterary" items="${artistLiteraryList }" varStatus = "status">
+								<option value="${artistLiterary.title }">${artistLiterary.title }</option>
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_right"><input type="text" name="title" id="title" required="required"/></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="">내용</label></td>
+					<td><textarea id="" name="content" cols="40" rows="15" required="required"></textarea></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="">이미지 첨부</label></td>
+					<td class="td_right"><input type="file" name="image" id="image" required="required"/></td>
+				</tr>
+			</table>
+			<section id="commandCell">
+				<input type="submit" value="등록">&nbsp;&nbsp;
+				<input type="reset" value="다시쓰기">
+			</section>
+			</form>
+		</td>
 	</tr>
 </table>
-<section id="commandCell">
-	<input type="submit" value="등록">&nbsp;&nbsp;
-	<input type="reset" value="다시쓰기">
-</section>
-</form>
 </body>
 </html>

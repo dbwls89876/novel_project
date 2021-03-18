@@ -22,7 +22,7 @@ public class MoveRegisterAction implements Action {
 		MoveRegisterService moveRegisterService = new MoveRegisterService();
 		ArrayList<Literary> artistLiteraryList = moveRegisterService.findTitle(id);
 		request.setAttribute("artistLiteraryList", artistLiteraryList);
-		forward = new ActionForward("/funding/fundingRegster.jsp", true);
+		forward = new ActionForward("/funding/fundingRegister.jsp", true);
 		return forward;
 	}
 

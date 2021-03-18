@@ -4,25 +4,15 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 
 import dao.BoardDAO;
+import vo.BoardBean;
 
 
 
 public class BoardDeleteProService {
 	
-	public boolean isArticleWriter(int boardID, int id) throws Exception{
-		
-		boolean isArticleWriter = false;
-		Connection con = getConnection();
-		BoardDAO boardDAO = BoardDAO.getInstance();
-		boardDAO.setConnection(con);
-		isArticleWriter = boardDAO.isArticleBoardWriter(boardID, id);
-		close(con);
-		return isArticleWriter;
-	}
 	
 	
-	public boolean removeArticle(int boardID) throws Exception{
-		
+	public boolean removeArticle(int boardID) {
 		boolean isDeleteSuccess = false;
 		Connection con = null;
 		try {
@@ -42,8 +32,12 @@ public class BoardDeleteProService {
 		}finally {
 			close(con);
 		}
-		return isDeleteSuccess;
+		return true;
 	}
 
+	public boolean isArticleWriter() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

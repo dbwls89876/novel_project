@@ -12,8 +12,9 @@ public class BoardDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		int boardID = 1;
+		if(request.getParameter("boardID")!=null) 
+			boardID = Integer.parseInt(request.getParameter("boardID"));//볼 글의 번호
 		String page = request.getParameter("page"); // 페이지 번호
 		BoardDetailService boardDitailService = new BoardDetailService();
 		BoardBean article = boardDitailService.getArticle(boardID);// 번호와 일치하는 글의 정보 호출

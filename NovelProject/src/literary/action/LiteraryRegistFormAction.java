@@ -10,7 +10,7 @@ public class LiteraryRegistFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = new ActionForward("/literary/literaryRegistForm.jsp",true);
+		ActionForward forward = new ActionForward("literaryRegistForm.jsp",true);
 		return forward;
 	}
 }

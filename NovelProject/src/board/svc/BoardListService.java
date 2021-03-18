@@ -25,7 +25,7 @@ public class BoardListService {
 		return listCount;
 	}
 
-	public ArrayList<BoardBean> getArticleList(int page, int limit) throws Exception{
+	public ArrayList<BoardBean> getArticleList(int page, int limit) {
 		ArrayList<BoardBean>articleList = null;
 		Connection con = getConnection();
 		try {

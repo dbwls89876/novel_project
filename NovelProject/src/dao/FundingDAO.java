@@ -75,7 +75,7 @@ public class FundingDAO {
 		Funding funding = null;
 		
 		try {
-			pstmt = con.prepareStatement("select * from funding where id = ?");
+			pstmt = con.prepareStatement("select * from funding where literaryID = ?");
 			pstmt.setInt(1,  literaryID);
 			rs = pstmt.executeQuery();
 			

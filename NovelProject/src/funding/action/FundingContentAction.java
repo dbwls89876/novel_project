@@ -20,6 +20,7 @@ public class FundingContentAction implements Action {
 		Funding funding = null;
 		int literaryID = Integer.parseInt(request.getParameter("literaryID"));
 		int fundingID = Integer.parseInt(request.getParameter("fundingID"));
+		
 		FundingContentService fundingContentService = new FundingContentService();
 		funding = fundingContentService.getFunding(literaryID);
 		fundingGoodsList = fundingContentService.getFundingGoods(fundingID);

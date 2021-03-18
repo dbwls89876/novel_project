@@ -7,7 +7,7 @@ import java.sql.Connection;
 
 public class LiteraryRegistService {
 
-	public static boolean registLiterary(Literary literary) {
+	public boolean registArticle(Literary literary) {
 		boolean isWriteSuccess = false;
 		Connection con = null;
 		try{
@@ -32,4 +32,7 @@ public class LiteraryRegistService {
 		}
 		return isWriteSuccess;
 	}
+
+
+
 }
