@@ -64,4 +64,34 @@ public class FundingGoodsDAO {
 		}
 		return null;
 	}
+
+	public FundingGoods selectFundingGoods(int goodsID) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FundingGoods fundingGoods = null;
+		String sql = "select * from fundingGoods where goodsID = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, goodsID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				fundingGoods = new FundingGoods();
+				fundingGoods.setFundingID(rs.getInt("fundingID"));
+				fundingGoods.setGoodsID(rs.getInt("goodID"));
+				fundingGoods.setName(rs.getString("name"));
+				fundingGoods.setCost(rs.getInt("cost"));
+				fundingGoods.setCount(rs.getInt("count"));
+				fundingGoods.setMaxNumber(rs.getInt("maxNumber"));
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return fundingGoods;
+	}
 }

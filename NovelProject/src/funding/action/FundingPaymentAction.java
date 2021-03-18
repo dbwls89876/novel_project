@@ -8,6 +8,7 @@ import action.Action;
 import funding.svc.FundingPaymentService;
 import vo.ActionForward;
 import vo.Funding;
+import vo.FundingGoods;
 import vo.Member;
 
 public class FundingPaymentAction implements Action {
@@ -19,6 +20,7 @@ public class FundingPaymentAction implements Action {
 		FundingPaymentService fundingPaymentService = new FundingPaymentService();
 		Funding funding = fundingPaymentService.getFunding(Integer.parseInt(request.getParameter("literaryID")));
 		Member member = fundingPaymentService.getMember(Integer.parseInt((String) session.getAttribute("id")));
+		FundingGoods fundingGoods = fundingPaymentService.getFundingGoods(Integer.parseInt(request.getParameter("goodsID")));
 
 		request.setAttribute("funding", funding);
 		request.setAttribute("member", member);

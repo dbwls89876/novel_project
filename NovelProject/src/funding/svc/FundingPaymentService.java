@@ -5,8 +5,10 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 
 import dao.FundingDAO;
+import dao.FundingGoodsDAO;
 import dao.MemberDAO;
 import vo.Funding;
+import vo.FundingGoods;
 import vo.Member;
 
 public class FundingPaymentService {
@@ -44,6 +46,24 @@ public class FundingPaymentService {
 			close(con);
 		}
 		return member;
+	}
+
+	public FundingGoods getFundingGoods(int goodsID) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		FundingGoods fundingGoods = null;
+		try {
+			FundingGoodsDAO fundingGoodsDAO = FundingGoodsDAO.getInstance();
+			con = getConnection();
+			fundingGoodsDAO.setConnection(con);
+			fundingGoods = fundingGoodsDAO.selectFundingGoods(goodsID);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(con);
+		}
+		return fundingGoods;
 	}
 	
 }

@@ -45,19 +45,19 @@ public class FundingDAO {
 			 * 
 			 * if(rs.next()) num = rs.getInt(1)+1; else num=1;
 			 */
-			sql="insert into funding (literaryID, fundingID, title, content, image, ";
-			sql += "targetCost, nowCost, startDate, endDate) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql="insert into funding (literaryID, title, content, image, ";
+			sql += "targetCost, nowCost, startDate, endDate, deliveryDate) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, funding.getLiteraryID());
-			pstmt.setInt(2, funding.getFundingID());
-			pstmt.setString(3, funding.getTitle());
-			pstmt.setString(4, funding.getContent());
-			pstmt.setString(5, funding.getImage());
-			pstmt.setInt(6, funding.getTargetCost());
-			pstmt.setInt(7, funding.getNowCost());
-			pstmt.setDate(8, funding.getStartDate());
-			pstmt.setDate(9, funding.getEndDate());
+			pstmt.setString(2, funding.getTitle());
+			pstmt.setString(3, funding.getContent());
+			pstmt.setString(4, funding.getImage());
+			pstmt.setInt(5, funding.getTargetCost());
+			pstmt.setInt(6, funding.getNowCost());
+			pstmt.setDate(7, funding.getStartDate());
+			pstmt.setDate(8, funding.getEndDate());
+			pstmt.setDate(9, funding.getDeliveryDate());
 			pstmt.execute();
 			insertSucess = true;
 		}catch(Exception e) {
@@ -88,8 +88,10 @@ public class FundingDAO {
 				funding.setImage(rs.getString("image"));
 				funding.setTargetCost(rs.getInt("targetCost"));
 				funding.setNowCost(rs.getInt("nowCost"));
+				funding.setPermission(rs.getInt("permission"));
 				funding.setStartDate(rs.getDate("startDate"));
 				funding.setEndDate(rs.getDate("endDate"));
+				funding.setDeliveryDate(rs.getDate("deliveryDate"));
 			}
 		}catch(Exception e) {
 			System.out.println("fundingSelect ¿À·ù : "  + e);
@@ -121,9 +123,10 @@ public class FundingDAO {
 							,rs.getString("image")
 							,rs.getInt("targetCost")
 							,rs.getInt("nowCost")
+							,rs.getInt("permission")
 							,rs.getDate("startDate")
 							,rs.getDate("endDate")
-							,rs.getInt("permission")
+							,rs.getDate("deliveryDate")
 							));
 				} while (rs.next());
 			}

@@ -14,13 +14,15 @@ public class Funding {
 	String image;
 	int targetCost;
 	int nowCost;
+	int permission;
 	Date startDate;
 	Date endDate;
-	int permission;
+	Date deliveryDate;
+	
 	public Funding() {}
 	
 	public Funding(int literaryID, int fundingID, String title, String content, String image, int targetCost,
-			int nowCost, Date startDate, Date endDate, int permission) {
+			int nowCost, int permission, Date startDate, Date endDate, Date deliveryDate) {
 		super();
 		this.literaryID = literaryID;
 		this.fundingID = fundingID;
@@ -29,9 +31,10 @@ public class Funding {
 		this.image = image;
 		this.targetCost = targetCost;
 		this.nowCost = nowCost;
+		this.permission = permission;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.permission = permission;
+		this.deliveryDate = deliveryDate;
 	}
 	
 	
@@ -97,4 +100,13 @@ public class Funding {
 	public void setPermission(int permission) {
 		this.permission = permission;
 	}
+
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
 }
