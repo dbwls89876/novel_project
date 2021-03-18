@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import member.action.MemberDeleteAction;
+
 import member.action.MemberJoinAction;
-import member.action.MemberListAction;
+
 import member.action.MemberLoginAction;
-import member.action.MemberViewAction;
+
 import vo.ActionForward;
 
 /**
@@ -79,30 +79,8 @@ public class MemberFrontController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/memberListAction.me")){
-			action = new MemberListAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/memberViewAction.me")){
-			action = new MemberViewAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/memberDeleteAction.me")){
-			action = new MemberDeleteAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			
+
 		}
-		
 		if(forward != null){
 			if(forward.isRedirect()){
 				response.sendRedirect(forward.getPath());
