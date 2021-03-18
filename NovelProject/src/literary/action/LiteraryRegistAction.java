@@ -1,12 +1,9 @@
 package literary.action;
 
 import java.io.PrintWriter;
-import java.util.Date;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -19,11 +16,10 @@ public class LiteraryRegistAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ActionForward forward=null;
-		Literary literary=null;
+		LiteraryRegistService LiteraryRegistService = new LiteraryRegistService();
 		String realFolder="";
 		String saveFolder="/literary/imageUpload";
+		String encType = "UTF-8";
 		int fileSize=5*1024*1024;
 		ServletContext context = request.getServletContext();
 		realFolder=context.getRealPath(saveFolder);
@@ -32,27 +28,28 @@ public class LiteraryRegistAction implements Action {
 				fileSize,
 				"UTF-8",
 				new DefaultFileRenamePolicy());
+		String image = multi.getFilesystemName("image");
 		
-		literary = new Literary();
-		literary.setTitle(multi.getParameter("title"));
-		literary.setContent(multi.getParameter("content"));
-		literary.setGenre(multi.getParameter("genre"));
-		literary.setImage(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
-		LiteraryRegistService literaryRegistService = new LiteraryRegistService();
-		boolean isWriteSuccess = literaryRegistService.registArticle(literary);
+		Literary literary = new Literary(
+				0, 
+				0, 
+				multi.getParameter("title"),
+				multi.getParameter("content"),
+				multi.getParameter("genre"), 
+				0,
+				image);
+		boolean isRegistSuccess = LiteraryRegistService.registLiterary(literary);
+		ActionForward forward = null;
 		
-		if(!isWriteSuccess) {
-			response.setContentType("text/html'charset=UTF-8");
+		if(isRegistSuccess) {
+			forward = new ActionForward("myLiteraryList.lit", true);
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('등록실패')");
+			out.println("alert('등록실패');");
 			out.println("history.back();");
 			out.println("</script>");
-		}
-		else {
-			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("myLiteraryList.lit");
 		}
 		
 		return forward;
