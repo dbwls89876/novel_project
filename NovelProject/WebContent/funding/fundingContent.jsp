@@ -39,13 +39,13 @@
 	</td></tr>
 	
 	<tr><td>
-		<table>
 		<c:forEach var = "fundingGoods" items="${fundingGoodsList }" varStatus = "status">
+			<table border="1" onClick="location.href='fundingPaymentUpdate.fun?goodsID=${fundingGoods.goodsID}'">
 			<tr><td>${fundingGoods.name }</td></tr>
 			<tr><td>${fundingGoods.cost }원</td></tr>
-			<tr><td>${fundingGoods.maxNumber - fundingGoods.count }개 남음</td></tr>
+			<tr><td>${fundingGoods.maxNumber - fundingGoods.count }개 남음</td></tr>			
+			</table>
 		</c:forEach>
-		</table>
 	</td></tr>
 </table>
 </body>
