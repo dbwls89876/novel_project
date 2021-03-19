@@ -55,7 +55,8 @@ public class MemberDAO {
 	}
 
 	public Member selectMember(String memberID) {
-		
+		Member member = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from member where memberID=?";
 		try {
