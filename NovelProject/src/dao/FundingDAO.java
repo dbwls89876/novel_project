@@ -32,7 +32,7 @@ public class FundingDAO {
 		this.con = con;
 	}
 	
-	//funding Å×ÀÌºí µ¥ÀÌÅÍ »ðÀÔ
+	//funding ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public boolean insertFunding(Funding funding) {
 		PreparedStatement pstmt = null;
 		String sql = "";
@@ -61,14 +61,14 @@ public class FundingDAO {
 			pstmt.execute();
 			insertSucess = true;
 		}catch(Exception e) {
-			System.out.println("fundingInsert ¿À·ù : " + e);
+			System.out.println("fundingInsert ï¿½ï¿½ï¿½ï¿½ : " + e);
 		}finally {
 			close(pstmt);
 		}
 		return insertSucess;
 	}
 	
-	//funding Å×ÀÌºí ÇÑ ÁÙÀÇ Á¤º¸ °¡Á®¿À±â
+	//funding ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Funding selectFunding(int literaryID) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -94,7 +94,7 @@ public class FundingDAO {
 				funding.setDeliveryDate(rs.getDate("deliveryDate"));
 			}
 		}catch(Exception e) {
-			System.out.println("fundingSelect ¿À·ù : "  + e);
+			System.out.println("fundingSelect ï¿½ï¿½ï¿½ï¿½ : "  + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -102,7 +102,7 @@ public class FundingDAO {
 		return funding;
 	}
 
-	//ÆÝµù Å×ÀÌºí ¸®½ºÆ® °¡Á®¿À±â
+	//ï¿½Ýµï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public ArrayList<Funding> selectFundingList() {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
@@ -157,5 +157,26 @@ public class FundingDAO {
 			close(pstmt);
 		}
 		
+	}
+
+	public boolean insertCost(int fundingID, int cost) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		boolean isUpdateSucess = false;
+		String sql = "update funding set cost=? where fundingID=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cost);
+			pstmt.setInt(2, fundingID);
+			pstmt.executeUpdate();
+			isUpdateSucess = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return isUpdateSucess;
 	}
 }

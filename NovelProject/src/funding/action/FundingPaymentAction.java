@@ -24,6 +24,7 @@ public class FundingPaymentAction implements Action {
 
 		request.setAttribute("funding", funding);
 		request.setAttribute("member", member);
+		request.setAttribute("fundingGoods", fundingGoods);
 		forward = new ActionForward("/funding/fundingPayment.jsp", true);
 		return forward;
 	}
