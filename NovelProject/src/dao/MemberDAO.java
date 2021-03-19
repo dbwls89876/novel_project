@@ -46,7 +46,7 @@ public class MemberDAO {
 			pstmt.setString(6, member.getAddress());
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("memberInsert 에러 : " + e);
+			System.out.println("memberInsert �뿉�윭 : " + e);
 		}finally {
 			close(pstmt);
 		}
@@ -55,8 +55,7 @@ public class MemberDAO {
 	}
 
 	public Member selectMember(String memberID) {
-		Member member = null;
-		PreparedStatement pstmt = null;
+		
 		ResultSet rs = null;
 		String sql = "select * from member where memberID=?";
 		try {
@@ -74,7 +73,7 @@ public class MemberDAO {
 				member.setAddress(rs.getString("address"));
 			}
 		} catch (Exception e) {
-			System.out.println("memberSelect 오류 : " + e);
+			System.out.println("memberSelect �삤瑜� : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -96,7 +95,7 @@ public class MemberDAO {
 				listCount = rs.getInt(1);
 			}
 		}catch(Exception e) {
-			System.out.println("getListCount 에러 : " + e);
+			System.out.println("getListCount �뿉�윭 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -134,7 +133,7 @@ public class MemberDAO {
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("memberList 에러 : " + e);
+			System.out.println("memberList �뿉�윭 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
