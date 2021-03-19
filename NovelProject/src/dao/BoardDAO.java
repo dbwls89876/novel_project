@@ -46,6 +46,7 @@ public class BoardDAO {
 			}
 		} catch (Exception e) {
 			System.out.println("getListCount 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -60,7 +61,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String boardList_sql = "select boardID, title, id, date, readCount from board order by boardID asc limit ?, 10";
+		String boardList_sql = "select boardID, title, id, date, readCount from board order by boardID desc limit ?, ?";
 		
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		BoardBean board = null;
@@ -77,7 +78,6 @@ public class BoardDAO {
 				board.setBoardID(rs.getInt("boardID"));
 				board.setTitle(rs.getString("title"));
 				board.setId(rs.getInt("id"));
-				board.setContent(rs.getString("content"));
 				board.setDate(rs.getDate("date"));
 				board.setReadCount(rs.getInt("readCount"));
 				articleList.add(board);
@@ -85,6 +85,7 @@ public class BoardDAO {
 			
 		} catch (Exception e) {
 			System.out.println("getBoardList 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -117,6 +118,7 @@ public class BoardDAO {
 			}
 		} catch (Exception e) {
 			System.out.println("getDetail 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -157,6 +159,7 @@ public class BoardDAO {
 
 		} catch (Exception e) {
 			System.out.println("boardInsert 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -180,6 +183,7 @@ public class BoardDAO {
 			updateCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("boardModify 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -199,6 +203,7 @@ public class BoardDAO {
 			deleteCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("boardDelete 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -216,6 +221,7 @@ public class BoardDAO {
 			updateCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("setReadCountUpdate 오류 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -242,6 +248,7 @@ public class BoardDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("isBoardWriter 에러 : " + e);
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}

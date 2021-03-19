@@ -128,9 +128,13 @@ table {
 		<%
 			} else {
 		%>
-		<a href="boardList.bo?page=<%=nowPage + 1%>">[다음]</a>
+		<a href="boardList.bo?page=<%=nowPage + 1%>">[다음]</a>&nbsp;
 		<%
 			}
+		%>
+		<a href="boardWriteForm.bo">글쓰기</a>
+		<%
+		
 		%>
 	</section>
 	<%
@@ -145,6 +149,3 @@ table {
 	%>
 </body>
 </html>
-
-
-<!-- 		<a href="boardWriteForm.bo">글쓰기</a> -->

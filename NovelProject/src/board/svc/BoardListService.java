@@ -13,7 +13,9 @@ public class BoardListService {
 		
 		int listCount = 0;
 		Connection con = null;
+		con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
+		
 		boardDAO.setConnection(con);
 		listCount = boardDAO.selectListCount();
 		close(con);
