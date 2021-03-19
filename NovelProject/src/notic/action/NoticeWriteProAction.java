@@ -18,6 +18,7 @@ public class NoticeWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ActionForward forward=null;
 		BoardBean boardBean = null;
 		String realFolder="";
@@ -31,6 +32,7 @@ public class NoticeWriteProAction implements Action {
 		boardBean.setId(Integer.parseInt(multi.getParameter("id")));
 		boardBean.setTitle(multi.getParameter("title"));
 		boardBean.setContent(multi.getParameter("content"));
+		boardBean.setFile(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
 		NoticeWriteProService noticeWriteProService = new NoticeWriteProService();
 		boolean isWriteSuccess = noticeWriteProService.registArticle(boardBean);
 		

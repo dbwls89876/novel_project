@@ -11,26 +11,21 @@ public class BoardWriteProService {
 		
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();
-		try {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		int insertCount = boardDAO.insertArticle(boardBean);
 			
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			int insertCount = boardDAO.insertArticle(boardBean);
-			
-			if(insertCount>0) {
-				commit(con);
-				isWriteSuccess = true;
-			}
-			else {
-				rollback(con);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(con);
+		if(insertCount>0) {
+			commit(con);
+			isWriteSuccess = true;
+		}
+		else {
+			rollback(con);
 		}
 		
-		
+		close(con);
 		return isWriteSuccess;
+		
 	}
+	
 }

@@ -29,7 +29,8 @@ public class BoardModifyProAction implements Action {
 			out.println("alert('수정할 권한이 없습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
-		}else {
+		}
+		else {
 			article.setBoardID(boardID);
 			article.setTitle(request.getParameter("title"));
 			article.setContent(request.getParameter("content"));

@@ -10,34 +10,27 @@ import vo.BoardBean;
 public class BoardListService {
 
 	public int getListCount() {
+		
 		int listCount = 0;
 		Connection con = null;
-		try {
-			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			listCount = boardDAO.selectListCount();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(con);
-		}
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		listCount = boardDAO.selectListCount();
+		close(con);
 		return listCount;
+		
 	}
 
 	public ArrayList<BoardBean> getArticleList(int page, int limit) throws Exception{
+		
 		ArrayList<BoardBean>articleList = null;
 		Connection con = getConnection();
-		try {
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			articleList = boardDAO.selectArticleList(page, limit);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(con);
-		}
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		articleList = boardDAO.selectArticleList(page, limit);
+		close(con);
 		return articleList;
+		
 	}
 
 }

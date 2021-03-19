@@ -15,6 +15,7 @@ public class BoardModifyFormAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		
 		BoardDetailService boardDetailService = new BoardDetailService();
 		BoardBean article = boardDetailService.getArticle(boardID);
 		request.setAttribute("article", article);

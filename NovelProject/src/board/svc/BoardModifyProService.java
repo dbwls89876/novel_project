@@ -12,39 +12,30 @@ public class BoardModifyProService {
 		
 		boolean isArticleWriter = false;
 		Connection con = null;
-		try {
-			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			isArticleWriter = boardDAO.isArticleBoardWriter(boardID,id);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(con);
-		}
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		isArticleWriter = boardDAO.isArticleBoardWriter(boardID,id);
+		close(con);
 		return isArticleWriter;
+		
 	}
 
 	public boolean modifyArticle(BoardBean article) throws Exception{
+		
 		boolean isModifySuccess = false;
 		Connection con = null;
-		try {
-			con = getConnection();
-			BoardDAO boardDAO = BoardDAO.getInstance();
-			boardDAO.setConnection(con);
-			int updateCount = boardDAO.updateArticle(article);
-			if(updateCount > 0) {
-				commit(con);
-				isModifySuccess = true;
-			}else {
-				rollback(con);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			
-		}finally {
-			close(con);
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		int updateCount = boardDAO.updateArticle(article);
+		
+		if(updateCount > 0) {
+			commit(con);
+			isModifySuccess = true;
+		}else {
+			rollback(con);
 		}
+		
+		close(con);
 		return isModifySuccess;
 	}
 

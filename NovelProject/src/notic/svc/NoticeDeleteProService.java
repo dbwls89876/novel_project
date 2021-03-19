@@ -10,6 +10,7 @@ import dao.NoticeDAO;
 public class NoticeDeleteProService {
 	
 	public boolean isArticleWriter(int noticeID, int id) throws Exception{
+		
 		boolean isArticleWriter = false;
 		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
@@ -19,9 +20,9 @@ public class NoticeDeleteProService {
 	}
 	
 	public boolean removeArticle(int noticeID) throws Exception{
+		
 		boolean isRemoveSuccess = false;
 		Connection con = getConnection();
-		
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		noticeDAO.setConnection(con);
 		int deleteCount = noticeDAO.deleteArticle(noticeID);

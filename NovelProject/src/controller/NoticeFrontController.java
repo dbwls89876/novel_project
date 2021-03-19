@@ -32,7 +32,6 @@ public class NoticeFrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
 
@@ -40,27 +39,22 @@ public class NoticeFrontController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
 		ActionForward forward=null;
 		Action action=null;
-		System.out.println(command);
+		
 		if(command.equals("/noticeWriteForm.no")) {
-			try {
-				forward = new ActionForward();
-				forward.setPath("/notice/noticeWrite.jsp");
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/noticeWritePro.no")) {
+			forward = new ActionForward();
+			forward.setPath("/notice/noticeWrite.jsp");
+		}else if(command.equals("/noticeWritePro.no")) {
 			action = new NoticeWriteProAction();
 			try {
 				forward = action.execute(request, response);
@@ -88,19 +82,32 @@ public class NoticeFrontController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/noticeModifyPro.no")) {
+			action = new NoticeModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/noticeDeleteForm.no")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
 			int noticeID = Integer.parseInt(request.getParameter("noticeID"));
 			request.setAttribute("noticeID", noticeID);
+			forward = new ActionForward();
+			forward.setPath("/notice/noticeDelete.jsp");
+		}
+		else if(command.equals("/noticeDeletePro.no")) {
+			action = new NoticeDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 		if(forward!=null) {
+			
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else {
@@ -109,5 +116,5 @@ public class NoticeFrontController extends HttpServlet {
 			}
 		}
 	}
-
+	
 }

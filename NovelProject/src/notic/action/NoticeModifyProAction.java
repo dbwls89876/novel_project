@@ -14,15 +14,14 @@ public class NoticeModifyProAction implements Action {
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = null;
-		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
-		int id = Integer.parseInt(request.getParameter("id"));
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String page = request.getParameter("page");
 		
+		ActionForward forward = null;
+		boolean isModifySuccess = false;
+		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
+		BoardBean article = new BoardBean();
 		NoticeModifyProService noticeModifyProService = new NoticeModifyProService();
-		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID,id);
+		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID, Integer.parseInt(request.getParameter("id")));
+
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -30,12 +29,12 @@ public class NoticeModifyProAction implements Action {
 			out.println("alert('수정할 권한이 없습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
-		}else {
-			BoardBean article = new BoardBean();
+		}
+		else {
 			article.setBoardID(noticeID);
-			article.setTitle(title);
-			article.setContent(content);
-			boolean isModifySuccess = noticeModifyProService.modifyArticle(article);
+			article.setTitle(request.getParameter("title"));
+			article.setContent(request.getParameter("content"));
+			isModifySuccess = noticeModifyProService.modifyArticle(article);
 			
 			if(!isModifySuccess) {
 				response.setContentType("text/html;charset=utf-8");
@@ -47,7 +46,7 @@ public class NoticeModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("noticeDetail.nono?noticeID="+noticeID+"&page="+page);
+				forward.setPath("noticeDetail.nono?noticeID="+article.getNoticeID());
 			}
 		}
 		return forward;

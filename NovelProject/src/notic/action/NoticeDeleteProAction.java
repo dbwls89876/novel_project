@@ -13,16 +13,13 @@ public class NoticeDeleteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ActionForward forward = null;
-		
-		String page = request.getParameter("page");
 		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
-		int id = Integer.parseInt(request.getParameter("id"));
-		
+		String nowPage = request.getParameter("page");
 		NoticeDeleteProService noticeDeleteProService = new NoticeDeleteProService();
-		
-		boolean isArticleWriter = noticeDeleteProService.isArticleWriter(noticeID, id);
-		
+		boolean isArticleWriter = noticeDeleteProService.isArticleWriter(noticeID, Integer.parseInt(request.getParameter("id")));
+
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -30,6 +27,7 @@ public class NoticeDeleteProAction implements Action {
 			out.println("alert('삭제 권한이 없습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
+			out.close();
 		}else {
 			boolean isDeleteSuccess = noticeDeleteProService.removeArticle(noticeID);
 			
@@ -40,8 +38,11 @@ public class NoticeDeleteProAction implements Action {
 				out.println("alert('삭제 실패');");
 				out.println("history.back();");
 				out.println("</script>");
+				out.close();
 			}else {
-				forward = new ActionForward("noticeList.no?page=" + page, true);
+				forward = new ActionForward();
+				forward.setRedirect(true);
+				forward.setPath("noticeList.bo?page=" + nowPage);
 			}
 		}
 		return forward;

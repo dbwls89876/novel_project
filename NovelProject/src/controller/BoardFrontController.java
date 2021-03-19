@@ -32,7 +32,6 @@ public class BoardFrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
 
@@ -40,27 +39,22 @@ public class BoardFrontController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
 		ActionForward forward=null;
 		Action action=null;
-		System.out.println(command);
+		
 		if(command.equals("/boardWriteForm.bo")) {
-			try {
-				forward = new ActionForward();
-				forward.setPath("/board/boardWrite.jsp");
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/boardWritePro.bo")) {
+			forward = new ActionForward();
+			forward.setPath("board/boardWrite.jsp");
+		}else if(command.equals("/boardWritePro.bo")) {
 			action = new BoardWriteProAction();
 			try {
 				forward = action.execute(request, response);
@@ -88,19 +82,32 @@ public class BoardFrontController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/boardModifyPro.bo")) {
+			action = new BoardModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/boardDeleteForm.bo")) {
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
 			int boardID = Integer.parseInt(request.getParameter("boardID"));
 			request.setAttribute("boardID", boardID);
+			forward = new ActionForward();
+			forward.setPath("/board/boardDelete.jsp");
+		}
+		else if (command.contentEquals("/boardDeletePro.bo")) {	
+			action = new BoardDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 		if(forward!=null) {
+			
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else {
