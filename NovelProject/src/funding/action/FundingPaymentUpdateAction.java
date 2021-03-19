@@ -21,12 +21,15 @@ public class FundingPaymentUpdateAction implements Action {
 		int fundingID = Integer.parseInt(request.getParameter("fundingID"));
 		int goodsID = Integer.parseInt(request.getParameter("goodsID"));
 		int cost = Integer.parseInt(request.getParameter("cost"));
+		String memberID = (String)session.getAttribute("memberID");
 		boolean isInsertSucess = false;
 		boolean isUpdateSucess = false;
+		boolean isCostUpdateSucess = false;
 		FundingPaymentUpdateService fundingPaymentUpdateService = new FundingPaymentUpdateService();
 		isInsertSucess = fundingPaymentUpdateService.setCustomer(Integer.parseInt((String)session.getAttribute("id")), goodsID);
 		isUpdateSucess = fundingPaymentUpdateService.updateFundingCost(fundingID, cost);
-		if(isInsertSucess && isUpdateSucess) {
+		isCostUpdateSucess = fundingPaymentUpdateService.updateMemberCost(memberID, cost);
+		if(isInsertSucess && isUpdateSucess && isCostUpdateSucess) {
 			forward = new ActionForward("/funding/totalFunding.jsp", true);
 		}else {
 			response.setContentType("text/html; charset=UTF-8");

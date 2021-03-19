@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 import dao.CustomerDAO;
 import dao.FundingDAO;
+import dao.MemberDAO;
 
 public class FundingPaymentUpdateService {
 
@@ -42,6 +43,22 @@ public class FundingPaymentUpdateService {
 			e.printStackTrace();
 		}
 		return isUpdateSucess;
+	}
+
+	public boolean updateMemberCost(String memberID, int cost) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		boolean isCostUpdateSucess = false;
+		try {
+			MemberDAO memberDAO = MemberDAO.getInstance();
+			con = getConnection();
+			memberDAO.setConnection(con);
+			isCostUpdateSucess = memberDAO.updateCost(memberID, cost);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return isCostUpdateSucess;
 	}
 
 }

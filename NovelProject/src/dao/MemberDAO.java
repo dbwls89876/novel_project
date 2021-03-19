@@ -186,6 +186,27 @@ public class MemberDAO {
 		}
 		return deleteCount;
 	}
+
+	public boolean updateCost(String memberID, int cost) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		boolean isCostUpdateSucess = false;
+		String sql = "update member set money=money-? where memberID=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cost);
+			pstmt.setString(2, memberID);
+			pstmt.executeUpdate();
+			isCostUpdateSucess = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+
+		return isCostUpdateSucess;
+	}
 	
 	
 	}
