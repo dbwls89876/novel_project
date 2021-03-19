@@ -18,7 +18,6 @@ public class LiteraryRegistAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		LiteraryRegistService LiteraryRegistService = new LiteraryRegistService();
 		String realFolder="";
 		String saveFolder="/literary/imageUpload";

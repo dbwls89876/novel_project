@@ -15,6 +15,7 @@ import literary.action.LiteraryRegistAction;
 import literary.action.TotalLiteraryListAction;
 import vo.ActionForward;
 import literary.action.LiteraryRegistFormAction;
+import literary.action.MyLiteraryListAction;
 
 /**
  * Servlet implementation class LiteraryFrontController
@@ -82,6 +83,14 @@ public class LiteraryFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/literaryRegistForm.lit")) { //새로운 작품 등록
 			action = new LiteraryRegistFormAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}else if(command.equals("/myLiteraryList.lit")) { //새로운 작품 등록
+			action = new MyLiteraryListAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {

@@ -100,17 +100,19 @@ public class LiteraryDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into board (title, content, genre, image, date) values (?,?,?,?,now())";
+			sql="insert into literary (id, title, content, genre, score, image, date) values (?,?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, literary.getTitle());
-			pstmt.setString(2, literary.getContent());
-			pstmt.setString(3, literary.getGenre());
-			pstmt.setString(4, literary.getImage());
+			pstmt.setInt(1, literary.getId());
+			pstmt.setString(2, literary.getTitle());
+			pstmt.setString(3, literary.getContent());
+			pstmt.setString(4, literary.getGenre());
+			pstmt.setDouble(5, literary.getScore());
+			pstmt.setString(6, literary.getImage());
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {
-			System.out.println("boardInsert 에러 : "+e);
+			System.out.println("LiteraryRegistInsert 에러 : "+e);
 		}finally {
 			close(rs);
 			close(pstmt);
