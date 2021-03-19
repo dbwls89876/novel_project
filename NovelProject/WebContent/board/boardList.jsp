@@ -76,12 +76,11 @@ table {
 			</tr>
 
 			<%
-				for (int i = 0; i < articleList.size(); i++) {
+				for (int i=0; i<articleList.size(); i++) {
 			%>
 			<tr>
 				<td><%=articleList.get(i).getBoardID()%></td>
-				<td><a
-					href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
+				<td><a href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
 						<%=articleList.get(i).getTitle()%></a></td>
 				<td><%=articleList.get(i).getId()%></td>
 				<td><%=articleList.get(i).getDate()%></td>
@@ -133,16 +132,19 @@ table {
 		<%
 			}
 		%>
-		<a href="boardWriteForm.bo">글쓰기</a>
 	</section>
 	<%
 		} else {
 	%>
 	<section id="emptyArea">
-		등록된 글이 없습니다. <a href="boardWriteForm.bo">글쓰기</a>
+		등록된 글이 없습니다. 
+		<a href="boardWriteForm.bo">글쓰기</a>
 	</section>
 	<%
 		}
 	%>
 </body>
 </html>
+
+
+<!-- 		<a href="boardWriteForm.bo">글쓰기</a> -->
