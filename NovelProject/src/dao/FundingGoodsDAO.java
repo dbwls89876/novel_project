@@ -62,7 +62,7 @@ public class FundingGoodsDAO {
 			close(pstmt);
 			close(rs);
 		}
-		return null;
+		return fundingGoodsList;
 	}
 
 	public FundingGoods selectFundingGoods(int goodsID) {

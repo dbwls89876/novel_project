@@ -23,9 +23,12 @@ public class FundingContentAction implements Action {
 		
 		FundingContentService fundingContentService = new FundingContentService();
 		funding = fundingContentService.getFunding(literaryID);
-		fundingGoodsList = fundingContentService.getFundingGoods(fundingID);
+		fundingGoodsList = fundingContentService.getFundingGoodsList(fundingID);
+		long dateDif = funding.getEndDate().getTime() - funding.getStartDate().getTime();
+		dateDif /= (24*60*60*1000);
 		request.setAttribute("funding", funding);
-		request.setAttribute("fundingGoods", fundingGoodsList);
+		request.setAttribute("fundingGoodsList", fundingGoodsList);
+		request.setAttribute("restTime", dateDif);
 		forward = new ActionForward("/funding/fundingContent.jsp", true);
 		return forward;
 	}
