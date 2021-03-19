@@ -79,7 +79,7 @@ public class FundingGoodsDAO {
 			if(rs.next()) {
 				fundingGoods = new FundingGoods();
 				fundingGoods.setFundingID(rs.getInt("fundingID"));
-				fundingGoods.setGoodsID(rs.getInt("goodID"));
+				fundingGoods.setGoodsID(rs.getInt("goodsID"));
 				fundingGoods.setName(rs.getString("name"));
 				fundingGoods.setCost(rs.getInt("cost"));
 				fundingGoods.setCount(rs.getInt("count"));

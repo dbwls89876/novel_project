@@ -56,6 +56,6 @@
 	</tr>
 	
 </table>
-<a href="FundingPaymentUpdate.fun">후원하기</a>
+<a href="FundingPaymentUpdate.fun?literaryID=${funding.literaryID }&goodsID=${fundingGoods.goodsID}">후원하기</a>
 </body>
 </html>
