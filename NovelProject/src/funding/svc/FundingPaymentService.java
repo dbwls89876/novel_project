@@ -31,14 +31,14 @@ public class FundingPaymentService {
 		return funding;
 	}
 	
-	public Member getMember(int id) {
+	public Member getMember(String memberID) {
 		Connection con = null;
 		Member member = null;
 		try {
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			con = getConnection();
 			memberDAO.setConnection(con);
-			member = memberDAO.selectMember(id);
+			member = memberDAO.selectMember(memberID);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

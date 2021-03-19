@@ -19,7 +19,7 @@ public class FundingPaymentAction implements Action {
 		HttpSession session = request.getSession();
 		FundingPaymentService fundingPaymentService = new FundingPaymentService();
 		Funding funding = fundingPaymentService.getFunding(Integer.parseInt(request.getParameter("literaryID")));
-		Member member = fundingPaymentService.getMember(Integer.parseInt((String) session.getAttribute("id")));
+		Member member = fundingPaymentService.getMember((String) session.getAttribute("memberID"));
 		FundingGoods fundingGoods = fundingPaymentService.getFundingGoods(Integer.parseInt(request.getParameter("goodsID")));
 
 		request.setAttribute("funding", funding);
