@@ -72,6 +72,7 @@ public class MemberDAO {
 				member.setNickname(rs.getString("nickname"));
 				member.setMobile(rs.getString("mobile"));
 				member.setAddress(rs.getString("address"));
+				member.setMoney(rs.getInt("money"));;
 			}
 		} catch (Exception e) {
 			System.out.println("memberSelect �삤瑜� : " + e);
