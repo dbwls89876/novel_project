@@ -30,15 +30,30 @@ public class FundingPaymentAction implements Action {
 		}else {
 			FundingPaymentService fundingPaymentService = new FundingPaymentService();
 			String literaryID = request.getParameter("literaryID");
-			Funding funding = fundingPaymentService.getFunding(Integer.parseInt(literaryID));
+			int cost = Integer.parseInt(request.getParameter("cost"));
+					
 			
+			Funding funding = fundingPaymentService.getFunding(Integer.parseInt(literaryID));
 			Member member = fundingPaymentService.getMember(memberID);
 			FundingGoods fundingGoods = fundingPaymentService.getFundingGoods(Integer.parseInt(request.getParameter("goodsID")));
 	
 			request.setAttribute("funding", funding);
 			request.setAttribute("member", member);
 			request.setAttribute("fundingGoods", fundingGoods);
-			forward = new ActionForward("/funding/fundingPayment.jsp", true);
+			if(cost>member.getMoney()) {
+				System.out.println(member.getMoney());
+				System.out.println("cost : " + cost);
+				System.out.println("member : " + memberID);
+				System.out.println("nick : " + member.getNickname());
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('후원할 수 있는 금액이 모자릅니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+			forward = new ActionForward("/funding/fundingPayment.jsp", true);				
+			}
 		}
 		
 		return forward;

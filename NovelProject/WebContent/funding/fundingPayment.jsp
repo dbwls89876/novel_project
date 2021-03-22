@@ -20,9 +20,7 @@
 			<table border="1">
 				<tr>
 					<td class="novelImage" rowspan="2">
-						<a href="fundingContent.fun?literaryID=${funding.literaryID }">
-							<img src="images/${funding.image }" class="novelImage"/>				
-						</a>
+						<img src="images/${funding.image }" class="novelImage"/>
 					</td>
 					<td>${funding.title}</td>
 				</tr>
@@ -56,6 +54,6 @@
 	</tr>
 	
 </table>
-<a href="FundingPaymentUpdate.fun?literaryID=${funding.literaryID }&goodsID=${fundingGoods.goodsID}">후원하기</a>
+<a href="fundingPaymentUpdate.fun?fundingID=${funding.fundingID }&goodsID=${fundingGoods.goodsID}&cost=${fundingGoods.cost}">후원하기</a>
 </body>
 </html>

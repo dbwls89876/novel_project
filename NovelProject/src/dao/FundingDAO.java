@@ -163,7 +163,7 @@ public class FundingDAO {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
 		boolean isUpdateSucess = false;
-		String sql = "update funding set cost=? where fundingID=?";
+		String sql = "update funding set nowCost=nowCost+? where fundingID=?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cost);
