@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 	<div class="home">
-		<a href="#">NOVEL_PROJECT</a>
+		<a href="main.jsp">NOVEL_PROJECT</a>
 	</div>
 	<div class="gnb">
 		<ul>
