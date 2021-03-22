@@ -11,7 +11,7 @@ public class BoardModifyProService {
 	public boolean isArticleWriter(int boardID, int id) throws Exception{
 		
 		boolean isArticleWriter = false;
-		Connection con = null;
+		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		isArticleWriter = boardDAO.isArticleBoardWriter(boardID,id);
@@ -23,7 +23,7 @@ public class BoardModifyProService {
 	public boolean modifyArticle(BoardBean article) throws Exception{
 		
 		boolean isModifySuccess = false;
-		Connection con = null;
+		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		int updateCount = boardDAO.updateArticle(article);

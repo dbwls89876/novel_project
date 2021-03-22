@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String boardID = (String)request.getAttribute("boardID");
+	int boardID = (Integer)request.getAttribute("boardID");
 	String nowPage = (String)request.getAttribute("page");
 %>
 <!DOCTYPE html>

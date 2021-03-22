@@ -146,12 +146,12 @@ public class BoardDAO {
 			else
 				num = 1;
 
-			sql = "insert into board (boardID, title, id, content, readCount, date) values(?,?,?,?,?,now())";
+			sql = "insert into board (boardID, id, title, content, readCount, date) values(?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, article.getTitle());
-			pstmt.setInt(3, article.getId());
+			pstmt.setInt(2, article.getId());
+			pstmt.setString(3, article.getTitle());
 			pstmt.setString(4, article.getContent());
 			pstmt.setInt(5, 0);
 

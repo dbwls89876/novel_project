@@ -11,7 +11,7 @@ public class BoardDetailService {
 	public BoardBean getArticle(int boardID) throws Exception{
 		
 		BoardBean article = null;
-		Connection con = null;
+		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		int updateCount = boardDAO.updateReadCount(boardID);

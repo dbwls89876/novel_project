@@ -12,7 +12,7 @@ public class BoardListService {
 	public int getListCount() {
 		
 		int listCount = 0;
-		Connection con = null;
+		Connection con = getConnection();
 		con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		

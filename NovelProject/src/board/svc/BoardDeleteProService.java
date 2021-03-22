@@ -24,7 +24,7 @@ public class BoardDeleteProService {
 	public boolean removeArticle(int boardID) throws Exception{
 		
 		boolean isDeleteSuccess = false;
-		Connection con = null;
+		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		int deleteCount = boardDAO.deleteArticle(boardID);

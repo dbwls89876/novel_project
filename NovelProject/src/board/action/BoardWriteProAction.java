@@ -16,12 +16,6 @@ public class BoardWriteProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=null;
 		BoardBean boardBean = null;
-//		String realFolder="";
-//		String saveFolder="/boardUpload";
-//		int fileSize = 5*1024*1024;
-//		ServletContext context = request.getServletContext();
-//		realFolder = context.getRealPath(saveFolder);
-//		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		boardBean = new BoardBean();
 		
 		boardBean.setId(Integer.parseInt(request.getParameter("id")));

@@ -29,6 +29,7 @@
 
 h2 {
 	text-align: center;
+	color: #606E5E;
 }
 
 table {
@@ -37,8 +38,9 @@ table {
 }
 
 #tr_top {
-	background: orange;
+	background: #606E5E;
 	text-align: center;
+	color: white;
 }
 
 #pageList {
