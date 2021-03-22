@@ -118,6 +118,11 @@ a {
 					</c:otherwise>
 				</c:choose>
 			</li>
+			<c:when test="${memberID eq admin }">
+			<li>
+			<a href="admin/adminPage.jsp">관리자 페이지</a>
+			</li>
+			</c:when>
 		</ul>
 	</div>
 </body>
