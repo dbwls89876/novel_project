@@ -8,15 +8,23 @@
 <title>펀딩 신청 목록</title>
 </head>
 <body>
-<table>
+<form action="fundingPermissionUpdate.fun">
+<table border="1">
 	<tr>
-		<td>펀딩 목록</td>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+	<tr>
+		<td>펀딩 허가 요청 목록</td>
 	</tr>
 	<c:forEach var = "funding" items="${permissionWaitingList }" varStatus = "status">
 	<tr>
-		<td>${funding.title }</td>
+		<td><label><input type="checkbox" name="fundingList" value="${funding.title }" >${funding.title }</label></td>
 	</tr>
 	</c:forEach>
 </table>
+<p><input type="submit" value="허가">
+</form>
 </body>
 </html>
