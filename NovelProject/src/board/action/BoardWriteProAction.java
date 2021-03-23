@@ -20,11 +20,13 @@ public class BoardWriteProAction implements Action {
 		BoardBean boardBean = null;
 		HttpSession session = request.getSession();
 		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		System.out.println(title);
+		System.out.println(content);
 		boardBean = new BoardBean();
 		boardBean.setMemberID((String)session.getAttribute("memberID"));
 		boardBean.setTitle(title);
-		boardBean.setContent(request.getParameter("content"));
+		boardBean.setContent(content);
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);
 		
