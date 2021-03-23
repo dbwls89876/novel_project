@@ -49,7 +49,7 @@ td h3 {
 		</tr>
 	</table>
 	<section id="writeForm">
-		<form action="boardWriteForm.bo" method="post"
+		<form action="boardWritePro.bo" method="post"
 			enctype="multipart/form-data" name="boardform">
 			<table>
 				<tr>
@@ -62,9 +62,8 @@ td h3 {
 						required="required" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="id">작성자</label></td>
-					<td class="td_right"><input type="text" name="id" id="id"
-						required="required" /></td>
+					<td class="td_left"><label for="memberID">작성자</label></td>
+					<td class="td_right"><%=session.getAttribute("memberID") %></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="content">내용</label></td>

@@ -15,6 +15,7 @@ public class NoticeModifyFormAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
+		
 		NoticeDetailService noticeDetailService = new NoticeDetailService();
 		BoardBean article = noticeDetailService.getArticle(noticeID);
 		request.setAttribute("article", article);

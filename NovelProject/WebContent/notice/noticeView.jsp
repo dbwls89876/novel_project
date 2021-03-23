@@ -28,7 +28,8 @@ h2 {
 }
 
 #articleContentArea {
-	background : orange;
+	background: #606E5E;
+	color: white;
 	margin-top : 20px;
 	height : 350px;
 	text-align : center;
@@ -54,6 +55,8 @@ h2 {
 	<section id="basicInfoArea">
 		<h2>글 제목 : 
 		<%=article.getTitle() %></h2>
+		<p>작성자 : <%=article.getId() %></p>
+		<p>작성일 : <%=article.getDate() %> | 조회수 : <%=article.getReadCount() %></p>
 	</section>
 	<section id="articleContentArea">
 		내용 : 

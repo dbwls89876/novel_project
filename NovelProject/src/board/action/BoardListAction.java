@@ -15,6 +15,7 @@ public class BoardListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		int page = 1;
 		int limit = 10;
@@ -28,12 +29,9 @@ public class BoardListAction implements Action {
 		
 		articleList = boardListService.getArticleList(page, limit);
 		
-		
 		int maxPage = (int)((double)listCount/limit+0.95);
 		
-		
 		int startPage = (((int)((double)page/10+0.9)) - 1) * 10 + 1;
-		
 		int endPage = startPage + 10 -1;
 		
 		if(endPage > maxPage) endPage = maxPage;
@@ -44,8 +42,10 @@ public class BoardListAction implements Action {
 		pageInfo.setMaxPage(maxPage);
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
+		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/board/boardList.jsp");
 		return forward;		

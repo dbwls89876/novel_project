@@ -9,15 +9,17 @@ import vo.BoardBean;
 public class NoticeDetailService {
 
 	public BoardBean getArticle(int noticeID) {
+		
 		BoardBean article = null;
-		Connection con = null;
+		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		noticeDAO.setConnection(con);
 		int updateCount = noticeDAO.updateReadCount(noticeID);
 			
 		if(updateCount > 0) {
 			commit(con);
-		}else {
+		}
+		else {
 			rollback(con);
 		}
 			

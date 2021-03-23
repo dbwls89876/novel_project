@@ -9,13 +9,13 @@ import dao.BoardDAO;
 
 public class BoardDeleteProService {
 	
-	public boolean isArticleWriter(int boardID, int id) throws Exception{
+	public boolean isArticleWriter(int boardID, String memberID) throws Exception{
 		
 		boolean isArticleWriter = false;
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
-		isArticleWriter = boardDAO.isArticleBoardWriter(boardID, id);
+		isArticleWriter = boardDAO.isArticleBoardWriter(boardID, memberID);
 		close(con);
 		return isArticleWriter;
 	}

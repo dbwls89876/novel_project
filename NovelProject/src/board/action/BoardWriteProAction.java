@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import board.svc.BoardWriteProService;
@@ -14,12 +15,15 @@ public class BoardWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ActionForward forward=null;
 		BoardBean boardBean = null;
+		HttpSession session = request.getSession();
+		String title = request.getParameter("title");
+		System.out.println(title);
 		boardBean = new BoardBean();
-		
-		boardBean.setId(Integer.parseInt(request.getParameter("id")));
-		boardBean.setTitle(request.getParameter("title"));
+		boardBean.setMemberID((String)session.getAttribute("memberID"));
+		boardBean.setTitle(title);
 		boardBean.setContent(request.getParameter("content"));
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);

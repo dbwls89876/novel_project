@@ -64,10 +64,10 @@
 		</tr>
 		<tr>
 			<td class = "td_left">
-				<label for = "id">작성자</label>
+				<label for = "memberID">작성자</label>
 			</td>
 			<td class = "td_right">
-				<input type = "text" name = "id" id = "id" value = "<%=article.getId() %>"/>
+				<input type = "text" name = "memberID" id = "memberID" value = "<%=article.getMemberID() %>"/>
 			</td>
 		</tr>
 		<tr>
