@@ -55,23 +55,27 @@ table {
 		<td align="center"><br>
 			<jsp:include page="../menuTop.jsp"></jsp:include>
 		</td>
+	</tr>	
+	<tr>
+		<td>
+		<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
+		</td>
 	</tr>
-			<h2>
-				MY LITERARY<a href="literaryRegistForm.lit">등록</a>
-			</h2>
+	<tr>
+		<td>
 			<table>
+			<c:forEach var="literary" items="${literaryList }" varStatus="status">
 				<tr>
-					<c:forEach var="literary" items="${literaryList }" varStatus="status">
-					<td><a href="sceneView.sc?id=${literary.id}"> 
-					<img src="images/${literary.image}" id="literaryImage" /><br>
-					</a> 작품명 : ${literary.title}<br> 장르 : ${literary.genre}<br> 평점 : ${literary.score}<br> 내용 : ${literary.content}<br></td>
-					<c:if test="${((status.index+1) mod 4) == 0 }">
+					<td class="literaryImage" rowspan="2">
+						<a href="editionWriterView.ed?id=${literary.id}"></a>
+							<img src="images/${literary.image}" class="literaryImage" />
+					</td>
+					<td>${literary.title}<br></td>
 				</tr>
-				<tr>
-					</c:if>
-					</c:forEach>
-				</tr>
+			</c:forEach>
 			</table>
+		</td>
+	</tr>
 </table>
 </body>
 </html>

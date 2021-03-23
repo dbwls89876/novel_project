@@ -8,32 +8,28 @@ public class Literary {
 	private String title;
 	private String content;
 	private String genre;
-	private double score;
 	private String image;
 	Date date;
 	
 	public Literary() {}
 	
-	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image,
-			Date date) {
+	public Literary(int id, int literaryID, String name, String content, String genre, String image, Date date) {
 		super();
 		this.id = id;
 		this.literaryID = literaryID;
 		this.title = name;
 		this.content = content;
 		this.genre = genre;
-		this.score = score;
 		this.image = image;
 		this.date = date;
 	}
-	public Literary(int id, int literaryID, String name, String content, String genre, double score, String image) {
+	public Literary(int id, int literaryID, String name, String content, String genre, String image) {
 		super();
 		this.id = id;
 		this.literaryID = literaryID;
 		this.title = name;
 		this.content = content;
 		this.genre = genre;
-		this.score = score;
 		this.image = image;
 
 	}	
@@ -66,12 +62,6 @@ public class Literary {
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
-	}
-	public double getScore() {
-		return score;
-	}
-	public void setScore(double score) {
-		this.score = score;
 	}
 	public String getImage() {
 		return image;

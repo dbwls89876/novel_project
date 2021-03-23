@@ -44,7 +44,6 @@ public class LiteraryDAO {
 							,rs.getString("title")
 							,rs.getString("content")
 							,rs.getString("genre")
-							,rs.getDouble("score")
 							,rs.getString("image")
 							,rs.getDate("date")));
 				} while (rs.next());
@@ -77,7 +76,6 @@ public class LiteraryDAO {
 							,rs.getString("title")
 							,rs.getString("content")
 							,rs.getString("genre")
-							,rs.getDouble("score")
 							,rs.getString("image")
 							,rs.getDate("date")));
 				} while (rs.next());
@@ -100,15 +98,14 @@ public class LiteraryDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into literary (id, title, content, genre, score, image, date) values (?,?,?,?,?,?,now())";
+			sql="insert into literary (id, title, content, genre, image, date) values (?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, literary.getId());
 			pstmt.setString(2, literary.getTitle());
 			pstmt.setString(3, literary.getContent());
 			pstmt.setString(4, literary.getGenre());
-			pstmt.setDouble(5, literary.getScore());
-			pstmt.setString(6, literary.getImage());
+			pstmt.setString(5, literary.getImage());
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {
