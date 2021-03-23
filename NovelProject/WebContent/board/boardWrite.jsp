@@ -49,8 +49,7 @@ td h3 {
 		</tr>
 	</table>
 	<section id="writeForm">
-		<form action="boardWritePro.bo" method="post"
-			enctype="multipart/form-data" name="boardform">
+		<form action="boardWritePro.bo" method="post" name="boardform">
 			<table>
 				<tr>
 					<td colspan="2"><h3>게시판글등록</h3></td>
