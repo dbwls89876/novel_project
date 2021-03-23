@@ -141,14 +141,14 @@ public class FundingDAO {
 		return fundingList;
 	}
 
-	public void updateFunding(String fundingID) {
+	public void updateFunding(String title) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
-		String sql = "update funding set permission = 1 where fundingID=?";
+		String sql = "update funding set permission = 1 where title=?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, fundingID);
+			pstmt.setString(1, title);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

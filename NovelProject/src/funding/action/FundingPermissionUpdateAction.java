@@ -13,10 +13,10 @@ public class FundingPermissionUpdateAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		ActionForward forward = null;
-		String[] fundingIDList = request.getParameterValues("fundingIDList");
+		String[] fundingList = request.getParameterValues("fundingList");
 		FundingPermissionUpdateService fundingPermissionUpdateService = new FundingPermissionUpdateService();
-		fundingPermissionUpdateService.PermissionUpdate(fundingIDList);
-		forward = new ActionForward("/funding/fundingPermission.jsp", true);
+		fundingPermissionUpdateService.PermissionUpdate(fundingList);
+		forward = new ActionForward("/fundingPermission.fun", true);
 		return forward;
 	}
 

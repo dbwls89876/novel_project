@@ -33,7 +33,7 @@
 	</td></tr>
 	
 	<tr><td>
-		<table>
+		<table> 
 			<tr><td>${funding.content }</td></tr>
 		</table>
 	</td></tr>

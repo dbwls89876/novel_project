@@ -14,7 +14,7 @@
 		</td>
 	</tr>
 	<tr>
-	<td><a href="fundingPermission.jsp">펀딩 수락</a></td>
+	<td><a href="../fundingPermission.fun">펀딩 수락</a></td>
 	</tr>
 	<tr>
 	<td><a href="memberManagement.jsp">멤버관리</a></td>
