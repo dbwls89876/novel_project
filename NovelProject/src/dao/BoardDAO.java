@@ -61,7 +61,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String boardList_sql = "select boardID, title, id, date, readCount from board order by boardID desc limit ?, ?";
+		String boardList_sql = "select boardID, title, memberID, date, readCount from board order by boardID desc limit ?, ?";
 		
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		BoardBean board = null;
@@ -77,7 +77,7 @@ public class BoardDAO {
 				board = new BoardBean();
 				board.setBoardID(rs.getInt("boardID"));
 				board.setTitle(rs.getString("title"));
-				board.setId(rs.getInt("id"));
+				board.setMemberID(rs.getString("memberID"));
 				board.setDate(rs.getDate("date"));
 				board.setReadCount(rs.getInt("readCount"));
 				articleList.add(board);
@@ -110,7 +110,7 @@ public class BoardDAO {
 			if (rs.next()) {
 				boardBean = new BoardBean();
 				boardBean.setBoardID(rs.getInt("boardID"));
-				boardBean.setId(rs.getInt("id"));
+				boardBean.setMemberID(rs.getString("memberID"));
 				boardBean.setTitle(rs.getString("title"));
 				boardBean.setContent(rs.getString("content"));
 				boardBean.setReadCount(rs.getInt("readCount"));
@@ -146,11 +146,11 @@ public class BoardDAO {
 			else
 				num = 1;
 
-			sql = "insert into board (boardID, id, title, content, readCount, date) values(?,?,?,?,?,now())";
+			sql = "insert into board (boardID, memberID, title, content, readCount, date) values(?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, article.getId());
+			pstmt.setString(2, article.getMemberID());
 			pstmt.setString(3, article.getTitle());
 			pstmt.setString(4, article.getContent());
 			pstmt.setInt(5, 0);
@@ -231,7 +231,7 @@ public class BoardDAO {
 	}
 
 	// 글쓴이인지 확인
-	public boolean isArticleBoardWriter(int boardID, int id) {
+	public boolean isArticleBoardWriter(int boardID, String memberID) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String board_sql = "select * from board where boardID = ?";
@@ -243,7 +243,7 @@ public class BoardDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 
-			if (id == rs.getInt("id")) {
+			if (memberID.contentEquals(rs.getString("memberID"))) {
 				isWriter = true;
 			}
 		} catch (SQLException e) {

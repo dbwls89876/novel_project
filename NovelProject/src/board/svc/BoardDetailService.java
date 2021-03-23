@@ -18,7 +18,8 @@ public class BoardDetailService {
 			
 		if(updateCount > 0) {
 			commit(con);
-		}else {
+		}
+		else {
 			rollback(con);
 		}
 			

@@ -11,7 +11,7 @@ public class NoticeModifyProService {
 	public boolean isArticleWriter(int noticeID, int id) throws Exception{
 		
 		boolean isArticleWriter = false;
-		Connection con = null;
+		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		noticeDAO.setConnection(con);
 		isArticleWriter = noticeDAO.isArticleNoticeWriter(noticeID,id);
@@ -21,8 +21,9 @@ public class NoticeModifyProService {
 	}
 
 	public boolean modifyArticle(BoardBean article) throws Exception{
+		
 		boolean isModifySuccess = false;
-		Connection con = null;
+		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		noticeDAO.setConnection(con);
 		int updateCount = noticeDAO.updateArticle(article);

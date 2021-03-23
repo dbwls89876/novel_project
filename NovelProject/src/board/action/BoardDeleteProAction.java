@@ -18,7 +18,7 @@ public class BoardDeleteProAction implements Action {
 		int boardID = Integer.parseInt(request.getParameter("boardID"));
 		String nowPage = request.getParameter("page");
 		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
-		boolean isArticleWriter = boardDeleteProService.isArticleWriter(boardID, Integer.parseInt(request.getParameter("id")));		
+		boolean isArticleWriter = boardDeleteProService.isArticleWriter(boardID, request.getParameter("memberID"));		
 		
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");

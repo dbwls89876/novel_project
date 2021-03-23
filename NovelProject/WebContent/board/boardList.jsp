@@ -35,6 +35,7 @@ h2 {
 table {
 	margin: auto;
 	width: 1000px;
+	text-align: center;
 }
 
 #tr_top {
@@ -84,7 +85,7 @@ table {
 				<td><%=articleList.get(i).getBoardID()%></td>
 				<td><a href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
 						<%=articleList.get(i).getTitle()%></a></td>
-				<td><%=articleList.get(i).getId()%></td>
+				<td><%=articleList.get(i).getMemberID()%></td>
 				<td><%=articleList.get(i).getDate()%></td>
 				<td><%=articleList.get(i).getReadCount()%></td>
 			</tr>

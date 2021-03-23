@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>MVC게시판</title>
 	<script type="text/javascript">
-	function modifyboard() {
+	function modifynotice() {
 			modifyform.submit();
 	}	
 	</script>

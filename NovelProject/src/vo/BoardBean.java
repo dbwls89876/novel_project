@@ -5,6 +5,7 @@ public class BoardBean {
 	private int boardID;
 	private int noticeID;
 	private int id;
+	private String memberID;
 	private String title;
 	private String content;
 	private int readCount;
@@ -34,6 +35,12 @@ public class BoardBean {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getMemberID() {
+		return memberID;
+	}
+	public void setMemberID(String memberID) {
+		this.memberID = memberID;
 	}
 	public String getTitle() {
 		return title;
