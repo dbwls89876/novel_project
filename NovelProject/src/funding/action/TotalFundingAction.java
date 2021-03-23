@@ -16,7 +16,13 @@ public class TotalFundingAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		FundingService totalFundingService = new FundingService();
-		ArrayList<Funding> fundingList = totalFundingService.getFundingList();
+		ArrayList<Funding> fundingTotalList = totalFundingService.getFundingList();
+		ArrayList<Funding> fundingList = new ArrayList<Funding>();
+		for(Funding funding : fundingTotalList) {
+			if(funding.getPermission()==1) {
+				fundingList.add(funding);
+			}
+		}
 		request.setAttribute("fundingList", fundingList);
 		forward = new ActionForward("/funding/totalFunding.jsp", true);
 		return forward;

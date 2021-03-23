@@ -70,6 +70,10 @@
 					<td class="td_left"><label for="">이미지 첨부</label></td>
 					<td class="td_right"><input type="file" name="image" id="image" required="required"/></td>
 				</tr>
+				<tr>
+					<td class="td_left"><label for="title">목표 비용</label></td>
+					<td class="td_right"><input type="text" name="targetCost" id="targetCost" required="required"/></td>
+				</tr>
 			</table>
 			<section id="commandCell">
 				<input type="submit" value="등록">&nbsp;&nbsp;
