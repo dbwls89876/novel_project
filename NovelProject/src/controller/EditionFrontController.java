@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import edition.action.EditionDetailViewAction;
 import edition.action.EditionReaderListAction;
+import edition.action.EditionRegistAction;
 import edition.action.EditionWriterListAction;
 import vo.ActionForward;
 
@@ -73,6 +74,15 @@ public class EditionFrontController extends HttpServlet {
 		}
 		else if(command.equals("/editionDetailView.ed")) {
 			action = new EditionDetailViewAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/editionRegist.ed")) {
+			action = new EditionRegistAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {

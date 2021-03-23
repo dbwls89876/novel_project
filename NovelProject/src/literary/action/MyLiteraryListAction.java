@@ -17,7 +17,7 @@ public class MyLiteraryListAction implements Action {
 		MyLiteraryListService myLiteraryListService = new MyLiteraryListService();
 		ArrayList<Literary> myLiteraryList = myLiteraryListService.getLiteraryList();
 		request.setAttribute("myLiteraryList", myLiteraryList);
-		ActionForward forward = new ActionForward("myLiteraryList.jsp", true);
+		ActionForward forward = new ActionForward("/literary/myLiteraryList.jsp", true);
 		return forward;
 		}
 

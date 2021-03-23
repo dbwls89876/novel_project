@@ -4,7 +4,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
-import edition.svc.EditionWriterListService;
+import edition.svc.EditionListService;
 import vo.ActionForward;
 import vo.Edition;
 import vo.PageInfo;
@@ -23,10 +23,10 @@ public class EditionWriterListAction implements Action {
 			page=Integer.parseInt(request.getParameter("page"));
 		}
 		
-		EditionWriterListService editionWriterListService = new EditionWriterListService();
-		int listCount = editionWriterListService.getListCount();
+		EditionListService editionListService = new EditionListService();
+		int listCount = editionListService.getListCount();
 		//총 리스트 수를 받아옴
-		articleList = editionWriterListService.getArticleList(page,limit);
+		articleList = editionListService.getArticleList(page,limit);
 		//리스트를 받아옴
 		//총페이지 수
 		int maxPage = (int)((double)listCount/limit+0.95);

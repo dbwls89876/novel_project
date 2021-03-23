@@ -56,9 +56,7 @@ table{
 	</tr>
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
-		<h2>
-			글 목록<a href="editionRegist.ed">작품등록</a>
-		</h2>
+
 		<table>
 			<%
 			if(articleList != null && listCount > 0){

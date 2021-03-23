@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import dao.EditionDAO;
 import vo.Edition;
 
-public class EditionWriterListService {
+public class EditionListService {
 	public int getListCount() {
 		int listCount = 0;
 		Connection con = null;
