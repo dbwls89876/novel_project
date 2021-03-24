@@ -83,7 +83,7 @@ public class LiteraryDAO {
 		}
 		return insertCount;
 	}
-	public ArrayList<Literary> selectLiteraryList(int id) {
+	public ArrayList<Literary> selectArtistLiteraryList(int id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Literary> artistLiteraryList = null;
