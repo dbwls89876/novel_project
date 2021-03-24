@@ -87,7 +87,7 @@ public class LiteraryDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Literary> artistLiteraryList = null;
-		String sql = "select * from Literary where id = ?";
+		String sql = "select * from literary where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
