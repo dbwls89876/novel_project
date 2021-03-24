@@ -1,4 +1,4 @@
-package literary.svc;
+package member.svc;
 
 import static db.JdbcUtil.*;
 

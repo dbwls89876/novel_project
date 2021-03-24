@@ -54,7 +54,6 @@ public class EditionDAO {
 			pstmt.setInt(3, edition.getEditionID());
 			pstmt.setString(2, edition.getTitle());
 			pstmt.setString(3, edition.getContent());
-			pstmt.setDate(4, edition.getDate());			
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {

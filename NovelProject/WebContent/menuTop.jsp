@@ -123,6 +123,12 @@ a {
 			<a href="admin/adminPage.jsp">관리자 페이지</a>
 			</li>
 			</c:if>
+			
+			<c:if test="${memberID eq 'admin' }">
+			<li>
+			<a href="member/myPageForm.jsp">마이페이지</a>
+			</li>
+			</c:if>
 		</ul>
 	</div>
 </body>
