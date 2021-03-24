@@ -14,6 +14,7 @@ import action.Action;
 import member.action.MemberJoinAction;
 
 import member.action.MemberLoginAction;
+import member.action.MyInformationModifyAction;
 import vo.ActionForward;
 
 /**
@@ -73,6 +74,13 @@ public class MemberFrontController extends HttpServlet {
 		
 		}else if(command.equals("/memberJoinAction.me")){
 			action = new MemberJoinAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/myInformationModify.me")){
+			action = new MyInformationModifyAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
