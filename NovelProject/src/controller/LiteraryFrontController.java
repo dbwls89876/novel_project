@@ -13,9 +13,9 @@ import action.Action;
 import literary.action.NewLiteraryListAction;
 import literary.action.LiteraryRegistAction;
 import literary.action.TotalLiteraryListAction;
+import literary.action.MyLiteraryListAction;
 import vo.ActionForward;
 import literary.action.LiteraryRegistFormAction;
-import literary.action.MyLiteraryListAction;
 
 /**
  * Servlet implementation class LiteraryFrontController
@@ -83,6 +83,14 @@ public class LiteraryFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/literaryRegistForm.lit")) { 
 			action = new LiteraryRegistFormAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}else if(command.equals("/myLiteraryList.lit")) { 
+			action = new MyLiteraryListAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {

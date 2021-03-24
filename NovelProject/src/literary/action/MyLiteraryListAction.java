@@ -1,4 +1,4 @@
-package member.action;
+package literary.action;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import member.svc.MyLiteraryListService;
+import literary.svc.MyLiteraryListService;
 import vo.ActionForward;
 import vo.Literary;
 

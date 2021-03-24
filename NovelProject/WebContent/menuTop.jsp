@@ -125,8 +125,11 @@ a {
 			</c:if>
 			
 			<c:if test="${memberID eq 'admin' }">
-			<li>
-			<a href="member/myPageForm.jsp">마이페이지</a>
+			<li><a href="#">마이페이지</a>
+				<ul>
+					<li><a href="${pageContext.request.contextPath }/myInformationView.me">내 정보</a></li>
+					<li><a href="${pageContext.request.contextPath }/myLiteraryList.lit">내 작품</a></li>
+				</ul>
 			</li>
 			</c:if>
 		</ul>

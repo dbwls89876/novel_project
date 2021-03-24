@@ -14,7 +14,6 @@ import action.Action;
 import member.action.MemberJoinAction;
 
 import member.action.MemberLoginAction;
-import member.action.MyLiteraryListAction;
 import vo.ActionForward;
 
 /**
@@ -77,14 +76,6 @@ public class MemberFrontController extends HttpServlet {
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/myLiteraryList.me")) { 
-			action = new MyLiteraryListAction();
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}
