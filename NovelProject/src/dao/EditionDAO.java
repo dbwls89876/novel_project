@@ -30,7 +30,7 @@ public class EditionDAO {
 	}
 	
 	//글등록
-	public int insertArticle(EditionDAO article) {
+	public int insertArticle(Edition edition) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		int num= 0;
@@ -50,11 +50,11 @@ public class EditionDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, article.getLiteraryID());
-			pstmt.setInt(3, article.getEditionID());
-			pstmt.setString(2, article.getTitle());
-			pstmt.setString(3, article.getContent());
-			pstmt.setDate(4, article.getDate());			
+			pstmt.setInt(2, edition.getLiteraryID());
+			pstmt.setInt(3, edition.getEditionID());
+			pstmt.setString(2, edition.getTitle());
+			pstmt.setString(3, edition.getContent());
+			pstmt.setDate(4, edition.getDate());			
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -141,5 +141,10 @@ public class EditionDAO {
 			close(pstmt);
 		}
 		return updateCount;
+	}
+
+	public Edition selectEdition(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

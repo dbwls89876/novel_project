@@ -15,12 +15,8 @@
 	</tr>
 </table>
 <h2>새 작품 등록</h2>
-<form action ="literaryRegist.lit" method="post" enctype="multipart/form-data" name="literaryform">
+<form action ="editionRegist.lit" method="post" enctype="multipart/form-data" name="editionform">
 	<table>
-		<tr>
-			<td class="td_left"><label for="nickname">글쓴이</label></td>
-			<td class="td_right"><input type="hidden" name="nickname" value='${member.nickname }'/></td>
-		</tr>
 		<tr>
 			<td class="td_left"><label for="title">제목</label></td>
 			<td class="td_right"><input type="text" name="title" id="title" required="required" /></td>
@@ -28,14 +24,6 @@
 		<tr>
 			<td class="td_left"><label for="content">내용</label></td>
 			<td><textarea id="content" name="content" cols="40" rows="15" required="required"></textarea></td>
-		</tr>
-		<tr>
-			<td class="td_left"><label for="genre">장르</label></td>
-			<td class="td_right"><input type="text" name="genre" id="genre" required="required"/></td>
-		</tr>
-		<tr>
-			<td class="td_left"><label for="image">이미지</label></td>
-			<td class="td_right"><input type="file" name="image" id="image" required="required" /></td>
 		</tr>
 	</table>
 	<section id="commandCell">

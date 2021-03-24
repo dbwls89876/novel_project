@@ -55,7 +55,7 @@ public class EditionRegistAction implements Action {
 		else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("boardList.bo");
+			forward.setPath("editionRegistForm.ed");
 		}
 		
 		return forward;
