@@ -26,27 +26,6 @@ table {
 	width: 550px;
 }
 
-.div_empty {
-	background-color: red;
-	width: 100% height: 100%;
-	text-align: center;
-}
-
-#todayImageList {
-	text-align: center;
-}
-
-#productImage {
-	width: 150px;
-	height: 150px;
-	border: none;
-}
-
-#todayImage {
-	width: 100px;
-	height: 100px;
-	border: none;
-}
 </style>
 </head>
 <body>
@@ -60,7 +39,7 @@ table {
 	<tr>	
 		<c:forEach var="literary" items="${literaryList }" varStatus="status">
 		<td>	
-			<a href="editionWriterView.ed?id=${literary.id}">
+			<a href="editionWriterList.ed?id=${literary.id}">
 			<img src="images/${literary.image}" class="literaryImage" /></a><br>
 			${literary.title}<br> ${literary.genre}<br>
 		</td>

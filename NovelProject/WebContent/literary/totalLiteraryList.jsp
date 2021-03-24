@@ -40,7 +40,7 @@
 	<tr>	
 		<c:forEach var="literary" items="${literaryList }" varStatus="status">
 		<td>	
-			<a href="editionReaderList.ed?id=${literary.id}">
+			<a href="editionWriterList.ed?id=${literary.id}">
 			<img src="images/${literary.image}" class="literaryImage" /></a><br>
 			${literary.title}<br> ${literary.genre}<br>
 		</td>

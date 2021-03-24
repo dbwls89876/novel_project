@@ -15,7 +15,7 @@
 	</tr>
 </table>
 <h2>새 작품 등록</h2>
-<form action ="editionRegist.lit" method="post" enctype="multipart/form-data" name="editionform">
+<form action ="editionRegist.ed" method="post" enctype="multipart/form-data" name="editionform">
 	<table>
 		<tr>
 			<td class="td_left"><label for="title">제목</label></td>

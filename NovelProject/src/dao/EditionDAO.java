@@ -33,31 +33,21 @@ public class EditionDAO {
 	public int insertArticle(Edition edition) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
-		int num= 0;
 		String sql="";
 		int insertCount=0;
 		
 		try {
-			pstmt=con.prepareStatement("select max(id) from edition");
-			rs=pstmt.executeQuery();
-			
-			if(rs.next())
-				num=rs.getInt(1)+1;
-			else
-				num=1;
-			
-			sql="insert into edition (id,literaryID,editionID,title,content,date,count) values (?,?,?,?,?,now(),?)";
+			sql="insert into edition (id,title,content,date,count) values (?,?,?,now(),?)";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setInt(2, edition.getLiteraryID());
-			pstmt.setInt(3, edition.getEditionID());
+			pstmt.setInt(1, edition.getId());
 			pstmt.setString(2, edition.getTitle());
 			pstmt.setString(3, edition.getContent());
+			pstmt.setInt(4, edition.getCount());
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {
-			System.out.println("boardInsert 에러 : "+e);
+			System.out.println("editionRegist 에러 : "+e);
 		}finally {
 			close(rs);
 			close(pstmt);

@@ -22,7 +22,6 @@ public class LiteraryRegistAction implements Action {
 		LiteraryRegistService LiteraryRegistService = new LiteraryRegistService();
 		String realFolder="";
 		String saveFolder="/literary/imageUpload";
-		String encType = "UTF-8";
 		int fileSize=5*1024*1024;
 		HttpSession session = request.getSession();
 		ServletContext context = request.getServletContext();
