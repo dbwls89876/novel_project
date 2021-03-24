@@ -94,4 +94,26 @@ public class FundingGoodsDAO {
 		}
 		return fundingGoods;
 	}
+
+	public boolean insertFundingGoods(int fundingID, FundingGoods fundingGoods) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		boolean isRegisterSucess = false;
+		String sql = "insert into fundingGoods (fundingID, name, cost, maxNumber) values (?, ?, ?, ?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, fundingID);
+			pstmt.setString(2, fundingGoods.getName());
+			pstmt.setInt(3, fundingGoods.getCost());
+			pstmt.setInt(4, fundingGoods.getMaxNumber());
+			pstmt.execute();
+			isRegisterSucess = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isRegisterSucess;
+	}
 }

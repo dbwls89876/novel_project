@@ -32,7 +32,7 @@ public class FundingDAO {
 		this.con = con;
 	}
 	
-	//funding ���̺� ������ ����
+	//펀딩 등록하기
 	public boolean insertFunding(Funding funding) {
 		PreparedStatement pstmt = null;
 		String sql = "";
@@ -46,7 +46,7 @@ public class FundingDAO {
 			 * if(rs.next()) num = rs.getInt(1)+1; else num=1;
 			 */
 			sql="insert into funding (literaryID, title, content, image, ";
-			sql += "targetCost, nowCost, startDate, endDate, deliveryDate) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql += "targetCost, startDate, endDate, deliveryDate) values (?, ?, ?, ?, ?, now(), ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, funding.getLiteraryID());
@@ -54,21 +54,19 @@ public class FundingDAO {
 			pstmt.setString(3, funding.getContent());
 			pstmt.setString(4, funding.getImage());
 			pstmt.setInt(5, funding.getTargetCost());
-			pstmt.setInt(6, funding.getNowCost());
-			pstmt.setDate(7, funding.getStartDate());
-			pstmt.setDate(8, funding.getEndDate());
-			pstmt.setDate(9, funding.getDeliveryDate());
+			pstmt.setDate(6, funding.getEndDate());
+			pstmt.setDate(7, funding.getDeliveryDate());
 			pstmt.execute();
 			insertSucess = true;
 		}catch(Exception e) {
-			System.out.println("fundingInsert ���� : " + e);
+			System.out.println("fundingInsert 오류 : " + e);
 		}finally {
 			close(pstmt);
 		}
 		return insertSucess;
 	}
 	
-	//funding ���̺� �� ���� ���� ��������
+	//펀딩 불러오기
 	public Funding selectFunding(int literaryID) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -94,7 +92,7 @@ public class FundingDAO {
 				funding.setDeliveryDate(rs.getDate("deliveryDate"));
 			}
 		}catch(Exception e) {
-			System.out.println("fundingSelect ���� : "  + e);
+			System.out.println("fundingSelect 오류 : "  + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -178,5 +176,27 @@ public class FundingDAO {
 		}
 		
 		return isUpdateSucess;
+	}
+
+	public int selectFundingID(Funding funding) {
+		// TODO Auto-generated method stub
+		int fundingID = -1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select fundingID from funding where literaryID=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, funding.getLiteraryID());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				fundingID = rs.getInt("fundingID");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return fundingID;
 	}
 }

@@ -33,6 +33,7 @@ public class WeekFundingAction implements Action{
 				weekFundingList.add(fundingList.get(i));
 			}
 		}
+		
 		request.setAttribute("weekFundingList", weekFundingList);
 		ActionForward forward = new ActionForward("funding/weekFunding.jsp", true);
 		return forward;
