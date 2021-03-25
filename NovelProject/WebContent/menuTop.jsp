@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 	<div class="home">
-		<a href="main.jsp">NOVEL_PROJECT</a>
+		<a href="${pageContext.request.contextPath }/main.jsp">NOVEL_PROJECT</a>
 	</div>
 	<div class="gnb">
 		<ul>
@@ -111,10 +111,10 @@ a {
 			<li>
 				<c:choose>
 					<c:when test="${memberID eq null }">
-						<a href="member/loginForm.jsp">로그인</a>
+						<a href="${pageContext.request.contextPath }/member/loginForm.jsp">로그인</a>
 					</c:when>
 					<c:otherwise>
-						<a href="member/logoutForm.jsp">로그아웃</a>
+						<a href="${pageContext.request.contextPath }/member/logoutForm.jsp">로그아웃</a>
 					</c:otherwise>
 				</c:choose>
 			</li>
