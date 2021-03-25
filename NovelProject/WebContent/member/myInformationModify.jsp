@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<section id = "memberInfoArea">
 <table>
 	<tr>
 		<td><label for="id">아이디 : </label></td>
@@ -51,6 +50,5 @@
 		</td>
 	</tr>	
 </table>
-</section>
 </body>
 </html>

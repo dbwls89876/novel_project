@@ -14,7 +14,7 @@ import action.Action;
 import member.action.MemberJoinAction;
 
 import member.action.MemberLoginAction;
-import member.action.MyInformationModifyAction;
+import member.action.MyInformationModifyFormAction;
 import vo.ActionForward;
 
 /**
@@ -79,8 +79,16 @@ public class MemberFrontController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/myInformationModify.me")){
-			action = new MyInformationModifyAction();
+		}else if(command.equals("/myInformationModifyForm.me")){
+			action = new MyInformationModifyFormAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/myInformationModifyForm.me")){
+			action = new MyInformationModifyFormAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
