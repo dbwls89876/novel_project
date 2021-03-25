@@ -18,6 +18,7 @@ public class NoticeModifyProAction implements Action {
 		ActionForward forward = null;
 		boolean isModifySuccess = false;
 		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
+		String nowPage = request.getParameter("page");
 		BoardBean article = new BoardBean();
 		NoticeModifyProService noticeModifyProService = new NoticeModifyProService();
 		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID, request.getParameter("memberID"));
@@ -46,7 +47,7 @@ public class NoticeModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("noticeDetail.no?noticeID="+article.getNoticeID());
+				forward.setPath("noticeDetail.no?noticeID="+article.getNoticeID()+"&page="+nowPage);
 			}
 		}
 		return forward;

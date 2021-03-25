@@ -136,7 +136,7 @@ table {
 		<%
 			}
 		%>
-		<a href="noticeWriteForm.bo">글쓰기</a>
+		<a href="noticeWriteForm.no">글쓰기</a>
 		<%
 			
 		%>

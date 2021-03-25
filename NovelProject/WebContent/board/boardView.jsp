@@ -56,7 +56,6 @@ h3 {
 	<section id="articleForm">
 		<section id="basicInfoArea">
 			<h3>
-				글 제목 :
 				<%=article.getTitle()%></h3>
 			<p>
 				작성자 :
@@ -68,7 +67,6 @@ h3 {
 				<%=article.getReadCount()%></p>
 		</section>
 		<section id="articleContentArea">
-			내용 :
 			<%=article.getContent()%>
 		</section>
 	</section>

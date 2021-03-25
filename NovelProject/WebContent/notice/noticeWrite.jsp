@@ -80,7 +80,7 @@ td h3 {
 			</table>
 			<section id="commandCell">
 				<input type="button" value="목록"
-					onClick="location.href='noticeList.bo'">&nbsp;&nbsp; <input
+					onClick="location.href='noticeList.no'">&nbsp;&nbsp; <input
 					type="submit" value="등록">&nbsp;&nbsp; <input type="reset"
 					value="다시쓰기" />
 			</section>

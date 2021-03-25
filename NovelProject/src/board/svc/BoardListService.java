@@ -9,7 +9,7 @@ import vo.BoardBean;
 
 public class BoardListService {
 
-	public int getListCount() {
+	public int getListCount() throws Exception{
 		
 		int listCount = 0;
 		Connection con = getConnection();

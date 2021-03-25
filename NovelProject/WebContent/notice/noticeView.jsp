@@ -53,7 +53,6 @@ h2 {
 	<section id="articleForm">
 		<section id="basicInfoArea">
 			<h2>
-				글 제목 :
 				<%=article.getTitle()%></h2>
 			<p>
 				작성자 :
