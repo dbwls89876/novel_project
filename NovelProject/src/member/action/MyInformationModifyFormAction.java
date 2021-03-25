@@ -18,12 +18,12 @@ public class MyInformationModifyFormAction implements Action {
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id")==null || !session.getAttribute("id").equals("admin")) {
-			response.setContentType("text/html'charset=utf-8");
+		if(session.getAttribute("memberID")==null) {
+			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('로그인 해주세요')");
-			out.println("location.href='loginForm.log'");
+			out.println("location.href='loginForm.me'");
 			out.println("</script>");
 		}else {
 			String id= request.getParameter("id");
@@ -33,13 +33,13 @@ public class MyInformationModifyFormAction implements Action {
 			if(member !=null) {
 				request.setAttribute("member", member);
 				forward = new ActionForward();
-				forward.setPath("/member/member_mod.jsp");
+				forward.setPath("/member/myInformationModify.jsp");
 			}else {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('회원정보가 없습니다.');");
-				out.println("location.href=memberList.mem;");
+				out.println("location.href=menuTop.jsp;");
 				out.println("</script>");
 			}
 		}

@@ -124,10 +124,10 @@ a {
 			</li>
 			</c:if>
 			
-			<c:if test="${memberID eq 'admin' }">
+			<c:if test="${memberID != null}">
 			<li><a href="#">마이페이지</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath }/myInformationModify.me">내 정보</a></li>
+					<li><a href="${pageContext.request.contextPath }/myInformationView.me">내 정보</a></li>
 					<li><a href="${pageContext.request.contextPath }/myLiteraryList.lit">내 작품</a></li>
 				</ul>
 			</li>
