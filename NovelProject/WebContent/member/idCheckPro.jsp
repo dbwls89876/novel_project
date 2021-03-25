@@ -1,3 +1,4 @@
+<%@page import="dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,11 +12,13 @@
 <h3>* 아이디 중복 확인 결과 *</h3> 
 <% 
 //1) 사용가능한 아이디일 경우, 아이디 입력 폼에 넣기 위함 
-String id=request.getParameter("id"); 
-int cnt=dao.duplecateID(id); 
-out.println("입력 ID : <strong>" + id + "</stong>"); 
-if(cnt==0){ out.println("<p>사용 가능한 아이디입니다.</p>"); 
-out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>"); 
+String memberID=request.getParameter("memberID"); 
+MemberDAO memberDAO = MemberDAO.getInstance();
+
+boolean check = memberDAO.idCheck(memberID);
+out.println("입력 ID : <strong>" + memberID + "</stong>"); 
+if(!check){ out.println("<p>사용 가능한 아이디입니다.</p>"); 
+out.println("<a href='javascript:apply(\"" + memberID + "\")'>[적용]</a>"); 
 %> 
 <script> 
 function apply(id){ 

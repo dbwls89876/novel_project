@@ -53,7 +53,26 @@ public class MemberDAO {
 		
 		return insertCount;
 	}
+	
+	public boolean idCheck(String memberID) {
+		boolean check = false;
+		PreparedStatement pstmt = null;
 
+		String sql = "select * from member where memberID=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberID);
+			check = pstmt.execute();
+			
+		} catch (Exception e) {
+			System.out.println("memberSelect 오류 : " + e);
+		}finally {
+			close(pstmt);
+		}
+		
+		return check;
+	}
+	
 	public Member selectMember(String memberID) {
 		Member member = null;
 		PreparedStatement pstmt = null;
@@ -75,7 +94,7 @@ public class MemberDAO {
 				member.setMoney(rs.getInt("money"));;
 			}
 		} catch (Exception e) {
-			System.out.println("memberSelect �삤瑜� : " + e);
+			System.out.println("memberSelect 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
