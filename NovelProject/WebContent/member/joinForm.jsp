@@ -73,7 +73,7 @@ function idCheck(){
 		<td colspan="2"><input type="text" id="roadAddress" placeholder="도로명주소"></td>
 	</tr>
 	<tr>
-		<td colspan="2"><input type="text" id="sample4_detailAddress" placeholder="상세주소"></td>
+		<td colspan="2"><input type="text" id="detailAddress" placeholder="상세주소"></td>
 	<tr>
 	<tr>
 		<td colspan="2">
