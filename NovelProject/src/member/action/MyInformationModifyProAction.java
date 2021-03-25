@@ -19,7 +19,7 @@ public class MyInformationModifyProAction implements Action {
 		ActionForward forward = null;
 
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id")==null || !session.getAttribute("id").equals("admin")) {
+		if(session.getAttribute("id")==null) {
 			response.setContentType("text/html'charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -28,7 +28,7 @@ public class MyInformationModifyProAction implements Action {
 			out.println("</script>");
 		}else {
 			Member member = new Member();
-			member.setMemberID(request.getParameter("memberID"));
+			member.setMemberID((String)session.getAttribute("memberID"));
 			member.setPassword(request.getParameter("password"));
 			member.setName(request.getParameter("name"));
 			member.setNickname(request.getParameter("nickname"));
@@ -41,7 +41,7 @@ public class MyInformationModifyProAction implements Action {
 			if(isModifySuccess) {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("menuTop.jap?id="+member.getId());
+				forward.setPath("myInformationView.me?id="+member.getMemberID());
 			}else {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();

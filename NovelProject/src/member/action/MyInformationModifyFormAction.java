@@ -26,12 +26,12 @@ public class MyInformationModifyFormAction implements Action {
 			out.println("location.href='loginForm.me'");
 			out.println("</script>");
 		}else {
-			String id= request.getParameter("id");
+			String memberID= request.getParameter("memberID");
 			
 			MyInformationModifyFormService myInformationModifyFormService = new MyInformationModifyFormService();
-			Member member = myInformationModifyFormService.getMember(id);
-			if(member !=null) {
-				request.setAttribute("member", member);
+			Member member = myInformationModifyFormService.getMember(memberID);
+			if(memberID != null) {
+				request.setAttribute("memberID", memberID);
 				forward = new ActionForward();
 				forward.setPath("/member/myInformationModify.jsp");
 			}else {
@@ -39,7 +39,7 @@ public class MyInformationModifyFormAction implements Action {
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('회원정보가 없습니다.');");
-				out.println("location.href=menuTop.jsp;");
+				out.println("location.href=myInformationView.me;");
 				out.println("</script>");
 			}
 		}

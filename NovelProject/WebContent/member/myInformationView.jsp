@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
 <section id = "memberInfoArea">
 <table>
 	<tr>
@@ -15,30 +22,28 @@
 	</tr>
 	<tr>
 		<td>비밀번호 : </td>
-		<td>${member.memberID }</td>
+		<td>${member.password }</td>
 	</tr>
 	<tr>
 		<td>이름 : </td>
-		<td>${member.memberID }</td>
+		<td>${member.name }</td>
 	</tr>
 	<tr>
 		<td>닉네임 : </td>
-		<td>${member.memberID }</td>
+		<td>${member.nickname }</td>
 	</tr>
 	<tr>
 		<td>휴대폰 번호 : </td>
-		<td>${member.memberID }</td>
+		<td>${member.mobile }</td>
 	</tr>
 	<tr>
 		<td>주소 : </td>
-		<td>${member.memberID }</td>
+		<td>${member.address }</td>
 	</tr>
 	<tr>
-		<td>
-			<a href="myInformationModifyAction.me?id=${member.memberID }">수정</a>
-		</td>
-		<td>
-			<a href="myInformationDeleteAction.me?id=${member.memberID }">탈퇴</a>
+		<td colspan=2>
+			<a href="member/myInformationModify.jsp">수정</a>
+			<a href="member/myInformationDelete.jsp">탈퇴</a>
 		</td>
 	</tr>	
 </table>
