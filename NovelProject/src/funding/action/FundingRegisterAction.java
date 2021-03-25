@@ -21,7 +21,7 @@ public class FundingRegisterAction implements Action{
 		ActionForward forward=null;
 		Funding funding = new Funding();
 		ArrayList<FundingGoods> fundingGoodsList = new ArrayList<FundingGoods>();
-		FundingGoods fundingGoods = new FundingGoods();
+		FundingGoods fundingGoods = null;
 		Date endDate = java.sql.Date.valueOf(request.getParameter("endDate"));
 		Date deliveryDate = java.sql.Date.valueOf(request.getParameter("deliveryDate"));
 		String[] nameList = request.getParameterValues("name");
@@ -38,18 +38,13 @@ public class FundingRegisterAction implements Action{
 		
 		//받아온 굿즈 정보만큼 fundingGoodsList에 add
 		for(int i = 0; i<nameList.length; i++) {
-			fundingGoodsList.get(i).setName(nameList[i]);
-			fundingGoodsList.get(i).setCost(Integer.parseInt(costList[i]));
-			fundingGoodsList.get(i).setMaxNumber(Integer.parseInt(maxNumberList[i]));
-			
-			System.out.println("get0 계속 확인 : " + fundingGoodsList.get(0).getName());
-			System.out.println("namelist  : " + nameList[i]);
-			//System.out.println("action, fundinggoods : " + fundingGoods.getName());
-			System.out.println("list : " + fundingGoodsList.get(i).getName());
+			fundingGoods = new FundingGoods();
+			fundingGoods.setName(nameList[i]);
+			fundingGoods.setCost(Integer.parseInt(costList[i]));
+			fundingGoods.setMaxNumber(Integer.parseInt(maxNumberList[i]));
+			fundingGoodsList.add(fundingGoods);
 		}
-		
-		System.out.println("acget0 : " + fundingGoodsList.get(0).getName());
-		System.out.println("acget1 : " + fundingGoodsList.get(1).getName());
+
 		FundingRegisterService fundingRegisterService = new FundingRegisterService();
 		fundingRegisterService.registerFunding(funding, fundingGoodsList);
 		forward = new ActionForward("/totalFunding.fun", true);
