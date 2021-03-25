@@ -9,12 +9,12 @@ import dao.NoticeDAO;
 
 public class NoticeDeleteProService {
 	
-	public boolean isArticleWriter(int noticeID, int id) throws Exception{
+	public boolean isArticleWriter(int noticeID, String memberID) throws Exception{
 		
 		boolean isArticleWriter = false;
 		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
-		isArticleWriter = noticeDAO.isArticleNoticeWriter(noticeID, id);
+		isArticleWriter = noticeDAO.isArticleNoticeWriter(noticeID, memberID);
 		close(con);
 		return isArticleWriter;
 	}

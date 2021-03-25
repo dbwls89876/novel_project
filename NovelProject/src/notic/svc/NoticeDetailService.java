@@ -8,7 +8,7 @@ import vo.BoardBean;
 
 public class NoticeDetailService {
 
-	public BoardBean getArticle(int noticeID) {
+	public BoardBean getArticle(int noticeID) throws Exception{
 		
 		BoardBean article = null;
 		Connection con = getConnection();

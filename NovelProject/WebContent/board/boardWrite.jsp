@@ -21,13 +21,13 @@ td h3 {
 	text-align: right;
 	font: bold 15px "맑은 고딕", arial;
 	color: #606E5E;
-	padding : 5px 20px;
-	hight : 30px;
+	padding: 5px 20px;
+	hight: 30px;
 }
 
 .td_right {
 	width: 300px;
-	hight : 30px;
+	hight: 30px;
 }
 
 #commandCell {
@@ -62,7 +62,7 @@ td h3 {
 				</tr>
 				<tr>
 					<td class="td_left"><label for="memberID">작성자</label></td>
-					<td class="td_right"><%=session.getAttribute("memberID") %></td>
+					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="content">내용</label></td>
@@ -71,9 +71,10 @@ td h3 {
 				</tr>
 			</table>
 			<section id="commandCell">
-				<input type="button" value="목록" onClick="location.href='boardList.bo'">&nbsp;&nbsp;
-				<input type="submit" value="등록">&nbsp;&nbsp;
-				<input type="reset" value="다시쓰기" />
+				<input type="button" value="목록"
+					onClick="location.href='boardList.bo'">&nbsp;&nbsp; <input
+					type="submit" value="등록">&nbsp;&nbsp; <input type="reset"
+					value="다시쓰기" />
 			</section>
 		</form>
 	</section>

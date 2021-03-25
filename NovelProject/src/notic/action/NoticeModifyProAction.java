@@ -20,7 +20,7 @@ public class NoticeModifyProAction implements Action {
 		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
 		BoardBean article = new BoardBean();
 		NoticeModifyProService noticeModifyProService = new NoticeModifyProService();
-		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID, Integer.parseInt(request.getParameter("id")));
+		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID, request.getParameter("memberID"));
 
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=utf-8");
@@ -46,7 +46,7 @@ public class NoticeModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("noticeDetail.nono?noticeID="+article.getNoticeID());
+				forward.setPath("noticeDetail.no?noticeID="+article.getNoticeID());
 			}
 		}
 		return forward;

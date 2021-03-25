@@ -1,67 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="vo.BoardBean" %>
+	pageEncoding="UTF-8"%>
+<%@page import="vo.BoardBean"%>
 <%
-	BoardBean article = (BoardBean)request.getAttribute("article");
-	String nowPage = (String) request.getAttribute("page");
+	BoardBean article = (BoardBean) request.getAttribute("article");
+String nowPage = (String) request.getAttribute("page");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Community Board</title>
-<style type = "text/css">
+<title>Community Board View</title>
+<style type="text/css">
 #articleForm {
-	width : 500px;
-	height : 500px;
-	border : 1px solid red;
-	margin : auto;
+	width: 500px;
+	height: 500px;
+	border: 0px;
+	margin: auto;
 }
 
-h2 {
-	text-align : center;
+table {
+	margin: auto;
+}
+
+h3 {
+	text-align: left;
 }
 
 #basicInfoArea {
-	height : 40px;
-	text-align : center;
+	height: 100px;
+	text-align: right;
 }
 
 #articleContentArea {
-	background: #606E5E;
-	color: white;
-	margin-top : 20px;
-	height : 350px;
-	text-align : center;
-	overflow  :auto;
+	color: #606E5E;
+	margin-top: 40px;
+	height: 400px;
+	text-align: center;
+	overflow: auto;
 }
 
 #commandList {
-	margin : auto;
-	width : 500px;
-	text-align : center;
+	margin: auto;
+	width: 500px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-<section id = "articleForm">
-	<section id="basicInfoArea">
-		<h2>글 제목 : 
-		<%=article.getTitle() %></h2>
-		<p>작성자 : <%=article.getMemberID() %></p>
-		<p>작성일 : <%=article.getDate() %> | 조회수 : <%=article.getReadCount() %></p>
+	<table border="0">
+		<tr>
+			<td align="center"><br> <jsp:include page="../menuTop.jsp"></jsp:include>
+			</td>
+		</tr>
+	</table>
+	<section id="articleForm">
+		<section id="basicInfoArea">
+			<h3>
+				글 제목 :
+				<%=article.getTitle()%></h3>
+			<p>
+				작성자 :
+				<%=article.getMemberID()%></p>
+			<p>
+				작성일 :
+				<%=article.getDate()%>
+				| 조회수 :
+				<%=article.getReadCount()%></p>
+		</section>
+		<section id="articleContentArea">
+			내용 :
+			<%=article.getContent()%>
+		</section>
 	</section>
-	<section id="articleContentArea">
-		내용 : 
-		<%=article.getContent() %>
-	</section>
-</section>
-<section id = "commandList">
-	<a href="boardModifyForm.bo?boardID=<%=article.getBoardID() %>&page=<%=nowPage%>"> [수정] </a>
-	<a href="boardDeleteForm.bo?boardID=<%=article.getBoardID() %>&page=<%=nowPage%>"> [삭제] </a>
-	<a href="boardList.bo?page=<%=nowPage%>"> [목록] </a>
-	&nbsp;&nbsp;
+	<section id="commandList">
+		<a
+			href="boardModifyForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
+			[수정] </a> <a
+			href="boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
+			[삭제] </a> <a href="boardList.bo?page=<%=nowPage%>"> [목록] </a>
+		&nbsp;&nbsp;
 
-</section>
+	</section>
 </body>
 </html>

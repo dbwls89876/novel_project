@@ -7,12 +7,12 @@
 
 <%
 	ArrayList<BoardBean> articleList = (ArrayList<BoardBean>) request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-	int listCount = pageInfo.getListCount();
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+int listCount = pageInfo.getListCount();
+int nowPage = pageInfo.getPage();
+int maxPage = pageInfo.getMaxPage();
+int startPage = pageInfo.getStartPage();
+int endPage = pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -83,9 +83,10 @@ table {
 			%>
 			<tr>
 				<td><%=articleList.get(i).getNoticeID()%></td>
-				<td><a href="noticeDetail.no?NoticeID=<%=articleList.get(i).getNoticeID()%>&page=<%=nowPage%>">
+				<td><a
+					href="noticeDetail.no?NoticeID=<%=articleList.get(i).getNoticeID()%>&page=<%=nowPage%>">
 						<%=articleList.get(i).getTitle()%></a></td>
-				<td><%=articleList.get(i).getId()%></td>
+				<td><%=articleList.get(i).getMemberID()%></td>
 				<td><%=articleList.get(i).getDate()%></td>
 				<td><%=articleList.get(i).getReadCount()%></td>
 			</tr>
@@ -135,7 +136,7 @@ table {
 		<%
 			}
 		%>
-		<a href="boardWriteForm.bo">글쓰기</a>
+		<a href="noticeWriteForm.bo">글쓰기</a>
 		<%
 			
 		%>

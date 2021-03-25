@@ -22,14 +22,14 @@ public class NoticeWriteProAction implements Action {
 		ActionForward forward=null;
 		BoardBean boardBean = null;
 		String realFolder="";
-		String saveFolder="/noticeUpload";
+		String saveFolder="/images";
 		int fileSize = 5*1024*1024;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
+		
 		boardBean = new BoardBean();
-		boardBean.setNoticeID(Integer.parseInt(multi.getParameter("noticeID")));
-		boardBean.setId(Integer.parseInt(multi.getParameter("id")));
+		boardBean.setMemberID(multi.getParameter("memberID"));
 		boardBean.setTitle(multi.getParameter("title"));
 		boardBean.setContent(multi.getParameter("content"));
 		boardBean.setFile(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));

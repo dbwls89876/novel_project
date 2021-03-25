@@ -18,7 +18,7 @@ public class NoticeDeleteProAction implements Action {
 		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
 		String nowPage = request.getParameter("page");
 		NoticeDeleteProService noticeDeleteProService = new NoticeDeleteProService();
-		boolean isArticleWriter = noticeDeleteProService.isArticleWriter(noticeID, Integer.parseInt(request.getParameter("id")));
+		boolean isArticleWriter = noticeDeleteProService.isArticleWriter(noticeID, request.getParameter("memberID"));
 
 		if(!isArticleWriter) {
 			response.setContentType("text/html; charset=utf-8");
@@ -42,7 +42,7 @@ public class NoticeDeleteProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("noticeList.bo?page=" + nowPage);
+				forward.setPath("noticeList.no?page=" + nowPage);
 			}
 		}
 		return forward;

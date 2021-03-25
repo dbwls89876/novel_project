@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC게시판</title>
+<title>Notice Board</title>
 <style type="text/css">
 table {
 	margin: auto;
@@ -21,13 +21,13 @@ td h3 {
 	text-align: right;
 	font: bold 15px "맑은 고딕", arial;
 	color: #606E5E;
-	padding : 5px 20px;
-	hight : 30px;
+	padding: 5px 20px;
+	hight: 30px;
 }
 
 .td_right {
 	width: 300px;
-	hight : 30px;
+	hight: 30px;
 }
 
 #commandCell {
@@ -42,45 +42,49 @@ td h3 {
 </style>
 </head>
 <body>
-<table>
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
-</table>
-<section id = "writeForm">
-	<form action = "noticeWriteForm.no" method = "post"
-	enctype = "multipart/form-data" name = "noticeform">
-		<table>
-			<tr>
-				<td colspan="2"><h3>게시판글등록</h3></td>
-			</tr>
-			<tr>
-				<td class = "td_left"><label for = "title">제목</label></td>
-				<td class = "td_right"><input type="text"
+	<table border="0">
+		<tr>
+			<td align="center"><br> <jsp:include page="../menuTop.jsp"></jsp:include>
+			</td>
+		</tr>
+	</table>
+	<section id="writeForm">
+		<form action="noticeWritePro.no" method="post"
+			enctype="multipart/form-data" name="noticeform">
+			<table>
+				<tr>
+					<td colspan="2"><h3>게시판글등록</h3></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_right"><input type="text"
 						placeholder="제목을 입력해 주세요." name="title" id="title"
 						required="required" /></td>
-			</tr>
-			
-			<tr>
-				<td class = "td_left"><label for = "id">작성자</label></td>
-				<td class = "td_right"><input type="text" name="id" id="id" required="required"/></td>
-			</tr>
-			
-			<tr>
-				<td class = "td_left"><label for = "content">내용</label></td>
-				<td><textarea placeholder="내용을 입력해 주세요." id="content"
+				</tr>
+				<tr>
+					<td class="td_left"><label for="id">작성자</label></td>
+					<td class="td_right"><%=session.getAttribute("memberID")%></td>
+				</tr>
+
+				<tr>
+					<td class="td_left"><label for="file">파일 첨부</label></td>
+					<td><input name="file" type="file" id="file" required="required" /></td>
+				</tr>
+
+				<tr>
+					<td class="td_left"><label for="content">내용</label></td>
+					<td><textarea placeholder="내용을 입력해 주세요." id="content"
 							name="content" cols="40" rows="15" required="required"></textarea></td>
-			</tr>
-			
-		</table>
-		<section id = "commandCell">
-			<input type="button" value="목록" onClick="location.href='noticeList.bo'">&nbsp;&nbsp;
-			<input type = "submit" value="등록">&nbsp;&nbsp;
-			<input type = "reset" value = "다시쓰기"/>			
-		</section>	
-	</form>
-</section>
+				</tr>
+
+			</table>
+			<section id="commandCell">
+				<input type="button" value="목록"
+					onClick="location.href='noticeList.bo'">&nbsp;&nbsp; <input
+					type="submit" value="등록">&nbsp;&nbsp; <input type="reset"
+					value="다시쓰기" />
+			</section>
+		</form>
+	</section>
 </body>
 </html>

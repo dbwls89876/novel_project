@@ -7,12 +7,12 @@
 
 <%
 	ArrayList<BoardBean> articleList = (ArrayList<BoardBean>) request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-	int listCount = pageInfo.getListCount();
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+int listCount = pageInfo.getListCount();
+int nowPage = pageInfo.getPage();
+int maxPage = pageInfo.getMaxPage();
+int startPage = pageInfo.getStartPage();
+int endPage = pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -79,11 +79,12 @@ table {
 			</tr>
 
 			<%
-				for (int i=0; i<articleList.size(); i++) {
+				for (int i = 0; i < articleList.size(); i++) {
 			%>
 			<tr>
 				<td><%=articleList.get(i).getBoardID()%></td>
-				<td><a href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
+				<td><a
+					href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
 						<%=articleList.get(i).getTitle()%></a></td>
 				<td><%=articleList.get(i).getMemberID()%></td>
 				<td><%=articleList.get(i).getDate()%></td>
@@ -137,15 +138,14 @@ table {
 		%>
 		<a href="boardWriteForm.bo">글쓰기</a>
 		<%
-		
+			
 		%>
 	</section>
 	<%
 		} else {
 	%>
 	<section id="emptyArea">
-		등록된 글이 없습니다. 
-		<a href="boardWriteForm.bo">글쓰기</a>
+		등록된 글이 없습니다. <a href="boardWriteForm.bo">글쓰기</a>
 	</section>
 	<%
 		}

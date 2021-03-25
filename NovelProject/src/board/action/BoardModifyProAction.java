@@ -18,6 +18,8 @@ public class BoardModifyProAction implements Action {
 		ActionForward forward = null;
 		boolean isModifySuccess = false;
 		int boardID = Integer.parseInt(request.getParameter("boardID"));
+		String nowPage = request.getParameter("page");
+		System.out.println(nowPage);
 		BoardBean article = new BoardBean();
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
 		boolean isRightUser = boardModifyProService.isArticleWriter(boardID, request.getParameter("memberID"));
@@ -46,7 +48,7 @@ public class BoardModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.bo?boardID=" + article.getBoardID());
+				forward.setPath("boardDetail.bo?boardID=" + article.getBoardID()+"&page="+nowPage);
 			}
 		}
 		return forward;
