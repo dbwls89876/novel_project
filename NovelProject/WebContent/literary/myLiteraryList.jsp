@@ -37,7 +37,7 @@ table {
 		<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
 <table>
 	<tr>	
-		<c:forEach var="literary" items="${literaryList }" varStatus="status">
+		<c:forEach var="literary" items="${myLiteraryList }" varStatus="status">
 		<td>	
 			<a href="editionWriterList.ed?id=${literary.id}">
 			<img src="images/${literary.image}" class="literaryImage" /></a><br>

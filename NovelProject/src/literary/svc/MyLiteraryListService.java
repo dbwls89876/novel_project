@@ -10,14 +10,15 @@ import vo.Literary;
 
 public class MyLiteraryListService {
 
-	public ArrayList<Literary> getLiteraryList() {
+	public ArrayList<Literary> getLiteraryList(int id) {
 		ArrayList<Literary> myLiteraryList = null;
 		LiteraryDAO literaryDAO = LiteraryDAO.getInstance();
+		
 		Connection con = null;
 		try {
 			con = getConnection();
 			literaryDAO.setConnection(con);
-			myLiteraryList = literaryDAO.selectLiteraryList();
+			myLiteraryList = literaryDAO.selectArtistLiteraryList(id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
