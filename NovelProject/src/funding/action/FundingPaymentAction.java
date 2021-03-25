@@ -40,11 +40,11 @@ public class FundingPaymentAction implements Action {
 			request.setAttribute("funding", funding);
 			request.setAttribute("member", member);
 			request.setAttribute("fundingGoods", fundingGoods);
+			System.out.println(member.getMoney());
+			System.out.println("cost : " + cost);
+			System.out.println("member : " + memberID);
+			System.out.println("nick : " + member.getNickname());
 			if(cost>member.getMoney()) {
-				System.out.println(member.getMoney());
-				System.out.println("cost : " + cost);
-				System.out.println("member : " + memberID);
-				System.out.println("nick : " + member.getNickname());
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");

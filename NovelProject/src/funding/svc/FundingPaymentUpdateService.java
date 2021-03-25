@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 import dao.CustomerDAO;
 import dao.FundingDAO;
+import dao.FundingGoodsDAO;
 import dao.MemberDAO;
 
 public class FundingPaymentUpdateService {
@@ -14,6 +15,7 @@ public class FundingPaymentUpdateService {
 		boolean isInsertSucess = false;
 		boolean isUpdateSucess = false;
 		boolean isCostUpdateSucess = false;
+		boolean isCountUpdateSucess = false;
 		boolean commit = false;
 		try {
 			//구매자 정보 추가
@@ -31,7 +33,13 @@ public class FundingPaymentUpdateService {
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			memberDAO.setConnection(con);
 			isCostUpdateSucess = memberDAO.updateCost(memberID, cost);
-			if(isInsertSucess && isUpdateSucess && isCostUpdateSucess) {
+			
+			//굿즈 구매 횟수 추가
+			FundingGoodsDAO fundingGoodsDAO = FundingGoodsDAO.getInstance();
+			fundingGoodsDAO.setConnection(con);
+			isCountUpdateSucess = fundingGoodsDAO.updateCount(goodsID);
+			
+			if(isInsertSucess && isUpdateSucess && isCostUpdateSucess && isCountUpdateSucess) {
 				commit(con);
 				commit = true;
 			}

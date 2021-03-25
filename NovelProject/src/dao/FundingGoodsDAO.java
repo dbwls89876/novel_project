@@ -116,4 +116,24 @@ public class FundingGoodsDAO {
 		}
 		return isRegisterSucess;
 	}
+
+	public boolean updateCount(int goodsID) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		boolean isCountUpdateSucess = false;
+		String sql = "update fundingGoods set count = count + 1 where goodsID = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, goodsID);
+			
+			pstmt.execute();
+			isCountUpdateSucess = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isCountUpdateSucess;
+	}
 }
