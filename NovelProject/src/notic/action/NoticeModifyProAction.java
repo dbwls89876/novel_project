@@ -2,8 +2,13 @@ package notic.action;
 
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
 import notic.svc.NoticeModifyProService;
@@ -16,12 +21,23 @@ public class NoticeModifyProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
+		BoardBean boardBean = null;
+		String realFolder="";
+		String saveFolder="/images";
+		int fileSize = 5*1024*1024;
+		HttpSession session = request.getSession();
+		ServletContext context = request.getServletContext();
+		realFolder = context.getRealPath(saveFolder);
+		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
+		
 		boolean isModifySuccess = false;
+		
 		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
 		String nowPage = request.getParameter("page");
-		BoardBean article = new BoardBean();
+		
+		boardBean = new BoardBean();
 		NoticeModifyProService noticeModifyProService = new NoticeModifyProService();
-		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID, request.getParameter("memberID"));
+		boolean isRightUser = noticeModifyProService.isArticleWriter(noticeID, (String)session.getAttribute("memberID"));
 
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=utf-8");
@@ -32,11 +48,11 @@ public class NoticeModifyProAction implements Action {
 			out.println("</script>");
 		}
 		else {
-			article.setNoticeID(noticeID);
-			article.setTitle(request.getParameter("title"));
-			article.setContent(request.getParameter("content"));
-			article.setFile(request.getParameter("file"));
-			isModifySuccess = noticeModifyProService.modifyArticle(article);
+			boardBean.setNoticeID(noticeID);
+			boardBean.setTitle(multi.getParameter("title"));
+			boardBean.setContent(multi.getParameter("content"));
+			boardBean.setFile(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
+			isModifySuccess = noticeModifyProService.modifyArticle(boardBean);
 			
 			if(!isModifySuccess) {
 				response.setContentType("text/html;charset=utf-8");
@@ -48,7 +64,7 @@ public class NoticeModifyProAction implements Action {
 			}else {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("noticeDetail.no?noticeID="+article.getNoticeID()+"&page="+nowPage);
+				forward.setPath("noticeDetail.no?noticeID="+multi.getParameter("noticeID")+"&page="+nowPage);
 			}
 		}
 		return forward;

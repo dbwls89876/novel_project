@@ -46,7 +46,8 @@ table {
 		</tr>
 	</table>
 	<section id="writeForm">
-		<form action="noticeModifyPro.no" method="post" name="modifyform">
+		<form action="noticeModifyPro.no" method="post"
+			enctype="multipart/form-data" name="modifyform">
 			<input type="hidden" name="noticeID"
 				value="<%=article.getNoticeID()%>" />
 			<table>
@@ -64,7 +65,8 @@ table {
 				</tr>
 				<tr>
 					<td class="td_left"><label for="file">파일 첨부</label></td>
-					<td><input name="file" type="file" id="file" required="required" /></td>
+					<td><input name="file" type="file" 
+					id="file" value="<%=article.getFile() %>"/></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="content">내용</label></td>
