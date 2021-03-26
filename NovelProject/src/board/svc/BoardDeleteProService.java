@@ -23,7 +23,7 @@ public class BoardDeleteProService {
 	
 	public boolean removeArticle(int boardID) throws Exception{
 		
-		boolean isDeleteSuccess = false;
+		boolean isRemoveSuccess = false;
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
@@ -31,13 +31,13 @@ public class BoardDeleteProService {
 		
 		if(deleteCount > 0) {
 			commit(con);
-			isDeleteSuccess = true;
+			isRemoveSuccess = true;
 		}
 		else {
 			rollback(con);
 		}
 		close(con);
-		return isDeleteSuccess;
+		return isRemoveSuccess;
 	}
 
 }

@@ -19,7 +19,6 @@ public class BoardModifyProAction implements Action {
 		boolean isModifySuccess = false;
 		int boardID = Integer.parseInt(request.getParameter("boardID"));
 		String nowPage = request.getParameter("page");
-		System.out.println(nowPage);
 		BoardBean article = new BoardBean();
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
 		boolean isRightUser = boardModifyProService.isArticleWriter(boardID, request.getParameter("memberID"));

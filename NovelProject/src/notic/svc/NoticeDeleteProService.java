@@ -14,6 +14,7 @@ public class NoticeDeleteProService {
 		boolean isArticleWriter = false;
 		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
+		noticeDAO.setConnection(con);
 		isArticleWriter = noticeDAO.isArticleNoticeWriter(noticeID, memberID);
 		close(con);
 		return isArticleWriter;

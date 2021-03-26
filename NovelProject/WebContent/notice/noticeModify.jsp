@@ -16,14 +16,7 @@ String nowPage = (String) request.getParameter("page");
 	}
 </script>
 <style type="text/css">
-#registForm {
-	width: 500px;
-	height: 600px;
-	border: 1px solid red;
-	margin: auto;
-}
-
-h2 {
+h3 {
 	text-align: center;
 }
 
@@ -34,12 +27,10 @@ table {
 
 .td_left {
 	width: 150px;
-	background: orange;
 }
 
 .td_right {
 	width: 300px;
-	background: skyblue;
 }
 
 #commandCell {
@@ -69,8 +60,7 @@ table {
 				</tr>
 				<tr>
 					<td class="td_left"><label for="memberID">작성자</label></td>
-					<td class="td_right"><input type="text" name="memberID" id="memberID"
-						value="<%=article.getMemberID()%>" /></td>
+					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="content">내용</label></td>

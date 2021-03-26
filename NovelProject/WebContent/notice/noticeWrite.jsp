@@ -62,7 +62,7 @@ td h3 {
 						required="required" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="id">작성자</label></td>
+					<td class="td_left"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 

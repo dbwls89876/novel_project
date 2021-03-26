@@ -12,26 +12,32 @@ String nowPage = (String) request.getAttribute("page");
 <title>Notice Board View</title>
 <style type="text/css">
 #articleForm {
-	width: 500px;
+	width: 1500px;
 	height: 500px;
 	border: 1px solid red;
 	margin: auto;
 }
 
-h2 {
-	text-align: center;
+table {
+	margin: auto;
+}
+
+h3 {
+	text-align: left;
 }
 
 #basicInfoArea {
-	height: 40px;
-	text-align: center;
+	height: 100px;
+	text-align: right;
+}
+
+#articlePictureArea {
+	width: 1500px;
 }
 
 #articleContentArea {
-	background: #606E5E;
-	color: white;
-	margin-top: 20px;
-	height: 350px;
+	margin-top: 40px;
+	height: 400px;
 	text-align: center;
 	overflow: auto;
 }
@@ -52,8 +58,8 @@ h2 {
 	</table>
 	<section id="articleForm">
 		<section id="basicInfoArea">
-			<h2>
-				<%=article.getTitle()%></h2>
+			<h3>
+				<%=article.getTitle()%></h3>
 			<p>
 				작성자 :
 				<%=article.getMemberID()%></p>
@@ -63,11 +69,12 @@ h2 {
 				| 조회수 :
 				<%=article.getReadCount()%></p>
 		</section>
+		<section id="articlePictureArea">
+			<%if(!(article.getFile()==null)) { %>
+			<img src="images/<%=article.getFile() %>"><%} %>
+		</section>
 		<section id="articleContentArea">
-	
-			<img src="images/<%=article.getFile()%>"> <br>
-			<%=article.getContent()%>
-			
+			<%=article.getContent()%>			
 		</section>
 	</section>
 	<section id="commandList">
@@ -80,3 +87,4 @@ h2 {
 
 	</section>
 </body>
+

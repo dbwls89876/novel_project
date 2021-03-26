@@ -84,7 +84,7 @@ table {
 			<tr>
 				<td><%=articleList.get(i).getNoticeID()%></td>
 				<td><a
-					href="noticeDetail.no?NoticeID=<%=articleList.get(i).getNoticeID()%>&page=<%=nowPage%>">
+					href="noticeDetail.no?noticeID=<%=articleList.get(i).getNoticeID()%>&page=<%=nowPage%>">
 						<%=articleList.get(i).getTitle()%></a></td>
 				<td><%=articleList.get(i).getMemberID()%></td>
 				<td><%=articleList.get(i).getDate()%></td>

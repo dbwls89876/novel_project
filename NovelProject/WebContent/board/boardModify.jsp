@@ -16,7 +16,7 @@ String nowPage = (String) request.getParameter("page");
 	}
 </script>
 <style type="text/css">
-h2 {
+h3 {
 	text-align: center;
 }
 
@@ -59,8 +59,7 @@ table {
 				</tr>
 				<tr>
 					<td class="td_left"><label for="memberID">작성자</label></td>
-					<td class="td_right"><input type="text" name="memberID"
-						id="memberID" value="<%=article.getMemberID()%>" /></td>
+					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="content">내용</label></td>

@@ -31,7 +31,7 @@ String nowPage = (String) request.getAttribute("page");
 			<table>
 				<tr>
 					<td><label>아이디 : </label></td>
-					<td><input name="id" type="text"></td>
+					<td><input name="memberID" type="text"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="삭제" />&nbsp;&nbsp; <input

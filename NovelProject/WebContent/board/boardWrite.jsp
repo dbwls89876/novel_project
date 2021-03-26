@@ -71,10 +71,9 @@ td h3 {
 				</tr>
 			</table>
 			<section id="commandCell">
-				<input type="button" value="목록"
-					onClick="location.href='boardList.bo'">&nbsp;&nbsp; <input
-					type="submit" value="등록">&nbsp;&nbsp; <input type="reset"
-					value="다시쓰기" />
+				<input type="button" value="목록" onClick="location.href='boardList.bo'">&nbsp;&nbsp;
+				<input type="submit" value="등록">&nbsp;&nbsp;
+				<input type="reset" value="다시쓰기" />
 			</section>
 		</form>
 	</section>
