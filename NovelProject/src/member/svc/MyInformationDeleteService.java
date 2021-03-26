@@ -1,21 +1,23 @@
 package member.svc;
 
+import static db.JdbcUtil.*;
+
 import java.sql.Connection;
 
 import dao.MemberDAO;
 
-import static db.JdbcUtil.*;
-
 public class MyInformationDeleteService {
 
-	public boolean deleteMember(String id) {
+	public boolean deleteMember(String memberID) {
 		boolean isDeleteSuccess = false;
 		Connection con = null;
 		try {
-			con=getConnection();
+			con = getConnection();
 			MemberDAO memberDAO = MemberDAO.getInstance();
-			int deleteCount = memberDAO.deleteMember(id);
-			if(deleteCount>0) {
+			memberDAO.setConnection(con);
+			
+			int updateCount = memberDAO.deleteMember(memberID);
+			if(updateCount > 0) {
 				commit(con);
 				isDeleteSuccess = true;
 			}else {
@@ -26,7 +28,6 @@ public class MyInformationDeleteService {
 		}finally {
 			close(con);
 		}
-		
 		return isDeleteSuccess;
 	}
 
