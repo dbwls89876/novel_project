@@ -22,7 +22,7 @@ h3 {
 
 table {
 	margin: auto;
-	width: 450px;
+	width: 1500px;
 }
 
 .td_left {
@@ -61,6 +61,10 @@ table {
 				<tr>
 					<td class="td_left"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="file">파일 첨부</label></td>
+					<td><input name="file" type="file" id="file" required="required" /></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="content">내용</label></td>

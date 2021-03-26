@@ -23,7 +23,7 @@ int endPage = pageInfo.getEndPage();
 #registForm {
 	width: 1500px;
 	height: 600px;
-	border: 1px solid red;
+	border: 0px;
 	margin: auto;
 }
 
@@ -34,7 +34,7 @@ h2 {
 
 table {
 	margin: auto;
-	width: 1000px;
+	width: 750px;
 	text-align: center;
 }
 

@@ -10,10 +10,13 @@ String nowPage = (String) request.getAttribute("page");
 <meta charset="UTF-8">
 <title>Notice Board</title>
 <style>
+table {
+	margin: auto;
+	width: 1500px;
+}
 #passForm {
 	width: 400px;
 	margin: auto;
-	border: 1px solid orange;
 }
 </style>
 </head>

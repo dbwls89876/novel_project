@@ -14,7 +14,7 @@ String nowPage = (String) request.getAttribute("page");
 #articleForm {
 	width: 1500px;
 	height: 500px;
-	border: 1px solid red;
+	border: 0px;
 	margin: auto;
 }
 

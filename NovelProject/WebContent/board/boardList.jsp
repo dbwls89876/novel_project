@@ -34,7 +34,7 @@ h2 {
 
 table {
 	margin: auto;
-	width: 1000px;
+	width: 1500px;
 	text-align: center;
 }
 

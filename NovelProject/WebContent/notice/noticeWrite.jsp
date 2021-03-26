@@ -8,7 +8,7 @@
 <style type="text/css">
 table {
 	margin: auto;
-	width: 900px;
+	width: 1500px;
 }
 
 td h3 {

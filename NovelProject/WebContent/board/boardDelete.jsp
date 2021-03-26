@@ -8,8 +8,12 @@ String nowPage = (String) request.getAttribute("page");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC게시판</title>
+<title>Community Board</title>
 <style>
+table {
+	margin: auto;
+	width: 1500px;
+}
 #passForm {
 	width: 400px;
 	margin: auto;

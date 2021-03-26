@@ -20,6 +20,7 @@ String nowPage = (String) request.getAttribute("page");
 
 table {
 	margin: auto;
+	width: 1500px;
 }
 
 h3 {

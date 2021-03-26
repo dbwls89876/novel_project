@@ -32,9 +32,10 @@ public class NoticeModifyProAction implements Action {
 			out.println("</script>");
 		}
 		else {
-			article.setBoardID(noticeID);
+			article.setNoticeID(noticeID);
 			article.setTitle(request.getParameter("title"));
 			article.setContent(request.getParameter("content"));
+			article.setFile(request.getParameter("file"));
 			isModifySuccess = noticeModifyProService.modifyArticle(article);
 			
 			if(!isModifySuccess) {

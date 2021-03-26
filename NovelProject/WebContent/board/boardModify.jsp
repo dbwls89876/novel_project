@@ -22,7 +22,7 @@ h3 {
 
 table {
 	margin: auto;
-	width: 450px;
+	width: 1500px;
 }
 
 .td_left {
