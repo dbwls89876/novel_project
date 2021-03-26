@@ -14,6 +14,7 @@ import action.Action;
 import member.action.MemberJoinAction;
 
 import member.action.MemberLoginAction;
+import member.action.MyInformationDeleteAction;
 import member.action.MyInformationModifyFormAction;
 import member.action.MyInformationModifyProAction;
 import member.action.MyInformationViewAction;
@@ -88,7 +89,16 @@ public class MemberFrontController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/myInformationModifyForm.me")){
+		}
+		else if(command.equals("/myInformationModifyPro.me")){
+			action = new MyInformationModifyProAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/myInformationModifyForm.me")){
 			action = new MyInformationModifyFormAction();
 			try{
 				forward=action.execute(request, response);
@@ -96,8 +106,8 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/myInformationModifyPro.me")){
-			action = new MyInformationModifyProAction();
+		else if(command.equals("/myInformationDelete.me")){
+			action = new MyInformationDeleteAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

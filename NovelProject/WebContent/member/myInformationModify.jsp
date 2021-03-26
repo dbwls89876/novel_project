@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<table>
+	<tr>
+		<td align="center"><br>
+			<jsp:include page="../menuTop.jsp"></jsp:include>
+		</td>
+	</tr>
+</table>
+<form action = "myInformationModifyPro.me">
 <table>
 	<tr>
 		<td>아이디 : </td>
@@ -34,10 +43,12 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<a href="../myInformationModifyPro.me">수정완료</a>&nbsp;&nbsp;
+		<input type="submit" value="수정완료">
+			
 			<input type="reset" value="수정취소"/>
 		</td>
 	</tr>	
 </table>
+</form>
 </body>
 </html>

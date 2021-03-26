@@ -16,32 +16,26 @@ public class MyInformationModifyProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = null;
-
+ActionForward forward = null;
+		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id")==null) {
-			response.setContentType("text/html'charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('로그인 해주세요')");
-			out.println("location.href='loginForm.me'");
-			out.println("</script>");
-		}else {
+		String memberID =(String)session.getAttribute("memberID");
+		if(memberID != null) {
 			Member member = new Member();
-			member.setMemberID((String)session.getAttribute("memberID"));
+			member.setMemberID(memberID);
 			member.setPassword(request.getParameter("password"));
 			member.setName(request.getParameter("name"));
 			member.setNickname(request.getParameter("nickname"));
 			member.setMobile(request.getParameter("mobile"));
 			member.setAddress(request.getParameter("address"));
-			
+			System.out.println(request.getParameter("name"));
 			MyInformationModifyProService myInformationModifyProService = new MyInformationModifyProService();
 			boolean isModifySuccess = myInformationModifyProService.modifyMember(member);
 			
 			if(isModifySuccess) {
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("myInformationView.me?id="+member.getMemberID());
+				forward.setPath("myInformationView.me");
 			}else {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();

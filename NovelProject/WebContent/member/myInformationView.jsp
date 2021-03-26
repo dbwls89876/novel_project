@@ -42,7 +42,7 @@
 	</tr>
 	<tr>
 		<td colspan=2>
-			<a href="member/myInformationModify.jsp">수정</a>
+			<a href="myInformationModifyForm.me">수정</a>
 			<a href="member/myInformationDelete.jsp">탈퇴</a>
 		</td>
 	</tr>	

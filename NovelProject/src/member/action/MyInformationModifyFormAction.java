@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.MyInformationModifyFormService;
+
+import member.svc.MyInformationViewService;
 import vo.ActionForward;
 import vo.Member;
 
@@ -18,7 +19,9 @@ public class MyInformationModifyFormAction implements Action {
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("memberID")==null) {
+		String memberID =(String)session.getAttribute("memberID");
+		
+		if(memberID==null) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -26,24 +29,16 @@ public class MyInformationModifyFormAction implements Action {
 			out.println("location.href='loginForm.me'");
 			out.println("</script>");
 		}else {
-			String memberID= request.getParameter("memberID");
 			
-			MyInformationModifyFormService myInformationModifyFormService = new MyInformationModifyFormService();
-			Member member = myInformationModifyFormService.getMember(memberID);
+			
+			MyInformationViewService myInformationViewService = new MyInformationViewService();
+			Member member = myInformationViewService.getMember(memberID);
 			if(memberID != null) {
-				request.setAttribute("memberID", memberID);
+				request.setAttribute("member", member);
 				forward = new ActionForward();
 				forward.setPath("/member/myInformationModify.jsp");
-			}else {
-				response.setContentType("text/html;charset=utf-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('회원정보가 없습니다.');");
-				out.println("location.href=myInformationView.me;");
-				out.println("</script>");
 			}
 		}
-		return forward;
+		return forward;	
 	}
-
 }

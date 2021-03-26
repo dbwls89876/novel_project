@@ -7,12 +7,20 @@ import vo.Member;
 
 public class MyInformationViewService {
 
-	public Member getMember(String viewId) {
-		Connection con = getConnection();
-		MemberDAO memberDAO = MemberDAO.getInstance();
-		memberDAO.setConnection(con);
-		Member member = memberDAO.selectMember(viewId);
-		close(con);
+	public Member getMember(String memberID) {
+		Member member = null;
+		Connection con = null;
+		try {
+			con = getConnection();
+			MemberDAO memberDAO = MemberDAO.getInstance();
+			memberDAO.setConnection(con);
+			
+			member = memberDAO.selectMember(memberID);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con);
+		}
 		return member;
+		}
 	}
-}
