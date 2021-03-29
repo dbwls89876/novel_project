@@ -18,6 +18,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>MVC게시판</title>
 <style type="text/css">
 #registForm {
@@ -49,22 +54,20 @@ table{
 </style>
 </head>
 <body>
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
+<div class="container p-3 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
+
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
 		<h2>
-			글 목록<a href="editionRegist.ed">작품등록</a>
+			글 목록<a href="editionRegistForm.ed">작품등록</a>
 		</h2>
 		<table>
 			<%
 			if(articleList != null && listCount > 0){
 			%>
 				<tr id="tr_top">
-					<td>번호</td>
 					<td>제목</td>
 					<td>작성자</td>
 					<td>날짜</td>
@@ -76,8 +79,8 @@ table{
 				
 				%>
 				<tr>
-					<td><%=articleList.get(i).getEditionID() %></td>
-					<td><%=articleList.get(i).getLiteraryID() %></td>
+					<td><%=articleList.get(i).getTitle() %></td>
+					<td><%=articleList.get(i).getId() %></td>
 					<td><%=articleList.get(i).getDate() %></td>
 					<td><%=articleList.get(i).getCount() %></td>
 				</tr>

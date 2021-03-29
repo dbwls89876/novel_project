@@ -29,22 +29,21 @@ public class EditionRegistAction implements Action {
 		edition.setTitle(title);
 		edition.setContent(content);
 		EditionRegistService editionRegistService = new EditionRegistService();
-		boolean isWriteSuccess = editionRegistService.registArticle(edition);
 		
-		if(!isWriteSuccess) {
-			response.setContentType("text/html;charset=UTF-8");
+		boolean isWriteSuccess = editionRegistService.registEdition(edition);
+		
+		if(isWriteSuccess) {
+			forward = new ActionForward("editionWriterList.ed", true);
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('등록실패')");
+			out.println("alert('등록실패');");
 			out.println("history.back();");
 			out.println("</script>");
-		}else {
-			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("/editionRegist.ed");
 		}
+
 		
 		return forward;
 	}
-
 }

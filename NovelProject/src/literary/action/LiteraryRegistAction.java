@@ -35,7 +35,7 @@ public class LiteraryRegistAction implements Action {
 		String image = multi.getFilesystemName("image");
 
 		Literary literary = new Literary(
-				(int)session.getAttribute("id"), 
+				(int)session.getAttribute("id"),
 				0, 
 				multi.getParameter("title"),
 				multi.getParameter("content"),

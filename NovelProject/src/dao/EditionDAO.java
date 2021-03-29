@@ -37,13 +37,15 @@ public class EditionDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into edition (id,title,content,date,count) values (?,?,?,now(),?)";
+			sql="insert into edition (id,literaryID,editionID,title,content,count,date) values (?,?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, edition.getId());
-			pstmt.setString(2, edition.getTitle());
-			pstmt.setString(3, edition.getContent());
-			pstmt.setInt(4, edition.getCount());
+			pstmt.setInt(2, edition.getLiteraryID());
+			pstmt.setInt(3, edition.getEditionID());
+			pstmt.setString(45, edition.getTitle());
+			pstmt.setString(5, edition.getContent());
+			pstmt.setInt(6, edition.getCount());
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {

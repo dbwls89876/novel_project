@@ -9,8 +9,7 @@ import dao.EditionDAO;
 
 public class EditionRegistService {
 
-	public static boolean registArticle(Edition edition) {
-		
+	public boolean registEdition(Edition edition) {
 		boolean isWriteSuccess = false;
 		Connection con = null;
 		try{
@@ -35,5 +34,4 @@ public class EditionRegistService {
 		}
 		return isWriteSuccess;
 	}
-
 }

@@ -18,6 +18,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>MVC게시판</title>
 <style type="text/css">
 #registForm {
@@ -49,11 +54,9 @@ table{
 </style>
 </head>
 <body>
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
+<div class="container p-3 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>>
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
 
@@ -62,7 +65,6 @@ table{
 			if(articleList != null && listCount > 0){
 			%>
 				<tr id="tr_top">
-					<td>번호</td>
 					<td>제목</td>
 					<td>작성자</td>
 					<td>날짜</td>
@@ -74,8 +76,8 @@ table{
 				
 				%>
 				<tr>
-					<td><%=articleList.get(i).getEditionID() %></td>
-					<td><%=articleList.get(i).getLiteraryID() %></td>
+					<td><%=articleList.get(i).getTitle() %></td>
+					<td><%=articleList.get(i).getId() %></td>
 					<td><%=articleList.get(i).getDate() %></td>
 					<td><%=articleList.get(i).getCount() %></td>
 				</tr>
@@ -86,20 +88,20 @@ table{
 		<%if(nowPage<=1){ %>
 			[이전]&nbsp;
 		<%}else{ %>
-			<a href="editionWriterList.ed?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+			<a href="editionReaderList.ed?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
 		<%} %>
 		<%for(int a=startPage;a<=endPage; a++){
 			if(a==nowPage){%>
 				[<%=a %>]
 			<%}else{ %>
 			
-				<a href="editionWriterList.ed?page=<%=a %>">[<%=a %>]</a>&nbsp;
+				<a href="editionReaderList.ed?page=<%=a %>">[<%=a %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		<%if(nowPage>=maxPage){ %>
 			[다음]
 		<%}else { %>
-			<a href="editionWriterList.ed?page=<%=nowPage+1 %>">[다음]</a>
+			<a href="editionReaderList.ed?page=<%=nowPage+1 %>">[다음]</a>
 		<%} %>
 					
 	</section>

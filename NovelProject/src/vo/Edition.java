@@ -10,7 +10,8 @@ public class Edition {
 	private String content;
 	Date date;
 	private int count;
-
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -53,7 +54,7 @@ public class Edition {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
-	
+
+
 	
 }

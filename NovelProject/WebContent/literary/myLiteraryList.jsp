@@ -8,34 +8,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-#listForm {
-	width: 700px;
-	height: 500px;
-	border: 1px solid red;
-	margin: auto;
-}
-
-h2 {
-	text-align: center
-}
-
-table {
-	margin: auto;
-	width: 550px;
-}
+	table{
+		margin: auto;
+		width: 1000px;
+		border:1px solid;
+	}
 
 </style>
 </head>
 <body>
+<div class="container p-3 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
+<table>
 	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
+		<td>
+			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
 		</td>
 	</tr>
-		<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
-<table>
 	<tr>	
 		<c:forEach var="literary" items="${myLiteraryList }" varStatus="status">
 		<td>	
