@@ -10020,7 +10020,7 @@ hr.light {
 }
 #mainNav ul li:hover ul {
 	display: block;
-	width: 1290px;
+	width: 100px;
 	height: 36px;
 	position: absolute;
 	margin: 0;
