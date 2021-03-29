@@ -6,7 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>펀딩 둘러보기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>전체 펀딩</title>
 <style type="text/css">
 	#listForm{
 		width: 1500px;
@@ -28,12 +33,11 @@
 </head>
 <body>
 
+<div class="container p-3 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
+<div class="container">
 <table>
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
 	<tr>
 		<td><a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a></td>
 	</tr>
@@ -59,6 +63,6 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 </body>
 </html>
