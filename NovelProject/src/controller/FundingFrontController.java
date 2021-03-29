@@ -55,7 +55,7 @@ public class FundingFrontController extends HttpServlet {
 		System.out.println(command);
 		
 		if(command.equals("/weekFunding.fun")) {
-			action = new WeekFundingAction();
+			action = new weekFundingAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {

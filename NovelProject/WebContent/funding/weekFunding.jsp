@@ -45,7 +45,7 @@
 			<c:forEach var = "funding" items="${weekFundingList }" varStatus = "status">
 				<tr>
 					<td class="novelImage" rowspan="2">
-						<a href="fundingContent.fun?literaryID=${funding.literaryID }">
+						<a href="fundingContent.fun?literaryID=${funding.literaryID }&fundingID=${funding.fundingID}">
 							<img src="images/${funding.image }" class="novelImage"/>				
 						</a>
 					</td>
@@ -61,6 +61,5 @@
 		</td>
 	</tr>
 </table>
-
 </body>
 </html>
