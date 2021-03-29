@@ -14,8 +14,28 @@
 <title>펀딩 결제창</title>
 </head>
 <body>
-<div class="container p-3 my-3">
+<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"><img src="images/${funding.image }" class="novelImage"/></div>
+		<div class="col-md-8">
+			<h1 class="my-4">${funding.title}</h1>
+			<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
+			<h4 class="my-4">${cost }% 달성</h4>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="my-4">선물 정보</div>
+		</div>
+		<div class="col-md-4">
+		
+		</div>
+	</div>
 </div>
 <table>
 	<tr>
@@ -28,7 +48,7 @@
 					<td>${funding.title}</td>
 				</tr>
 				<tr>
-					<td><fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
+					<td>
 					${cost }% 달성
 					</td>
 				</tr>
