@@ -32,7 +32,7 @@ public class NoticeModifyProAction implements Action {
 		
 		boolean isModifySuccess = false;
 		
-		int noticeID = Integer.parseInt(request.getParameter("noticeID"));
+		int noticeID = Integer.parseInt(multi.getParameter("noticeID"));
 		String nowPage = request.getParameter("page");
 		
 		boardBean = new BoardBean();
@@ -48,7 +48,7 @@ public class NoticeModifyProAction implements Action {
 			out.println("</script>");
 		}
 		else {
-			boardBean.setNoticeID(noticeID);
+			boardBean.setNoticeID(Integer.parseInt(multi.getParameter("noticeID")));
 			boardBean.setTitle(multi.getParameter("title"));
 			boardBean.setContent(multi.getParameter("content"));
 			boardBean.setFile(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));

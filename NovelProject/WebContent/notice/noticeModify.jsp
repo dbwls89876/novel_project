@@ -52,7 +52,7 @@ table {
 				value="<%=article.getNoticeID()%>" />
 			<table>
 				<tr>
-					<td colspan="2"><h3>게시판글수정</h3></td>
+					<td colspan="2"><h3>공지사항수정</h3></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="title">제목</label></td>
