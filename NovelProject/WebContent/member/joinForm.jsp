@@ -21,6 +21,7 @@
 function idCheck(){
 	window.open("idCheckForm.jsp","","width=300,height=200");
 }
+
 </script>
 </head>
 <body>
@@ -144,3 +145,4 @@ function idCheck(){
         }).open();
     }
 </script>
+

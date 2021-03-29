@@ -16,14 +16,13 @@ public class MemberLoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		Member member = new Member();		
+		Member member = null;		
 		String memberID = (request.getParameter("memberID"));
 		String password = (request.getParameter("password"));
 		
 		MemberLoginService memberLoginService = new MemberLoginService();
 		member = memberLoginService.getMember(memberID);
-		
-		if(member.getMemberID().equals(memberID)) {
+		if(member!=null && member.getMemberID().equals(memberID) && member.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberID", memberID);
 			session.setAttribute("id", member.getId());
@@ -31,11 +30,19 @@ public class MemberLoginAction implements Action {
 			forward.setRedirect(true);
 			forward.setPath("main.jsp");
 			
+		}else if(member!=null && !member.getPassword().equals(password)) {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('로그인 실패');");
+			out.println("alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');");
 			out.println("history.back();");
 			out.println("</script>");
 		}
