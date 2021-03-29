@@ -58,7 +58,7 @@ public class MemberFrontController extends HttpServlet {
 		Action action=null;
 		System.out.println(command);
 		
-		if(command.equals("/member/loginForm.me")){
+		if(command.equals("/loginForm.me")){
 			action = new MemberLoginAction();
 			try {
 				forward = action.execute(request, response);
@@ -66,7 +66,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/member/joinForm.me")) {
+		else if(command.equals("/joinForm.me")) {
 			action = new MemberJoinAction();
 			try {
 				forward = action.execute(request, response);

@@ -23,9 +23,13 @@ public class MyInformationDeleteAction implements Action {
 		boolean isModifySuccess = myInformationDeleteService.deleteMember(memberID);
 		
 		if(isModifySuccess) {
-			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("myInformationDeleteForm.me");
+			session.removeAttribute("memberID");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('탈퇴되었습니다.')");
+			out.println("location.href='main.jsp'");
+			out.println("</script>");
 		}
 		return forward;
 	}

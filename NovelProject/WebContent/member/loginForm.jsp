@@ -20,7 +20,7 @@
 
 </head>
 <body>
-<form name="loginform" action="loginForm.me" method="post">
+<form name="loginform" action="${pageContext.request.contextPath }/loginForm.me" method="post">
 <table>
 	<tr>
 		<td align="center"><br>

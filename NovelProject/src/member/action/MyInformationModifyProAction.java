@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.MyInformationModifyFormService;
 import member.svc.MyInformationModifyProService;
 import vo.ActionForward;
 import vo.Member;

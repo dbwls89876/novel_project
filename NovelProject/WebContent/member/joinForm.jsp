@@ -24,7 +24,7 @@ function idCheck(){
 </script>
 </head>
 <body>
-<form name="joinform" action="joinForm.me" method="post">
+<form name="joinform" action="${pageContext.request.contextPath }/joinForm.me" method="post">
 <table>
 	<tr>
 		<td align="center"><br>
