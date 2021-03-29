@@ -21,10 +21,10 @@ if(!check){ out.println("<p>사용 가능한 아이디입니다.</p>");
 out.println("<a href='javascript:apply(\"" + memberID + "\")'>[적용]</a>"); 
 %> 
 <script> 
-function apply(id){ 
+function apply(memberID){ 
 //2) 중복확인 id를 부모창에 적용 
 //부모창 
-opener opener.document.regForm.id.value=id; 
+opener opener.document.regForm.memberID.value=memberID; 
 window.close(); //창닫기 
 }//apply () end 
 </script> 

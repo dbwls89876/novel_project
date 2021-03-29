@@ -18,9 +18,33 @@
 	}
 </style>
 <script>
-function idCheck(){
-	window.open("idCheckForm.jsp","","width=300,height=200");
-}
+var chkId=false;
+var idcheck;
+
+function formCheck(f){
+	if(!idCheck || idCheck!=f.memberID.value.trim()){
+		alert("아이디 중복 확인 하세요!");
+		return false;
+	}
+	if(f.password.value.trim()==""){
+		alert("비밀번호를 입력하세요!");
+		f.password.value="";
+		f.password.focus();
+		return false;
+	}
+	if(f.password.value.length < 5 || f.password.value.lenghth > 10) {
+		alert("비밀번호는 5~10자로 설정하세요")
+		f.password.value="";
+		f.password.focus();
+		return false;
+	}
+	if(f.password.value.trim() != f.passwordchk.value.trim()){
+		alert("비밀번호가 일치하지 않습니다.");
+		f.password.value="";
+		f.passwordchk.value="";
+		f.password.focus();
+		return false;
+	}
 
 </script>
 </head>

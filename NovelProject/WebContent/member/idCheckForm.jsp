@@ -6,14 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	<div style="text-align: center">
-	<h3>ID 중복 확인</h3>
-	<form method="post" action="idCheckPro.jsp"onsubmit="return blankCheck(this)"> 
-	아이디 : <input type="text" name="memberID" maxlength="10" autofocus> 
-	<input type="submit" value="중복확인"> </form> 
-	</div> 
-	
 	<script> 
 	function blankCheck(f){ 
 		var id=f.id.value; 
@@ -25,7 +17,12 @@
 			return true; 
 			}//blankCheck() end 
 			</script>
-
-
+<body>
+	<div style="text-align: center">
+	<h3>ID 중복 확인</h3>
+	<form method="post" action="idCheckPro.jsp"onsubmit="return blankCheck(this)"> 
+	아이디 : <input type="text" name="memberID" maxlength="10" autofocus> 
+	<input type="submit" value="중복확인"> </form> 
+	</div> 
 </body>
 </html>
