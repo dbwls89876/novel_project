@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container p-5 my-3">
-	<jsp:include page="../menuTop.jsp"></jsp:include>
+	<jsp:include page="menuTop.jsp"></jsp:include>
 </div>
 </body>
 </html>
