@@ -10152,7 +10152,13 @@ header.masthead h1 {
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption, #portfolio .container-sm .portfolio-box:hover .portfolio-box-caption, #portfolio .container-md .portfolio-box:hover .portfolio-box-caption, #portfolio .container-lg .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
-
+.grayBox{
+	border:1px solid gray;
+	border-radius: 15px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
 }
