@@ -22,7 +22,7 @@ var chkId=false;
 var idcheck;
 
 function formCheck(f){
-	if(!idCheck || idCheck!=f.memberID.value.trim()){
+	if(!chkId || idcheck!=f.memberID.value.trim()){
 		alert("아이디 중복 확인 하세요!");
 		return false;
 	}
@@ -45,7 +45,8 @@ function formCheck(f){
 		f.password.focus();
 		return false;
 	}
-
+	//f.submit();
+}
 </script>
 </head>
 <body>
@@ -64,9 +65,10 @@ function formCheck(f){
 		</td>
 	</tr>
 	<tr>
-		<td><label for="memberID">ID : </label></td>
+		<td><label for="memberID">아이디 : </label></td>
 		<td align=left><input type="text" name="memberID" id="memberID" required/>
-		<input type="button" value="ID 중복 확인" onclick="idCheck()" /></td>
+			<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('idCheck.jsp?openInit=ture','','width=300,height=200')"/>
+		</td>
 	</tr>
 	<tr>
 		<td><label for="password">비밀번호 : </label></td>

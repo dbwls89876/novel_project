@@ -16,7 +16,7 @@ public class EditionDetailViewAction implements Action {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Edition edition = editionDetailService.getEditionDetail(id);
 		request.setAttribute("edition", edition);
-		ActionForward forward = new ActionForward("editionDetailView.jsp", false);
+		ActionForward forward = new ActionForward("edition/editionDetailView.jsp", false);
 		return forward;
 	}
 

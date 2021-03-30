@@ -118,13 +118,13 @@ public class EditionDAO {
 	
 
 	//조회수 업데이트
-	public int updateReadCount(int board_num) {
+	public int updateReadCount(int id) {
 		int updateCount=0;
 		PreparedStatement pstmt = null;
-		String sql = "update board set board_readcount = board_readcount+1 where board_num=?";
+		String sql = "update member set count = count+1 where id="+id;
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, board_num);
+			pstmt.setInt(1, id);
 			updateCount = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

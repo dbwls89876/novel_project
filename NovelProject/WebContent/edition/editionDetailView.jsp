@@ -24,9 +24,11 @@
 <div class="container p-3 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<section id="listForm">
-	${edition.title }<br>
-	${edition.content }<br>
-</section>
+<table>
+<tr>
+<td>${edition.title }</td>
+<td>${edition.content }</td>
+</tr>
+</table>
 </body>
 </html>
