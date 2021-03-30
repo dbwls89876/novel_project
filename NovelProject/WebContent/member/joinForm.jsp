@@ -21,8 +21,12 @@
 var chkId=false;
 var idcheck;
 
+var chknickname=false;
+var nicknamecheck;
+
+
 function formCheck(f){
-	if(!chkId || idcheck!=f.memberID.value.trim()){
+	if(chkId || idcheck!=f.memberID.value.trim()){
 		alert("아이디 중복 확인 하세요!");
 		return false;
 	}
@@ -38,11 +42,15 @@ function formCheck(f){
 		f.password.focus();
 		return false;
 	}
-	if(f.password.value.trim() != f.passwordchk.value.trim()){
+	if(f.password.value.trim() != f.passchk.value.trim()){
 		alert("비밀번호가 일치하지 않습니다.");
 		f.password.value="";
-		f.passwordchk.value="";
+		f.passchk.value="";
 		f.password.focus();
+		return false;
+	}
+	if(!chknickname || nicknamecheck!=f.nickname.value.trim()){
+		alert("닉네임 중복 확인 하세요!");
 		return false;
 	}
 	//f.submit();
@@ -75,8 +83,8 @@ function formCheck(f){
 		<td align=left><input type="password" name="password" id="password"/></td>
 	</tr>
 	<tr>
-		<td><label for="passwordchk">비밀번호 확인 : </label></td>
-		<td align=left><input type="password" name="passwordchk" id="passwordchk" /></td>
+		<td><label for="passchk">비밀번호 확인 : </label></td>
+		<td align=left><input type="password" name="password" id="password" /></td>
 	</tr>
 	<tr>
 		<td><label for="name">이름 : </label></td>
@@ -84,7 +92,9 @@ function formCheck(f){
 	</tr>
 	<tr>
 		<td><label for="nickname">닉네임 : </label></td>
-		<td align=left><input type="text" name="nickname" id="nickname"/></td>
+		<td align=left><input type="text" name="nickname" id="nickname" required/>
+			<input type="button" value="닉네임 중복 확인" id="nicknameCheck" onclick="window.open('nicknameCheck.jsp?openInit=ture','','width=300,height=200')"/>
+		</td>
 	</tr>
 	<tr>
 		<td><label for="mobile">휴대폰번호 : </label></td>

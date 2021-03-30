@@ -14,6 +14,7 @@ public class Member {
 	int level;
 	Date date;
 	int money;
+
 	
 	public int getId() {
 		return id;
@@ -81,6 +82,7 @@ public class Member {
 	public void setMoney(int money) {
 		this.money = money;
 	}
+
 	
 	
 	
