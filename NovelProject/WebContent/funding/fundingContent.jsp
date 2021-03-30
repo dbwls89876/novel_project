@@ -13,43 +13,58 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <title>${funding.title }</title>
+<style type="text/css">
+img{
+	max-width: 100%;
+	height: auto;
+}
+</style>
 </head>
+<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
 <body>
-<div class="container p-3 my-3">
+<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<table>
-	<tr><td><h1>${funding.title }</h1></td></tr>
-	
-	<tr><td>
-		<table>
-			<tr><td rowspan="6"><img src="images/${funding.image }" class="fundingImage"></td></tr>
-			<tr><td>모인 금액</td></tr>
-			<tr><td>${funding.nowCost }원</td></tr>
-			<tr>
-			<td><fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
-					${cost }% 달성
-			</tr>
-			<tr><td>남은 시간</td></tr>
-			<tr><td>${restTime }일</td></tr>
-		</table>
-	</td></tr>
-	
-	<tr><td>
-		<table> 
-			<tr><td>${funding.content }</td></tr>
-		</table>
-	</td></tr>
-	
-	<tr><td>
-		<c:forEach var = "fundingGoods" items="${fundingGoodsList }" varStatus = "status">
-			<table border="1" onClick="location.href='fundingPayment.fun?literaryID=${funding.literaryID }&goodsID=${fundingGoods.goodsID}&cost=${fundingGoods.cost }'">
-			<tr><td>${fundingGoods.name }</td></tr>
-			<tr><td>${fundingGoods.cost }원</td></tr>
-			<tr><td>${fundingGoods.maxNumber - fundingGoods.count }개 남음</td></tr>			
-			</table>
-		</c:forEach>
-	</td></tr>
-</table>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="display-2">${funding.title }</h1>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="my-5"><img src="images/${funding.image }"></div>
+		</div>
+		<div class="col-md-4">
+			<div class="my-5">모인금액</div>
+			<div class="my-2"><h1>${funding.nowCost }원</h1></div>
+			<div class="my-3">${cost }% 달성</div>
+			<div class="mt-5">남은 시간
+			<div class="my-2"><h1>${restTime }일</h1></div>
+		</div>
+	</div>
+</div>
+<hr class="grayLine">
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			${funding.content }
+		</div>
+		<div class="col-md-4">
+			<c:forEach var = "fundingGoods" items="${fundingGoodsList }" varStatus = "status">
+				<div class="grayBox">
+					<table onClick="location.href='fundingPayment.fun?literaryID=${funding.literaryID }&goodsID=${fundingGoods.goodsID}&cost=${fundingGoods.cost }'">
+					<tr><td>${fundingGoods.name }</td></tr>
+					<tr><td>${fundingGoods.cost }원</td></tr>
+					<tr><td>${fundingGoods.maxNumber - fundingGoods.count }개 남음</td></tr>			
+					</table>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

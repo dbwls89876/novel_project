@@ -13,13 +13,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>펀딩 결제창</title>
 <style type="text/css">
-.grayBox{
-	border:1px solid gray;
-	border-radius: 15px;
-	padding: 10px;
-	margin-top: 10px;
-	margin-bottom: 30px;
-}
 table th{
 	font-weight: bold;
 	padding:5px;

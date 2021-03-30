@@ -35,6 +35,8 @@
 <div class="container p-3 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
+
+
 <table>
 	<tr>
 		<td><a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a></td>

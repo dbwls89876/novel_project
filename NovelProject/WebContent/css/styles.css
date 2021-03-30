@@ -10159,6 +10159,10 @@ header.masthead h1 {
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
+.grayLine{
+	border:1px solid gray;
+	border-collapse: collapse;
+}
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
 }
