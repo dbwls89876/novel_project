@@ -12,6 +12,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>펀딩 결제창</title>
+<style type="text/css">
+.grayBox{
+	border:1px solid gray;
+	border-radius: 15px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+table th{
+	font-weight: bold;
+	padding:5px;
+	padding-right: 30px;
+}
+</style>
 </head>
 <body>
 <div class="container p-5 my-3">
@@ -21,62 +35,40 @@
 	<div class="row">
 		<div class="col-md-4"><img src="images/${funding.image }" class="novelImage"/></div>
 		<div class="col-md-8">
-			<h1 class="my-4">${funding.title}</h1>
+			<h1 class="my-2">${funding.title}</h1>
 			<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
-			<h4 class="my-4">${cost }% 달성</h4>
+			<h4 class="my-2">${cost }% 달성</h4>
 		</div>
 	</div>
 </div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<div class="my-4">선물 정보</div>
+			<div class="mt-3">책 정보</div>
+			<div class="grayBox">
+				<table>
+				<tr><th>구성</th><td>${fundingGoods.name }</td></tr>
+				<tr><th>금액</th><td>${fundingGoods.cost }</td></tr>
+				<tr><th>예상 전달일</th><td>${funding.deliveryDate }</td></tr>
+				</table>
+			</div>
+			<div class="my-2">후원자 정보</div>
+			<div class="grayBox">
+				<table>
+					<tr><th>연락처</th><td><input type="text" value="${member.mobile }"></td></tr>
+					<tr><th>배송지</th><td>${member.address }</td></tr>	
+				</table>
+			</div>
 		</div>
 		<div class="col-md-4">
-		
+			<div class="mt-5">
+			<div class="grayBox">
+			후원하기는 아직 실현되지 않은 창작자의 프로젝트에 제작비를 후원하는 과정입니다. 그렇기 때문에 제작 계획이 변경될 수 있으며, 프로젝트를 완수하고 후원자와 성실히 소통할 책임은 프로젝트 주체인 창작자에게 있습니다.
+			</div>
+			</div>
+			<button type="button" class="btn btn-light" onclick = "location.href ='fundingPaymentUpdate.fun?fundingID=${funding.fundingID }&goodsID=${fundingGoods.goodsID}&cost=${fundingGoods.cost}'">후원하기</button>
 		</div>
 	</div>
 </div>
-<table>
-	<tr>
-		<td>
-			<table border="1">
-				<tr>
-					<td class="novelImage" rowspan="2">
-						<img src="images/${funding.image }" class="novelImage"/>
-					</td>
-					<td>${funding.title}</td>
-				</tr>
-				<tr>
-					<td>
-					${cost }% 달성
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr><td>책 정보</td></tr>
-	<tr>
-		<td>
-			<table border = "1">
-				<tr><td>구성</td><td>${fundingGoods.name }</td></tr>
-				<tr><td>금액</td><td>${fundingGoods.cost }</td></tr>
-				<tr><td>예상 전달일</td><td>${funding.deliveryDate }</td></tr>
-			</table>
-		</td>
-	</tr>
-	
-	<tr><td>후원자 정보</td></tr>
-	<tr>
-		<td>
-			<table border = "1">
-				<tr><td>연락처</td><td><input type="text" value="${member.mobile }"></td></tr>
-				<tr><td>배송지</td><td>${member.address }</td></tr>	
-			</table>
-		</td>
-	</tr>
-	
-</table>
-<a href="fundingPaymentUpdate.fun?fundingID=${funding.fundingID }&goodsID=${fundingGoods.goodsID}&cost=${fundingGoods.cost}">후원하기</a>
 </body>
 </html>
