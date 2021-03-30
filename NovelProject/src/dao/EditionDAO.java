@@ -118,13 +118,13 @@ public class EditionDAO {
 	
 
 	//조회수 업데이트
-	public int updateReadCount(int id) {
+	public int updateCount(int num) {
 		int updateCount=0;
 		PreparedStatement pstmt = null;
-		String sql = "update member set count = count+1 where id="+id;
+		String sql = "update edition set count = count+1 where num=?";
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, id);
+			pstmt.setInt(1, num);
 			updateCount = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -134,8 +134,33 @@ public class EditionDAO {
 		return updateCount;
 	}
 
-	public Edition selectEdition(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	//회차 상세 내용 보기
+	public Edition selectArticle(int num) {
+		Edition article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from edition where num=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				article = new Edition();
+				article.setId(rs.getInt("id"));
+				article.setLiteraryID(rs.getInt("literaryID"));
+				article.setEditionID(rs.getInt("editionID"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+				article.setDate(rs.getDate("date"));
+				article.setCount(rs.getInt("count"));
+				article.setNum(rs.getInt("num"));				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return article;
 	}
 }

@@ -9,19 +9,28 @@ import vo.Edition;
 
 public class EditionDetailService {
 
-	public Edition getEditionDetail(int id) {
-		Connection con = getConnection();
-		EditionDAO editionDAO = EditionDAO.getInstance();
-		editionDAO.setConnection(con);
-		int updateCount = editionDAO.updateReadCount(id);
-		
-		if(updateCount>0) {
-			commit(con);
-		}else {
-			rollback(con);
+	public Edition getArticle(int num) {
+		Edition article = null;
+		Connection con = null;
+		try {
+			con=getConnection();
+			EditionDAO editionDAO = EditionDAO.getInstance();
+			editionDAO.setConnection(con);
+			
+			int updateCount = editionDAO.updateCount(num);
+			if(updateCount>0) {
+				commit(con);
+			}else {
+				rollback(con);
+			}
+			
+			article = editionDAO.selectArticle(num);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(con);
 		}
-		Edition edition = editionDAO.selectEdition(id);
-		close(con);
-		return edition;
+		return article;
 	}
+
 }
