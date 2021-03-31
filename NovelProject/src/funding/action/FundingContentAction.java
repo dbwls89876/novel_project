@@ -22,7 +22,7 @@ public class FundingContentAction implements Action {
 		int fundingID = Integer.parseInt(request.getParameter("fundingID"));
 		
 		FundingContentService fundingContentService = new FundingContentService();
-		funding = fundingContentService.getFunding(literaryID);
+		funding = fundingContentService.getFunding(fundingID);
 		fundingGoodsList = fundingContentService.getFundingGoodsList(fundingID);
 		long dateDif = funding.getEndDate().getTime() - funding.getStartDate().getTime();
 		dateDif /= (24*60*60*1000);

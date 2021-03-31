@@ -67,14 +67,14 @@ public class FundingDAO {
 	}
 	
 	//펀딩 불러오기
-	public Funding selectFunding(int literaryID) {
+	public Funding selectFunding(int fundingID) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Funding funding = null;
 		
 		try {
-			pstmt = con.prepareStatement("select * from funding where literaryID = ?");
-			pstmt.setInt(1,  literaryID);
+			pstmt = con.prepareStatement("select * from funding where fundingID = ?");
+			pstmt.setInt(1,  fundingID);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

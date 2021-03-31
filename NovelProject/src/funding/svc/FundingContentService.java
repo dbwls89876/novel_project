@@ -11,14 +11,14 @@ import vo.FundingGoods;
 
 public class FundingContentService {
 
-	public Funding getFunding(int literaryID) {
+	public Funding getFunding(int fundingID) {
 		Connection con = null;
 		Funding funding = null;
 		try {
 			con = getConnection();
 			FundingDAO fundingDAO = FundingDAO.getInstance();
 			fundingDAO.setConnection(con);
-			funding = fundingDAO.selectFunding(literaryID);
+			funding = fundingDAO.selectFunding(fundingID);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
