@@ -21,6 +21,7 @@ public class FundingRegisterService {
 			FundingDAO fundingDAO = FundingDAO.getInstance();
 			fundingDAO.setConnection(con);
 			isRegisterSuccess1 = fundingDAO.insertFunding(funding);
+			
 			//fundingGoods 추가를 위해 fundingID get
 			int fundingID = fundingDAO.selectFundingID(funding);
 			FundingGoodsDAO fundingGoodsDAO = FundingGoodsDAO.getInstance();

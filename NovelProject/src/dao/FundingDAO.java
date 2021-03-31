@@ -183,10 +183,10 @@ public class FundingDAO {
 		int fundingID = -1;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select fundingID from funding where literaryID=?";
+		String sql = "select fundingID from funding where title=?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, funding.getLiteraryID());
+			pstmt.setString(1, funding.getTitle());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				fundingID = rs.getInt("fundingID");
