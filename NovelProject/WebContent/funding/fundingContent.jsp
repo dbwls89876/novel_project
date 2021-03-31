@@ -15,8 +15,10 @@
 <title>${funding.title }</title>
 <style type="text/css">
 img{
+	overflow:hidden;
 	max-width: 100%;
-	height: auto;
+	height: 500px;
+	margin-right: 40px;
 }
 </style>
 </head>
@@ -38,10 +40,10 @@ img{
 			<div class="my-5"><img src="images/${funding.image }"></div>
 		</div>
 		<div class="col-md-4">
-			<div class="my-5">모인금액</div>
+			<div class="mt-5">모인금액</div>
 			<div class="my-2"><h1>${funding.nowCost }원</h1></div>
 			<div class="my-3">${cost }% 달성</div>
-			<div class="mt-5">남은 시간
+			<div class="mt-5">남은 시간</div>
 			<div class="my-2"><h1>${restTime }일</h1></div>
 		</div>
 	</div>
