@@ -5,6 +5,7 @@ import java.util.Date;
 public class Literary {
 	private int id; //유저고유번호
 	private int literaryID; //작품고유번호
+	private String nickname;
 	private String title;
 	private String content;
 	private String genre;
@@ -13,26 +14,18 @@ public class Literary {
 	
 	public Literary() {}
 	
-	public Literary(int id, int literaryID, String name, String content, String genre, String image, Date date) {
+	public Literary(int id, int literaryID, String nickname, String title, String content, String genre, String image, Date date) {
 		super();
 		this.id = id;
 		this.literaryID = literaryID;
-		this.title = name;
+		this.nickname = nickname;
+		this.title = title;
 		this.content = content;
 		this.genre = genre;
 		this.image = image;
 		this.date = date;
 	}
-	public Literary(int id, int literaryID, String name, String content, String genre, String image) {
-		super();
-		this.id = id;
-		this.literaryID = literaryID;
-		this.title = name;
-		this.content = content;
-		this.genre = genre;
-		this.image = image;
 
-	}	
 	public int getId() {
 		return id;
 	}
@@ -45,6 +38,14 @@ public class Literary {
 	public void setLiteraryID(int literaryID) {
 		this.literaryID = literaryID;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public String getTitle() {
 		return title;
 	}

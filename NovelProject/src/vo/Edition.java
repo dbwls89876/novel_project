@@ -10,7 +10,6 @@ public class Edition {
 	private String content;
 	Date date;
 	private int count;
-	private int num;
 	
 	
 	public int getId() {
@@ -55,13 +54,4 @@ public class Edition {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-
-	
 }

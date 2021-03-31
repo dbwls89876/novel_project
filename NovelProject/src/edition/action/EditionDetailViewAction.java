@@ -19,8 +19,6 @@ public class EditionDetailViewAction implements Action {
 		
 		EditionDetailService editionDetailService = new EditionDetailService();
 		Edition article = editionDetailService.getArticle(num);
-		System.out.println(article.getTitle());
-		System.out.println(article.getContent());
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
 		ActionForward forward = new ActionForward();

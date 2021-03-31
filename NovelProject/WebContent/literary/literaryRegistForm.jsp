@@ -16,11 +16,11 @@
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
 <h2>새 작품 등록</h2>
-<form action ="literaryRegist.lit" method="post" enctype="multipart/form-data" name="literaryform">
+<form action ="literaryRegist.lit" method="post" name="literaryform">
 	<table>
 		<tr>
 			<td class="td_left"><label for="nickname">글쓴이</label></td>
-			<td class="td_right"><input type="hidden" name="nickname" value='${member.nickname }'/></td>
+			<td class="td_right"><input type="text" name="nickname" value='${literary.nickname }'/></td>
 		</tr>
 		<tr>
 			<td class="td_left"><label for="title">제목</label></td>

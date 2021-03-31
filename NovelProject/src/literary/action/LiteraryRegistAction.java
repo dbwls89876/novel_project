@@ -2,13 +2,9 @@ package literary.action;
 
 import java.io.PrintWriter;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
 import literary.svc.LiteraryRegistService;
@@ -19,31 +15,21 @@ public class LiteraryRegistAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		LiteraryRegistService LiteraryRegistService = new LiteraryRegistService();
-		String realFolder="";
-		String saveFolder="/literary/imageUpload";
-		int fileSize=5*1024*1024;
+		ActionForward forward=null;
 		HttpSession session = request.getSession();
-		ServletContext context = request.getServletContext();
-		realFolder=context.getRealPath(saveFolder);
-		MultipartRequest multi=new MultipartRequest(request,
-				realFolder,
-				fileSize,
-				"UTF-8",
-				new DefaultFileRenamePolicy());
-		
-		String image = multi.getFilesystemName("image");
+		(int)session.getAttribute("id");
+			
+		Literary literary = new Literary();
+		literary.setLiteraryID(Integer.parseInt(request.getParameter("literaryID")));
+		literary.setNickname(request.getParameter("nickname"));
+		literary.setTitle(request.getParameter("title"));
+		literary.setContent(request.getParameter("content"));
+		literary.setGenre(request.getParameter("genre"));
+		literary.setImage(request.getParameter("image"));
+		literary.setDate(java.sql.Date.valueOf(request.getParameter("date")));
 
-		Literary literary = new Literary(
-				(int)session.getAttribute("id"),
-				0, 
-				multi.getParameter("title"),
-				multi.getParameter("content"),
-				multi.getParameter("genre"), 
-				image);
-		boolean isRegistSuccess = LiteraryRegistService.registLiterary(literary);
-		ActionForward forward = null;
-
+		LiteraryRegistService literaryRegistService = new LiteraryRegistService();
+		boolean isRegistSuccess = literaryRegistService.registLiterary(literary);
 		if(isRegistSuccess) {
 			forward = new ActionForward("myLiteraryList.lit", true);
 		} else {
@@ -54,8 +40,6 @@ public class LiteraryRegistAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 		}
-
-		
 		return forward;
 	}
 }

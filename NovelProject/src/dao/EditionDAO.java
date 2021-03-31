@@ -29,7 +29,7 @@ public class EditionDAO {
 		this.con = con;
 	}
 	
-	//글등록
+	//회차 등록
 	public int insertArticle(Edition edition) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -43,7 +43,7 @@ public class EditionDAO {
 			pstmt.setInt(1, edition.getId());
 			pstmt.setInt(2, edition.getLiteraryID());
 			pstmt.setInt(3, edition.getEditionID());
-			pstmt.setString(45, edition.getTitle());
+			pstmt.setString(4, edition.getTitle());
 			pstmt.setString(5, edition.getContent());
 			pstmt.setInt(6, edition.getCount());
 			insertCount=pstmt.executeUpdate();
@@ -57,7 +57,7 @@ public class EditionDAO {
 		return insertCount;
 	}
 
-	//글 갯수 구하기
+	//회차 갯수 구하기
 	public int selectListCount() {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -79,25 +79,25 @@ public class EditionDAO {
 		return listCount;
 	}
 
-	//글 목록보기
+	//회차 목록보기
 	public ArrayList<Edition> selectArticleList(int page, int limit) {
 		ArrayList<Edition> list = new ArrayList<Edition>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from edition order by editionID desc limit ?, ?";
+		String edition_list_sql = "select editionID, literaryID, id, title, content, date, Count from edition order by editionID desc limit ?, ?";
 		Edition edition = new Edition();
 		int startrow = (page-1)*limit;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(edition_list_sql);
 			pstmt.setInt(1, startrow);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				edition.setId(rs.getInt("id"));
-				edition.setLiteraryID(rs.getInt("literaryID"));
 				edition.setEditionID(rs.getInt("editionID"));
+				edition.setLiteraryID(rs.getInt("literaryID"));
+				edition.setId(rs.getInt("id"));
 				edition.setTitle(rs.getString("title"));
 				edition.setContent(rs.getString("content"));
 				edition.setDate(rs.getDate("date"));
@@ -118,13 +118,13 @@ public class EditionDAO {
 	
 
 	//조회수 업데이트
-	public int updateCount(int num) {
+	public int updateCount(int editionID) {
 		int updateCount=0;
 		PreparedStatement pstmt = null;
-		String sql = "update edition set count = count+1 where num=?";
+		String sql = "update edition set count = count+1 where editionID=?";
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, editionID);
 			updateCount = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -135,14 +135,14 @@ public class EditionDAO {
 	}
 
 	//회차 상세 내용 보기
-	public Edition selectArticle(int num) {
+	public Edition selectArticle(int editionID) {
 		Edition article = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from edition where num=?";
+		String sql = "select * from edition where editionID=?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, editionID);
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
 				article = new Edition();
@@ -152,8 +152,7 @@ public class EditionDAO {
 				article.setTitle(rs.getString("title"));
 				article.setContent(rs.getString("content"));
 				article.setDate(rs.getDate("date"));
-				article.setCount(rs.getInt("count"));
-				article.setNum(rs.getInt("num"));				
+				article.setCount(rs.getInt("count"));			
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

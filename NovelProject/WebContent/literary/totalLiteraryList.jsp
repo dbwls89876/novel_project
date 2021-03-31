@@ -43,14 +43,21 @@
 			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
 		</td>
 	</tr>
-	<tr>	
-		<c:forEach var="literary" items="${literaryList }" varStatus="status">
-		<td>	
-			<a href="editionReaderList.ed?id=${literary.id}">
-			<img src="images/${literary.image}" class="literaryImage" /></a><br>
-			${literary.title}<br> ${literary.genre}<br>
+	<tr>
+		<td>
+			<table>
+			<c:forEach var = "literary" items="${literaryList }" varStatus = "status">
+				<tr>
+					<td class="literaryImage" rowspan="2">
+						<a href="editionReaderList.ed?literaryID=${literary.literaryID }">
+							<img src="images/${literary.image }" class="literaryImage"/>				
+						</a>
+					</td>
+					<td>${literary.title}</td></tr>
+				<tr><td>${literary.genre}</td></tr>
+			</c:forEach>
+			</table>
 		</td>
-		</c:forEach>
 	</tr>
 </table>
 </body>

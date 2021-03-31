@@ -14,7 +14,6 @@ public class Member {
 	int level;
 	Date date;
 	int money;
-
 	
 	public int getId() {
 		return id;
