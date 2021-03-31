@@ -129,7 +129,6 @@ public class FundingFrontController extends HttpServlet {
 			}
 		}
 		
-		
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

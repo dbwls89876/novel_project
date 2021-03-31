@@ -10,7 +10,7 @@
 <div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<table border="0">
+<table>
 	<tr>
 	<td><a href="../fundingPermission.fun">펀딩 수락</a></td>
 	</tr>
