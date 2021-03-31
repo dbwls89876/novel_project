@@ -6,7 +6,6 @@ public class CommentPageInfo {
 	private int commentStartPage;
 	private int commentEndPage;
 	private int commentListCount;
-	
 	public int getCommentPage() {
 		return commentPage;
 	}

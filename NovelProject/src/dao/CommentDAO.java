@@ -4,100 +4,132 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 import vo.CommentBean;
 
 public class CommentDAO {
 	
-	DataSource ds;
-	Connection con;
-	private static CommentDAO commentDAO;
+	private Connection con;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
 	
-	private CommentDAO() {
-		
-	}
+	private static CommentDAO instance;
 	
+	private CommentDAO() {}
 	public static CommentDAO getInstance() {
-		if (commentDAO == null) {
-			commentDAO = new CommentDAO();
-		} 
-		return commentDAO;
+		if(instance == null)
+			instance = new CommentDAO();
+		return instance;
 	}
-	
-	//댓글 등록
-	public int insertComment (CommentBean commentArticle) {
+
+	public int getSeq() {
 		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int num = 0;
-		String sql = "";
-		int insertCount = 0;
-		
+		int result = 1;
 		try {
+			con = DBConnection.getConnection();
+			
+			StringBuffer sql = new StringBuffer();
+			sql.append("select comment_seq.nextval from dual");
+			
+			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			
-			sql = "insert into boardComment (commentID, memberID, content, date) VALUES (?, ?, ?, now())";
+			if(rs.next()) result = rs.getInt(1);
 			
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setInt(1, num);
-			pstmt.setString(2, commentArticle.getMemberID());
-			pstmt.setString(3, commentArticle.getContent());
-			pstmt.setInt(4, 0);
-			
-			insertCount = pstmt.executeUpdate();
-			
-			
-		} catch(Exception e) {
-			System.out.println("insertCount 에러 : " + e);
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
 		}
-		return insertCount;
+		
+		close();
+		return result;
 	}
 	
-	//댓글 수정
-	public int updateComment (CommentBean commentArticle) {
+	public boolean insertComment(CommentBean comment) {
 		
-		int updateCount = 0;
-		PreparedStatement pstmt = null;
-		String sql = "update boardComment set content = ? where commentID = ?"; 
+		boolean result = false;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, commentArticle.getContent());
-			pstmt.setInt(2, commentArticle.getCommentID());
-			updateCount = pstmt.executeUpdate();		
-		} catch(Exception e) {
-			System.out.println("updateCount 에러 : " + e);
+			con = DBConnection.getConnection();
+			
+			con.setAutoCommit(false);
+			
+			StringBuffer sql = new StringBuffer();
+			sql.append("insert into boardComment (commentID, boardID, memberID, date, parent, content) values(?, ?, ?, now(), ?, ?)");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, comment.getCommentID());
+			pstmt.setInt(2, comment.getBoardID());
+			pstmt.setString(3, comment.getMemberID());
+			pstmt.setInt(4, comment.getParentID());
+			pstmt.setString(5, comment.getContent());
+			
+			int flag = pstmt.executeUpdate();
+			if(flag > 0) {
+				result = true;
+				con.commit();
+			}
+			
+		} catch (Exception e) {
+			try {
+				con.rollback();
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+			System.out.println("insertComment 에러 : " + e);
 			e.printStackTrace();
-		} finally {
-			close(pstmt);
+			throw new RuntimeException(e.getMessage());
 		}
-		return updateCount;
+		
+		close();
+		return result;
 	}
 	
-	//댓글 삭제
-	public int deleteComment (int commentID) {
-		
-		int deleteCount = 0;
-		PreparedStatement pstmt = null;
-		String sql = "delete from board where commentID = ?";
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, commentID);
-			deleteCount = pstmt.executeUpdate();			
-		} catch(Exception e) {
-			System.out.println("deleteCount 에러 : " + e);
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return deleteCount;
-	}
+	public ArrayList<CommentBean> getCommentList(int boardNum){
+        ArrayList<CommentBean> list = new ArrayList<CommentBean>();
+        
+        try {
+            con = DBConnection.getConnection();
+            
+            StringBuffer sql = new StringBuffer();
+            sql.append("select level, commentID, boardID, memberID, date, parentID, content");
+            
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setInt(1, boardNum);
+            
+            rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                CommentBean comment = new CommentBean();
+                comment.setCommentLevel(rs.getInt("commentLevel"));
+                comment.setCommentID(rs.getInt("commentID"));
+                comment.setBoardID(rs.getInt("boardID"));
+                comment.setMemberID(rs.getString("memberID"));
+                comment.setDate(rs.getDate("date"));
+                comment.setParentID(rs.getInt("parentID"));
+                comment.setContent(rs.getString("content"));
+                list.add(comment);
+            }
+                
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+        
+        close();
+        return list;
+    }
+    
+    private void close()
+    {
+        try {
+            if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+            if ( con != null ){ con.close(); con=null;    }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    } // end close()    
+        
 }
-

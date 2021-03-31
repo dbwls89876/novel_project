@@ -2,20 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@page import="vo.CommentPageInfo"%>
 <%@page import="vo.BoardBean"%>
-<%@page import="vo.CommentBean" %>
+<%@page import="vo.CommentBean"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%
 	BoardBean article = (BoardBean) request.getAttribute("article");
 String nowPage = (String) request.getAttribute("page");
-ArrayList<CommentBean> commentArticle = (ArrayList<CommentBean>) request.getAttribute("commentArticle");
-CommentPageInfo commentPageInfo = (CommentPageInfo) request.getAttribute("commentPageInfo");
-int commentListCount = commentPageInfo.getCommentListCount();
-int commentNowPage = commentPageInfo.getCommentPage();
-int commentMaxPage = commentPageInfo.getCommentMaxPage();
-int commentStartPage = commentPageInfo.getCommentStartPage();
-int commentEndPage = commentPageInfo.getCommentEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -58,6 +51,63 @@ h3 {
 	text-align: center;
 }
 </style>
+<script type="text/javascript">
+	var httpRequest = null;
+
+	// httpRequest 객체 생성
+	function getXMLHttpRequest() {
+		var httpRequest = null;
+
+		if (window.ActiveXObject) {
+			try {
+				httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e2) {
+					httpRequest = null;
+				}
+			}
+		} else if (window.XMLHttpRequest) {
+			httpRequest = new window.XMLHttpRequest();
+		}
+		return httpRequest;
+	}
+
+	// 댓글 등록
+	function writeCmt() {
+		var form = document.getElementById("writeCommentForm");
+
+		var board = form.comment_board.value
+		var id = form.comment_id.value
+		var content = form.comment_content.value;
+
+		if (!content) {
+			alert("내용을 입력하세요.");
+			return false;
+		} else {
+			var param = "comment_board=" + board + "&comment_id=" + id
+					+ "&comment_content=" + content;
+
+			httpRequest = getXMLHttpRequest();
+			httpRequest.onreadystatechange = checkFunc;
+			httpRequest.open("POST", "CommentWriteAction.co", true);
+			httpRequest.setRequestHeader('Content-Type',
+					'application/x-www-form-urlencoded;charset=EUC-KR');
+			httpRequest.send(param);
+		}
+	}
+
+	function checkFunc() {
+		if (httpRequest.readyState == 4) {
+			// 결과값을 가져온다.
+			var resultText = httpRequest.responseText;
+			if (resultText == 1) {
+				document.location.reload(); // 상세보기 창 새로고침
+			}
+		}
+	}
+</script>
 </head>
 <body>
 	<table border="0">
@@ -83,115 +133,75 @@ h3 {
 			<%=article.getContent()%>
 		</section>
 	</section>
-	<section id="commandList">
-		<a
-			href="boardModifyForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
-			[수정] </a> <a
-			href="boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
-			[삭제] </a> <a href="boardList.bo?page=<%=nowPage%>"> [목록] </a>
-		&nbsp;&nbsp;
 
-	</section>
-
-
-	<section id="commentList">
+	<!-- 댓글 부분 -->
+	<section id="comment">
 		<table>
-			<%
-				if (commentArticle != null && commentListCount > 0) {
-			%>
-			<tr id="commentTop">
-				<td colspan="5">댓글</td>
-			</tr>
+			<!-- 댓글 목록 -->
+			<c:if test="${requestScope.commentList != null}">
+				<c:forEach var="comment" items="${requestScope.commentList}">
 
-			<%
-				for (int i = 0; i < commentArticle.size(); i++) {
-			%>
-			<tr>
-				<td><%=commentArticle.get(i).getMemberID()%></td>
-				<td><%=commentArticle.get(i).getDate()%></td>
-				<td><%=commentArticle.get(i).getContent()%></td>
-				<td><a href="commentModifyForm.comm?commentID=
-				<%=commentArticle.get(i).getCommentID()%>&commentPage=<%=commentNowPage%>">[수정]</a></td>
-				<td><a href="commentDeleteForm.comm?commentID=
-				<%=commentArticle.get(i).getCommentID()%>&commentPage=<%=commentNowPage%>">[삭제]</a></td>
-			</tr>
-			<%
-				}
-			%>
+					<tr>
+						<!-- 아이디, 작성날짜 -->
+						<td width="150">
+							<div>
+								${boardComment.memberID}<br> <font size="2"
+									color="lightgray">${boardComment.date}</font>
+							</div>
+						</td>
+						<!-- 본문내용 -->
+						<td width="550">
+							<div class="commentContent">${boardComment.content}</div>
+						</td>
+						<!-- 버튼 -->
+						<td width="100">
+							<div id="btn" style="text-align: center;">
+								<a href="#">[답변]</a><br>
+								<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
+								<c:if test="${boardComment.memberID == sessionScope.sessionID}">
+									<a href="#">[수정]</a>
+									<br>
+									<a href="#">[삭제]</a>
+								</c:if>
+							</div>
+						</td>
+					</tr>
+
+				</c:forEach>
+			</c:if>
+
+			<!-- 로그인 했을 경우만 댓글 작성가능 -->
+			<c:if test="${sessionScope.sessionID !=null}">
+				<tr bgcolor="#F5F5F5">
+					<form id="commentWriteForm">
+						<input type="hidden" name="boardID" value="${board.boardID}">
+						<input type="hidden" name="commentID"
+							value="${sessionScope.sessionID}">
+						<!-- 아이디-->
+						<td>
+							<div>${sessionScope.sessionID}</div>
+						</td>
+						<!-- 본문 작성-->
+						<td>
+							<div>
+								<textarea name="commentContent" rows="4" cols="70"></textarea>
+							</div>
+						</td>
+						<!-- 댓글 등록 버튼 -->
+						<td>
+							<div id="btn" style="text-align: center;">
+								<p>
+									<a href="#" onclick="writeCmt()">[댓글등록]</a>
+								</p>
+							</div>
+						</td>
+					</form>
+				</tr>
+			</c:if>
+
 		</table>
 	</section>
-	<section id="pageList">
-		<%
-			if (commentNowPage <= 1) {
-		%>
-		[이전]&nbsp;
-		<%
-			} else {
-		%>
-		<a href="commentList.comm?commentPage=<%=commentNowPage - 1%>">[이전]</a>&nbsp;
-		<%
-			}
-		%>
 
-		<%
-			for (int a = commentStartPage; a <= commentEndPage; a++) {
-			if (a == commentNowPage) {
-		%>
-		[<%=a%>]
-		<%
-			} else {
-		%>
-
-		<a href="commentList.comm?commentPage=<%=a%>">[<%=a%>]
-		</a>&nbsp;
-		<%
-			}
-		%>
-		<%
-			}
-		%>
-		<%
-			if (commentNowPage >= commentMaxPage) {
-		%>
-		[다음]
-		<%
-			} else {
-		%>
-		<a href="commentList.comm?commentPage=<%=commentNowPage + 1%>">[다음]</a>&nbsp;
-		<%
-			}
-		%>
-		<a href="commentWriteForm.comm">글쓰기</a>
-		<%
-			
-		%>
-	</section>
-	<%
-		} else {
-	%>
-	<section id="emptyArea">
-		등록된 댓글이 없습니다.
-	</section>
-	<%
-		}
-	%>
-		<br>
-		
-	<section id="commentWrite">
-		<form action="commentWritePro.comm" method="post" name="boardform">
-			<table>
-				<tr>
-					<td colspan="3"><h3>댓글 작성하기</h3></td>
-				</tr>
-				<tr>
-					<td class="commentLeft"><%=session.getAttribute("memberID")%></td>
-					<td class="commentMiddle"><textarea placeholder="내용을 입력해 주세요." id="content"
-							name="content" cols="40" rows="15" required="required"></textarea></td>
-					<td class="commentRight"><input type="submit" value="등록">&nbsp;&nbsp;</td>
-				</tr>
-			</table>
-		</form>
-	</section>
 
 </body>
 </html>

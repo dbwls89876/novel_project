@@ -1,8 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,12 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import board.action.BoardDeleteProAction;
-import board.action.BoardDetailAction;
-import board.action.BoardListAction;
-import board.action.BoardModifyFormAction;
-import board.action.BoardModifyProAction;
-import board.action.BoardWriteProAction;
 import vo.ActionForward;
 
 /**
@@ -24,7 +22,7 @@ import vo.ActionForward;
 @WebServlet("*.comm")
 public class CommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private HashMap<String,Action> commandMap;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,6 +31,40 @@ public class CommentController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    public void init(ServletConfig config) throws ServletException {	
+        loadProperties("jsp/board/comment/properties/CommentCommand");
+    }
+
+	/**
+	 * ������Ƽ ���Ͽ��� Ű���� Ŭ���� ������ �����Ͽ� �װ��� Map�� �����Ѵ�.
+	 * @param filePath ������Ƽ ������ ���
+	 */
+	private void loadProperties(String filePath) 
+	{
+		commandMap = new HashMap<String, Action>();
+		
+		ResourceBundle rb = ResourceBundle.getBundle(filePath);
+		Enumeration<String> actionEnum = rb.getKeys(); // Ű���� �����´�.
+		 
+		while (actionEnum.hasMoreElements()) 
+		{
+			String command = actionEnum.nextElement(); 
+			String className = rb.getString(command); 
+			
+			try {
+				 Class actionClass = Class.forName(className); // Ŭ���� ����
+				 Action actionInstance = (Action)actionClass.newInstance(); // Ŭ������ ��ü�� ����
+				 
+				 commandMap.put(command, actionInstance);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+    
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -51,70 +83,38 @@ public class CommentController extends HttpServlet {
 	
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		String RequestURI = request.getRequestURI();
-		String contextPath = request.getContextPath();
-		String command = RequestURI.substring(contextPath.length());
-		ActionForward forward=null;
-		Action action=null;
-		
-		if(command.equals("/commentWriteForm.comm")) {
-			forward = new ActionForward();
-			forward.setPath("board/boardVeiw.jsp");
-		}else if(command.equals("/commentWritePro.comm")) {
-			action = new CommentWriteProAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/commentList.comm")) {
-			action = new CommentListAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/commentModifyForm.comm")) {
-			action = new CommentModifyFormAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/commentModifyPro.comm")) {
-			action = new CommentModifyProAction();
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/commentDeleteForm.comm")) {
-			String nowPage = request.getParameter("page");
-			request.setAttribute("page", nowPage);
-			int boardID = Integer.parseInt(request.getParameter("boardID"));
-			request.setAttribute("boardID", boardID);
-			forward = new ActionForward();
-			forward.setPath("/board/boardDelete.jsp");
-		}
-		else if (command.contentEquals("/boardDeletePro.bo")) {	
-			action = new BoardDeleteProAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		if(forward!=null) {
-			
-			if(forward.isRedirect()) {
-				response.sendRedirect(forward.getPath());
-			}else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response);
-			}
-		}
+		String requestURI = request.getRequestURI();
+        int cmdIdx = requestURI.lastIndexOf("/") + 1;
+        String command = requestURI.substring(cmdIdx);
+ 
+        ActionForward forward = null;
+        Action action = null;
+        
+        try {
+            action = commandMap.get(command);
+            
+            if (action == null) {
+                System.out.println("명령어 : "+command+"는 잘못된 명령입니다.");
+                return;
+            }
+ 
+            forward = action.execute(request, response);
+            
+            
+            if(forward != null){
+                if (forward.isRedirect()) {
+                    response.sendRedirect(forward.getPath());
+                } else {
+                    RequestDispatcher dispatcher = request
+                            .getRequestDispatcher(forward.getPath());
+                    dispatcher.forward(request, response);
+                }
+            }
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 	}
 
 }
