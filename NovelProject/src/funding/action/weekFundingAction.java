@@ -40,8 +40,8 @@ public class weekFundingAction implements Action{
 			}
 		}
 		
-		request.setAttribute("weekFundingList", weekFundingList);
-		ActionForward forward = new ActionForward("funding/weekFunding.jsp", true);
+		request.setAttribute("fundingList", weekFundingList);
+		ActionForward forward = new ActionForward("funding/totalFunding.jsp", true);
 		return forward;
 	}
 	

@@ -7,12 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
 <table border="0">
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
 	<tr>
 	<td><a href="../fundingPermission.fun">펀딩 수락</a></td>
 	</tr>

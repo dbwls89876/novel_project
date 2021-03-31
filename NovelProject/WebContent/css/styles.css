@@ -10161,7 +10161,7 @@ header.masthead h1 {
 }
 .grayLine{
 	border:1px solid gray;
-	border-color: rgba(0, 0, 255, 0.25);
+	border-color: rgba(0, 0, 0, 0.25);
 	border-collapse: collapse;
 }
 .text-white-75 {

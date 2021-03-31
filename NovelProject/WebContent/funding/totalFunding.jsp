@@ -1,3 +1,4 @@
+<%@page import="vo.Funding"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>전체 펀딩</title>
+<title>펀딩</title>
 <style type="text/css">
 	#listForm{
 		width: 1500px;
@@ -24,45 +25,32 @@
 		width: 1000px;
 		border:1px solid;
 	}
-	.novelImage{
-		width: 150px;
-		height: 150px;
-		border: none;
+	img{
+		overflow: hidden;
 	}
 </style>
 </head>
-<body>
 
-<div class="container p-3 my-3">
+<body>
+<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
+<a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a>
 <div class="container">
-<table>
-	<tr>
-		<td><a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a></td>
-	</tr>
-	<tr>
-		<td>
-			<table>
-			<c:forEach var = "funding" items="${fundingList }" varStatus = "status">
-				<tr>
-					<td class="novelImage" rowspan="2">
-						<a href="fundingContent.fun?literaryID=${funding.literaryID }&fundingID=${funding.fundingID}">
-							<img src="images/${funding.image }" class="novelImage"/>				
-						</a>
-					</td>
-					<td>${funding.title}</td>
-				</tr>
-				<tr>
-					<td><fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
-					${cost }% 달성
-					</td>
-				</tr>
-			</c:forEach>
-			</table>
-		</td>
-	</tr>
-</table>
+	<div class="row">
+		<c:forEach var = "funding" items="${fundingList }" varStatus = "status">
+			<div class="col-md-4 my-5" onclick="location.href='fundingContent.fun?literaryID=${funding.literaryID }&fundingID=${funding.fundingID}'">
+				<div class="card">
+					<div class="embed-responsive embed-responsive-4by3">
+						<img class="card-img-top embed-responsive-item" src="images/${funding.image }" alt="fundingImage">
+					</div>
+					<h3 class="card-title mt-3">${funding.title}</h3>
+					<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
+					<p class="card-text">${cost }% 달성</p>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
 </div>
 </body>
 </html>
