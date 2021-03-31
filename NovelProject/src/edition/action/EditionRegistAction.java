@@ -22,8 +22,6 @@ public class EditionRegistAction implements Action {
 		HttpSession session = request.getSession();
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		System.out.println(title);
-		System.out.println(content);
 		edition = new Edition();
 		edition.setId((int)session.getAttribute("id"));
 		edition.setTitle(title);

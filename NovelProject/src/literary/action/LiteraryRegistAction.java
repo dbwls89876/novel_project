@@ -16,10 +16,10 @@ public class LiteraryRegistAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=null;
+		Literary literary = null;
+		
 		HttpSession session = request.getSession();
-		(int)session.getAttribute("id");
-			
-		Literary literary = new Literary();
+		literary.setId((int)session.getAttribute("id"));
 		literary.setLiteraryID(Integer.parseInt(request.getParameter("literaryID")));
 		literary.setNickname(request.getParameter("nickname"));
 		literary.setTitle(request.getParameter("title"));
@@ -27,8 +27,8 @@ public class LiteraryRegistAction implements Action {
 		literary.setGenre(request.getParameter("genre"));
 		literary.setImage(request.getParameter("image"));
 		literary.setDate(java.sql.Date.valueOf(request.getParameter("date")));
-
 		LiteraryRegistService literaryRegistService = new LiteraryRegistService();
+		
 		boolean isRegistSuccess = literaryRegistService.registLiterary(literary);
 		if(isRegistSuccess) {
 			forward = new ActionForward("myLiteraryList.lit", true);
