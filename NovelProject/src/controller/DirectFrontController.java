@@ -51,7 +51,6 @@ public class DirectFrontController extends HttpServlet {
 		String command = RequestURI.substring(contextPath.length());
 		
 		ActionForward forward=null;
-		Action action=null;
 		System.out.println(command);
 		
 		if(command.equals("/adminPage.dir")) {

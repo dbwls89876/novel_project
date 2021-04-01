@@ -52,7 +52,7 @@
 					<li  class="nav-item">
 						<c:choose>
 							<c:when test="${memberID eq null }">
-								<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/loginForm.dir">로그인</a>
+								<a class="nav-link js-scroll-trigger" href="loginForm.dir">로그인</a>
 							</c:when>
 							<c:otherwise>
 								<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/logoutForm.dir">로그아웃</a>
@@ -60,7 +60,7 @@
 						</c:choose>
 					</li>
 					<c:if test="${memberID eq 'admin' }">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"  href="adminPage.dir">관리자 페이지</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="adminPage.dir">관리자 페이지</a></li>
 					</c:if>
 					
 					<c:if test="${memberID != null}">
