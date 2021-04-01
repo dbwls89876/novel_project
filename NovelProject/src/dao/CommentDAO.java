@@ -1,13 +1,12 @@
 package dao;
 
-import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.sql.DataSource;
+import db.DBConnection;
 import vo.CommentBean;
 
 public class CommentDAO {
@@ -15,14 +14,17 @@ public class CommentDAO {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	private static CommentDAO commentDAO;
 	
-	private static CommentDAO instance;
+	private CommentDAO() {
+		
+	}
 	
-	private CommentDAO() {}
 	public static CommentDAO getInstance() {
-		if(instance == null)
-			instance = new CommentDAO();
-		return instance;
+		if(commentDAO == null) {
+			commentDAO = new CommentDAO();
+		}
+		return commentDAO;
 	}
 
 	public int getSeq() {
@@ -47,9 +49,10 @@ public class CommentDAO {
 		return result;
 	}
 	
-	public boolean insertComment(CommentBean comment) {
+	//댓글 등록
+	public boolean insertComment(CommentBean commentArticle) {
 		
-		boolean result = false;
+		boolean insertCount = false;
 		
 		try {
 			con = DBConnection.getConnection();
@@ -60,15 +63,15 @@ public class CommentDAO {
 			sql.append("insert into boardComment (commentID, boardID, memberID, date, parent, content) values(?, ?, ?, now(), ?, ?)");
 			
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setInt(1, comment.getCommentID());
-			pstmt.setInt(2, comment.getBoardID());
-			pstmt.setString(3, comment.getMemberID());
-			pstmt.setInt(4, comment.getParentID());
-			pstmt.setString(5, comment.getContent());
+			pstmt.setInt(1, commentArticle.getCommentID());
+			pstmt.setInt(2, commentArticle.getBoardID());
+			pstmt.setString(3, commentArticle.getMemberID());
+			pstmt.setInt(4, commentArticle.getParentID());
+			pstmt.setString(5, commentArticle.getContent());
 			
 			int flag = pstmt.executeUpdate();
 			if(flag > 0) {
-				result = true;
+				insertCount = true;
 				con.commit();
 			}
 			
@@ -84,11 +87,13 @@ public class CommentDAO {
 		}
 		
 		close();
-		return result;
+		return insertCount;
 	}
 	
-	public ArrayList<CommentBean> getCommentList(int boardNum){
-        ArrayList<CommentBean> list = new ArrayList<CommentBean>();
+	//댓글 목록 보기
+	public ArrayList<CommentBean> selectCommentList(int boardID){
+        
+		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
         
         try {
             con = DBConnection.getConnection();
@@ -97,7 +102,7 @@ public class CommentDAO {
             sql.append("select level, commentID, boardID, memberID, date, parentID, content");
             
             pstmt = con.prepareStatement(sql.toString());
-            pstmt.setInt(1, boardNum);
+            pstmt.setInt(1, boardID);
             
             rs = pstmt.executeQuery();
             while(rs.next())
@@ -110,7 +115,7 @@ public class CommentDAO {
                 comment.setDate(rs.getDate("date"));
                 comment.setParentID(rs.getInt("parentID"));
                 comment.setContent(rs.getString("content"));
-                list.add(comment);
+                commentList.add(comment);
             }
                 
         } catch (Exception e) {
@@ -119,9 +124,116 @@ public class CommentDAO {
         }
         
         close();
-        return list;
+        return commentList;
     }
+	
+	// 댓글 1개의 정보를 가져온다.
+    public CommentBean getComment(int commentID)
+    {
+        CommentBean comment = null;
+        
+        try {
+            con = DBConnection.getConnection();
+            
+            StringBuffer sql = new StringBuffer();
+            sql.append("select * from boardComment where commentID = ?");
+            
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setInt(1, commentID);
+            
+            rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+            	comment = new CommentBean();
+            	comment.setCommentID(rs.getInt("commentID"));
+            	comment.setBoardID(rs.getInt("boardID"));
+            	comment.setMemberID(rs.getString("memberID"));
+            	comment.setDate(rs.getDate("date"));
+            	comment.setParentID(rs.getInt("parentID"));
+            	comment.setContent(rs.getString("content"));
+            }
+        } catch (Exception e) {
+        	e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+        
+        close();
+        return comment; 
+    } // end getGuestbook
     
+    // 댓글 삭제
+    public boolean deleteComment(int commentID) 
+    {
+        boolean deleteCount = false;
+ 
+        try {
+            con = DBConnection.getConnection();
+            con.setAutoCommit(false); // 자동 커밋을 false로 한다.
+ 
+            StringBuffer sql = new StringBuffer();
+            sql.append("delete from boardComment where commentID in (select commentID from boardComment start with commentID = ? connect by prior commentID = parentID");
+            
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setInt(1, commentID);
+            
+            int flag = pstmt.executeUpdate();
+            if(flag > 0){
+            	deleteCount = true;
+                con.commit(); // 완료시 커밋
+            }    
+            
+        } catch (Exception e) {
+            try {
+                con.rollback(); // 오류시 롤백
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
+            throw new RuntimeException(e.getMessage());
+        }
+ 
+        close();
+        return deleteCount;
+    } // end deleteComment    
+    
+    
+    // 댓글 수정
+    public boolean updateComment(CommentBean comment) 
+    {
+        boolean updateCount = false;
+        
+        try{
+            con = DBConnection.getConnection();
+            con.setAutoCommit(false); // 자동 커밋을 false로 한다.
+            
+            StringBuffer sql = new StringBuffer();
+            sql.append("update boardComment set content = ? where commentID = ?");
+            
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setString(1, comment.getContent());
+            pstmt.setInt(2, comment.getCommentID());
+ 
+            int flag = pstmt.executeUpdate();
+            if(flag > 0){
+            	updateCount = true;
+                con.commit(); // 완료시 커밋
+            }
+            
+        } catch (Exception e) {
+            try {
+                con.rollback(); // 오류시 롤백
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+    
+        close();
+        return updateCount;
+    } // end updateComment    
+       
+    
+    // DB 자원해제
     private void close()
     {
         try {
@@ -130,6 +242,7 @@ public class CommentDAO {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
-    } // end close()    
-        
+    } // end close()   
+	
+     
 }
