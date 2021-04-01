@@ -38,6 +38,9 @@
 		text-align: center;
 		color: #82937F;
 	}
+	p{
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -60,7 +63,7 @@
 	<div class="row my-2">
 		<button onclick="location.href='javascript:loginform.submit()'">로그인</button>
 	</div>
-	<div class="row my-5 text-center">
+	<div class="row my-5 " style="text-align: center;">
 		<a href="joinForm.dir">회원가입</a>
 	</div>
 
