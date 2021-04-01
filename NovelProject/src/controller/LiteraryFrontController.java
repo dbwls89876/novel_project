@@ -73,16 +73,16 @@ public class LiteraryFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}else if(command.equals("/literaryRegist.lit")) { //새로운 작품 등록
-			action = new LiteraryRegistAction();
+		}else if(command.equals("/literaryRegistForm.lit")) { 
+			action = new LiteraryRegistFormAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}else if(command.equals("/literaryRegistForm.lit")) { 
-			action = new LiteraryRegistFormAction();
+		}else if(command.equals("/literaryRegist.lit")) { //새로운 작품 등록
+			action = new LiteraryRegistAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
