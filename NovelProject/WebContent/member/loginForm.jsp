@@ -16,39 +16,46 @@
 	font-weight:bold;
 	font-size:x-large;
 	}
+	input{
+		width:500px;
+		height:50px;
+		align:center;
+	}
+	button{
+		width:500px;
+		height:50px;
+		color:white;
+		background-color: #606E5E;
+		border:0;
+	}
 </style>
 
 </head>
 <body>
+<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
 <form name="loginform" action="${pageContext.request.contextPath }/loginForm.me" method="post">
-<table>
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
-</table>
-<table>
-	<tr>
-		<td colspan="2" class="td_title">
-		로그인
-		</td>
-	</tr>
-	<tr>
-		<td><label for="memberID">아이디 : </label></td>
-		<td><input type="text" name="memberID" id="memberID"/></td>
-	</tr>
-	<tr>
-		<td><label for="password">비밀번호 : </label></td>
-		<td><input type="password" name="password" id="password"/></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;
-			<a href="joinForm.jsp">회원가입</a>
-		</td>
-	</tr>
-</table>
+<div class="container my-4">
+	<h1 class="display-4 text-success">로그인</h1>
+</div>
+<hr class="greenLine">
+<div class="container my-5">
+	<div class="row my-2">
+		<div class="col-md-offset-3 col-md-6"><input type="text" name="memberID" id="memberID" placeholder="아이디 입력"/></div>
+	</div>
+	<div class="row my-2">
+		<div class="col-md-offset-3 col-md-6"><input type="text" name="password" id="password" placeholder="비밀번호 입력"/></div>
+	</div>
+	<div class="row my-2">
+		<div class="col-md-offset-3 col-md-6"><button onclick="location.href='javascript:loginform.submit()'">로그인</button></div>
+	</div>
+	<div class="row my-2">
+		<hr class="greenLine my-5">
+		<a href="joinForm.dir">회원가입</a>
+	</div>
+</div>
+
 </form>
 </body>
 </html>

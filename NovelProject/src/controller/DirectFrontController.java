@@ -8,9 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import action.Action;
-import funding.action.FundingPaymentUpdateAction;
 import vo.ActionForward;
 
 /**
@@ -73,6 +70,14 @@ public class DirectFrontController extends HttpServlet {
 			try {
 				forward = new ActionForward();
 				forward.setPath("/member/logoutForm.jsp");
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}else if(command.equals("/joinForm.dir")) {
+			try {
+				forward = new ActionForward();
+				forward.setPath("/member/joinForm.jsp");
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
