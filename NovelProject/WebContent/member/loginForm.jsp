@@ -61,7 +61,7 @@
 		<input type="text" name="password" id="password" placeholder="비밀번호 입력"/>
 	</div>
 	<div class="row my-2">
-		<button onclick="location.href='javascript:loginform.submit()'">로그인</button>
+		<button onclick="location.href='javascript:loginForm.submit()'">로그인</button>
 	</div>
 	<div class="row my-5 " style="text-align: center;">
 		<a href="joinForm.dir">회원가입</a>
