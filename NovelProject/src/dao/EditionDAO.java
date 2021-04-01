@@ -37,15 +37,14 @@ public class EditionDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into edition (id,literaryID,editionID,title,content,count,date) values (?,?,?,?,?,?,now())";
+			sql="insert into edition (literaryID,editionID,title,content,count,date) values (?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, edition.getId());
-			pstmt.setInt(2, edition.getLiteraryID());
-			pstmt.setInt(3, edition.getEditionID());
-			pstmt.setString(4, edition.getTitle());
-			pstmt.setString(5, edition.getContent());
-			pstmt.setInt(6, edition.getCount());
+			pstmt.setInt(1, edition.getLiteraryID());
+			pstmt.setInt(2, edition.getEditionID());
+			pstmt.setString(3, edition.getTitle());
+			pstmt.setString(4, edition.getContent());
+			pstmt.setInt(5, edition.getCount());
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -84,7 +83,7 @@ public class EditionDAO {
 		ArrayList<Edition> list = new ArrayList<Edition>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String edition_list_sql = "select editionID, literaryID, id, title, content, date, Count from edition order by editionID desc limit ?, ?";
+		String edition_list_sql = "select editionID, literaryID, title, content, date, Count from edition order by editionID desc limit ?, ?";
 		Edition edition = new Edition();
 		int startrow = (page-1)*limit;
 		
@@ -97,7 +96,6 @@ public class EditionDAO {
 			while(rs.next()) {
 				edition.setEditionID(rs.getInt("editionID"));
 				edition.setLiteraryID(rs.getInt("literaryID"));
-				edition.setId(rs.getInt("id"));
 				edition.setTitle(rs.getString("title"));
 				edition.setContent(rs.getString("content"));
 				edition.setDate(rs.getDate("date"));
@@ -146,7 +144,6 @@ public class EditionDAO {
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
 				article = new Edition();
-				article.setId(rs.getInt("id"));
 				article.setLiteraryID(rs.getInt("literaryID"));
 				article.setEditionID(rs.getInt("editionID"));
 				article.setTitle(rs.getString("title"));

@@ -23,7 +23,7 @@ public class EditionRegistAction implements Action {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		edition = new Edition();
-		edition.setId((int)session.getAttribute("id"));
+		edition.setLiteraryID((int)session.getAttribute("literaryID"));
 		edition.setTitle(title);
 		edition.setContent(content);
 		EditionRegistService editionRegistService = new EditionRegistService();
