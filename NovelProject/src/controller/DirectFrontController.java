@@ -74,6 +74,14 @@ public class DirectFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		}else if(command.equals("/joinForm.dir")) {
+			try {
+				forward = new ActionForward();
+				forward.setPath("/member/joinForm.jsp");
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward!=null) {

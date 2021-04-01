@@ -26,7 +26,7 @@
   --gray-dark: #343a40;
   --primary: #f4623a;
   --secondary: #6c757d;
-  --success: #28a745;
+  --success: #606E5E;
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
@@ -9791,11 +9791,11 @@ a.text-secondary:hover, a.text-secondary:focus {
 }
 
 .text-success {
-  color: #28a745 !important;
+  color: #606E5E !important;
 }
 
 a.text-success:hover, a.text-success:focus {
-  color: #19692c !important;
+  color: #606E5E !important;
 }
 
 .text-info {
@@ -10023,9 +10023,11 @@ hr.light {
 	width: 100px;
 	height: 36px;
 	position: absolute;
+	list-style:none;
 	margin: 0;
 	padding: 5px;
-	background: #E7F0E6;
+	background: #606E5E;
+	color:#606E5E;
 	float: left;
 }
 #mainNav .navbar-brand {
@@ -10160,9 +10162,17 @@ header.masthead h1 {
 	margin-bottom: 30px;
 }
 .grayLine{
-	border:1px solid gray;
+	border:0;
 	border-color: rgba(0, 0, 0, 0.25);
 	border-collapse: collapse;
+}
+.greenLine{
+	border:0;
+	height: 1px;
+	background: #606E5E;
+}
+.olive{
+	color: #606E5E !important;
 }
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
