@@ -44,10 +44,10 @@
 					<div class="embed-responsive embed-responsive-4by3">
 						<img class="card-img-top embed-responsive-item" src="images/${funding.image }" alt="fundingImage">
 					</div>
-					<h3 class="card-title mt-3">${funding.title}</h3>
+					<h3 class="card-title mt-3 p-2">${funding.title}</h3>
 					<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
-					<p class="card-text">${cost }% 달성</p>
-					<div class="card-text text-right">${restDate[status.index] }일 남음</div>
+					<p class="card-text p-2">${cost }% 달성</p>
+					<div class="card-text text-right p-2">${restDate[status.index] }일 남음</div>
 				</div>
 			</div>
 		</c:forEach>
