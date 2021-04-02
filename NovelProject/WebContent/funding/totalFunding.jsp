@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.Funding"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -30,7 +31,9 @@
 	}
 </style>
 </head>
-
+<c:forEach var="time" items="${restDate }" varStatus="status">
+${time }
+</c:forEach>
 <body>
 <div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
@@ -47,6 +50,7 @@
 					<h3 class="card-title mt-3">${funding.title}</h3>
 					<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
 					<p class="card-text">${cost }% 달성</p>
+					<div class="card-text text-right">${restDate[status.index] }일 남음</div>
 				</div>
 			</div>
 		</c:forEach>

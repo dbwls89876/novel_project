@@ -23,7 +23,7 @@ public class weekFundingAction implements Action{
 		ArrayList<Funding> fundingList = fundingService.getFundingList();
 		ArrayList<Funding> fundingPermissionList = new ArrayList<Funding>();
 		ArrayList<Funding> weekFundingList = new ArrayList<Funding>();
-		
+		ArrayList<Integer> restDate = new ArrayList<Integer>();
 		for(int i = 0; i<fundingList.size(); i++) {
 			if(fundingList.get(i).getPermission()==1)
 				fundingPermissionList.add(fundingList.get(i));
@@ -37,10 +37,16 @@ public class weekFundingAction implements Action{
 			System.out.println(dateDif);
 			if(dateDif<8) {
 				weekFundingList.add(fundingPermissionList.get(i));
+				dateDif = fundingPermissionList.get(i).getEndDate().getTime() - date.getTime();
+				dateDif /= (24*60*60*1000);
+				restDate.add((int)dateDif);
 			}
+
 		}
 		
+		
 		request.setAttribute("fundingList", weekFundingList);
+		request.setAttribute("restDate", restDate);
 		ActionForward forward = new ActionForward("funding/totalFunding.jsp", true);
 		return forward;
 	}
