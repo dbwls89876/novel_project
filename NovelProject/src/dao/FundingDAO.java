@@ -199,4 +199,41 @@ public class FundingDAO {
 		}
 		return fundingID;
 	}
+
+	public ArrayList<Funding> selectRecentFunding() {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Funding> fundingList = null;
+		
+		try {
+			pstmt = con.prepareStatement("select * from funding order by fundingID desc limit 5");
+			rs = pstmt.executeQuery();
+			
+			fundingList = new ArrayList<Funding>();
+			if(rs.next()) {
+				do {
+					fundingList.add(new Funding(
+							rs.getInt("literaryID")
+							,rs.getInt("fundingID")
+							,rs.getString("title")
+							,rs.getString("content")
+							,rs.getString("image")
+							,rs.getInt("targetCost")
+							,rs.getInt("nowCost")
+							,rs.getInt("permission")
+							,rs.getDate("startDate")
+							,rs.getDate("endDate")
+							,rs.getDate("deliveryDate")
+							));
+				} while (rs.next());
+			}
+		}catch(Exception e) {
+			System.out.println("fundingRecentSelect 오류 : "  + e);
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return fundingList;
+	}
 }

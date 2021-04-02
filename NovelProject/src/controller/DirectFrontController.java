@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import action.Action;
+import action.indexAction;
 import vo.ActionForward;
 
 /**
@@ -48,6 +51,7 @@ public class DirectFrontController extends HttpServlet {
 		String command = RequestURI.substring(contextPath.length());
 		
 		ActionForward forward=null;
+		Action action=null;
 		System.out.println(command);
 		
 		if(command.equals("/adminPage.dir")) {
@@ -83,8 +87,9 @@ public class DirectFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/index.dir")) {
+			action = new indexAction();
 			try {
-				forward = new ActionForward();
+				forward = action.execute(request, response);
 				forward.setPath("/index.jsp");
 			} catch (Exception e) {
 				// TODO: handle exception
