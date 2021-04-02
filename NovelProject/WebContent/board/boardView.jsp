@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="vo.CommentPageInfo"%>
 <%@page import="vo.BoardBean"%>
 <%@page import="vo.CommentBean"%>
 <%@page import="java.util.*"%>
@@ -52,6 +51,13 @@ h3 {
 }
 </style>
 <script type="text/javascript">
+
+	function doAction(value) {
+		if (value == 0) // 수정
+			location.href = "BoardUpdateFormAction.bo?num=${board.boardID}&page=${pageNum}";
+		else if (value == 1) // 삭제
+			location.href = "BoardDeleteAction.bo?num=${board.boardID}";
+	}
 	var httpRequest = null;
 
 	// httpRequest 객체 생성
@@ -75,19 +81,19 @@ h3 {
 	}
 
 	// 댓글 등록
-	function writeCmt() {
+	function writeComment() {
 		var form = document.getElementById("writeCommentForm");
 
-		var board = form.comment_board.value
-		var id = form.comment_id.value
-		var content = form.comment_content.value;
+		var boardID = form.boardID.value
+		var memberID = form.memberID.value
+		var content = form.content.value;
 
 		if (!content) {
 			alert("내용을 입력하세요.");
 			return false;
 		} else {
-			var param = "comment_board=" + board + "&comment_id=" + id
-					+ "&comment_content=" + content;
+			var param = "boardID=" + boardID + "&memberID=" + memberID
+					+ "&content=" + content;
 
 			httpRequest = getXMLHttpRequest();
 			httpRequest.onreadystatechange = checkFunc;
@@ -98,7 +104,7 @@ h3 {
 		}
 	}
 
-	function checkFunc() {
+	function checkComment() {
 		if (httpRequest.readyState == 4) {
 			// 결과값을 가져온다.
 			var resultText = httpRequest.responseText;
@@ -107,6 +113,53 @@ h3 {
 			}
 		}
 	}
+
+	// 댓글 답변창
+	function commentReplyOpen(commentID) {
+		var userId = '${sessionScope.sessionID}';
+
+		if (userId == "" || userId == null) {
+			alert("로그인후 사용가능합니다.");
+			return false;
+		} else {
+			// 댓글 답변창 open
+			window.name = "parentForm";
+			window.open("CommentReplyFormAction.comm?num=" + commentID,
+					"replyForm",
+					"width=570, height=350, resizable = no, scrollbars = no");
+		}
+	}
+	
+	 // 댓글 삭제창
+    function commentDeleteOpen(commentID){
+        var msg = confirm("댓글을 삭제합니다.");    
+        if(msg == true){ // 확인을 누를경우
+            deleteComment(commentID);
+        }
+        else{
+            return false; // 삭제취소
+        }
+    }
+
+    // 댓글 삭제
+    function deleteComment(commentID)
+    {
+        var param="commentID="+commentID;
+        
+        httpRequest = getXMLHttpRequest();
+        httpRequest.onreadystatechange = checkFunc;
+        httpRequest.open("POST", "CommentDeleteAction.comm", true);    
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8'); 
+        httpRequest.send(param);
+    }
+    
+ 	// 댓글 수정창
+    function commentUpdateOpen(commentID){
+        window.name = "parentForm";
+        window.open("CommentUpdateFormAction.comm?num="+commentID,
+                    "updateForm", "width=570, height=350, resizable = no, scrollbars = no");
+    }
+    
 </script>
 </head>
 <body>
@@ -159,9 +212,8 @@ h3 {
 								<a href="#">[답변]</a><br>
 								<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
 								<c:if test="${boardComment.memberID == sessionScope.sessionID}">
-									<a href="#">[수정]</a>
-									<br>
-									<a href="#">[삭제]</a>
+									<a href="#" onclick="cmUpdateOpen(${comment.comment_num})">[수정]</a><br>
+									<a href="#" onclick="commDeleteOpen(${boardComment.commentID})">[삭제]</a>
 								</c:if>
 							</div>
 						</td>
@@ -191,7 +243,7 @@ h3 {
 						<td>
 							<div id="btn" style="text-align: center;">
 								<p>
-									<a href="#" onclick="writeCmt()">[댓글등록]</a>
+									<a href="#" onclick="writeComment()">[댓글등록]</a>
 								</p>
 							</div>
 						</td>
