@@ -10,7 +10,7 @@ import vo.Edition;
 public class EditionDetailService {
 
 	public Edition getArticle(int num) {
-		Edition article = null;
+		Edition edition = null;
 		Connection con = null;
 		try {
 			con=getConnection();
@@ -24,13 +24,13 @@ public class EditionDetailService {
 				rollback(con);
 			}
 			
-			article = editionDAO.selectArticle(num);
+			edition = editionDAO.selectArticle(num);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			close(con);
 		}
-		return article;
+		return edition;
 	}
 
 }

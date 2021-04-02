@@ -41,20 +41,20 @@ Edition article = (Edition)request.getAttribute("article");
 <div class="container p-3 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<!-- 게시판 수정 -->
-	<section id="articleForm">
-		<section id="basicInfoArea">
-		<%=article.getTitle() %>
-		</section>
-		<section id="articleContentArea">
-			<%=article.getContent() %>
-		</section>
-	</section>
-	<section id="commandList">
-		<a href="editionModifyForm.ed?num=<%=article.getNum() %>&page=<%=nowPage %>"> [수정] </a>&nbsp;
-		<a href="editionDeleteForm.ed?num=<%=article.getNum() %>&page=<%=nowPage %>">[삭제] </a>
-		<a href="editionReaderList.ed?page=<%=nowPage %>">[목록]</a>
-		&nbsp;&nbsp;
-	</section>
+<table>
+	<tr>
+		<td>${eidition.title }</td>
+	</tr>
+	<tr>
+		<td>${eidition.content }</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<a href="editionModifyForm.ed">수정</a>
+			<a href="editionDeleteForm.ed">삭제</a>
+			<a href="editionReaderList.ed">목록</a>
+		</td>
+	</tr>
+</table>	
 </body>
 </html>

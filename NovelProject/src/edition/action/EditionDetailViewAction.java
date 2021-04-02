@@ -12,14 +12,14 @@ public class EditionDetailViewAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int num = 1;
-		if(request.getParameter("num")!=null)
-			num = Integer.parseInt(request.getParameter("num"));
+		int editionID = 1;
+		if(request.getParameter("editionID")!=null)
+			editionID = Integer.parseInt(request.getParameter("editionID"));
 		String page= request.getParameter("page");
 		
 		EditionDetailService editionDetailService = new EditionDetailService();
-		Edition article = editionDetailService.getArticle(num);
-		request.setAttribute("article", article);
+		Edition eidition = editionDetailService.getArticle(editionID);
+		request.setAttribute("eidition", eidition);
 		request.setAttribute("page", page);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/edition/editionDetailView.jsp");

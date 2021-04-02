@@ -23,7 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>MVC게시판</title>
+<title>회차 목록</title>
 <style type="text/css">
 #registForm {
 	width:500px;
@@ -79,10 +79,9 @@ table{
 				
 				%>
 				<tr>
-					<td><%=articleList.get(i).getId() %></td>
-					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getId() %>&page=<%=nowPage%>">
+					<td><%=articleList.get(i).getEditionID() %></td>
+					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getEditionID() %>&page=<%=nowPage%>">
 					<%=articleList.get(i).getTitle() %></a>
-					<td><%=articleList.get(i).getId() %></td>
 					<td><%=articleList.get(i).getDate() %></td>
 					<td><%=articleList.get(i).getCount() %></td>
 				</tr>

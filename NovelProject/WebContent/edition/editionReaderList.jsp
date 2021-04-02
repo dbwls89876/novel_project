@@ -76,10 +76,10 @@ table{
 				
 				%>
 				<tr>
-					<td><%=articleList.get(i).getId() %></td>
-					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getId() %>&page=<%=nowPage%>">
+					<td><%=articleList.get(i).getEditionID() %></td>
+					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getEditionID() %>&page=<%=nowPage%>">
 					<%=articleList.get(i).getTitle() %></a>
-					<td><%=articleList.get(i).getId() %></td>
+					<td><%=articleList.get(i).getEditionID() %></td>
 					<td><%=articleList.get(i).getDate() %></td>
 					<td><%=articleList.get(i).getCount() %></td>
 				</tr>
