@@ -31,9 +31,6 @@
 	}
 </style>
 </head>
-<c:forEach var="time" items="${restDate }" varStatus="status">
-${time }
-</c:forEach>
 <body>
 <div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
