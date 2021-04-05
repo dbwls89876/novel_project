@@ -22,24 +22,24 @@ public class LiteraryRegistAction implements Action {
 		LiteraryRegistService literaryRegistService = new LiteraryRegistService();
 		String realFolder="";
 		String saveFolder="/literary/imageUpload";
-		int fileSize=5*1024*1024;
+		String encType = "UTF-8";
+		int maxSize = 5*1024*1024;
+		
 		HttpSession session = request.getSession();
+		
 		ServletContext context = request.getServletContext();
 		realFolder=context.getRealPath(saveFolder);
-		MultipartRequest multi=new MultipartRequest(request,
-				realFolder,
-				fileSize,
-				"UTF-8",
-				new DefaultFileRenamePolicy());
-		
+		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
 		String image = multi.getFilesystemName("image");
+		
 		Literary literary = new Literary(
-				(int)session.getAttribute("id"), 
+				(int)session.getAttribute("id"),
 				0, 
 				multi.getParameter("title"),
 				multi.getParameter("content"),
 				multi.getParameter("genre"), 
-				image);
+				image,
+				null);
 		boolean isRegistSuccess = literaryRegistService.registLiterary(literary);
 		ActionForward forward = null;
 		if(isRegistSuccess) {

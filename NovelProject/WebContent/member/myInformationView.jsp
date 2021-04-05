@@ -41,6 +41,10 @@
 		<td>${member.address }</td>
 	</tr>
 	<tr>
+		<td>캐쉬 : </td>
+		<td>${member.money }</td>
+	</tr>
+	<tr>
 		<td colspan=2>
 			<a href="myInformationModifyForm.me">수정</a>
 			<a href="myInformationDelete.me">탈퇴</a>

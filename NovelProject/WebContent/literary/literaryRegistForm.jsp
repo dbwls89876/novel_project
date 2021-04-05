@@ -1,3 +1,4 @@
+<%@page import="vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
+<%
+session = request.getSession();
+Member member = (Member)session.getAttribute("member");
+%>
 <body>
 <div class="container p-3 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
@@ -19,8 +24,8 @@
 <form action ="literaryRegist.lit" method="post" enctype="multipart/form-data" name="literaryform">
 	<table>
 		<tr>
-			<td class="td_left"><label for="nickname">글쓴이</label></td>
-			<td class="td_right"><input type="text" name="nickname" value='${literary.nickname }'/></td>
+			<td>닉네임 : </td>
+			<td><%=member.getNickname() %></td>
 		</tr>
 		<tr>
 			<td class="td_left"><label for="title">제목</label></td>

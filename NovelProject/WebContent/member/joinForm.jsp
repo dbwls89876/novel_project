@@ -75,7 +75,7 @@ function formCheck(f){
 	<tr>
 		<td><label for="memberID">아이디 : </label></td>
 		<td align=left><input type="text" name="memberID" id="memberID" required/>
-			<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('idCheck.jsp?openInit=ture','','width=300,height=200')"/>
+			<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('member/idCheck.jsp?openInit=ture','','width=300,height=200')"/>
 		</td>
 	</tr>
 	<tr>
@@ -93,7 +93,7 @@ function formCheck(f){
 	<tr>
 		<td><label for="nickname">닉네임 : </label></td>
 		<td align=left><input type="text" name="nickname" id="nickname" required/>
-			<input type="button" value="닉네임 중복 확인" id="nicknameCheck" onclick="window.open('nicknameCheck.jsp?openInit=ture','','width=300,height=200')"/>
+			<input type="button" value="닉네임 중복 확인" id="nicknameCheck" onclick="window.open('member/nicknameCheck.jsp?openInit=ture','','width=300,height=200')"/>
 		</td>
 	</tr>
 	<tr>

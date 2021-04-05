@@ -35,6 +35,7 @@ public class MyInformationModifyFormAction implements Action {
 			Member member = myInformationViewService.getMember(memberID);
 			if(memberID != null) {
 				request.setAttribute("member", member);
+				session.setAttribute("member", member);
 				forward = new ActionForward();
 				forward.setPath("/member/myInformationModify.jsp");
 			}

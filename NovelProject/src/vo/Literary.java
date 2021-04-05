@@ -11,6 +11,7 @@ public class Literary {
 	private String image;
 	Date date;
 	
+	
 	public Literary() {}
 	
 	public Literary(int id, int literaryID, String title, String content, String genre, String image) {
@@ -21,6 +22,7 @@ public class Literary {
 		this.content = content;
 		this.genre = genre;
 		this.image = image;
+		
 	}
 	
 	public Literary(int id, int literaryID, String title, String content, String genre, String image, Date date) {
@@ -32,6 +34,7 @@ public class Literary {
 		this.genre = genre;
 		this.image = image;
 		this.date = date;
+
 	}
 
 	public int getId() {
@@ -70,7 +73,6 @@ public class Literary {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 	public Date getDate() {
 		return date;
 	}
@@ -78,4 +80,5 @@ public class Literary {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 }

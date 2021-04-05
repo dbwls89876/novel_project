@@ -59,6 +59,7 @@ public class LiteraryDAO {
 		return literaryList;
 	}
 
+	//작품 등록
 	public int insertArticle(Literary literary) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;

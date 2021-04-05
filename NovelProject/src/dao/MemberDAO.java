@@ -190,13 +190,13 @@ public class MemberDAO {
 		return updateCount;
 	}
 	
-	public int deleteMember(int id) {
+	public int deleteMember(String memberID) {
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
 		String sql = "delete from member where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id);
+			pstmt.setString(1, memberID);
 			deleteCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

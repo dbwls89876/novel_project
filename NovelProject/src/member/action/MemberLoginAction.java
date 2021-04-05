@@ -26,6 +26,7 @@ public class MemberLoginAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberID", memberID);
 			session.setAttribute("id", member.getId());
+			session.setAttribute("member", member);
 			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("index.dir");
