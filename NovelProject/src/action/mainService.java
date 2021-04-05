@@ -8,7 +8,7 @@ import dao.FundingDAO;
 import static db.JdbcUtil.*;
 import vo.Funding;
 
-public class IndexService {
+public class mainService {
 	public ArrayList<Funding> getRecentFunding() {
 		Connection con = null;
 		ArrayList<Funding> fundingList = null;

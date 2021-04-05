@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.indexAction;
+import action.mainAction;
 import vo.ActionForward;
 
 /**
@@ -94,11 +94,11 @@ public class DirectFrontController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}else if(command.equals("/index.dir")) {
-			action = new indexAction();
+		}else if(command.equals("/main.dir")) {
+			action = new mainAction();
 			try {
 				forward = action.execute(request, response);
-				forward.setPath("index.jsp");
+				forward.setPath("main.jsp");
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();

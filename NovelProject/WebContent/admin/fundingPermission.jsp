@@ -9,18 +9,17 @@
 </head>
 <body>
 <form action="fundingPermissionUpdate.fun">
+<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
 <table border="1">
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
 	<tr>
 		<td>펀딩 허가 요청 목록</td>
 	</tr>
 	<c:forEach var = "funding" items="${permissionWaitingList }" varStatus = "status">
 	<tr>
-		<td><label><input type="checkbox" name="fundingList" value="${funding.title }" >${funding.title }</label></td>
+		<td><label><input type="checkbox" name="fundingList" value="${funding.title }" onclick="location.href='fundingContent.fun?literaryID=${funding.literaryID }&fundingID=${funding.fundingID}'">
+		${funding.title }</label></td>
 	</tr>
 	</c:forEach>
 </table>

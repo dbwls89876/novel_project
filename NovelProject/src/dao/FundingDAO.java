@@ -207,7 +207,7 @@ public class FundingDAO {
 		ArrayList<Funding> fundingList = null;
 		
 		try {
-			pstmt = con.prepareStatement("select * from funding order by fundingID desc limit 5");
+			pstmt = con.prepareStatement("select * from funding where permission=1 order by fundingID desc limit 5");
 			rs = pstmt.executeQuery();
 			
 			fundingList = new ArrayList<Funding>();
