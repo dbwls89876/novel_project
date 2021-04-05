@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	img{
-		width:100px;
+		height:150px;
 		overflow: hidden;
 	}
 </style>
@@ -35,14 +35,15 @@
 		</div>
 	</div>
 </div>
-<div class="container">
+<div class="container grayBox">
 	<div class="row">
-		<div class="col-md-8">
-			<div class="my-1">최신 펀딩</div>
+			<div class="m-3"><h3>최신 펀딩</h3></div>
+		</div>
+		<div class="row">
 			<c:forEach var="funding" items="${fundingList }" varStatus = "status">
-				<div class="my-5">	
+				<div class="col-md-2" style="width:300px;">	
 					<div class="card">
-						<div class="embed-responsive-16by9" 쟈>
+						<div class="embed-responsive-16by9 my-2" >
 							<img class="card-img-top embed-responsive-item" src="images/${funding.image }" alt="fundingImage">										
 						</div>
 						<h5 class="card-title my-2">${funding.title }</h5>
@@ -50,7 +51,6 @@
 				</div>
 			</c:forEach>
 		</div>
-	</div>
 </div>
 </body>
 </html>

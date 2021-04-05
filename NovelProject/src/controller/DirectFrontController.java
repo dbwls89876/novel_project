@@ -90,7 +90,7 @@ public class DirectFrontController extends HttpServlet {
 			action = new indexAction();
 			try {
 				forward = action.execute(request, response);
-				forward.setPath("/index.jsp");
+				forward.setPath("index.jsp");
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
