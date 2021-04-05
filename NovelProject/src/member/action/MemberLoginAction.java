@@ -29,7 +29,7 @@ public class MemberLoginAction implements Action {
 			session.setAttribute("member", member);
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("index.dir");
+			forward.setPath("main.dir");
 			
 		}else if(member!=null && !member.getPassword().equals(password)) {
 			response.setContentType("text/html;charset=utf-8");
