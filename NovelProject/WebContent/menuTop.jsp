@@ -37,7 +37,7 @@
 							<li><a href="${pageContext.request.contextPath }/totalLiteraryList.lit">연재작</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">펀딩 둘러보기</a>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/totalFunding.fun">펀딩 둘러보기</a>
 						<ul>
 							<li><a
 								href="${pageContext.request.contextPath }/weekFunding.fun">
@@ -70,6 +70,9 @@
 							<li><a href="${pageContext.request.contextPath }/myLiteraryList.lit">내 작품</a></li>
 						</ul>
 					</li>
+					</c:if>
+					<c:if test="${memberID != null}">
+						<li class="nav-item"><a class="nav-link js-scroll-trigger" href="cashCharge.dir">충전</a></li>
 					</c:if>
 				</ul>
 			</div>
