@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-12 m-5"><h1 class="display-3">금액 충전</h1></div>
 	</div>
-	<form action="">
+	<form action="cashCharge.me">
 		<div class="form-check">
 	      <label class="form-check-label" for="radio1">
 	        <input type="radio" class="form-check-input" id="cash" name="cash" value="1000" onClick="this.form.cash1.disabled=true">1000원
