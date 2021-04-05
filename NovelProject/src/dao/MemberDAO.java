@@ -226,5 +226,27 @@ public class MemberDAO {
 		}
 
 		return isCostUpdateSucess;
+	}
+
+	public boolean addMoney(String memberID, int money) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		
+		boolean isMoneyUpdateSucess = false;
+		String sql = "update member set money=money+? where memberID=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, money);
+			pstmt.setString(2, memberID);
+			pstmt.executeUpdate();
+			isMoneyUpdateSucess = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return isMoneyUpdateSucess;
 	}	
 }

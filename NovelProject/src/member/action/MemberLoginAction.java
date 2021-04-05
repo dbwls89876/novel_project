@@ -28,7 +28,7 @@ public class MemberLoginAction implements Action {
 			session.setAttribute("id", member.getId());
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("index.jsp");
+			forward.setPath("index.dir");
 			
 		}else if(member!=null && !member.getPassword().equals(password)) {
 			response.setContentType("text/html;charset=utf-8");
