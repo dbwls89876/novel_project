@@ -36,8 +36,9 @@
 	</div>
 </div>
 <div class="container grayBox">
+	<p class="text-right"><a href="${pageContext.request.contextPath }/totalFunding.fun">펀딩 보러가기</a></p>
 	<div class="row">
-			<div class="m-3"><h3>최신 펀딩</h3></div>
+			<div class="m-1 ml-3"><h3>최신 펀딩</h3></div>
 		</div>
 		<div class="row">
 			<c:forEach var="funding" items="${fundingList }" varStatus = "status">
@@ -51,6 +52,20 @@
 				</div>
 			</c:forEach>
 		</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-5 m-4">
+			<div class="row grayBox">
+				<h1 class="display-5">공지사항</h1>
+			</div>
+		</div>
+		<div class="col-5 m-4">
+			<div class="row grayBox">
+				<h1 class="display-5">자유게시판</h1>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>
