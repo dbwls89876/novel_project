@@ -32,7 +32,7 @@ public class BoardDAO {
 
 	// 글의 개수 구하기
 	public int selectListCount() {
-		
+
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -57,12 +57,12 @@ public class BoardDAO {
 
 	// 글 목록 보기
 	public ArrayList<BoardBean> selectArticleList(int page, int limit) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String boardList_sql = "select boardID, title, memberID, date, readCount from board order by boardID desc limit ?, ?";
-		
+
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		BoardBean board = null;
 		int startrow = (page - 1) * limit;
@@ -82,7 +82,7 @@ public class BoardDAO {
 				board.setReadCount(rs.getInt("readCount"));
 				articleList.add(board);
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("getBoardList 에러 : " + e);
 			e.printStackTrace();
@@ -90,14 +90,14 @@ public class BoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return articleList;
-		
+
 	}
 
 	// 글 내용 보기
 	public BoardBean selectArticle(int boardID) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		BoardBean boardBean = null;
@@ -123,14 +123,14 @@ public class BoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return boardBean;
-		
+
 	}
 
 	// 글 등록
 	public int insertArticle(BoardBean article) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int num = 0;
@@ -147,7 +147,7 @@ public class BoardDAO {
 				num = 1;
 
 			sql = "insert into board (boardID, memberID, title, content, readCount, date) values(?,?,?,?,?,now())";
-			
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, article.getMemberID());
@@ -164,13 +164,13 @@ public class BoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return insertCount;
 	}
 
 	// 글 수정
 	public int updateArticle(BoardBean article) {
-		
+
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		String sql = "update board set title = ?, content = ? where boardID = ?";
@@ -192,11 +192,11 @@ public class BoardDAO {
 
 	// 글 삭제
 	public int deleteArticle(int boardID) {
-		
+
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
 		String boardDelete_sql = "delete from board where boardID = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(boardDelete_sql);
 			pstmt.setInt(1, boardID);
@@ -225,9 +225,9 @@ public class BoardDAO {
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return updateCount;
-		
+
 	}
 
 	// 글쓴이인지 확인
@@ -255,5 +255,6 @@ public class BoardDAO {
 
 		return isWriter;
 	}
+
 
 }

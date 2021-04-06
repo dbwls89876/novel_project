@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import board.action.*;
+import dao.BoardDAO;
 import vo.ActionForward;
+import vo.*;
 
 /**
  * Servlet implementation class BoardFrontController
@@ -96,8 +99,7 @@ public class BoardFrontController extends HttpServlet {
 			request.setAttribute("boardID", boardID);
 			forward = new ActionForward();
 			forward.setPath("/board/boardDelete.jsp");
-		}
-		else if (command.contentEquals("/boardDeletePro.bo")) {	
+		}else if (command.contentEquals("/boardDeletePro.bo")) {	
 			action = new BoardDeleteProAction();
 			try {
 				forward = action.execute(request, response);
