@@ -45,7 +45,7 @@
 				<div class="col-md-2" style="width:300px;">	
 					<div class="card">
 						<div class="embed-responsive-16by9 my-2" >
-							<img class="card-img-top embed-responsive-item" src="images/${funding.image }" alt="fundingImage">										
+							<img class="card-img-top embed-responsive-item" src="fundingImages/${funding.image }" alt="fundingImage">										
 						</div>
 						<h5 class="card-title my-2">${funding.title }</h5>
 					</div>

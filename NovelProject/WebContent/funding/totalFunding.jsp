@@ -42,7 +42,7 @@
 			<div class="col-md-4 my-5" onclick="location.href='fundingContent.fun?literaryID=${funding.literaryID }&fundingID=${funding.fundingID}'">
 				<div class="card">
 					<div class="embed-responsive embed-responsive-4by3">
-						<img class="card-img-top embed-responsive-item" src="images/${funding.image }" alt="fundingImage">
+						<img class="card-img-top embed-responsive-item" src="fundingImages/${funding.image }" alt="fundingImage">
 					</div>
 					<h3 class="card-title mt-3 p-2">${funding.title}</h3>
 					<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>

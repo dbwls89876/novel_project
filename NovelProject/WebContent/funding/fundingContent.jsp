@@ -37,7 +37,7 @@ img{
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<div class="my-5"><img src="images/${funding.image }"></div>
+			<div class="my-5"><img src="fundingImages/${funding.image }"></div>
 		</div>
 		<div class="col-md-4">
 			<div class="mt-5">모인금액</div>
