@@ -1,5 +1,6 @@
 package funding.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,15 @@ public class MoveRegisterAction implements Action {
 		// TODO Auto-generated method stub
 		ActionForward forward=null;
 		HttpSession session = request.getSession();
+		String memberID = (String) session.getAttribute("memberID");
+		if(memberID==null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인하세요');");
+			out.println("history.back();");
+			out.println("</script>");
+		}
 		int id = (int) session.getAttribute("id");
 		MoveRegisterService moveRegisterService = new MoveRegisterService();
 		ArrayList<Literary> artistLiteraryList = moveRegisterService.findTitle(id);
