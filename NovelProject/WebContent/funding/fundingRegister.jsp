@@ -72,7 +72,7 @@
 	</div>
 </div>
 <form action="fundingRegister.fun" method="post" name="fundingForm">
-<div class="container h-100">
+<div class="container h-100 grayBox">
 	<div class="row m-5 p-5 justify-content-center align-self-center">
 		<h1 class="dislpay-3">펀딩 등록</h1>
 	</div>
