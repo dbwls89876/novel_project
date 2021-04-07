@@ -86,5 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 	<script src="js/scripts.js"></script>
+	
 </body>
+<link rel="stylesheet" href="../css/summernote/summernote-lite.css">
 </html>

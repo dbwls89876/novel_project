@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
   <title>SummerNoteExample</title>
   <meta charset="utf-8">
@@ -12,9 +13,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
   <!-- 서머노트를 위해 추가해야할 부분 -->
-  <script src="../css/summernote/summernote-lite.js"></script>
-  <script src="../css/summernote/lang/summernote-ko-KR.js"></script>
-  <link rel="stylesheet" href="../css/summernote/summernote-lite.css">
+  <script src="${pageContext.request.contextPath}/css/summernote/summernote-lite.js"></script>
+  <script src="${pageContext.request.contextPath}/css/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/summernote/summernote-lite.css">
+
   <!--  -->
   
 <style type="text/css">
@@ -31,18 +33,9 @@
 	
 	table{
 		margin: auto;
+		border-collapse: separate;
+  		border-spacing: 0 10px;
 	}
-	
-	.td_left{
-		width:150px;
-		background: orange;
-	}
-	
-	.td_right{
-		width: 300px;
-		background: skyblue;
-	}
-	
 	#commandCell{
 		text-align: center;
 	}
@@ -60,10 +53,10 @@
 		var Cell1 = Row.insertCell();
 		var Cell2 = Row.insertCell();
 		var Cell3 = Row.insertCell();
-		var frmTag1 = "<input type='text' name='name' id='name' required='required'/>";
-		var frmTag2 = "<input type='text' name='cost' id='cost' required='required'/>";
-		var frmTag3 = "<input type='text' name='maxNumber' id='maxNumber' required='required'/>";
-		frmTag3 += "<input type=button value='삭제' onClick='removeRow()' stype='cursor:hand'>";
+		var frmTag1 = " <input type='text' name='name' id='name' required='required'/>";
+		var frmTag2 = " <input type='text' name='cost' id='cost' required='required'/>";
+		var frmTag3 = " <input type='text' name='maxNumber' id='maxNumber' required='required'/>";
+		frmTag3 += "  <input type=button class='btn btn-success' value='삭제' onClick='removeRow()' stype='cursor:hand'>";
 		Cell1.innerHTML = frmTag1;
 		Cell2.innerHTML = frmTag2;
 		Cell3.innerHTML = frmTag3;
@@ -73,80 +66,95 @@
 	}
 </script>
 <body>
-<div class="container p-3 my-3">
-	<jsp:include page="../menuTop.jsp"></jsp:include>
+<div class="container mt-5">
+	<div class="row">
+		<button type="button" class="btn btn-light" onclick="location.href='${pageContext.request.contextPath }/totalFunding.fun'">돌아가기</button>
+	</div>
 </div>
-
-<div class="container">
-	<textarea class="summernote" name="editordata"></textarea>
-</div>
-<script>
-$('.summernote').summernote({
-	  height: 150,
-	  lang: "ko-KR"
-	});
-</script>
-<!--<table>
-	<tr>
-		<td>
-			<form action="fundingRegister.fun" method="post" name="fundingForm">
-			<table>
-				<tr>
-					<td class="td_left"><label for="selectLiterary">작품 선택</label></td>
-					<td>
-						<select name="selectLiterary" id="selectLiterary">
-							<c:forEach var = "artistLiterary" items="${artistLiteraryList }" varStatus = "status">
-								<option value="${artistLiterary.literaryID }">${artistLiterary.title }</option>
-							</c:forEach>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">제목</label></td>
-					<td class="td_right"><input type="text" name="title" id="title" required="required"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="content">내용</label></td>
-					<td><textarea id="content" name="content" cols="40" rows="15" required="required"></textarea></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="image">이미지 첨부</label></td>
-					<td class="td_right"><input type="file" name="image" id="image" required="required"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">목표 비용</label></td>
-					<td class="td_right"><input type="text" name="targetCost" id="targetCost" required="required"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">마감 날짜</label></td>
-					<td class="td_right"><input type="text" name="endDate" id="endDate" required="required"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">전달 날짜</label></td>
-					<td class="td_right"><input type="text" name="deliveryDate" id="deliveryDate" required="required"/></td>
-				</tr>
-			</table>
-			<table id="fundingGoodsTable">
+<form action="fundingRegister.fun" method="post" name="fundingForm">
+<div class="container h-100">
+	<div class="row m-5 p-5 justify-content-center align-self-center">
+		<h1 class="dislpay-3">펀딩 등록</h1>
+	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		<div class="col-md-2 "><label for="selectLiterary">작품 선택 : </label></div>
+		<div class="col-md-2"><select name="selectLiterary" id="selectLiterary" style="width:200px">
+			<c:forEach var = "artistLiterary" items="${artistLiteraryList }" varStatus = "status">
+				<option value="${artistLiterary.literaryID }">${artistLiterary.title }</option>
+			</c:forEach>
+		</select>
+		</div>
+	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		
+		<div class="col-md-2"><label for="title">제목 : </label></div>
+		<div class="col-md-2"><input type="text" name="title" id="title" required="required"/></div>
+	</div>
+	<div class="row justify-content-center align-self-center">
+		<textarea class="summernote" name="content"></textarea>	
+	</div>
+	
+	<div class="row my-3 justify-content-center align-self-center">
+		<div class="col-md-2">
+			<label for="image">이미지 첨부</label>
+		</div>
+		<div class="col-md-2">
+			<input type="file" name="image" id="image" required="required"/>
+		</div>
+	</div>
+	
+	<div class="row my-3 justify-content-center align-self-center">
+		<div class="col-md-2">
+			<label for="title">목표 비용</label>
+		</div>
+		<div class="col-md-2">
+			<input type="text" name="targetCost" id="targetCost" required="required"/>
+		</div>
+	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		<div class="col-md-2">
+			<label for="title">마감 날짜</label>
+		</div>
+		<div class="col-md-2">
+			<input type="text" name="endDate" id="endDate" required="required"/>
+		</div>
+	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		<div class="col-md-2">
+			<label for="title">전달 날짜</label>
+		</div>
+		<div class="col-md-2">
+			<input type="text" name="endDate" id="endDate" required="required"/>
+		</div>
+	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		<table id="fundingGoodsTable">
 				<tr>
 					<td>굿즈 이름</td>
 					<td>비용</td>
 					<td>최대 수량</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="name" id="name" required="required"/></td>
-					<td><input type="text" name="cost" id="cost" required="required"/></td>
-					<td><input type="text" name="maxNumber" id="maxNumber" required="required"/></td>
+					<td> <input type="text" name="name" id="name" required="required"/></td>
+					<td> <input type="text" name="cost" id="cost" required="required"/></td>
+					<td> <input type="text" name="maxNumber" id="maxNumber" required="required"/></td>
 				</tr>
 			</table>
-			<section id="commandCell">
+	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		<section id="commandCell">
 			<input name="addButton" type="button" style="curosr:pointer" onclick="insRow()" value="굿즈 추가">
 				<input type="submit" value="등록">&nbsp;&nbsp;
 				<input type="reset" value="다시쓰기">
 			</section>
-			</form>
-		</td>
-	</tr>
-</table>
--->
+	</div>
+</div>
+</form>
+<script>
+$('.summernote').summernote({
+	  height: 150,
+	  lang: "ko-KR"
+	});
+</script>
 </body>
 </html>
