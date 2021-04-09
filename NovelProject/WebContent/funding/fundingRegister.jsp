@@ -64,8 +64,10 @@
 	function removeRow(){
 		table.deleteRow(table.clickedRowIndex);
 	}
+
 </script>
 <body>
+
 <div class="container mt-5">
 	<div class="row">
 		<button type="button" class="btn btn-light" onclick="location.href='${pageContext.request.contextPath }/totalFunding.fun'">돌아가기</button>
@@ -91,9 +93,10 @@
 		<div class="col-md-2"><input type="text" name="title" id="title" required="required"/></div>
 	</div>
 	<div class="row justify-content-center align-self-center">
-		<textarea class="summernote" name="content"></textarea>	
-	</div>
-	
+		<textarea class="summernote" id="summernote" name="content"></textarea>	
+
+
+	</div>	
 	<div class="row my-3 justify-content-center align-self-center">
 		<div class="col-md-2">
 			<label for="image">이미지 첨부</label>
@@ -121,10 +124,10 @@
 	</div>
 	<div class="row my-3 justify-content-center align-self-center">
 		<div class="col-md-2">
-			<label for="title">전달 날짜</label>
+			<label for="deliveryDate">전달 날짜</label>
 		</div>
 		<div class="col-md-2">
-			<input type="text" name="endDate" id="endDate" required="required"/>
+			<input type="text" name="deliveryDate" id="deliveryDate" required="required"/>
 		</div>
 	</div>
 	<div class="row my-3 justify-content-center align-self-center">
