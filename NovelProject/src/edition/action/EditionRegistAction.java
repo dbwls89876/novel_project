@@ -2,20 +2,15 @@ package edition.action;
 
 import java.io.PrintWriter;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import action.Action;
 import edition.svc.EditionRegistService;
-import literary.svc.LiteraryRegistService;
+
 import vo.ActionForward;
 import vo.Edition;
-import vo.Literary;
 
 public class EditionRegistAction implements Action {
 

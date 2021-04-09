@@ -16,7 +16,7 @@ public class EditionRegistService {
 			con = getConnection();
 			EditionDAO editionDAO = EditionDAO.getInstance();
 			editionDAO.setConnection(con);
-			int insertCount = editionDAO.insertEdition(edition);
+			int insertCount = editionDAO.insertArticle(edition);
 		
 		if(insertCount > 0) {
 			commit(con);
