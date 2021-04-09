@@ -166,24 +166,19 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update member set memberID=?, password = ?, name = ?, nickname = ?,"+
-		" mobile = ?, address = ? where id = ?";
+		String sql = "update member set password = ?, name = ?, nickname = ?, mobile = ?, address = ? where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, member.getMemberID());
-			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getName());
-			pstmt.setString(4, member.getNickname());
-			pstmt.setString(5, member.getMobile());
-			pstmt.setString(6, member.getAddress());
-			pstmt.setInt(7, member.getGrade());
-			pstmt.setInt(8, member.getLevel());
-			pstmt.setDate(9, (Date) member.getDate());
-			pstmt.setInt(10, member.getId());
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getNickname());
+			pstmt.setString(4, member.getMobile());
+			pstmt.setString(5, member.getAddress());
+			pstmt.setInt(6, member.getId());
 			updateCount = pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			System.out.println("memberupdate : " + e);
 		}finally {
 			close(pstmt);
 		}

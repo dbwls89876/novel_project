@@ -15,7 +15,7 @@
 		</td>
 	</tr>
 </table>
-<form action = "myInformationModifyPro.me">
+<form name="modifyform" action="myInformationModifyPro.me" method="post">
 <table>
 	<tr>
 		<td>아이디 : </td>

@@ -117,4 +117,37 @@ public class LiteraryDAO {
 		return artistLiteraryList;
 	}
 
+
+public ArrayList<Literary> selectLiteraryList(int literaryID) {
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	ArrayList<Literary> artistLiteraryList = null;
+	String sql = "select * from literary where id = ?";
+	try {
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, literaryID);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			artistLiteraryList = new ArrayList<Literary>();
+			do {
+				artistLiteraryList.add(new Literary(
+						rs.getInt("id")
+						,rs.getInt("literaryID")
+						,rs.getString("title")
+						,rs.getString("content")
+						,rs.getString("genre")
+						,rs.getString("image")
+						,rs.getDate("date")));
+			} while (rs.next());
+		}
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+		close(rs);
+	}
+	return artistLiteraryList;
+}
+
 }

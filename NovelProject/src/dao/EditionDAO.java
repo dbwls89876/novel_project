@@ -30,7 +30,7 @@ public class EditionDAO {
 	}
 	
 	//회차 등록
-	public int insertArticle(Edition edition) {
+	public int insertEdition(Edition edition) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		String sql="";
