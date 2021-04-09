@@ -6,7 +6,6 @@
 
 <%
 	BoardBean article = (BoardBean) request.getAttribute("article");
-String nowPage = (String) request.getAttribute("page");
 
 int boardID = (Integer) request.getAttribute("boardID");
 
