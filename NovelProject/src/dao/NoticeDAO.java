@@ -74,10 +74,7 @@ public class NoticeDAO {
 				notice.setNoticeID(rs.getInt("noticeID"));
 				notice.setId(rs.getInt("id"));
 				notice.setTitle(rs.getString("title"));
-				notice.setContent(rs.getString("content"));
-				notice.setRef(rs.getInt("ref"));
-				notice.setLev(rs.getInt("lev"));
-				notice.setSeq(rs.getInt("seq"));
+				notice.setContent(rs.getString("content"));				
 				notice.setReadCount(rs.getInt("readCount"));
 				notice.setDate(rs.getDate("date"));
 				articleList.add(notice);
@@ -108,9 +105,6 @@ public class NoticeDAO {
 				boardBean.setId(rs.getInt("id"));
 				boardBean.setTitle(rs.getString("title"));
 				boardBean.setContent(rs.getString("content"));
-				boardBean.setRef(rs.getInt("ref"));
-				boardBean.setLev(rs.getInt("lev"));
-				boardBean.setSeq(rs.getInt("seq"));
 				boardBean.setReadCount(rs.getInt("readCount"));
 				boardBean.setDate(rs.getDate("date"));
 			}
