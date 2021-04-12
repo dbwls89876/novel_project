@@ -56,9 +56,11 @@ public class NoticeDAO {
 
 	// 글 목록 보기
 	public ArrayList<BoardBean> selectArticleList(int page, int limit) {
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String noticeList_sql = "select * from notice order by ref desc, seq asc limit ?, ?";
+		
+		String noticeList_sql = "select noticeID, title, memberID, date, readCount from notice order by noticeID desc limit ?, ?";
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		BoardBean notice = null;
 		int startrow = (page - 1) * limit;
@@ -72,11 +74,10 @@ public class NoticeDAO {
 			while (rs.next()) {
 				notice = new BoardBean();
 				notice.setNoticeID(rs.getInt("noticeID"));
-				notice.setId(rs.getInt("id"));
 				notice.setTitle(rs.getString("title"));
-				notice.setContent(rs.getString("content"));				
-				notice.setReadCount(rs.getInt("readCount"));
+				notice.setMemberID(rs.getString("memberID"));
 				notice.setDate(rs.getDate("date"));
+				notice.setReadCount(rs.getInt("readCount"));
 				articleList.add(notice);
 			}
 		} catch (Exception e) {
@@ -102,9 +103,10 @@ public class NoticeDAO {
 			if (rs.next()) {
 				boardBean = new BoardBean();
 				boardBean.setNoticeID(rs.getInt("noticeID"));
-				boardBean.setId(rs.getInt("id"));
+				boardBean.setMemberID(rs.getString("memberID"));
 				boardBean.setTitle(rs.getString("title"));
 				boardBean.setContent(rs.getString("content"));
+				boardBean.setFile(rs.getString("file"));
 				boardBean.setReadCount(rs.getInt("readCount"));
 				boardBean.setDate(rs.getDate("date"));
 			}
@@ -134,18 +136,15 @@ public class NoticeDAO {
 			else
 				num = 1;
 
-			sql = "insert into notice (noticeID, id, title,";
-			sql += "content, ref, " + "lev, seq, readCount," + "date) values(?,?,?,?,?,?,?,?,now())";
+			sql = "insert into notice (noticeID, memberID, title, content, file, readCount, date) values(?,?,?,?,?,?,now())";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, article.getId());
+			pstmt.setString(2, article.getMemberID());
 			pstmt.setString(3, article.getTitle());
 			pstmt.setString(4, article.getContent());
-			pstmt.setInt(5, num);
-			pstmt.setInt(6, 0);
-			pstmt.setInt(7, 0);
-			pstmt.setInt(8, 0);
+			pstmt.setString(5, article.getFile());
+			pstmt.setInt(6, num);
 
 			insertCount = pstmt.executeUpdate();
 
@@ -162,13 +161,14 @@ public class NoticeDAO {
 	public int updateArticle(BoardBean article) {
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql="update notice set title = ?, content = ? where noticeID = ?";
+		String sql="update notice set title = ?, content = ?, file=? where noticeID = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getTitle());
 			pstmt.setString(2, article.getContent());
-			pstmt.setInt(3, article.getNoticeID());
+			pstmt.setString(3, article.getFile());
+			pstmt.setInt(4, article.getNoticeID());
 			updateCount = pstmt.executeUpdate();
 		} catch(Exception e) {
 			System.out.println("noticeModify 에러 : " + e);
@@ -212,7 +212,7 @@ public class NoticeDAO {
 	}
 
 	// 글쓴이인지 확인
-	public boolean isArticleNoticeWriter(int noticeID, int id) {
+	public boolean isArticleNoticeWriter(int noticeID, String memberID) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String notice_sql = "select * from notice where noticeID=?";
@@ -224,11 +224,12 @@ public class NoticeDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 
-			if (id == rs.getInt("id")) {
+			if (memberID.equals(rs.getString("memberID"))) {
 				isWriter = true;
 			}
 		} catch (SQLException e) {
 			System.out.println("isNoticeWriter 에러  : " + e);
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
