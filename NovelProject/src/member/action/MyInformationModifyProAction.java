@@ -27,7 +27,6 @@ ActionForward forward = null;
 			member.setNickname(request.getParameter("nickname"));
 			member.setMobile(request.getParameter("mobile"));
 			member.setAddress(request.getParameter("address"));
-			System.out.println(request.getParameter("name"));
 			MyInformationModifyProService myInformationModifyProService = new MyInformationModifyProService();
 			boolean isModifySuccess = myInformationModifyProService.modifyMember(member);
 			

@@ -58,7 +58,7 @@
 		<input type="text" name="memberID" id="memberID" placeholder="아이디 입력"/>
 	</div>
 	<div class="row my-2">
-		<input type="text" name="password" id="password" placeholder="비밀번호 입력"/>
+		<input type="password" name="password" id="password" placeholder="비밀번호 입력"/>
 	</div>
 	<div class="row my-2">
 		<button onclick="location.href='javascript:loginForm.submit()'">로그인</button>
