@@ -17,31 +17,19 @@ public class EditionRegistAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=null;
-		Edition edition = null;
+		Edition edition = new Edition();
 		
-		HttpSession session = request.getSession();
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		edition = new Edition();
-		edition.setLiteraryID((int)session.getAttribute("literaryID"));
-		edition.setTitle(title);
-		edition.setContent(content);
+		
+		int literaryID = Integer.parseInt(request.getParameter("selectLiterary"));
+		edition.setLiteraryID(literaryID);
+		edition.setTitle(request.getParameter("title"));
+		edition.setContent(request.getParameter("content"));
+		
 		EditionRegistService editionRegistService = new EditionRegistService();
-		
-		boolean isWriteSuccess = editionRegistService.registEdition(edition);
-		
-		if(isWriteSuccess) {
-			forward = new ActionForward("editionWriterList.ed", true);
-		} else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('등록실패');");
-			out.println("history.back();");
-			out.println("</script>");
-		}
-
-		
+		editionRegistService.registEdition(edition);
+		forward = new ActionForward("/editionWriterList.ed", true);
 		return forward;
 	}
 }
