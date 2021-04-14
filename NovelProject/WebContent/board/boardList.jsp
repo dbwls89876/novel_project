@@ -79,76 +79,54 @@ table {
 			</tr>
 
 			<%
-				for (int i = 0; i < articleList.size(); i++) {
+				for(int i = 0;i < articleList.size();i++) {
 			%>
 			<tr>
 				<td><%=articleList.get(i).getBoardID()%></td>
-				<td><a
-					href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
-						<%=articleList.get(i).getTitle()%></a></td>
+				<td>
+				<%if(articleList.get(i).getReplyLV() != 0) {%>
+				<%for(int a=0; a<=articleList.get(i).getReplyLV()*2; a++) {%>
+				&nbsp;
+				<%} %> ↳
+				<%}else{ %> ↳ <%} %>				
+					<a href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
+						<%=articleList.get(i).getTitle()%></a>
+				</td>
 				<td><%=articleList.get(i).getMemberID()%></td>
 				<td><%=articleList.get(i).getDate()%></td>
 				<td><%=articleList.get(i).getReadCount()%></td>
 			</tr>
-			<%
-				}
-			%>
+			<%} %>
 		</table>
 	</section>
+	
 	<section id="pageList">
-		<%
-			if (nowPage <= 1) {
-		%>
-		[이전]&nbsp;
-		<%
-			} else {
-		%>
-		<a href="boardList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
-		<%
-			}
-		%>
+		<%if (nowPage <= 1) { %>
+			[이전]&nbsp;
+		<%} else { %>
+			<a href="boardList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+		<%} %>
 
-		<%
-			for (int a = startPage; a <= endPage; a++) {
-			if (a == nowPage) {
-		%>
-		[<%=a%>]
-		<%
-			} else {
-		%>
+		<%for (int a = startPage; a <= endPage; a++) {
+			if (a == nowPage) { %>
+				[<%=a%>]
+		<%} else { %>
 
-		<a href="boardList.bo?page=<%=a%>">[<%=a%>]
-		</a>&nbsp;
-		<%
-			}
-		%>
-		<%
-			}
-		%>
-		<%
-			if (nowPage >= maxPage) {
-		%>
-		[다음]
-		<%
-			} else {
-		%>
-		<a href="boardList.bo?page=<%=nowPage + 1%>">[다음]</a>&nbsp;
-		<%
-			}
-		%>
+			<a href="boardList.bo?page=<%=a%>">[<%=a%>]
+			</a>&nbsp;
+			<%} %>
+		<%} %>
+		<%if (nowPage >= maxPage) { %>
+			[다음]
+		<%} else { %>
+			<a href="boardList.bo?page=<%=nowPage + 1%>">[다음]</a>&nbsp;
+		<%} %>
 		<a href="boardWriteForm.bo">글쓰기</a>
-		<%
-			
-		%>
 	</section>
-	<%
-		} else {
-	%>
+	<%} else { %>
 	<section id="emptyArea">
 		등록된 글이 없습니다. <a href="boardWriteForm.bo">글쓰기</a>
 	</section>
-	<%
-		}
-	%>
+	<%} %>
 </body>
 </html>

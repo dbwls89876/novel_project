@@ -167,6 +167,59 @@ public class BoardDAO {
 
 		return insertCount;
 	}
+	
+	// 글 답변
+	public int insertReplyArticle(BoardBean article) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String boardReply_sql = "select max(boardID) from board";
+		String sql = "";
+		int num = 0;
+		int insertCount = 0;
+		int replyID = article.getReplyID();
+		int replyLV = article.getReplyLV();
+		int replyStep = article.getReplyStep();
+		
+		try {
+			pstmt = con.prepareStatement(boardReply_sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) num = rs.getInt(1)+1;
+			else num = 1;
+			sql = "update board set replyStep = replyStep+1 where replyID = ? and replyStep > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, replyID);
+			pstmt.setInt(2, replyStep);
+			int updateCount = pstmt.executeUpdate();
+			
+			if(updateCount > 0) {
+				commit(con);
+			}
+			
+			replyStep = replyStep + 1;
+			replyLV = replyLV + 1;
+			sql = "insert into board (boardID, memberID, title, content, replyID, replyLV, replyStep, readCount, date) values (?, ?, ?, ?, ?, ?, ?, ?, now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, article.getMemberID());
+			pstmt.setString(3, article.getTitle());
+			pstmt.setString(4, article.getContent());
+			pstmt.setInt(5, replyID);
+			pstmt.setInt(6, replyLV);
+			pstmt.setInt(7, replyStep);
+			pstmt.setInt(8, 0);
+			insertCount = pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			System.out.println("Reply 에러 : " + e);
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
 
 	// 글 수정
 	public int updateArticle(BoardBean article) {

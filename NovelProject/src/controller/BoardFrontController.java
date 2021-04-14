@@ -74,6 +74,20 @@ public class BoardFrontController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/boardReplyForm.bo")) {
+			action = new BoardReplyFormAction();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/boardReplyPro.bo")) {
+			action = new BoardReplyProAction();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/boardModifyForm.bo")) {
 			action = new BoardModifyFormAction();
 			try {
