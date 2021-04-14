@@ -20,9 +20,9 @@ function init(){
 	}
 }
 function ok(v){
-	opener.idcheck=v.trim();
-	opener.document.getElementById("nickname").value=v;
-	opener.chkId=true;
+	opener.nicknamecheck=v.trim();
+	opener.document.getElementById("nickname").value=v.trim();
+	opener.chkNickname=true;
 	window.close();
 }
 </script>
@@ -32,6 +32,7 @@ function ok(v){
 	<input type=submit value="중복확인">
 </form>
 <%
+request.setCharacterEncoding("UTF-8");
 	if(request.getParameter("chk_nickname")!=null){
 		String chk_nickname = request.getParameter("chk_nickname");
 		String useble = request.getParameter("useble");

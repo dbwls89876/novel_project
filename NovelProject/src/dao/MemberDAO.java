@@ -35,7 +35,7 @@ public class MemberDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into member (memberID,password,name,nickname,mobile,address,date) value(?,?,?,?,?,?,now())";
+			sql="insert into member (memberID,password,name,nickname,mobile,postCode,roadAddress,detailAddress,date) value(?,?,?,?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);			
 			pstmt.setString(1, member.getMemberID());
@@ -43,10 +43,12 @@ public class MemberDAO {
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getNickname());
 			pstmt.setString(5, member.getMobile());
-			pstmt.setString(6, member.getAddress());
+			pstmt.setInt(6, member.getPostCode());
+			pstmt.setString(7, member.getRoadAddress());
+			pstmt.setString(8, member.getDetailAddress());
 			insertCount = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("memberInsert �뿉�윭 : " + e);
+			System.out.println("memberInsert 오류 : " + e);
 		}finally {
 			close(pstmt);
 		}
@@ -90,7 +92,9 @@ public class MemberDAO {
 				member.setName(rs.getString("name"));
 				member.setNickname(rs.getString("nickname"));
 				member.setMobile(rs.getString("mobile"));
-				member.setAddress(rs.getString("address"));
+				member.setPostCode(Integer.parseInt(rs.getString("postCode")));
+				member.setRoadAddress(rs.getString("roadAddress"));
+				member.setDetailAddress(rs.getString("detailAddress"));
 				member.setMoney(rs.getInt("money"));;
 			}
 		} catch (Exception e) {
@@ -116,7 +120,7 @@ public class MemberDAO {
 				listCount = rs.getInt(1);
 			}
 		}catch(Exception e) {
-			System.out.println("getListCount �뿉�윭 : " + e);
+			System.out.println("getListCount 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -149,12 +153,14 @@ public class MemberDAO {
 					member.setName(rs.getString("name"));
 					member.setNickname(rs.getString("nickname"));
 					member.setMobile(rs.getString("mobile"));
-					member.setAddress(rs.getString("address"));
+					member.setPostCode(Integer.parseInt(rs.getString("postCode")));
+					member.setRoadAddress(rs.getString("roadAddress"));
+					member.setDetailAddress(rs.getString("detailAddress"));
 				}while(rs.next());
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("memberList �뿉�윭 : " + e);
+			System.out.println("memberList 오류 : " + e);
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -166,15 +172,17 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update member set password = ?, name = ?, nickname = ?, mobile = ?, address = ? where id = ?";
+		String sql = "update member set password = ?, name = ?, nickname = ?, mobile = ?, postCode = ?, roadAddress=?, detailAddress=? where id = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
 			pstmt.setString(2, member.getName());
 			pstmt.setString(3, member.getNickname());
 			pstmt.setString(4, member.getMobile());
-			pstmt.setString(5, member.getAddress());
-			pstmt.setInt(6, member.getId());
+			pstmt.setInt(5, member.getPostCode());
+			pstmt.setString(6, member.getRoadAddress());
+			pstmt.setString(7, member.getDetailAddress());
+			pstmt.setInt(8, member.getId());
 			updateCount = pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception

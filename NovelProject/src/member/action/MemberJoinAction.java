@@ -14,21 +14,23 @@ public class MemberJoinAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		String address = request.getParameter("postCode") + request.getParameter("roadAddress") + request.getParameter("detailAddress");
+		
 		Member member = new Member();
 		member.setMemberID(request.getParameter("memberID"));
 		member.setPassword(request.getParameter("password"));
 		member.setName(request.getParameter("name"));
 		member.setNickname(request.getParameter("nickname"));
 		member.setMobile(request.getParameter("mobile"));
-		member.setAddress(address);
-	
+		member.setPostCode(Integer.parseInt(request.getParameter("postCode")));
+		member.setRoadAddress(request.getParameter("roadAddress"));
+		member.setDetailAddress(request.getParameter("detailAddress"));
+		
 		MemberJoinService memberJoinService = new MemberJoinService();
 		boolean isJoinSuccess = memberJoinService.joinMember(member);
 		if(isJoinSuccess) {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("member/loginForm.jsp");
+			forward.setPath("loginForm.dir");
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();

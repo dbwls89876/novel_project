@@ -9,11 +9,13 @@ public class Member {
 	String name;
 	String nickname;
 	String mobile;
-	String address;
 	int grade;
 	int level;
 	Date date;
 	int money;
+	int postCode;
+	String roadAddress;
+	String detailAddress;
 	
 	public int getId() {
 		return id;
@@ -51,12 +53,6 @@ public class Member {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public int getGrade() {
 		return grade;
 	}
@@ -80,6 +76,24 @@ public class Member {
 	}
 	public void setMoney(int money) {
 		this.money = money;
+	}
+	public int getPostCode() {
+		return postCode;
+	}
+	public void setPostCode(int postCode) {
+		this.postCode = postCode;
+	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 
 	

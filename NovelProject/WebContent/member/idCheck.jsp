@@ -21,7 +21,7 @@ function init(){
 }
 function ok(v){
 	opener.idcheck=v.trim();
-	opener.document.getElementById("memberID").value=v;
+	opener.document.getElementById("memberID").value=v.trim();
 	opener.chkId=true;
 	window.close();
 }

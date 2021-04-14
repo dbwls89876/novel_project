@@ -66,10 +66,7 @@
 	<div class="row my-5 " style="text-align: center;">
 		<a href="joinForm.dir">회원가입</a>
 	</div>
-
 </div>
-
-
 </form>
 </body>
 </html>

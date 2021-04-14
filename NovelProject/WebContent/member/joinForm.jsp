@@ -6,28 +6,43 @@
 <meta charset="UTF-8">
 <title>회원 관리 시스템 회원가입 페이지</title>
 <style>
-	table{
-	margin:auto;
-	width:1000px;
-	border:1px solid gray;
-	text-align:center;
+	input{
+		width:500px;
+		height:50px;
+		align:center;
+		padding-left: 10px;
 	}
-	.td_title{
-	font-weight:bold;
-	font-size:x-large;
+	button{
+		width:500px;
+		height:50px;
+		color:white;
+		background-color: #82937F;
+		border:0;
+	}
+	.blockCenter{
+		position: absolute;
+		top:50%; left:50%;
+		width:500px; height:300px;
+		margin-left: -150px;
+		margin-top: -200px;
+		text-align: center;
+		color: #82937F;
+	}
+	p{
+		text-align: center;
 	}
 </style>
 <script>
 var chkId=false;
 var idcheck;
 
-var chknickname=false;
+var chkNickname=false;
 var nicknamecheck;
 
-
 function formCheck(f){
-	if(chkId || idcheck!=f.memberID.value.trim()){
+	if(!chkId || idcheck!=f.memberID.value.trim()){
 		alert("아이디 중복 확인 하세요!");
+		f.memberID.focus();
 		return false;
 	}
 	if(f.password.value.trim()==""){
@@ -49,75 +64,92 @@ function formCheck(f){
 		f.password.focus();
 		return false;
 	}
-	if(!chknickname || nicknamecheck!=f.nickname.value.trim()){
+	if(!chkNickname || nicknamecheck!=f.nickname.value.trim()){
 		alert("닉네임 중복 확인 하세요!");
+		f.nickname.focus();
 		return false;
 	}
-	//f.submit();
+	if(f.name.value.trim()==""){
+		alert("이름을 입력하세요!");
+		f.name.value="";
+		f.name.focus();
+		return false;
+	}
+	if(f.password.value.trim()==""){
+		alert("휴대전화를 입력하세요!");
+		f.mobile.value="";
+		f.mobile.focus();
+		return false;
+	}
+	if(f.postCode.value.trim()==""){
+		alert("주소를 입력하세요!");
+		f.postCode.value="";
+		f.postCode.focus();
+		return false;
+	}
+	f.submit();
 }
 </script>
 </head>
 <body>
+<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+</div>
 <form name="joinform" action="${pageContext.request.contextPath }/joinForm.me" method="post">
-<table>
-	<tr>
-		<td align="center"><br>
-			<jsp:include page="../menuTop.jsp"></jsp:include>
-		</td>
-	</tr>
-</table>
-<table border=1>
-	<tr>
-		<td colspan="2" class="td_title">
-		회원가입
-		</td>
-	</tr>
-	<tr>
-		<td><label for="memberID">아이디 : </label></td>
-		<td align=left><input type="text" name="memberID" id="memberID" required/>
-			<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('member/idCheck.jsp?openInit=ture','','width=300,height=200')"/>
-		</td>
-	</tr>
-	<tr>
-		<td><label for="password">비밀번호 : </label></td>
-		<td align=left><input type="password" name="password" id="password"/></td>
-	</tr>
-	<tr>
-		<td><label for="passchk">비밀번호 확인 : </label></td>
-		<td align=left><input type="password" name="password" id="password" /></td>
-	</tr>
-	<tr>
-		<td><label for="name">이름 : </label></td>
-		<td align=left><input type="text" name="name" id="name"/></td>
-	</tr>
-	<tr>
-		<td><label for="nickname">닉네임 : </label></td>
-		<td align=left><input type="text" name="nickname" id="nickname" required/>
-			<input type="button" value="닉네임 중복 확인" id="nicknameCheck" onclick="window.open('member/nicknameCheck.jsp?openInit=ture','','width=300,height=200')"/>
-		</td>
-	</tr>
-	<tr>
-		<td><label for="mobile">휴대폰번호 : </label></td>
-		<td align=left><input type="text" name="mobile" id="mobile"/>
-	</tr>
-	<tr >
-		<td colspan="2" align="left">
-			<input type="text" name = "postCode" id="postCode" placeholder="우편번호" >
-			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><input type="text" id="roadAddress" placeholder="도로명주소"></td>
-	</tr>
-	<tr>
-		<td colspan="2"><input type="text" id="detailAddress" placeholder="상세주소"></td>
-	<tr>
-	<tr>
-		<td colspan="2">
-			<input type="submit" value="가입"/>
-			<input type="reset" value="다시작성"/>
-</table>
+<div class="container my-4">
+	<h1 class="display-4 text-success">회원가입</h1>
+</div>
+<hr class="greenLine">
 
+<div class="blockCenter">
+	<div class="row my-2">
+		<label for="memberID">아이디 </label>
+		<input type="text" name="memberID" id="memberID" />
+	</div>
+	<div class="row my-2">
+		<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('member/idCheck.jsp?openInit=ture','','width=300,height=200')" />
+	</div>
+	<div class="row my-2">
+		<label for="password">비밀번호 </label>
+		<input type="password" name="password" id="password" />
+	</div>
+	<div class="row my-2">
+		<label for="passchk">비밀번호 확인 </label>
+		<input type="password" name="passchk" id="passchk" />
+	</div>
+	<div class="row my-2">
+		<label for="name">이름 </label>
+		<input type="text" name="name" id="name" />
+	</div>
+	<div class="row my-2">
+		<label for="nickname">닉네임 </label>
+		<input type="text" name="nickname" id="nickname" placeholder="가입 후 닉네임 변경 불가" />
+	</div>
+	<div class="row my-2">
+		<input type="button" value="닉네임 중복 확인" id="nicknameCheck" onclick="window.open('member/nicknameCheck.jsp?openInit=ture','','width=300,height=200')" />
+	</div>
+	<div class="row my-2">
+		<label for="mobile">휴대전화 </label>
+		<input type="text" name="mobile" id="mobile" />
+	</div>
+	<div class="row my-2">
+		<label for="postCode">주소 </label>
+		<input type="text" name = "postCode" id="postCode" placeholder="우편번호" />
+			</div>
+	<div class="row my-2">
+		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" /><br>
+	</div>
+	<div class="row my-2">
+		<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" />
+	</div>
+	<div class="row my-2">
+		<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소"  />
+	</div>
+	<div class="row my-2">
+		<input type="button" onclick="formCheck(this.form)" value="가입" />
+		<input type="reset" value="다시작성"/>
+	</div>
+</div>
 </form>
 </body>
 </html>
