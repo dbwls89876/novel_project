@@ -15,6 +15,8 @@ public class MemberJoinAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		
+		request.setCharacterEncoding("UTF-8");	
+		
 		Member member = new Member();
 		member.setMemberID(request.getParameter("memberID"));
 		member.setPassword(request.getParameter("password"));
