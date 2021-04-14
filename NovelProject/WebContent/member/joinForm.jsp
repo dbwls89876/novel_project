@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");	
+	String nickname = request.getParameter("nickname");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +15,6 @@
 		height:50px;
 		align:center;
 		padding-left: 10px;
-	}
-	button{
-		width:500px;
-		height:50px;
-		color:white;
-		background-color: #82937F;
-		border:0;
 	}
 	.blockCenter{
 		position: absolute;
@@ -45,18 +42,42 @@ function formCheck(f){
 		f.memberID.focus();
 		return false;
 	}
+	if(f.memberID.value.length < 4 || f.memberID.value.length > 9) {
+		alert("아이디는 4~9자 영문 대/소문자, 숫자를 사용하세요.")
+		f.memberID.value="";
+		f.memberID.focus();
+		return false;
+	}
+	if (f.memberID.value.indexOf(" ") >= 0) {
+        alert("아이디에 공백을 사용할 수 없습니다.")
+        f.memberID.focus();
+        f.memberID.select()
+        return false;
+    }
 	if(f.password.value.trim()==""){
 		alert("비밀번호를 입력하세요!");
 		f.password.value="";
 		f.password.focus();
 		return false;
 	}
-	if(f.password.value.length < 5 || f.password.value.lenghth > 10) {
-		alert("비밀번호는 5~10자로 설정하세요")
+	if(f.password.value.length < 8 || f.password.value.length > 16) {
+		alert("비밀번호는 8~16자 영문 대/소문자, 숫자, 특수문자를 사용하세요.")
 		f.password.value="";
 		f.password.focus();
 		return false;
 	}
+	if(!f.password.value.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/)) {
+		alert("특수문자를 포함해 주세요.")
+		f.password.value="";
+		f.password.focus();
+		return false;
+	}
+	if (f.password.value.indexOf(" ") >= 0) {
+        alert("비밀번호에 공백을 사용할 수 없습니다.")
+        f.password.focus();
+        f.password.select()
+        return false;
+    }
 	if(f.password.value.trim() != f.passchk.value.trim()){
 		alert("비밀번호가 일치하지 않습니다.");
 		f.password.value="";
@@ -104,14 +125,14 @@ function formCheck(f){
 <div class="blockCenter">
 	<div class="row my-2">
 		<label for="memberID">아이디 </label>
-		<input type="text" name="memberID" id="memberID" />
+		<input type="text" name="memberID" id="memberID" placeholder="4~9자 영문, 숫자 포함" />
 	</div>
 	<div class="row my-2">
 		<input type="button" value="아이디 중복 확인" id="idCheck" onclick="window.open('member/idCheck.jsp?openInit=ture','','width=300,height=200')" />
 	</div>
 	<div class="row my-2">
 		<label for="password">비밀번호 </label>
-		<input type="password" name="password" id="password" />
+		<input type="password" name="password" id="password" placeholder="8~16자 영문, 숫자, 특수문자 포함"/>
 	</div>
 	<div class="row my-2">
 		<label for="passchk">비밀번호 확인 </label>
@@ -123,14 +144,14 @@ function formCheck(f){
 	</div>
 	<div class="row my-2">
 		<label for="nickname">닉네임 </label>
-		<input type="text" name="nickname" id="nickname" placeholder="가입 후 닉네임 변경 불가" />
+		<input type="text" name="nickname" id="nickname" placeholder="가입 후 닉네임 변경 불가"/>
 	</div>
 	<div class="row my-2">
 		<input type="button" value="닉네임 중복 확인" id="nicknameCheck" onclick="window.open('member/nicknameCheck.jsp?openInit=ture','','width=300,height=200')" />
 	</div>
 	<div class="row my-2">
 		<label for="mobile">휴대전화 </label>
-		<input type="text" name="mobile" id="mobile" />
+		<input type="text" name="mobile" id="mobile" placeholder="'-'을 입력 해 주세요." />
 	</div>
 	<div class="row my-2">
 		<label for="postCode">주소 </label>

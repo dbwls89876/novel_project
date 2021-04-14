@@ -33,8 +33,8 @@ function formCheck(f){
 		f.password.focus();
 		return false;
 	}
-	if(f.password.value.length < 5 || f.password.value.lenghth > 10) {
-		alert("비밀번호는 5~10자로 설정하세요")
+	if(!f.password.value.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/)) {
+		alert("비밀번호는 8~16자 영문 대/소문자, 숫자, 특수문자를 사용하세요.")
 		f.password.value="";
 		f.password.focus();
 		return false;
@@ -46,7 +46,19 @@ function formCheck(f){
 		f.password.focus();
 		return false;
 	}
-	//f.submit();
+	if(f.password.value.trim()==""){
+		alert("휴대전화를 입력하세요!");
+		f.mobile.value="";
+		f.mobile.focus();
+		return false;
+	}
+	if(f.postCode.value.trim()==""){
+		alert("주소를 입력하세요!");
+		f.postCode.value="";
+		f.postCode.focus();
+		return false;
+	}
+	f.submit();
 }
 </script>
 </head>
@@ -90,7 +102,7 @@ function formCheck(f){
 			<label for="name">이름 </label>	
 		</div>
 		<div class="col-md-3">
-			<input type="text" name="name" id="name" value='${member.name }' />
+			${member.name }
 		</div>
 	</div>
 	<div class="row my-3">
@@ -137,7 +149,7 @@ function formCheck(f){
 		</div>
 	</div>
 	<div class="row my-5">
-		<button onclick="location.href='javascript:myInformationModify.submit()'">수정</button>&nbsp;&nbsp;
+		<input type="button" onclick="formCheck(this.form)" value="수정" />&nbsp;&nbsp;
 		<button type="reset" >다시작성</button>
 	</div>
 </div>

@@ -19,6 +19,7 @@ ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
 		String memberID =(String)session.getAttribute("memberID");
+		
 		if(memberID != null) {
 			Member member = new Member();
 			member.setMemberID(memberID);
@@ -29,9 +30,9 @@ ActionForward forward = null;
 			member.setPostCode(Integer.parseInt(request.getParameter("postCode")));
 			member.setRoadAddress(request.getParameter("roadAddress"));
 			member.setDetailAddress(request.getParameter("detailAddress"));
+			
 			MyInformationModifyProService myInformationModifyProService = new MyInformationModifyProService();
 			boolean isModifySuccess = myInformationModifyProService.modifyMember(member);
-			
 			if(isModifySuccess) {
 				forward = new ActionForward();
 				forward.setRedirect(true);

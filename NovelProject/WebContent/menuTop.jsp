@@ -33,8 +33,8 @@
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"  href="#">작품</a>
 						<ul>
-							<li><a href="${pageContext.request.contextPath }/newLiteraryList.lit">신작</a></li>
-							<li><a href="${pageContext.request.contextPath }/totalLiteraryList.lit">연재작</a></li>
+							<li><a href="${pageContext.request.contextPath }/newLiteraryList.lit">이 달의 신규 작품</a></li>
+							<li><a href="${pageContext.request.contextPath }/totalLiteraryList.lit">전체 작품</a></li>
 						</ul>
 					</li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/totalFunding.fun">펀딩 둘러보기</a>

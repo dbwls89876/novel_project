@@ -172,17 +172,15 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update member set password = ?, name = ?, nickname = ?, mobile = ?, postCode = ?, roadAddress=?, detailAddress=? where id = ?";
+		String sql = "update member set password = ?, mobile = ?, postCode = ?, roadAddress=?, detailAddress=? where memberID = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getNickname());
-			pstmt.setString(4, member.getMobile());
-			pstmt.setInt(5, member.getPostCode());
-			pstmt.setString(6, member.getRoadAddress());
-			pstmt.setString(7, member.getDetailAddress());
-			pstmt.setInt(8, member.getId());
+			pstmt.setString(2, member.getMobile());
+			pstmt.setInt(3, member.getPostCode());
+			pstmt.setString(4, member.getRoadAddress());
+			pstmt.setString(5, member.getDetailAddress());
+			pstmt.setString(6, member.getMemberID());
 			updateCount = pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception
