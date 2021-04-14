@@ -20,7 +20,7 @@
 <div class="container grayBox">
 	<p class="text-right"><a href="${pageContext.request.contextPath }/totalLiteraryList.lit">연재작 보러가기</a></p>
 	<div class="row">
-		<div class="m-1 ml-3"><h3>최신 연재 소설</h3></div>
+		<div class="m-1 ml-3"><h3>전체 작품</h3></div>
 	</div>
 	<div class="row">
 		<c:forEach var="literary" items="${literaryList }" varStatus = "status">

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import literary.action.NewLiteraryListAction;
 import literary.action.LiteraryRegistAction;
 import literary.action.TotalLiteraryListAction;
 import literary.action.MyLiteraryListAction;
@@ -56,16 +55,7 @@ public class LiteraryFrontController extends HttpServlet {
 		Action action=null;
 		System.out.println(command);
 		
-		if(command.equals("/newLiteraryList.lit")) {
-			action = new NewLiteraryListAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-					
-		}
-		else if(command.equals("/totalLiteraryList.lit")) {
+		if(command.equals("/totalLiteraryList.lit")) {
 			action = new TotalLiteraryListAction();
 			try {
 				forward = action.execute(request, response);
