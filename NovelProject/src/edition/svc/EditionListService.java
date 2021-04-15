@@ -25,14 +25,14 @@ public class EditionListService {
 		return listCount;
 	}
 
-	public ArrayList<Edition> getArticleList(int page, int limit) {
+	public ArrayList<Edition> getArticleList(String literaryID, int page, int limit) {
 		ArrayList<Edition> list = null;
 		Connection con = null;
 		try {
 			con = getConnection();
 			EditionDAO editionDAO = EditionDAO.getInstance();
 			editionDAO.setConnection(con);
-			list = editionDAO.selectArticleList(page, limit);
+			list = editionDAO.selectArticleList(literaryID, page, limit);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -40,5 +40,4 @@ public class EditionListService {
 		}
 		return list;
 	}
-
 }

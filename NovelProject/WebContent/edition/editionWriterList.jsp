@@ -61,7 +61,7 @@ table{
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
 		<h2>
-			글 목록<a href="editionRegistForm.ed">작품등록</a>
+			글 목록<a href="editionRegistForm.ed?literaryID=${literaryID }">회차등록</a>
 		</h2>
 		<table>
 			<%
@@ -79,6 +79,7 @@ table{
 				
 				%>
 				<tr>
+					<td><%=articleList.get(i).getLiteraryID() %></td>
 					<td><%=articleList.get(i).getEditionID() %></td>
 					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getEditionID() %>&page=<%=nowPage%>">
 					<%=articleList.get(i).getTitle() %></a>

@@ -13,7 +13,6 @@ import action.Action;
 import edition.action.EditionDetailViewAction;
 import edition.action.EditionReaderListAction;
 import edition.action.EditionRegistAction;
-import edition.action.EditionRegistFormAction;
 import edition.action.EditionWriterListAction;
 import vo.ActionForward;
 
@@ -92,13 +91,8 @@ public class EditionFrontController extends HttpServlet {
 			}
 		}
 		else if(command.equals("/editionRegistForm.ed")) {
-			action = new EditionRegistFormAction();
-			try {
-				forward = action.execute(request, response);
-			}catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
+			request.setAttribute("literaryID", request.getParameter("literaryID"));
+			forward = new ActionForward("/edition/editionRegistForm.jsp",false);
 		}
 		if(forward!=null) {
 			if(forward.isRedirect()) {

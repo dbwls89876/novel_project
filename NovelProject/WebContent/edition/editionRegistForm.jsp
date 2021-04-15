@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +11,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>회차 등록</title>
-
 </head>
 <body>
 <div class="container p-3 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-
-<h2>새 작품 등록</h2>
+<h2>새 회차 등록</h2>
 <form action ="editionRegist.ed" method="post" name="editionform">
 	<table>
+		<tr>
+			<td class="td_right"><input type="hidden" name="literaryID" id="literaryID" value=<%=request.getParameter("literaryID") %> required="required" /></td>
+		</tr>
 		<tr>
 			<td class="td_left"><label for="title">제목</label></td>
 			<td class="td_right"><input type="text" name="title" id="title" required="required" /></td>

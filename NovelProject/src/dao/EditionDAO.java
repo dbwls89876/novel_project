@@ -79,20 +79,20 @@ public class EditionDAO {
 	}
 
 	//회차 목록보기
-	public ArrayList<Edition> selectArticleList(int page, int limit) {
+	public ArrayList<Edition> selectArticleList(String literaryID, int page, int limit) {
 		ArrayList<Edition> list = new ArrayList<Edition>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String edition_list_sql = "select editionID, literaryID, title, content, date, Count from edition order by editionID desc limit ?, ?";
+		String edition_list_sql = "select editionID, literaryID, title, content, date, Count from edition where literaryID=? order by editionID desc limit ?, ?";
 		Edition edition = new Edition();
 		int startrow = (page-1)*limit;
 		
 		try {
 			pstmt = con.prepareStatement(edition_list_sql);
-			pstmt.setInt(1, startrow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, literaryID);
+			pstmt.setInt(2, startrow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
-			
 			while(rs.next()) {
 				edition.setEditionID(rs.getInt("editionID"));
 				edition.setLiteraryID(rs.getInt("literaryID"));

@@ -30,13 +30,13 @@
 <table>
 	<tr>
 		<td>
-			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
+			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit?id=${member.id}">작품 등록하기</a>
 		</td>
 	</tr>
 	<tr>	
 		<c:forEach var="literary" items="${myLiteraryList }" varStatus="status">
 		<td>	
-			<a href="editionWriterList.ed?id=${literary.id}">
+			<a href="editionWriterList.ed?literaryID=${literary.literaryID}">
 			<img src="images/${literary.image}" class="literaryImage" /></a><br>
 			${literary.title}<br> ${literary.genre}<br>
 		</td>

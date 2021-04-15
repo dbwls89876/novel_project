@@ -21,8 +21,11 @@ Member member = (Member)session.getAttribute("member");
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
 <h2>새 작품 등록</h2>
-<form action ="literaryRegist.lit" method="post" enctype="multipart/form-data" name="literaryform">
+<form action ="literaryRegist.lit" method="post"  name="literaryform">
 	<table>
+		<tr>
+			<td class="td_right"><input type="hidden" name="id" id="id" value=<%=request.getParameter("id") %> required="required" /></td>
+		</tr>
 		<tr>
 			<td>닉네임 : </td>
 			<td><%=member.getNickname() %></td>

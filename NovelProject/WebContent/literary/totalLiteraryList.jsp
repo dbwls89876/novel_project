@@ -40,7 +40,7 @@
 <table>
 	<tr>
 		<td>
-			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
+			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit?id=${member.id}">작품 등록하기</a>
 		</td>
 	</tr>
 	<tr>
