@@ -79,16 +79,16 @@ table {
 			</tr>
 
 			<%
-				for(int i = 0;i < articleList.size();i++) {
+				for(int i=0;i<articleList.size();i++) {
 			%>
 			<tr>
 				<td><%=articleList.get(i).getBoardID()%></td>
 				<td>
 				<%if(articleList.get(i).getReplyLV() != 0) {%>
-				<%for(int a=0; a<=articleList.get(i).getReplyLV()*2; a++) {%>
-				&nbsp;
-				<%} %> ↳
-				<%}else{ %> ↳ <%} %>				
+					<%for(int a=0; a<=articleList.get(i).getReplyLV()*2; a++) {%>
+					&nbsp;
+					<%} %> ↳
+				<%} %>				
 					<a href="boardDetail.bo?boardID=<%=articleList.get(i).getBoardID()%>&page=<%=nowPage%>">
 						<%=articleList.get(i).getTitle()%></a>
 				</td>
@@ -121,11 +121,11 @@ table {
 		<%} else { %>
 			<a href="boardList.bo?page=<%=nowPage + 1%>">[다음]</a>&nbsp;
 		<%} %>
-		<a href="boardWriteForm.bo">글쓰기</a>
+		<a href="boardWriteForm.bo">[글쓰기]</a>
 	</section>
 	<%} else { %>
 	<section id="emptyArea">
-		등록된 글이 없습니다. <a href="boardWriteForm.bo">글쓰기</a>
+		등록된 글이 없습니다. <a href="boardWriteForm.bo">[글쓰기]</a>
 	</section>
 	<%} %>
 </body>
