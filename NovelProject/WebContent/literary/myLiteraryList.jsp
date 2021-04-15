@@ -20,6 +20,10 @@
 		width: 1000px;
 		border:1px solid;
 	}
+	img{
+		width: 100px;
+		height: 100px;
+	}
 
 </style>
 </head>
