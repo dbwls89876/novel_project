@@ -194,7 +194,7 @@ public class MemberDAO {
 	public int deleteMember(String memberID) {
 		int deleteCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "delete from member where id = ?";
+		String sql = "delete from member where memberID = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberID);
