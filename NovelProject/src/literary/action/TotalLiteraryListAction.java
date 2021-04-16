@@ -15,8 +15,6 @@ public class TotalLiteraryListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		int id = (int)session.getAttribute("id");
 		LiteraryListService literaryListService = new LiteraryListService();
 		ArrayList<Literary> literaryList = literaryListService.getLiteraryList();
 		request.setAttribute("literaryList", literaryList);

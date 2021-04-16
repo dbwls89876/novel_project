@@ -15,11 +15,10 @@ public class EditionReaderListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		String literaryID = request.getParameter("literaryID");
 		int page=1;
 		int limit=10;
 		int limitPage=10;
-		
 		if(request.getParameter("page")!=null) {
 			page=Integer.parseInt(request.getParameter("page"));
 		}
@@ -39,11 +38,10 @@ public class EditionReaderListAction implements Action {
 		pageInfo.setStartPage(startPage);
 		
 		ArrayList<Edition> articleList=new ArrayList<Edition>();
-		articleList = editionListService.getArticleList(page, limit);
-		System.out.println(articleList );
+		articleList = editionListService.getArticleList(literaryID, page, limit);
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
-		
+		request.setAttribute("literaryID", literaryID);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/edition/editionReaderList.jsp");
 		return forward;

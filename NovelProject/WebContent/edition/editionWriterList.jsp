@@ -69,7 +69,6 @@ table{
 			%>
 				<tr id="tr_top">
 					<td>제목</td>
-					<td>작성자</td>
 					<td>날짜</td>
 					<td>조회수</td>
 				</tr>
@@ -79,10 +78,8 @@ table{
 				
 				%>
 				<tr>
-					<td><%=articleList.get(i).getLiteraryID() %></td>
-					<td><%=articleList.get(i).getEditionID() %></td>
-					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getEditionID() %>&page=<%=nowPage%>">
-					<%=articleList.get(i).getTitle() %></a>
+					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getTitle() %>&page=<%=nowPage%>">
+					<%=articleList.get(i).getTitle() %></a></td>
 					<td><%=articleList.get(i).getDate() %></td>
 					<td><%=articleList.get(i).getCount() %></td>
 				</tr>
