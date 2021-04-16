@@ -86,6 +86,10 @@ table{
 				<%} %>
 		</table>
 	</section>
+	
+	
+	
+	
 	<section id="pageList">
 		<%if(nowPage<=1){ %>
 			[이전]&nbsp;

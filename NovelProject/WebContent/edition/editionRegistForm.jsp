@@ -61,7 +61,7 @@
 		<div class="col-md-2"><input type="text" name="title" id="title" required="required"/></div>
 	</div>
 	<div class="row justify-content-center align-self-center">
-		<textarea class="summernote" id="summernote" name="content" placeholder="※이미지 첨부 기능x"></textarea>	
+		<textarea class="summernote" id="summernote" name="content"></textarea>	
 	</div>
 	<div class="row my-3 justify-content-center align-self-center">
 		<section id="commandCell">
