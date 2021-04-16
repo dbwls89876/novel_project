@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import board.svc.BoardReplyProService;
@@ -16,10 +17,12 @@ public class BoardReplyProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ActionForward forward = null;
+		HttpSession session = request.getSession();
+		
 		String nowPage = request.getParameter("page");
 		BoardBean article = new BoardBean();
 		article.setBoardID(Integer.parseInt(request.getParameter("boardID")));
-		article.setMemberID(request.getParameter("memberID"));
+		article.setMemberID((String)session.getAttribute("memberID"));
 		article.setTitle(request.getParameter("title"));
 		article.setContent(request.getParameter("content"));
 		article.setReplyID(Integer.parseInt(request.getParameter("replyID")));
@@ -36,7 +39,7 @@ public class BoardReplyProAction implements Action {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert(답장 실패')");
+			out.println("alert('답장 실패')");
 			out.println("history.back()");
 			out.println("</script>");
 			

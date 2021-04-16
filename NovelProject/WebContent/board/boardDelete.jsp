@@ -11,7 +11,7 @@ String nowPage = (String) request.getAttribute("page");
 <title>Community Board</title>
 <style>
 table {
-	margin: auto;
+	margin: 50px auto;
 	width: 1500px;
 }
 #passForm {
