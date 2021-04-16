@@ -90,7 +90,7 @@ a:hover{
 		</tr>
 	</table>
 	<div class="nTitle">
-		공지사항
+		공지게시판
 	</div>
 	<div class="nWrite">
 		<a href="noticeWriteForm.no">글쓰기</a>

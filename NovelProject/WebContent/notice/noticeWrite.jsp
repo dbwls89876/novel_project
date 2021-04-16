@@ -6,55 +6,90 @@
 <meta charset="UTF-8">
 <title>Notice Board</title>
 <style type="text/css">
-table {
-	margin: auto;
-	width: 1500px;
+.nTitle{
+	position: absolute;
+	left: 395px; top: 90px;
+	font-size: 32px;
+	color: #606E5E;
+	font-weight: bold;
 }
 
-td h3 {
-	text-align: left;
+.nWrite a{
 	color: #606E5E;
+	position: absolute;
+	right: 400px;
+	top: 110px;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.nWrite a:hover{
+	text-decoration: none;
+	color: #606E5E;
+}
+
+table {
+	margin:65px auto;
+	width: 1110px;
+	text-align: center;
+	font-size: 16px;
+	margin-bottom: 0;
 }
 
 .td_left {
-	width: 120px;
-	text-align: right;
-	font: bold 15px "맑은 고딕", arial;
-	color: #606E5E;
-	padding: 5px 20px;
-	hight: 30px;
-}
-
-.td_right {
-	width: 300px;
-	hight: 30px;
-}
-
-#commandCell {
+	background: #606E5E;
 	text-align: center;
-	padding: 20px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;
 }
 
-#title {
-	height: 25px;
-	width: 295px;
+.tr_right {
+	left: 10px;
+	text-align: left;
 }
+
+hr {
+	border: 1;
+	width: 1110px;
+	maring:auto;
+	background: #606E5E;
+}
+
+#pageList {
+	maring: 50px;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: #606E5E;
+}
+
+a:hover{
+	text-decoration: none;
+	color: #606E5E;
+}
+
 </style>
 </head>
 <body>
-	<table border="0">
+	<table>
 		<tr>
 			<td align="center"><br> <jsp:include page="../menuTop.jsp"></jsp:include>
 			</td>
 		</tr>
 	</table>
+	<div class="nTitle">
+		공지 등록하기 
+	</div>
+	
 	<section id="writeForm">
 		<form action="noticeWritePro.no" method="post"
 			enctype="multipart/form-data" name="noticeform">
 			<table>
-				<tr>
-					<td colspan="2"><h3>게시판글등록</h3></td>
-				</tr>
 				<tr>
 					<td class="td_left"><label for="title">제목</label></td>
 					<td class="td_right"><input type="text"
