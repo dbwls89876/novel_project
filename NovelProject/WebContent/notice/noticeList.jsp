@@ -127,11 +127,11 @@ a:hover{
 		<%
 			if (nowPage <= 1) {
 		%>
-		[이전]&nbsp;
+		&lt; 이전&nbsp;
 		<%
 			} else {
 		%>
-		<a href="noticeList.no?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+		<a href="noticeList.no?page=<%=nowPage - 1%>">&lt; 이전</a>&nbsp;
 		<%
 			}
 		%>
@@ -156,11 +156,11 @@ a:hover{
 		<%
 			if (nowPage >= maxPage) {
 		%>
-		[다음]
+		다음 &gt;
 		<%
 			} else {
 		%>
-		<a href="noticeList.no?page=<%=nowPage + 1%>">[다음]</a>
+		<a href="noticeList.no?page=<%=nowPage + 1%>">다음 &gt;</a>
 		<%
 			}
 		%>
