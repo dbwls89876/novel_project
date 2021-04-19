@@ -11,6 +11,9 @@ public class BoardBean {
 	private int readCount;
 	private Date date;
 	private String file;
+	private int replyID;
+	private int replyLV;
+	private int replyStep;
 	
 	public String getFile() {
 		return file;
@@ -65,6 +68,24 @@ public class BoardBean {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public int getReplyID() {
+		return replyID;
+	}
+	public void setReplyID(int replyID) {
+		this.replyID = replyID;
+	}
+	public int getReplyLV() {
+		return replyLV;
+	}
+	public void setReplyLV(int replyLV) {
+		this.replyLV = replyLV;
+	}
+	public int getReplyStep() {
+		return replyStep;
+	}
+	public void setReplyStep(int replyStep) {
+		this.replyStep = replyStep;
 	}
 	
 	

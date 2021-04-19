@@ -61,25 +61,28 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String boardList_sql = "select boardID, title, memberID, date, readCount from board order by boardID desc limit ?, ?";
+		String boardList_sql = "select * from board order by replyID desc, replyStep asc limit ?, 10";
 
 		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
 		BoardBean board = null;
-		int startrow = (page - 1) * limit;
+		int startrow = (page - 1) * 10;
 
 		try {
 			pstmt = con.prepareStatement(boardList_sql);
 			pstmt.setInt(1, startrow);
-			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				board = new BoardBean();
 				board.setBoardID(rs.getInt("boardID"));
-				board.setTitle(rs.getString("title"));
 				board.setMemberID(rs.getString("memberID"));
-				board.setDate(rs.getDate("date"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setReplyID(rs.getInt("replyID"));
+				board.setReplyLV(rs.getInt("replyLV"));
+				board.setReplyStep(rs.getInt("replyStep"));
 				board.setReadCount(rs.getInt("readCount"));
+				board.setDate(rs.getDate("date"));
 				articleList.add(board);
 			}
 
@@ -113,6 +116,9 @@ public class BoardDAO {
 				boardBean.setMemberID(rs.getString("memberID"));
 				boardBean.setTitle(rs.getString("title"));
 				boardBean.setContent(rs.getString("content"));
+				boardBean.setReplyID(rs.getInt("replyID"));
+				boardBean.setReplyLV(rs.getInt("replyLV"));
+				boardBean.setReplyStep(rs.getInt("replyStep"));
 				boardBean.setReadCount(rs.getInt("readCount"));
 				boardBean.setDate(rs.getDate("date"));
 			}
@@ -146,14 +152,17 @@ public class BoardDAO {
 			else
 				num = 1;
 
-			sql = "insert into board (boardID, memberID, title, content, readCount, date) values(?,?,?,?,?,now())";
+			sql = "insert into board (boardID, memberID, title, content, replyID, replyLV, replyStep, readCount, date) values(?,?,?,?,?,?,?,?,now())";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, article.getMemberID());
 			pstmt.setString(3, article.getTitle());
 			pstmt.setString(4, article.getContent());
-			pstmt.setInt(5, 0);
+			pstmt.setInt(5, num);
+			pstmt.setInt(6, 0);
+			pstmt.setInt(7, 0);
+			pstmt.setInt(8, 0);
 
 			insertCount = pstmt.executeUpdate();
 
@@ -165,6 +174,60 @@ public class BoardDAO {
 			close(pstmt);
 		}
 
+		return insertCount;
+	}
+	
+	// 글 답변
+	public int insertReplyArticle(BoardBean article) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String boardReply_sql = "select max(boardID) from board";
+		String sql = "";
+		int num = 0;
+		int insertCount = 0;
+		int d_replyID = article.getReplyID();
+		int d_replyLV = article.getReplyLV();
+		int d_replyStep = article.getReplyStep();
+		
+		try {
+			pstmt = con.prepareStatement(boardReply_sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) num = rs.getInt(1)+1;
+			else num = 1;
+			sql = "update board set replyStep = replyStep+1 where replyID=? and replyStep>?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, d_replyID);
+			pstmt.setInt(2, d_replyStep);
+			int updateCount = pstmt.executeUpdate();
+			System.out.println("action: " + article.getMemberID());
+			
+			if(updateCount > 0) {
+				commit(con);
+			}
+			
+			d_replyStep = d_replyStep + 1;
+			d_replyLV = d_replyLV + 1;
+			sql = "insert into board (boardID, memberID, title, content, replyID, replyLV, replyStep, readCount, date) values (?, ?, ?, ?, ?, ?, ?, ?, now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, article.getMemberID());
+			pstmt.setString(3, article.getTitle());
+			pstmt.setString(4, article.getContent());
+			pstmt.setInt(5, d_replyID);
+			pstmt.setInt(6, d_replyLV);
+			pstmt.setInt(7, d_replyStep);
+			pstmt.setInt(8, 0);
+			insertCount = pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			System.out.println("Reply 에러 : " + e);
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
 		return insertCount;
 	}
 

@@ -61,7 +61,7 @@ table{
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
 		<h2>
-			글 목록<a href="editionRegistForm.ed">작품등록</a>
+			글 목록<a href="editionRegistForm.ed?literaryID=${literaryID }">회차등록</a>
 		</h2>
 		<table>
 			<%
@@ -69,7 +69,6 @@ table{
 			%>
 				<tr id="tr_top">
 					<td>제목</td>
-					<td>작성자</td>
 					<td>날짜</td>
 					<td>조회수</td>
 				</tr>
@@ -79,15 +78,18 @@ table{
 				
 				%>
 				<tr>
-					<td><%=articleList.get(i).getEditionID() %></td>
-					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getEditionID() %>&page=<%=nowPage%>">
-					<%=articleList.get(i).getTitle() %></a>
+					<td><a href="editionDetailView.ed?id=<%=articleList.get(i).getTitle() %>&page=<%=nowPage%>">
+					<%=articleList.get(i).getTitle() %></a></td>
 					<td><%=articleList.get(i).getDate() %></td>
 					<td><%=articleList.get(i).getCount() %></td>
 				</tr>
 				<%} %>
 		</table>
 	</section>
+	
+	
+	
+	
 	<section id="pageList">
 		<%if(nowPage<=1){ %>
 			[이전]&nbsp;

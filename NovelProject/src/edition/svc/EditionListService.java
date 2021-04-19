@@ -6,39 +6,26 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.EditionDAO;
+import dao.NoticeDAO;
 import vo.Edition;
 
 public class EditionListService {
-	public int getListCount() {
+	public int getListCount() throws Exception {
 		int listCount = 0;
-		Connection con = null;
-		try {
-			con = getConnection();
-			EditionDAO editionDAO = EditionDAO.getInstance();
-			editionDAO.setConnection(con);
-			listCount = editionDAO.selectListCount();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(con);
-		}
+		Connection con = getConnection();
+		NoticeDAO noticeDAO = NoticeDAO.getInstance();
+		noticeDAO.setConnection(con);
+		listCount = noticeDAO.selectListCount();
+		close(con);
 		return listCount;
 	}
-
-	public ArrayList<Edition> getArticleList(int page, int limit) {
-		ArrayList<Edition> list = null;
-		Connection con = null;
-		try {
-			con = getConnection();
-			EditionDAO editionDAO = EditionDAO.getInstance();
-			editionDAO.setConnection(con);
-			list = editionDAO.selectArticleList(page, limit);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
+	public ArrayList<Edition> getArticleList(String literaryID, int page, int limit) {
+		ArrayList<Edition> articleList = null;
+		Connection con = getConnection();
+		EditionDAO editionDAO = EditionDAO.getInstance();
+		editionDAO.setConnection(con);
+		articleList = editionDAO.selectArticleList(literaryID, page, limit);
 			close(con);
-		}
-		return list;
+		return articleList;
 	}
-
 }

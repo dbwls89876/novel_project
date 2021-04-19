@@ -2,13 +2,8 @@ package literary.action;
 
 import java.io.PrintWriter;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
 import literary.svc.LiteraryRegistService;
@@ -19,29 +14,27 @@ public class LiteraryRegistAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ActionForward forward=null;
+		
+		Literary literary = null;
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String genre = request.getParameter("genre");
+		String image = request.getParameter("image");
+		String id = request.getParameter("id");
+
+		literary = new Literary();
+		request.setAttribute("id", id);
+		literary.setId(Integer.parseInt(id));
+		literary.setTitle(title);
+		literary.setContent(content);
+		literary.setGenre(genre);
+		literary.setImage(image);
+		
 		LiteraryRegistService literaryRegistService = new LiteraryRegistService();
-		String realFolder="";
-		String saveFolder="/literary/imageUpload";
-		String encType = "UTF-8";
-		int maxSize = 5*1024*1024;
 		
-		HttpSession session = request.getSession();
-		
-		ServletContext context = request.getServletContext();
-		realFolder=context.getRealPath(saveFolder);
-		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-		String image = multi.getFilesystemName("image");
-		
-		Literary literary = new Literary(
-				(int)session.getAttribute("id"),
-				0, 
-				multi.getParameter("title"),
-				multi.getParameter("content"),
-				multi.getParameter("genre"), 
-				image,
-				null);
 		boolean isRegistSuccess = literaryRegistService.registLiterary(literary);
-		ActionForward forward = null;
 		if(isRegistSuccess) {
 		forward = new ActionForward("myLiteraryList.lit", true);
 		} else {

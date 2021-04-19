@@ -13,7 +13,9 @@ public class LiteraryRegistFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-ActionForward forward = null;
+		ActionForward forward = null;
+		
+		request.setAttribute("id", request.getParameter("id"));
 		
 		HttpSession session = request.getSession();
 		String memberID =(String)session.getAttribute("memberID");

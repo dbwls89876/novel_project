@@ -67,14 +67,15 @@ public class LiteraryDAO {
 		int insertCount=0;
 		
 		try {
-			sql="insert into literary (id, title, content, genre, image, date) values (?,?,?,?,?,now())";
+			sql="insert into literary (id, literaryID, title, content, genre, image, date) values (?,?,?,?,?,?,now())";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, literary.getId());
-			pstmt.setString(2, literary.getTitle());
-			pstmt.setString(3, literary.getContent());
-			pstmt.setString(4, literary.getGenre());
-			pstmt.setString(5, literary.getImage());
+			pstmt.setInt(2, literary.getLiteraryID());
+			pstmt.setString(3, literary.getTitle());
+			pstmt.setString(4, literary.getContent());
+			pstmt.setString(5, literary.getGenre());
+			pstmt.setString(6, literary.getImage());
 			insertCount=pstmt.executeUpdate();
 			
 		}catch(Exception e) {

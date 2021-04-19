@@ -16,45 +16,46 @@ Edition article = (Edition)request.getAttribute("article");
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-#articleForm{
-	width:500px;
-	height:500px;
-	border:1px solid red;
-	margin: auto;
-}
-
-#basicInfoArea{
-	height: 40px;
-	text-align: center;
-}
-
-#articleContentArea{
-	background: orange;
-	margin-top: 20px;
-	height: 350px;
-	text-align: center;
-	overflow: auto;
-}
+	#literaryinfo{
+		width: 1000px;
+		height: 300px;
+		border: 1px;
+		
+	}
+	
 </style>
 </head>
 <body>
-<div class="container p-3 my-3">
+<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<table>
-	<tr>
-		<td>${eidition.title }</td>
-	</tr>
-	<tr>
-		<td>${eidition.content }</td>
-	</tr>
-	<tr>
-		<td colspan=2>
-			<a href="editionModifyForm.ed">수정</a>
-			<a href="editionDeleteForm.ed">삭제</a>
-			<a href="editionReaderList.ed">목록</a>
-		</td>
-	</tr>
-</table>	
+
+<div id="literaryinfo">
+    <div class="thumb">
+		${literary.image }
+	</div>
+    <div class="detail">
+    	<h2>${literary.title }<span class="wrt_nm">${member.nickname }</span></h2>
+   	<p class="detail_info">
+   	${literary.content}
+   	${literary.genre }</p>
+    </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h4 class="display-2">${eidition.title }</h4>
+		</div>
+	</div>
+</div>
+<hr class="grayLine">
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			${eidition.content }
+		</div>
+	</div>
+</div>	
 </body>
 </html>

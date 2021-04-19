@@ -28,7 +28,7 @@ public class MyInformationDeleteAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('탈퇴되었습니다.')");
-			out.println("location.href='main.jsp'");
+			out.println("location.href='main.dir'");
 			out.println("</script>");
 		}
 		return forward;

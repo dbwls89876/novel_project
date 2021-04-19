@@ -31,7 +31,7 @@
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"  href="#">작품</a>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/totalLiteraryList.lit">작품</a>
 						<ul>
 							<li><a href="${pageContext.request.contextPath }/totalLiteraryList.lit">전체 작품</a></li>
 						</ul>
@@ -63,7 +63,7 @@
 					</c:if>
 					
 					<c:if test="${memberID != null}">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">마이페이지</a>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/myInformationView.me">마이페이지</a>
 						<ul>
 							<li><a href="${pageContext.request.contextPath }/myInformationView.me">내 정보</a></li>
 							<li><a href="${pageContext.request.contextPath }/myLiteraryList.lit">내 작품</a></li>

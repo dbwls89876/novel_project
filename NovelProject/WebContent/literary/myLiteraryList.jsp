@@ -14,34 +14,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-	table{
-		margin: auto;
-		width: 1000px;
-		border:1px solid;
-	}
 
-</style>
 </head>
 <body>
-<div class="container p-3 my-3">
+<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<table>
-	<tr>
-		<td>
-			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
-		</td>
-	</tr>
-	<tr>	
-		<c:forEach var="literary" items="${myLiteraryList }" varStatus="status">
-		<td>	
-			<a href="editionWriterList.ed?id=${literary.id}">
-			<img src="images/${literary.image}" class="literaryImage" /></a><br>
-			${literary.title}<br> ${literary.genre}<br>
-		</td>
+<div class="col-md-4 my-5">
+<a href="${pageContext.request.contextPath }/literaryRegistForm.lit?id=${member.id}">작품 등록하기</a></div>
+<div class="container">
+	<div class="row">
+		<c:forEach var = "literary" items="${myLiteraryList }" varStatus = "status">
+			<div class="col-md-4 my-5" onclick="location.href='editionWriterList.ed?literaryID=${literary.literaryID}'">
+				<div class="card">
+					<div class="embed-responsive embed-responsive-4by3">
+						<img class="card-img-top embed-responsive-item" src="images/${literary.image }" alt="literaryImage">
+					</div>
+					<h6 class="card-title mt-3 p-2">${literary.title}</h6>
+				</div>
+			</div>
 		</c:forEach>
-	</tr>
-</table>
+	</div>
+</div>
 </body>
 </html>

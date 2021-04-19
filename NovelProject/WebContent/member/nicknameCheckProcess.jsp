@@ -6,7 +6,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");	
 	String chk_nickname = request.getParameter("nickname");
-	System.out.println(chk_nickname);	
 	Connection conn=null;
 	PreparedStatement pstmt=null;
 	ResultSet rs=null; //select문 사용시 넣으면 됨 아니면 빼기

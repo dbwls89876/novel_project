@@ -14,51 +14,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>연재작 리스트</title>
-<style type="text/css">
-	#listForm{
-		width: 1500px;
-		height: 500px;
-		border: 1px solid red;
-		margin: auto;
-	}
-	table{
-		margin: auto;
-		width: 1000px;
-		border:1px solid;
-	}
-	.literaryImage{
-		width: 150px;
-		height: 150px;
-		border: none;
-	}
-</style>
+
 </head>
 <body>
-<div class="container p-3 my-3">
+<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<table>
-	<tr>
-		<td>
-			<a href="${pageContext.request.contextPath }/literaryRegistForm.lit">작품 등록하기</a>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table>
-			<c:forEach var = "literary" items="${literaryList }" varStatus = "status">
-				<tr>
-					<td class="literaryImage" rowspan="2">
-						<a href="editionReaderList.ed?literaryID=${literary.literaryID }">
-							<img src="images/${literary.image }" class="literaryImage"/>				
-						</a>
-					</td>
-					<td>${literary.title}</td></tr>
-				<tr><td>${literary.genre}</td></tr>
-			</c:forEach>
-			</table>
-		</td>
-	</tr>
-</table>
+<div class="col-md-4 my-5">
+<a href="${pageContext.request.contextPath }/literaryRegistForm.lit?id=${member.id}">작품 등록하기</a></div>
+<div class="container">
+	<div class="row">
+		<c:forEach var = "literary" items="${literaryList }" varStatus = "status">
+			<div class="col-md-4 my-5" onclick="location.href='editionReaderList.ed?literaryID=${literary.literaryID }'">
+				<div class="card">
+					<div class="embed-responsive embed-responsive-4by3">
+						<img class="card-img-top embed-responsive-item" src="images/${literary.image }" alt="literaryImage">
+					</div>
+					<h5 class="card-title mt-3 p-2">${literary.title}</h5>
+					<h7 class="card-title p-2">${literary.genre}</h7>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+</div>
 </body>
 </html>
