@@ -16,28 +16,6 @@ String nowPage = (String) request.getParameter("page");
 	}
 </script>
 <style type="text/css">
-.nTitle{
-	position: absolute;
-	left: 395px; top: 90px;
-	font-size: 32px;
-	color: #606E5E;
-	font-weight: bold;
-}
-
-.nWrite a{
-	color: #606E5E;
-	position: absolute;
-	right: 400px;
-	top: 110px;
-	font-size: 16px;
-	font-weight: normal;
-}
-
-.nWrite a:hover{
-	text-decoration: none;
-	color: #606E5E;
-}
-
 table {
 	margin:65px auto;
 	width: 1110px;
@@ -91,6 +69,12 @@ a:hover{
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
+	<div class="container my-1">
+	<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">공지게시판 수정하기</h2>
+			</div>
+	</div>
 	<div class="container">
 	<div class="col-md-15">
 	<section id="writeForm">
@@ -98,21 +82,18 @@ a:hover{
 			enctype="multipart/form-data" name="modifyform">
 			<input type="hidden" name="noticeID"
 				value="<%=article.getNoticeID()%>" />
-			<table>
+			<table class="table">
 				<tr>
-					<td colspan="2"><h3>공지사항수정</h3></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_left" height="40px"><label for="title">제목</label></td>
 					<td class="td_right"><input type="text" name="title"
 						id="title" value="<%=article.getTitle()%>" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="memberID">작성자</label></td>
+					<td class="td_left" height="40px"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="file">파일 첨부</label></td>
+					<td class="td_left" height="40px"><label for="file">파일 첨부</label></td>
 					<td><input name="file" type="file" 
 					id="file" value="<%=article.getFile() %>"/></td>
 				</tr>
@@ -132,6 +113,7 @@ a:hover{
 			<input type="hidden" name="page" value="<%=nowPage%>" />
 		</form>
 	</section>
+	</div>
 	</div>
 	</div>
 </body>

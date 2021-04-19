@@ -20,19 +20,11 @@
 <meta charset="UTF-8">
 <title>Community Board</title>
 <style type="text/css">
-.bTitle{
-	position: absolute;
-	left: 395px; top: 90px;
-	font-size: 32px;
-	color: #606E5E;
-	font-weight: bold;
-}
-
 .bWrite a{
 	color: #606E5E;
 	position: absolute;
 	right: 400px;
-	top: 110px;
+	top: 160px;
 	font-size: 16px;
 	font-weight: normal;
 }
@@ -48,6 +40,11 @@ table {
 	text-align: center;
 	font-size: 16px;
 	margin-bottom: 0;
+}
+
+table a:hover{
+	text-decoration: none;
+	color: #606E5E;
 }
 
 #tr_top {
@@ -79,16 +76,22 @@ a:hover{
 	text-decoration: none;
 	color: #606E5E;
 }
-
+#emptyArea {
+	text-align: center;
+	margin: 100px;
+}
 </style>
 </head>
 <body>
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
-	<div class="bTitle">
-		커뮤니티
-	</div>
+	<div class="container my-1">
+		<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">커뮤니티</h2>
+			</div>
+		</div>
 	<div class="bWrite">
 		<a href="boardWriteForm.bo">글쓰기</a>
 	</div>
@@ -129,9 +132,9 @@ a:hover{
 	<hr>
 	<section id="pageList">
 		<%if (nowPage <= 1) { %>
-			[이전]&nbsp;
+		&lt; 이전&nbsp;
 		<%} else { %>
-			<a href="boardList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+			<a href="boardList.bo?page=<%=nowPage - 1%>">&lt; 이전</a>&nbsp;
 		<%} %>
 
 		<%for (int a = startPage; a <= endPage; a++) {
@@ -144,9 +147,9 @@ a:hover{
 			<%} %>
 		<%} %>
 		<%if (nowPage >= maxPage) { %>
-			[다음]
+		다음 &gt;
 		<%} else { %>
-			<a href="boardList.bo?page=<%=nowPage + 1%>">[다음]</a>&nbsp;
+			<a href="boardList.bo?page=<%=nowPage + 1%>">다음 &gt;</a>&nbsp;
 		<%} %>
 	</section>
 	<%} else { %>
@@ -154,5 +157,6 @@ a:hover{
 		등록된 글이 없습니다.
 	</section>
 	<%} %>
+	</div>
 </body>
 </html>

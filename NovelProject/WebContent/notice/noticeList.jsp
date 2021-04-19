@@ -5,7 +5,11 @@
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
-<%
+<%	
+	String memberID = "";
+	if((String)session.getAttribute("memberID")!=null)
+		memberID = (String)session.getAttribute("memberID");
+	System.out.println(memberID);
 	ArrayList<BoardBean> articleList = (ArrayList<BoardBean>) request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 	int listCount = pageInfo.getListCount();
@@ -20,19 +24,12 @@
 <meta charset="UTF-8">
 <title>Notice Board</title>
 <style type="text/css">
-.nTitle{
-	position: absolute;
-	left: 395px; top: 90px;
-	font-size: 32px;
-	color: #606E5E;
-	font-weight: bold;
-}
 
 .nWrite a{
 	color: #606E5E;
 	position: absolute;
 	right: 400px;
-	top: 110px;
+	top: 160px;
 	font-size: 16px;
 	font-weight: normal;
 }
@@ -48,6 +45,11 @@ table {
 	text-align: center;
 	font-size: 16px;
 	margin-bottom: 0;
+}
+
+table a:hover{
+	text-decoration: none;
+	color: #606E5E;
 }
 
 #tr_top {
@@ -79,19 +81,28 @@ a:hover{
 	text-decoration: none;
 	color: #606E5E;
 }
-
+#emptyArea {
+	text-align: center;
+	margin: 100px;
+}
 </style>
 </head>
 <body>
+
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
-	<div class="nTitle">
-		공지게시판
-	</div>
+	<div class="container my-1">
+		<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">공지게시판</h2>
+			</div>
+		</div>
+		<%if(memberID.equals("admin")){ %>
 	<div class="nWrite">
 		<a href="noticeWriteForm.no">글쓰기</a>
 	</div>
+	<%} %>
 	<section id="listForm">
 		<table>
 			<%
@@ -174,5 +185,6 @@ a:hover{
 	<%
 		}
 	%>
+	</div>
 </body>
 </html>

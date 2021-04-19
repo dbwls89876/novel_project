@@ -14,39 +14,34 @@
 <meta charset="UTF-8">
 <title>Community Board View</title>
 <style type="text/css">
-#articleForm {
-	width: 500px;
-	height: 500px;
-	border: 0px;
-	margin: auto;
-}
-
 table {
-	margin: auto;
-	width: 1500px;
+	margin:65px auto;
+	width: 1110px;
+	text-align: center;
+	font-size: 16px;
+	margin-bottom: 0;
 }
-
-h3 {
-	text-align: left;
+#tr_top {
+	background: #606E5E;
+	text-align: center;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
 }
-
-#basicInfoArea {
-	height: 100px;
+#tr_info {
 	text-align: right;
+	font-size: 14px;
 }
-
+#articlePictureArea img {
+	width: 900px;
+	margin: 30px 0;
+}
 #articleContentArea {
-	color: #606E5E;
-	margin-top: 40px;
-	height: 400px;
-	text-align: center;
-	overflow: auto;
+	margin: 30px;
 }
-
-#commandList {
-	margin: auto;
-	width: 500px;
+#commandCell {
 	text-align: center;
+	margin: 40px;
 }
 </style>
 </head>
@@ -54,33 +49,48 @@ h3 {
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
+	<div class="container my-1">
+		<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">커뮤니티</h2>
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-10">
 	<section id="articleForm">
-		<section id="basicInfoArea">
-			<h3>
-				<%=article.getTitle()%></h3>
-			<p>
-				작성자 :
-				<%=article.getMemberID()%></p>
-			<p>
-				작성일 :
-				<%=article.getDate()%>
-				| 조회수 :
-				<%=article.getReadCount()%></p>
-		</section>
-		<section id="articleContentArea">
-			<%=article.getContent()%>
-		</section>
+		<table>
+			<tr id="tr_top" height="45px">
+				<td>
+					<%=article.getTitle()%>
+				</td>
+			</tr>
+			<tr id="tr_info" height="60px">
+				<td><%=article.getMemberID()%>  |  <%=article.getDate()%>  |  조회수 <%=article.getReadCount()%></td>
+			</tr>
+			<tr id="articlePictureArea">
+				<td><%if(!(article.getFile()==null)) { %>
+				<img src="images/<%=article.getFile() %>"><%} %></td>
+			</tr>
+			<tr id="articleContentArea">
+				<td><%=article.getContent()%></td>
+			</tr>
+		</table>
 	</section>
-	<section id="commandList">
-		<a href="boardReplyForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
-			[답변] </a>
-		<a href="boardModifyForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
-			[수정] </a>
-		<a href="boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>">
-			[삭제] </a>
-		<a href="boardList.bo?page=<%=nowPage%>"> [목록] </a>
-		&nbsp;&nbsp;
+	<section id="commandCell">
+	
+		<input type="button" value="수정"
+					onClick="location.href='boardModifyForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+		<input type="button" value="삭제"
+					onClick="location.href='boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+		<input type="button" value="답글"
+					onClick="boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+		<input type="button" value="목록"
+					onClick="location.href='boardList.bo?page=<%=nowPage%>'">
+
 	</section>
+	</div>
+	</div>
+	</div>
 	
 </body>
 </html>

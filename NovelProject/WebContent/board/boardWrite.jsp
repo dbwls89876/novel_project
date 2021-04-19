@@ -7,58 +7,88 @@
 <title>Community Board</title>
 <style type="text/css">
 table {
-	margin: auto;
-	width: 1500px;
-}
-
-td h3 {
-	text-align: left;
-	color: #606E5E;
+	margin:65px auto;
+	width: 1110px;
+	font-size: 16px;
+	margin-bottom: 0;
 }
 
 .td_left {
-	width: 120px;
-	text-align: right;
-	font: bold 15px "맑은 고딕", arial;
+	
+	text-align: center;
 	color: #606E5E;
-	padding: 5px 20px;
-	hight: 30px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;
 }
 
-.td_right {
-	width: 300px;
-	hight: 30px;
+.tr_right {
+	text-align: left;
+	left:40px;
 }
 
+hr {
+	border: 1;
+	width: 1110px;
+	maring:auto;
+	background: #606E5E;
+}
+
+#pageList {
+	maring: 50px;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: #606E5E;
+}
+
+a:hover{
+	text-decoration: none;
+	color: #606E5E;
+}
 #commandCell {
 	text-align: center;
-	padding: 20px;
-}
-
-#title {
-	height: 25px;
-	width: 295px;
+	margin: 40px;
 }
 </style>
 </head>
 <body>
+<%
+	String memberID=null;
+	
+	if (session.getAttribute("memberID") !=null) {
+		memberID=(String)session.getAttribute("memberID");
+	}else {
+		out.println("<script>");
+		out.println("alert('로그인 하세요.'); history.back();");
+		out.println("</script>");
+	}
+%>
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
+	<div class="container my-1">
+	<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">커뮤니티 작성하기</h2>
+			</div>
+	</div>
+	<div class="container">
+	<div class="col-md-15">
 	<section id="writeForm">
 		<form action="boardWritePro.bo" method="post" name="boardform">
-			<table>
+			<table class="table">
 				<tr>
-					<td colspan="2"><h3>게시판글등록</h3></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_left" height="40px"><label for="title">제목</label></td>
 					<td class="td_right"><input type="text"
 						placeholder="제목을 입력해 주세요." name="title" id="title"
 						required="required" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="memberID">작성자</label></td>
+					<td class="td_left" height="40px"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
@@ -68,11 +98,14 @@ td h3 {
 				</tr>
 			</table>
 			<section id="commandCell">
-				<input type="button" value="목록" onClick="location.href='boardList.bo'">&nbsp;&nbsp;
 				<input type="submit" value="등록">&nbsp;&nbsp;
+				<input type="button" value="목록" onClick="location.href='boardList.bo'">&nbsp;&nbsp;
 				<input type="reset" value="다시쓰기" />
 			</section>
 		</form>
 	</section>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

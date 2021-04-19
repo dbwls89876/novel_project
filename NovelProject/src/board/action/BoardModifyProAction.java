@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import board.svc.BoardModifyProService;
@@ -16,12 +17,13 @@ public class BoardModifyProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
+		HttpSession session = request.getSession();
 		boolean isModifySuccess = false;
 		int boardID = Integer.parseInt(request.getParameter("boardID"));
 		String nowPage = request.getParameter("page");
 		BoardBean article = new BoardBean();
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
-		boolean isRightUser = boardModifyProService.isArticleWriter(boardID, request.getParameter("memberID"));
+		boolean isRightUser = boardModifyProService.isArticleWriter(boardID, (String)session.getAttribute("memberID"));
 				
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=utf-8");

@@ -6,28 +6,6 @@
 <meta charset="UTF-8">
 <title>Notice Board</title>
 <style type="text/css">
-.nTitle{
-	position: absolute;
-	left: 395px; top: 90px;
-	font-size: 32px;
-	color: #606E5E;
-	font-weight: bold;
-}
-
-.nWrite a{
-	color: #606E5E;
-	position: absolute;
-	right: 400px;
-	top: 110px;
-	font-size: 16px;
-	font-weight: normal;
-}
-
-.nWrite a:hover{
-	text-decoration: none;
-	color: #606E5E;
-}
-
 table {
 	margin:65px auto;
 	width: 1110px;
@@ -81,8 +59,11 @@ a:hover{
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
-	<div class="nTitle">
-		공지 등록하기 
+	<div class="container my-1">
+	<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">공지게시판 작성하기</h2>
+			</div>
 	</div>
 	<div class="container">
 	<div class="col-md-15">
@@ -114,13 +95,14 @@ a:hover{
 
 			</table>
 			<section id="commandCell">
+			 	<input type="submit" value="등록">&nbsp;&nbsp;
 				<input type="button" value="목록"
-					onClick="location.href='noticeList.no'">&nbsp;&nbsp; <input
-					type="submit" value="등록">&nbsp;&nbsp; <input type="reset"
-					value="다시쓰기" />
+					onClick="location.href='noticeList.no'">&nbsp;&nbsp;
+				<input type="reset" value="다시쓰기" />
 			</section>
 		</form>
 	</section>
+	</div>
 	</div>
 	</div>
 </body>

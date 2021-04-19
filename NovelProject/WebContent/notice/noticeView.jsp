@@ -11,7 +11,6 @@ String nowPage = (String) request.getAttribute("page");
 <meta charset="UTF-8">
 <title>Notice Board View</title>
 <style type="text/css">
-
 table {
 	margin:65px auto;
 	width: 1110px;
@@ -37,9 +36,9 @@ table {
 #articleContentArea {
 	margin: 30px;
 }
-#commandList {
+#commandCell {
 	text-align: center;
-	margin: 60px;
+	margin: 40px;
 }
 </style>
 </head>
@@ -47,10 +46,10 @@ table {
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
-	<div class="container my-4">
+	<div class="container my-1">
 		<div class="row">
 			<div class="col-md-8">
-				<h1 class="display-5 font-weight-bold" style="color:#606E5E;">공지게시판</h1>
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">공지게시판</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -74,9 +73,9 @@ table {
 			</tr>
 		</table>
 	</section>
-	
-	<section id="commandList">
 	<form>
+	<section id="commandCell">
+	
 		
 		<input type="button" value="수정"
 					onClick="location.href='noticeModifyForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
@@ -84,8 +83,9 @@ table {
 					onClick="location.href='noticeDeleteForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
 		<input type="button" value="목록"
 					onClick="location.href='noticeList.no?page=<%=nowPage%>'">
-	</form>
+	
 	</section>
+	</form>
 	</div>
 	</div>
 </div>

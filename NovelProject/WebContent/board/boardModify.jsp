@@ -16,25 +16,52 @@ String nowPage = (String) request.getParameter("page");
 	}
 </script>
 <style type="text/css">
-h3 {
-	text-align: center;
-}
-
 table {
-	margin: auto;
-	width: 1500px;
+	margin:65px auto;
+	width: 1110px;
+	font-size: 16px;
+	margin-bottom: 0;
 }
 
 .td_left {
-	width: 150px;
+	
+	text-align: center;
+	color: #606E5E;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;
 }
 
-.td_right {
-	width: 300px;
+.tr_right {
+	text-align: left;
+	left:40px;
 }
 
+hr {
+	border: 1;
+	width: 1110px;
+	maring:auto;
+	background: #606E5E;
+}
+
+#pageList {
+	maring: 50px;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: #606E5E;
+}
+
+a:hover{
+	text-decoration: none;
+	color: #606E5E;
+}
 #commandCell {
 	text-align: center;
+	margin: 40px;
 }
 </style>
 </head>
@@ -42,20 +69,25 @@ table {
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
+	<div class="container my-1">
+	<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">커뮤니티 수정하기</h2>
+			</div>
+	</div>
+	<div class="container">
+	<div class="col-md-15">
 	<section id="writeForm">
 		<form action="boardModifyPro.bo" method="post" name="modifyform">
 			<input type="hidden" name="boardID" value="<%=article.getBoardID()%>" />
-			<table>
+			<table class="table">
 				<tr>
-					<td colspan="2"><h3>게시판글수정</h3></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_left" height="40px"><label for="title">제목</label></td>
 					<td class="td_right"><input type="text" name="title"
 						id="title" value="<%=article.getTitle()%>" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="memberID">작성자</label></td>
+					<td class="td_left" height="40px"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
@@ -65,11 +97,17 @@ table {
 				</tr>
 			</table>
 			<section id="commandCell">
-				<a href="javascript:modifyboard()">[수정]</a>&nbsp;&nbsp; <a
-					href="javascript:history.go(-1)">[뒤로]</a>
+				<input type="button" value="수정"
+					onClick="location.href='javascript:modifyboard()'">&nbsp;&nbsp;
+				<input type="button" value="취소"
+					onClick="location.href='javascript:history.go(-1)'">&nbsp;&nbsp;
+				<input type="reset" value="다시쓰기" />
 			</section>
 			<input type="hidden" name="page" value="<%=nowPage%>" />
 		</form>
 	</section>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

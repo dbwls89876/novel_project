@@ -13,49 +13,67 @@
 <script language="javascript">
 </script>
 <style type="text/css">
-#registForm {
-	width: 1500px;
-	height: 600px;
-	border: 1px solid red;
-	margin: auto;
-}
-
-h2 {
-	text-align: center;
-	color: #606E5E;
-}
-
 table {
-	margin: auto;
-	width: 1500px;
-	text-align: center;
+	margin:65px auto;
+	width: 1110px;
+	font-size: 16px;
+	margin-bottom: 0;
 }
 
 .td_left {
-	width: 120px;
-	text-align: right;
-	font: bold 15px "맑은 고딕", arial;
+	
+	text-align: center;
 	color: #606E5E;
-	padding: 5px 20px;
-	hight: 30px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;
 }
 
-.td_right {
-	width: 300px;
-	hight: 30px;
+.tr_right {
+	text-align: left;
+	left:40px;
 }
 
+hr {
+	border: 1;
+	width: 1110px;
+	maring:auto;
+	background: #606E5E;
+}
+
+#pageList {
+	maring: 50px;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: #606E5E;
+}
+
+a:hover{
+	text-decoration: none;
+	color: #606E5E;
+}
 #commandCell {
 	text-align: center;
-	padding: 20px;
+	margin: 40px;
 }
-
 </style>
 </head>
 <body>
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
+	<div class="container my-1">
+	<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 font-weight-bold" style="color:#606E5E;">커뮤니티 작성하기</h2>
+			</div>
+	</div>
+	<div class="container">
+	<div class="col-md-15">
 	<section id="writeForm">
 		<form action="boardReplyPro.bo" method="post" name="boardform">
 		<input type="hidden" name="page" value="<%=nowPage %>"/>
@@ -64,18 +82,15 @@ table {
 		<input type="hidden" name="replyLV" value="<%=article.getReplyLV() %>">
 		<input type="hidden" name="replyStep" value="<%=article.getReplyStep() %>">
 		
-			<table>
+			<table class="table">
 				<tr>
-					<td colspan="2"><h3>게시판글등록</h3></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_left" height="40px"><label for="title">제목</label></td>
 					<td class="td_right"><input type="text"
 						placeholder="제목을 입력해 주세요." name="title" id="title"
 						required="required" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="memberID">작성자</label></td>
+					<td class="td_left" height="40px"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 				<tr>
@@ -91,5 +106,8 @@ table {
 			</section>
 		</form>
 	</section>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

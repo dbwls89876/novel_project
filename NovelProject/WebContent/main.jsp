@@ -56,14 +56,24 @@
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-5 m-4">
+		<div class="col-6 m-6">
 			<div class="row grayBox">
-				<h1 class="display-5">공지사항</h1>
+				<p class="text-right"><a href="${pageContext.request.contextPath }/noticeList.no">공지 보러가기</a></p>
+				<div class="row">
+				<div class="m-1 ml-3"><h3>공지게시판</h3></div>
+				</div>
+				<div class="row">
+				</div>
 			</div>
 		</div>
-		<div class="col-5 m-4">
+		<div class="col-6 m-6">
 			<div class="row grayBox">
-				<h1 class="display-5">자유게시판</h1>
+				<p class="text-right"><a href="${pageContext.request.contextPath }/boardList.bo">커뮤니티 보러가기</a></p>				<div class="row">
+				<div class="m-1 ml-3"><h3>공지게시판</h3></div>
+				</div>
+				<div class="row">
+				</div>
+				
 			</div>
 		</div>
 	</div>
