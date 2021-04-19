@@ -29,9 +29,11 @@ public class MoveRegisterAction implements Action {
 			out.println("</script>");
 		}
 		int id = (int) session.getAttribute("id");
+		System.out.println(id);
 		MoveRegisterService moveRegisterService = new MoveRegisterService();
 		ArrayList<Literary> artistLiteraryList = moveRegisterService.findTitle(id);
 		request.setAttribute("artistLiteraryList", artistLiteraryList);
+		System.out.println(artistLiteraryList.get(0).getTitle());
 		forward = new ActionForward("/funding/fundingRegister.jsp", true);
 		return forward;
 	}
