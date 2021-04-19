@@ -31,15 +31,14 @@
 table {
 	margin:65px auto;
 	width: 1110px;
-	text-align: center;
 	font-size: 16px;
 	margin-bottom: 0;
 }
 
 .td_left {
-	background: #606E5E;
+	
 	text-align: center;
-	color: white;
+	color: #606E5E;
 	font-size: 16px;
 	font-weight: bold;
 	text-align: center;
@@ -47,8 +46,8 @@ table {
 }
 
 .tr_right {
-	left: 10px;
 	text-align: left;
+	left:40px;
 }
 
 hr {
@@ -72,7 +71,10 @@ a:hover{
 	text-decoration: none;
 	color: #606E5E;
 }
-
+#commandCell {
+	text-align: center;
+	margin: 40px;
+}
 </style>
 </head>
 <body>
@@ -82,24 +84,25 @@ a:hover{
 	<div class="nTitle">
 		공지 등록하기 
 	</div>
-	
+	<div class="container">
+	<div class="col-md-15">
 	<section id="writeForm">
 		<form action="noticeWritePro.no" method="post"
 			enctype="multipart/form-data" name="noticeform">
-			<table>
+			<table class="table">
 				<tr>
-					<td class="td_left"><label for="title">제목</label></td>
+					<td class="td_left" height="40px"><label for="title">제목</label></td>
 					<td class="td_right"><input type="text"
 						placeholder="제목을 입력해 주세요." name="title" id="title"
 						required="required" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="memberID">작성자</label></td>
+					<td class="td_left" height="40px"><label for="memberID">작성자</label></td>
 					<td class="td_right"><%=session.getAttribute("memberID")%></td>
 				</tr>
 
 				<tr>
-					<td class="td_left"><label for="file">파일 첨부</label></td>
+					<td class="td_left" height="40px"><label for="file">파일 첨부</label></td>
 					<td><input name="file" type="file" id="file" required="required" /></td>
 				</tr>
 
@@ -118,5 +121,7 @@ a:hover{
 			</section>
 		</form>
 	</section>
+	</div>
+	</div>
 </body>
 </html>

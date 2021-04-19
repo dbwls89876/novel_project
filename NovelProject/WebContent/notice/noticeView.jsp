@@ -11,13 +11,7 @@ String nowPage = (String) request.getAttribute("page");
 <meta charset="UTF-8">
 <title>Notice Board View</title>
 <style type="text/css">
-.nTitle{
-	position: absolute;
-	left: 395px; top: 90px;
-	font-size: 46px;
-	color: #606E5E;
-	font-weight: bold;
-}
+
 table {
 	margin:65px auto;
 	width: 1110px;
@@ -45,7 +39,7 @@ table {
 }
 #commandList {
 	text-align: center;
-	margin: 30px;
+	margin: 60px;
 }
 </style>
 </head>
@@ -53,26 +47,23 @@ table {
 	<div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 	</div>
-	<div class="nTitle">
-		공지게시판
-	</div>
-	
+	<div class="container my-4">
+		<div class="row">
+			<div class="col-md-8">
+				<h1 class="display-5 font-weight-bold" style="color:#606E5E;">공지게시판</h1>
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-10">
 	<section id="articleForm">
 		<table>
-			<tr id="tr_top" height="50px">
+			<tr id="tr_top" height="45px">
 				<td>
 					<%=article.getTitle()%>
 				</td>
 			</tr>
-			<tr id="tr_info" height="35px">
-				<td>작성자 :
-				<%=article.getMemberID()%></td>
-			</tr>
-			<tr id="tr_info" height="35px">
-				<td>작성일 :
-				<%=article.getDate()%>
-				| 조회수 :
-				<%=article.getReadCount()%></td>
+			<tr id="tr_info" height="60px">
+				<td><%=article.getMemberID()%>  |  <%=article.getDate()%>  |  조회수 <%=article.getReadCount()%></td>
 			</tr>
 			<tr id="articlePictureArea">
 				<td><%if(!(article.getFile()==null)) { %>
@@ -85,13 +76,18 @@ table {
 	</section>
 	
 	<section id="commandList">
-		<a
-			href="noticeModifyForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>">
-			[수정] </a> <a
-			href="noticeDeleteForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>">
-			[삭제] </a> <a href="noticeList.no?page=<%=nowPage%>"> [목록] </a>
-		&nbsp;&nbsp;
-
+	<form>
+		
+		<input type="button" value="수정"
+					onClick="location.href='noticeModifyForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+		<input type="button" value="삭제"
+					onClick="location.href='noticeDeleteForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+		<input type="button" value="목록"
+					onClick="location.href='noticeList.no?page=<%=nowPage%>'">
+	</form>
 	</section>
+	</div>
+	</div>
+</div>
 </body>
 
