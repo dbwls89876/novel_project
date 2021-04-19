@@ -1,6 +1,5 @@
 package funding.action;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
@@ -50,7 +49,7 @@ public class FundingRegisterAction implements Action{
 		funding.setLiteraryID(literaryID);
 		funding.setTitle(multi.getParameter("title"));
 		funding.setContent(multi.getParameter("content"));
-		funding.setImage(multi.getParameter("image"));
+		funding.setImage(fileName);
 		funding.setTargetCost(Integer.parseInt(multi.getParameter("targetCost")));
 		funding.setEndDate(endDate);
 		funding.setDeliveryDate(deliveryDate);

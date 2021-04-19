@@ -92,17 +92,18 @@
 		<div class="col-md-2"><label for="title">제목 : </label></div>
 		<div class="col-md-2"><input type="text" name="title" id="title" required="required"/></div>
 	</div>
+	<div class="row my-3 justify-content-center align-self-center">
+		<h6 sytle="color:gray;">※그림첨부안됨</h6>
+	</div>
 	<div class="row justify-content-center align-self-center">
 		<textarea class="summernote" id="summernote" name="content" placeholder="※이미지 첨부 기능x"></textarea>	
-
-
 	</div>	
 	<div class="row my-3 justify-content-center align-self-center">
 		<div class="col-md-2">
 			<label for="image">이미지 첨부</label>
 		</div>
 		<div class="col-md-2">
-			<input type="file" name="image" id="image" required="required"/>
+			<input type="file" name="file" id="file" required="required"/>
 		</div>
 	</div>
 	
