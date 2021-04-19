@@ -11,72 +11,79 @@ String nowPage = (String) request.getAttribute("page");
 <meta charset="UTF-8">
 <title>Notice Board View</title>
 <style type="text/css">
-#articleForm {
-	width: 1500px;
-	height: 500px;
-	border: 0px;
-	margin: auto;
+.nTitle{
+	position: absolute;
+	left: 395px; top: 90px;
+	font-size: 46px;
+	color: #606E5E;
+	font-weight: bold;
 }
-
 table {
-	margin: auto;
+	margin:65px auto;
+	width: 1110px;
+	text-align: center;
+	font-size: 16px;
+	margin-bottom: 0;
 }
-
-h3 {
-	text-align: left;
+#tr_top {
+	background: #606E5E;
+	text-align: center;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
 }
-
-#basicInfoArea {
-	height: 100px;
+#tr_info {
 	text-align: right;
+	font-size: 14px;
 }
-
-#articlePictureArea {
-	width: 1500px;
+#articlePictureArea img {
+	width: 900px;
+	margin: 30px 0;
 }
-
 #articleContentArea {
-	margin-top: 40px;
-	height: 400px;
-	text-align: center;
-	overflow: auto;
+	margin: 30px;
 }
-
 #commandList {
-	margin: auto;
-	width: 500px;
 	text-align: center;
+	margin: 30px;
 }
 </style>
 </head>
 <body>
-	<table border="0">
-		<tr>
-			<td align="center"><br> <jsp:include page="../menuTop.jsp"></jsp:include>
-			</td>
-		</tr>
-	</table>
+	<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+	</div>
+	<div class="nTitle">
+		공지게시판
+	</div>
+	
 	<section id="articleForm">
-		<section id="basicInfoArea">
-			<h3>
-				<%=article.getTitle()%></h3>
-			<p>
-				작성자 :
-				<%=article.getMemberID()%></p>
-			<p>
-				작성일 :
+		<table>
+			<tr id="tr_top" height="50px">
+				<td>
+					<%=article.getTitle()%>
+				</td>
+			</tr>
+			<tr id="tr_info" height="35px">
+				<td>작성자 :
+				<%=article.getMemberID()%></td>
+			</tr>
+			<tr id="tr_info" height="35px">
+				<td>작성일 :
 				<%=article.getDate()%>
 				| 조회수 :
-				<%=article.getReadCount()%></p>
-		</section>
-		<section id="articlePictureArea">
-			<%if(!(article.getFile()==null)) { %>
-			<img src="images/<%=article.getFile() %>"><%} %>
-		</section>
-		<section id="articleContentArea">
-			<%=article.getContent()%>			
-		</section>
+				<%=article.getReadCount()%></td>
+			</tr>
+			<tr id="articlePictureArea">
+				<td><%if(!(article.getFile()==null)) { %>
+				<img src="images/<%=article.getFile() %>"><%} %></td>
+			</tr>
+			<tr id="articleContentArea">
+				<td><%=article.getContent()%></td>
+			</tr>
+		</table>
 	</section>
+	
 	<section id="commandList">
 		<a
 			href="noticeModifyForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>">

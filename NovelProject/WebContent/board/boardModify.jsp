@@ -39,12 +39,9 @@ table {
 </style>
 </head>
 <body>
-	<table border="0">
-		<tr>
-			<td align="center"><br> <jsp:include page="../menuTop.jsp"></jsp:include>
-			</td>
-		</tr>
-	</table>
+	<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+	</div>
 	<section id="writeForm">
 		<form action="boardModifyPro.bo" method="post" name="modifyform">
 			<input type="hidden" name="boardID" value="<%=article.getBoardID()%>" />

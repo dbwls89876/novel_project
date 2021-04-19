@@ -22,12 +22,9 @@ table {
 </style>
 </head>
 <body>
-	<table>
-		<tr>
-			<td align="center"><br> <jsp:include page="../menuTop.jsp"></jsp:include>
-			</td>
-		</tr>
-	</table>
+	<div class="container p-5 my-3">
+	<jsp:include page="../menuTop.jsp"></jsp:include>
+	</div>
 	<section id="passForm">
 		<form name="deleteForm"
 			action="boardDeletePro.bo?boardID=<%=boardID%>" method="post">
