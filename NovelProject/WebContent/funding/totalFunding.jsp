@@ -35,8 +35,8 @@
 <div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a>
 <div class="container">
+	<a href="${pageContext.request.contextPath }/moveRegister.fun">펀딩 등록하기</a>
 	<div class="row">
 		<c:forEach var = "funding" items="${fundingList }" varStatus = "status">
 			<div class="col-md-4 my-5" onclick="location.href='fundingContent.fun?literaryID=${funding.literaryID }&fundingID=${funding.fundingID}'">
