@@ -10,13 +10,13 @@
 <div class="container p-5 my-3">
 	<jsp:include page="../menuTop.jsp"></jsp:include>
 </div>
-<table>
-	<tr>
-	<td><a href="fundingPermission.fun">펀딩 수락</a></td>
-	</tr>
-	<tr>
-	<td><a href="memberManagement.jsp">멤버관리</a></td>
-	</tr>
-</table>
+<div class="container">
+	<div class="row">
+	<a href="fundingPermission.fun">펀딩 수락</a>
+	</div>
+	<div class="row">
+		<a href="memberManagement.jsp">멤버관리</a>
+	</div>
+</div>
 </body>
 </html>
