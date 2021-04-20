@@ -83,7 +83,7 @@ table {
 		<input type="button" value="삭제"
 					onClick="location.href='boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
 		<input type="button" value="답글"
-					onClick="boardDeleteForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+					onClick="location.href='boardReplyForm.bo?boardID=<%=article.getBoardID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
 		<input type="button" value="목록"
 					onClick="location.href='boardList.bo?page=<%=nowPage%>'">
 
