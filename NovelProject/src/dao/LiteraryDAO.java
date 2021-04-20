@@ -117,5 +117,38 @@ public class LiteraryDAO {
 		}
 		return artistLiteraryList;
 	}
+	
+	public ArrayList<Literary> selectRecentArtistLiteraryList(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Literary> artistLiteraryList = null;
+		
+		String sql = "select * from literary order by literaryID desc limit 5";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				artistLiteraryList = new ArrayList<Literary>();
+				do {
+					artistLiteraryList.add(new Literary(
+							rs.getInt("id")
+							,rs.getInt("literaryID")
+							,rs.getString("title")
+							,rs.getString("content")
+							,rs.getString("genre")
+							,rs.getString("image")
+							,rs.getDate("date")));
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return artistLiteraryList;
+	}
 
 }

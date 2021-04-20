@@ -23,7 +23,7 @@ public class CashChargeAction implements Action {
 		}
 		
 		cashChargeService.getMoney(memberID, cash);
-		ActionForward forward = new ActionForward("index.dir", true);
+		ActionForward forward = new ActionForward("main.dir", true);
 		return forward;
 	}
 

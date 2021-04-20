@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import vo.ActionForward;
 import vo.Funding;
+import vo.Literary;
 
 public class mainAction implements Action {
 
@@ -15,12 +16,15 @@ public class mainAction implements Action {
 		// TODO Auto-generated method stub
 		ActionForward forward = null;
 		ArrayList<Funding> fundingList = null;
+		ArrayList<Literary> literaryList = null;
 		mainService indexService = new mainService();
 		
 		fundingList = indexService.getRecentFunding();
+		literaryList = indexService.getRecentLiterary();
 		
+		request.setAttribute("literaryList", literaryList);
 		request.setAttribute("fundingList", fundingList);
-		forward = new ActionForward("index.jsp",true);
+		forward = new ActionForward("main.jsp",true);
 		return forward;
 	}
 
