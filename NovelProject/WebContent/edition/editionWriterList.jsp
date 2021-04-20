@@ -12,6 +12,7 @@
 	int maxPage=pageInfo.getMaxPage();
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
+	System.out.println(articleList.get(0).getTitle());
 %>
 
 <!DOCTYPE html>
@@ -65,7 +66,7 @@ table{
 		</h2>
 		<table>
 			<%
-			if(articleList != null && listCount > 0){
+			if(articleList != null && listCount >= 0){
 			%>
 				<tr id="tr_top">
 					<td>제목</td>
