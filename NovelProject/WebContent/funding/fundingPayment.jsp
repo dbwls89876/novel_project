@@ -26,8 +26,8 @@ table th{
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-4"><img src="images/${funding.image }" class="novelImage"/></div>
-		<div class="col-md-8">
+		<div class="col-md-7"><img src="fundingImages/${funding.image }" class="novelImage"/></div>
+		<div class="col-md-4">
 			<h1 class="my-2">${funding.title}</h1>
 			<fmt:parseNumber var="cost" integerOnly="true" value="${funding.nowCost/funding.targetCost*100 }"/>
 			<h4 class="my-2">${cost }% 달성</h4>
@@ -49,7 +49,7 @@ table th{
 			<div class="grayBox">
 				<table>
 					<tr><th>연락처</th><td><input type="text" value="${member.mobile }"></td></tr>
-					<tr><th>배송지</th><td>${member.address }</td></tr>	
+					<tr><th>배송지</th><td>${member.roadAddress }</td></tr>	
 				</table>
 			</div>
 		</div>

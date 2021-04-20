@@ -29,14 +29,14 @@ public class FundingPaymentAction implements Action {
 			out.println("</script>");
 		}else {
 			FundingPaymentService fundingPaymentService = new FundingPaymentService();
-			String literaryID = request.getParameter("literaryID");
+			int fundingID = Integer.parseInt(request.getParameter("fundingID"));
 			int cost = Integer.parseInt(request.getParameter("cost"));
-					
+			System.out.println(fundingID);
 			
-			Funding funding = fundingPaymentService.getFunding(Integer.parseInt(literaryID));
+			Funding funding = fundingPaymentService.getFunding(fundingID);
 			Member member = fundingPaymentService.getMember(memberID);
 			FundingGoods fundingGoods = fundingPaymentService.getFundingGoods(Integer.parseInt(request.getParameter("goodsID")));
-	
+			
 			request.setAttribute("funding", funding);
 			request.setAttribute("member", member);
 			request.setAttribute("fundingGoods", fundingGoods);

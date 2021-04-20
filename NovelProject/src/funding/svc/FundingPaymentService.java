@@ -13,7 +13,7 @@ import vo.Member;
 
 public class FundingPaymentService {
 
-	public Funding getFunding(int literaryID) {
+	public Funding getFunding(int fundingID) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		Funding funding = null;
@@ -21,7 +21,7 @@ public class FundingPaymentService {
 			FundingDAO fundingDAO = FundingDAO.getInstance();
 			con = getConnection();
 			fundingDAO.setConnection(con);
-			funding = fundingDAO.selectFunding(literaryID);
+			funding = fundingDAO.selectFunding(fundingID);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
