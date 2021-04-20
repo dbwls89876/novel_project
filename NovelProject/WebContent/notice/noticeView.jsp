@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@page import="vo.BoardBean"%>
 <%
+String memberID = "";
+if((String)session.getAttribute("memberID")!=null)
+	memberID = (String)session.getAttribute("memberID");
 	BoardBean article = (BoardBean) request.getAttribute("article");
 String nowPage = (String) request.getAttribute("page");
 %>
@@ -76,11 +79,12 @@ table {
 	<form>
 	<section id="commandCell">
 	
-		
+		<%if(memberID.equals("admin")){ %>
 		<input type="button" value="수정"
 					onClick="location.href='noticeModifyForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
 		<input type="button" value="삭제"
 					onClick="location.href='noticeDeleteForm.no?noticeID=<%=article.getNoticeID()%>&page=<%=nowPage%>'">&nbsp;&nbsp;
+		<%} %>
 		<input type="button" value="목록"
 					onClick="location.href='noticeList.no?page=<%=nowPage%>'">
 	
