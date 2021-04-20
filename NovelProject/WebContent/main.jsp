@@ -62,7 +62,7 @@
 				<div class="container">
 					<p class="text-right"><a href="${pageContext.request.contextPath }/noticeList.no">공지 보러가기</a></p>
 					<div class="row mt-2">
-						<div ><h3>공지게시판</h3></div>
+						<div><h3>공지게시판</h3></div>
 					</div>
 				</div>	
 				
@@ -70,12 +70,17 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="col-6 m-6">
 			<div class="row grayBox">
-				<p class="text-right"><a href="${pageContext.request.contextPath }/boardList.bo">커뮤니티 보러가기</a></p>				<div class="row">
-				<div class="m-1 ml-3"><h3>공지게시판</h3></div>
+				<div class="container">
+					<p class="text-right"><a href="${pageContext.request.contextPath }/boardList.bo">커뮤니티 보러가기</a></p>
+					<div class="row mt-2">
+						<div><h3>커뮤니티</h3></div>
+					</div>
 				</div>
-				<div class="row">
+					
+				<div class="row mt-2">
 				</div>
 				
 			</div>
