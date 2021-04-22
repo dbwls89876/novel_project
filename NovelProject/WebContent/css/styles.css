@@ -10029,6 +10029,11 @@ hr.light {
 	color:#606E5E;
 	float: left;
 }
+@media (min-width: 992px){
+	#mainNav ul ul:hover ul{
+		display: none;
+	}
+}
 #mainNav .navbar-brand {
   font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
